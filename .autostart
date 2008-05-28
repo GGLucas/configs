@@ -1,9 +1,6 @@
 #!/bin/bash
 sleep 1
 
-# Fill awesome bar
-#awesome_stats.sh &
-
 # Desktop BG
 feh --bg-scale /home/archlucas/pictures/archlinux-wp-cf1-1680x2x1050.png > /dev/null &
 
