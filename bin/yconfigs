@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ~
+git commit -a
+#git commit $@
+git push origin master

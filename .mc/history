@@ -1,0 +1,80 @@
+
+[input-timo-vfs]
+0=60
+
+[input-passwd]
+0=anonymous@
+
+[input-timeout]
+0=900
+
+[input-ftp-proxy]
+0=gate
+
+[user-fmt-input]
+0=half type name | size | perm
+
+[mini-input]
+0=half type name | size | perm
+
+[Dir Hist New Left Panel]
+0=/home/archlucas/..received
+1=/home
+2=/
+3=/data
+4=/data/anime
+5=/home/archlucas
+6=/data/series
+
+[input2]
+0=/home/archlucas/.vim
+1=/home/archlucas/.vim/doc
+
+[input-def]
+0=*
+
+[cmdline]
+0=[Bqq
+1=jj
+2=smplayer Doctor_Who.3x02.The_Shakespeare_Code.iNTERNAL.WS_PDTV_XviD-FoV.avi 
+3=smplayer rules_of_engagement-S02E02-Audreys_Sister.avi 
+4=cd /home/archlucas
+5=cd .vim
+6=cd /data/anime
+7=smplayer \[Eclipse\]\ Code\ Geass\ -\ Lelouch\ of\ the\ Rebellion\ R2\ -\ 08\ \(1280x720\ h264\)\ \[6CC82EDB\].mkv 
+8=`
+9=q
+
+[Dir Hist New Right Panel]
+0=/boot
+1=/data/anime/Gunslinger Girl
+2=/home/archlucas/sources/mypkg/awesome3-git/src/awesome
+3=/home/archlucas/..pictures/Wallpapers
+4=/home/archlucas/..pictures
+5=/home/archlucas/..received
+6=/home/archlucas/sources
+7=/home/archlucas/sources/mypkg
+8=/data/series/Battlestar Galactica
+9=/data/series/Battlestar Galactica/Season 4
+10=/home
+11=/data/series/Doctor Who
+12=/data/series/Doctor Who/Season 3
+13=/data/series/Two and a Half Men
+14=/data/series/Rules of Engagement/rules_of_engagement/rules_of_engagement-season02
+15=/data/series/Rules of Engagement/rules_of_engagement
+16=/data/series/Rules of Engagement
+17=/
+18=/data/series
+19=/home/archlucas/.gnupg
+20=/home/archlucas/.gimp-2.4/tmp
+21=/home/archlucas/.gimp-2.4
+22=/home/archlucas/.vim/EnhancedCommentify-2.3
+23=/home/archlucas/.vim/ftplugin
+24=/home/archlucas/.vim/doc/EnhancedCommentify-2.3/doc
+25=/home/archlucas/.vim/doc/EnhancedCommentify-2.3
+26=/home/archlucas/.vim
+27=/home/archlucas/.vim/doc
+28=/data/anime
+29=/data/anime/Code Geass R2
+30=/data
+31=/home/archlucas

@@ -1,0 +1,2 @@
+#!/bin/bash
+svn commit --editor-cmd vim --username gglucas --password serpent $@

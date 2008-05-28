@@ -1,0 +1,2 @@
+#!/bin/sh
+ex=`dmenu_path | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#222222' -nf '#888888' -sb '#285577' -sf '#ffffff'` && exec $ex

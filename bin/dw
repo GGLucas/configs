@@ -1,0 +1,18 @@
+#!/bin/bash
+if [[ -d "/data/others/dw" ]]
+then
+
+echo "Unmounting"
+gconftool-2 --type string --set /apps/nautilus/preferences/show_image_thumbnails "local_only"
+sudo umount /data/others/dw
+truecrypt -t -d /data/virtual/crypt.img
+rmdir /data/others/dw
+
+else
+
+echo "Mounting"
+gconftool-2 --type string --set /apps/nautilus/preferences/show_image_thumbnails "never"
+mkdir /data/others/dw
+sudo truecrypt -t /data/virtual/crypt.img /data/others/dw
+
+fi

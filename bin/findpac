@@ -1,0 +1,3 @@
+#!/bin/bash
+echo -- Finding *.pacnew and *.pacsave files --
+sudo find /etc -name "*.pac*"

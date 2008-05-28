@@ -1,0 +1,3 @@
+#!/bin/bash
+set -x WINEPREFIX /data/winedrive/games/cnc3
+/opt/wine/cnc3/bin/wine 'C:/Program Files/Electronic Arts/Command & Conquer 3/CNC3.exe'

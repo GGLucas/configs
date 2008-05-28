@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+import os
+x=os.popen("iwconfig wlan0").readlines()
+t=os.popen("ifconfig").readlines()
+
+b = True
+
+if t[0].find("wlan0") != -1:
+	b = False
+if len(t) > 8:
+	if t[8].find("wlan0") != -1:
+		b = False
+
+if b:
+	print "[Ethernet] "
+else:
+	q=x[4]
+	pos=q.find("Link Quality=")+len("Link Quality=")
+
+	p=x[0]
+	pos2=p.find("ESSID:")+len("ESSID:")
+	link=p[pos2:].strip()
+	print link+" ("+q[pos:(pos+2)]+"%) "

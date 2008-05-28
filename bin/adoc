@@ -1,0 +1,2 @@
+#!/bin/bash
+asciidoc -d manpage -b docbook wicked.7.txt; docbook2man wicked.7.xml; gzip wicked.7; man ./wicked.7.gz

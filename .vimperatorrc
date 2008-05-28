@@ -1,0 +1,10 @@
+map <C-]> <Escape>:set go=bm<Return><Escape>
+map <C-=> <Escape>:set go=<Return><Escape>
+map v <Escape>:bmarks!<Space>
+map gp <Escape>:tabprev<Return><Escape>
+map gn <Escape>:tabnext<Return><Escape>
+map c F
+map gj <C-f>
+map gk <C-b>
+map gb gp
+map <C-a> <Esc>

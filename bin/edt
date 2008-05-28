@@ -1,0 +1,2 @@
+#!/bin/bash
+gnome-terminal --window-with-profile=Writer --hide-menubar --full-screen -x nano $1

@@ -1,0 +1,6 @@
+#!/bin/bash
+#exaile /data/music/listen.m3u
+mpc clear
+mpc load animenfo
+mpc play
+terminator -x ncmpc

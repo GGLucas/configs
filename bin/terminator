@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /data/programs/applications/terminator/active/terminator $@

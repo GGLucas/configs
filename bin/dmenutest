@@ -1,0 +1,2 @@
+#!/bin/sh
+ex=`echo "Please input name for tag 1:1." | dmenu -fn '-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*' -nb '#222222' -nf '#888888' -sb '#285577' -sf '#ffffff'` && echo "eminent.tag.name(1, 1, '$ex')" | awesome-client

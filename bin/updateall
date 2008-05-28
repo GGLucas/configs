@@ -1,0 +1,2 @@
+#!/bin/bash
+yaourt -Syyu --aur --devel --noconfirm

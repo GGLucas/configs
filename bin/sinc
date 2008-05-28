@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /data/projects/pjSin
+svn commit --editor-cmd vim --username gglucas --password serpent $@

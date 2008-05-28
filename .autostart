@@ -1,0 +1,27 @@
+#!/bin/bash
+sleep 1
+
+# Fill awesome bar
+#awesome_stats.sh &
+
+# Desktop BG
+feh --bg-scale /home/archlucas/pictures/archlinux-wp-cf1-1680x2x1050.png > /dev/null &
+
+# VNC Server
+x11vnc -usepw -shared -forever > /dev/null &
+
+# Make forward&back mouse buttons work
+imwheel -k -b "67" > /dev/null &
+
+# Enable Glyph Cache :D
+#nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
+
+# Enable sound
+amixer set Front 100 > /dev/null &
+mpc volume 74 > /dev/null &
+
+# Run urxvtd, to start terminals faster
+urxvtd &
+
+# Screensaver (Running as main process !)
+xscreensaver > /dev/null
