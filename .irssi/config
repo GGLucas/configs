@@ -68,10 +68,7 @@ chatnets = {
     max_msgs = "100";
   };
   SILC = { type = "SILC"; };
-  freenode = {
-    type = "IRC";
-    autosendcmd = "/mg NickServ IDENTIFY serpent";
-  };
+  freenode = { type = "IRC"; };
   oftc = { type = "IRC"; };
 };
 

@@ -285,6 +285,12 @@ wicked.register(memtextwidget, 'mem', spacer..heading('MEM')..': $1% ($2/$3)'..s
 
 -- }}}
 
+-- {{ Other Widget
+spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
+spacerwidget:set('text', spacer..separator)
+
+-- }}
+
 -- {{{ Statusbar
 mainstatusbar = {}
 statusbar_status = {}

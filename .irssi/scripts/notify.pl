@@ -31,6 +31,7 @@ sub notify {
     $message =~ s/>/&gt;/g;
     $message =~ s/'//g;
     $message =~ s/"//g;
+    $message =~ s/`//g;
 
     my $cmd = "EXEC - notify-send" .
 	" -i " . Irssi::settings_get_str('notify_icon') .
