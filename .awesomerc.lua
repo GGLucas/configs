@@ -83,10 +83,10 @@ k_s = {shift}
 
 -- {{{ Set tag names
 eminent.tag.name(1, 1, 'main')
-eminent.tag.name(2, 1, 'main')
+eminent.tag.name(1, 2, 'main')
 eminent.tag.name(2, 2, 'msg')
-eminent.tag.name(2, 3, 'mpd')
-eminent.tag.name(2, 4, 'dl')
+eminent.tag.name(3, 2, 'mpd')
+eminent.tag.name(4, 2, 'dl')
 
 -- {{{ Markup helper functions
 function bg(color, text)
@@ -203,6 +203,7 @@ mpdwidget = widget.new({
 
 mpdwidget:set('text', spacer..heading('MPD')..': '..spacer..separator)
 wicked.register(mpdwidget, 'mpd', function (widget, args)
+    -- I don't want the stream name on my statusbar, so I gsub it out, feel free to take it out
     return spacer..heading('MPD')..': '..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')..spacer..separator end)
 
 -- }}}
@@ -269,7 +270,34 @@ cputextwidget = widget.new({
 })
 
 cputextwidget:set('text', spacer..heading('CPU')..': '..spacer..separator)
-wicked.register(cputextwidget, 'cpu', spacer..heading('CPU')..': $1%'..spacer..separator)
+wicked.register(cputextwidget, 'cpu', function (widget, args) 
+    -- Add a zero if lower than 10
+    if args[1] < 10 then 
+        args[1] = '0'..args[1]
+    end
+
+    return spacer..heading('CPU')..': '..args[1]..'%'..spacer..separator end) 
+
+-- }}}
+
+-- {{{ CPU Graph Widget
+cpugraphwidget = widget.new({
+    type = 'graph',
+    name = 'cpugraphwidget',
+    align = 'right'
+})
+
+cpugraphwidget:set('height', '0.85')
+cpugraphwidget:set('width', '45')
+cpugraphwidget:set('grow', 'left')
+cpugraphwidget:set('bg', '#333333')
+cpugraphwidget:set('bordercolor', '#0a0a0a')
+cpugraphwidget:set('fg', 'cpu #AEC6D8')
+cpugraphwidget:set('fg_center', 'cpu #285577')
+cpugraphwidget:set('fg_end', 'cpu #285577')
+cpugraphwidget:set('vertical_gradient', 'cpu false')
+
+wicked.register(cpugraphwidget, 'cpu', 'cpu $1', 1, 'data')
 
 -- }}}
 
@@ -281,10 +309,36 @@ memtextwidget = widget.new({
 })
 
 memtextwidget:set('text', spacer..heading('MEM')..': '..spacer..separator)
-wicked.register(memtextwidget, 'mem', spacer..heading('MEM')..': $1% ($2/$3)'..spacer..separator)
+wicked.register(memtextwidget, 'mem', function (widget, args) 
+    -- Add extra preceding zeroes when needed
+    if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
+    if tonumber(args[2]) < 1000 then args[2] = '0'..args[2] end
+    if tonumber(args[3]) < 1000 then args[3] = '0'..args[3] end
+    return spacer..heading('MEM')..': '..args[1]..'% ('..args[2]..'/'..args[3]..')'..spacer..separator end)
 
 -- }}}
+--
+-- {{{ Memory Graph Widget
+memgraphwidget = widget.new({
+    type = 'graph',
+    name = 'memgraphwidget',
+    align = 'right'
+})
 
+memgraphwidget:set('height', '0.85')
+memgraphwidget:set('width', '45')
+memgraphwidget:set('grow', 'left')
+memgraphwidget:set('bg', '#333333')
+memgraphwidget:set('bordercolor', '#0a0a0a')
+memgraphwidget:set('fg', 'mem #AEC6D8')
+memgraphwidget:set('fg_center', 'mem #285577')
+memgraphwidget:set('fg_end', 'mem #285577')
+memgraphwidget:set('vertical_gradient', 'mem false')
+
+wicked.register(memgraphwidget, 'mem', 'mem $1', 1, 'data')
+
+-- }}}
+--
 -- {{ Other Widget
 spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
 spacerwidget:set('text', spacer..separator)
@@ -308,7 +362,11 @@ for s = 1, screen.count() do
     mainstatusbar[s]:widget_add(gmailwidget)
     mainstatusbar[s]:widget_add(gpuwidget)
     mainstatusbar[s]:widget_add(cputextwidget)
+    mainstatusbar[s]:widget_add(cpugraphwidget)
+    mainstatusbar[s]:widget_add(spacerwidget)
     mainstatusbar[s]:widget_add(memtextwidget)
+    mainstatusbar[s]:widget_add(memgraphwidget)
+    mainstatusbar[s]:widget_add(spacerwidget)
     mainstatusbar[s]:add(s)
     statusbar_status[s] = 1
 end
@@ -592,12 +650,14 @@ function hook_newclient(c)
         color = border_focus 
     })
 
-    eminent.newclient(c)
+    if c:name_get():lower():find('gimp') then
+        c:floating_set(true)
+    end
 end
 
-hooks.focus(hook_focus)
-hooks.unfocus(hook_unfocus)
-hooks.newclient(hook_newclient)
-hooks.mouseover(hook_mouseover)
+awful.hooks.focus(hook_focus)
+awful.hooks.unfocus(hook_unfocus)
+awful.hooks.newclient(hook_newclient)
+awful.hooks.mouseover(hook_mouseover)
 
 -- }}}

@@ -18,6 +18,8 @@ nmap gn :bnext<CR>
 nmap gl :Ex<CR> 
 nmap gd :tabclose<CR>
 nmap e :w<CR>
+nmap <Leader>cd :colorscheme default<CR>
+nmap <Leader>cn :source /usr/share/vim/plugin/guicolorscheme.vim<CR>:GuiColorScheme darkspectrum<CR>:source ~/.vim/after/plugin/guicolorscheme.vim<CR>
 
 set nocompatible
 
@@ -62,4 +64,3 @@ exe "imap <silent> <Leader>ehc \<c-o><Plug>Comment"
 exe "imap <silent> <Leader>ehd \<c-o><Plug>DeComment"
 exe "imap <silent> <Leader>eht \<c-o><Plug>Traditional"
 exe "imap <silent> <Leader>ehf \<c-o><Plug>FirstLine"
-

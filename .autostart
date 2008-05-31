@@ -11,7 +11,7 @@ x11vnc -usepw -shared -forever > /dev/null &
 imwheel -k -b "67" > /dev/null &
 
 # Enable Glyph Cache :D
-nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
+#nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
 
 # Enable sound
 amixer set Front 100 > /dev/null &

@@ -29,9 +29,9 @@ urxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
 
 urxvt.background: #000000
 !urxvt.background: #2E3436
-urxvt.foreground:  #EBEBFF
+!urxvt.foreground:  #EBEBFF
 !urxvt.foreground: #ffffff
-!urxvt.foreground: #ffffff
+urxvt.foreground: #ffffff
 urxvt.cursorColor: #FFFFFF
 urxvt.cursorBlink: false
 urxvt.tintColor: grey30
