@@ -1,4 +1,8 @@
 ---- GGLucas' Awesome-3 Lua Config :D
+------
+-- I use both wicked and eminent, so to use it,
+-- you'll need to get both those helper libraries too.
+------
 -- Requires
 require("awful")
 require("wicked")
@@ -82,6 +86,7 @@ k_s = {shift}
 -- }}}
 
 -- {{{ Set tag names
+-- eminent.tag.name(Tag_Number, Screen_Number, Name)
 eminent.tag.name(1, 1, 'main')
 eminent.tag.name(1, 2, 'main')
 eminent.tag.name(2, 2, 'msg')
@@ -89,6 +94,8 @@ eminent.tag.name(3, 2, 'mpd')
 eminent.tag.name(4, 2, 'dl')
 
 -- {{{ Markup helper functions
+-- Inline markup is a tad ugly, so use these functions
+-- to dynamically create markup.
 function bg(color, text)
     return '<bg color="'..color..'" />'..text
 end
@@ -124,10 +131,12 @@ end
 -- }}}
 
 -- {{{ Functions
+-- Toggle whether we're viewing a tag
 function tag_toggleview(tag)
     tag:view(not tag:isselected())
 end
 
+-- Redraw all currently visible clients
 function redraw_all()
     local cls = client.visible_get(mouse.screen_get())
     for idx, c in ipairs(cls) do
@@ -135,6 +144,7 @@ function redraw_all()
     end
 end
 
+-- Get the screen number we're on
 function getscreen()
     local sel = client.focus_get()
     local s
@@ -147,6 +157,7 @@ function getscreen()
     return s
 end
 
+-- Move current client to a specific screen
 function client_movetoscreen(i)
     local sel = client.focus_get()
     sel:screen_set(i)
@@ -219,7 +230,9 @@ gmailwidget:set('text', spacer..heading('GMail')..': 0'..spacer..separator)
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Call GMail check script to check for new email
     local f = io.popen('/home/archlucas/other/.gmail.py')
+    if f == nil then return '' end
     local n = f:read()
+    if n == nil then return '' end
     f:close()
     out = spacer..heading('GMail')..': '
 
@@ -247,8 +260,10 @@ gpuwidget:set('text', spacer..heading('GPU')..': n/a°C'..spacer..separator)
 wicked.register(gpuwidget, 'function', function (widget, args)
     -- Use nvidia-settings to figure out the GPU temperature
     command = "nvidia-settings -q [gpu:0]/GPUCoreTemp | grep '):'"
-    local f = io.popen('sh -c "'..command..'"')
+    local f = io.popen(command)
+    if f == nil then return '' end
     local n = f:read()
+    if n == nil then return '' end
     out = ''
     f:close()
 
@@ -611,6 +626,7 @@ end
 
 -- {{{ Hooks
 function hook_focus(c)
+    -- Set border to active color
     c:border_set({ 
         width = border_width, 
         color = border_focus 
@@ -623,6 +639,7 @@ function hook_focus(c)
 end
 
 function hook_unfocus(c)
+    -- Set border back to normal
     c:border_set({ 
         width = border_width, 
         color = border_normal 
@@ -630,10 +647,12 @@ function hook_unfocus(c)
 end
 
 function hook_mouseover(c)
+    -- Set focus for sloppy focus
     c:focus_set()
 end
 
 function hook_newclient(c)
+    -- Focus new clients
     c:focus_set()
    
     -- Prevents new windows from becoming master
@@ -645,16 +664,19 @@ function hook_newclient(c)
         end
     end
     
+    -- Create border
     c:border_set({ 
         width = border_width, 
         color = border_focus 
     })
 
+    -- Make gimp floating
     if c:name_get():lower():find('gimp') then
         c:floating_set(true)
     end
 end
 
+-- Attach the hooks
 awful.hooks.focus(hook_focus)
 awful.hooks.unfocus(hook_unfocus)
 awful.hooks.newclient(hook_newclient)
