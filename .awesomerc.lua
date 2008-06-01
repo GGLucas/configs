@@ -3,12 +3,19 @@
 -- I use both wicked and eminent, so to use it,
 -- you'll need to get both those helper libraries too.
 ------
+-- Note that I use all-custom keybindings and you might
+-- want to copy the default awesomerc.lua's keybindings 
+-- into here if you wish to use those, although you might
+-- find you like mine better :P
+------
 -- Requires
 require("awful")
 require("wicked")
 require("eminent")
 
 -- {{{ Settings
+-- We define variables here we can later use to set
+-- the specific settings.
 default_font = 'Terminus 8'
 default_mwfact = 0.618033988769
 spacer = " "
@@ -20,6 +27,8 @@ awesome.font_set(default_font)
 -- }}}
 
 -- {{{ Applications
+-- We define frequently used applications into variables
+-- so we can easily change which ones we use.
 terminal = 'urxvtc'
 -- Note: mydmenu is my own script that feeds
 -- specific options/values into dmenu, replace it
