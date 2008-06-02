@@ -214,6 +214,13 @@ maintaglist:mouse(k_n, 4, function ()
 
 -- }}}
 
+mytasklist = widget.new({ type = "tasklist", name = "mytasklist" })
+mytasklist:mouse({ }, 1, function (c) c:focus_set(); c:raise() end)
+mytasklist:mouse({ }, 4, function () awful.client.focus(1) end)
+mytasklist:mouse({ }, 5, function () awful.client.focus(-1) end)
+mytasklist:set("text_focus", "<bg color=\"#555555\"/> <title/> ")
+
+
 -- {{{ MPD Widget
 mpdwidget = widget.new({
     type = 'textbox',
@@ -462,6 +469,11 @@ keybinding.new(k_ms, "#49", function ()
     redraw_all() end):add()
 
 
+-- Mod+M: Toggle window maximized
+keybinding.new(k_m, "m", function ()
+    awful.client.togglemax() end):add()
+
+
 -- Mod+{Q/W}: Focus Prev/Next window
 keybinding.new(k_m, "q", function ()
     awful.client.focus(-1) end):add()
@@ -532,6 +544,13 @@ keybinding.new(k_m, "n", function()
 
 keybinding.new(k_ms, "n", function()
     eminent.name_dialog() end):add()
+
+-- Alt+#94 (left of Z, not all keyboards have it):
+-- Switch to floating layout
+keybinding.new(k_a, "#94", function ()
+    awful.tag.selected():layout_set('floating')
+    redraw_all()
+end):add()
 
 -- Alt+Z: Switch to max layout
 keybinding.new(k_a, "z", function ()
@@ -642,9 +661,7 @@ function hook_focus(c)
     })
 
     -- Raise the client
-    if c:floating_get() then
-        c:raise()
-    end
+    c:raise()
 end
 
 function hook_unfocus(c)
