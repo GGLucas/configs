@@ -1,4 +1,4 @@
----- GGLucas' Awesome-3 Lua Config :D
+-- GGLucas' Awesome-3 Lua Config :D
 ------
 -- I use both wicked and eminent, so to use it,
 -- you'll need to get both those helper libraries too.
@@ -45,6 +45,12 @@ music_toggle = 'mpdtoggle toggle'
 music_stop = 'mpdtoggle stop'
 music_next = 'mpc next'
 music_prev = 'mpc prev'
+
+-- Sound
+vol_set = 'amixer set PCM '
+vol_up = 'amixer set PCM 8%+ > /dev/null'
+vol_down = 'amixer set PCM 8%- > /dev/null'
+vol_mute = 'amixer set Master togglemute > /dev/null'
 
 ---- }}}
 
@@ -451,6 +457,41 @@ end):add()
 -- Alt+A: Spawn file manager in ~
 keybinding.new(k_a, "a", function ()
     awful.spawn( filemanager..' /home/archlucas')
+end):add()
+
+---- }}}
+
+---- {{{ Multimedia keyboard keys/Volume shortcuts
+keybinding.new(k_n, "#176", function ()
+    awful.spawn(vol_up)
+end):add()
+
+keybinding.new(k_n, "#174", function ()
+    awful.spawn(vol_down)
+end):add()
+
+keybinding.new(k_n, "#160", function ()
+    awful.spawn(vol_mute)
+end):add()
+
+keybinding.new(k_a, "n", function ()
+    awful.spawn(vol_up)
+end):add()
+
+keybinding.new(k_a, "b", function ()
+    awful.spawn(vol_down)
+end):add()
+
+keybinding.new(k_a, "m", function ()
+    awful.spawn(vol_mute)
+end):add()
+
+keybinding.new(k_ma, "b", function ()
+    awful.spawn(vol_set..'50% > /dev/null')
+end):add()
+
+keybinding.new(k_ma, "n", function ()
+    awful.spawn(vol_set..'100% > /dev/null')
 end):add()
 
 ---- }}}

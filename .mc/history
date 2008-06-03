@@ -33,6 +33,9 @@
 [input-def]
 0=*
 
+[inp Filter ]
+0=*
+
 [cmdline]
 0=[Bqq
 1=jj
@@ -44,6 +47,11 @@
 7=smplayer \[Eclipse\]\ Code\ Geass\ -\ Lelouch\ of\ the\ Rebellion\ R2\ -\ 08\ \(1280x720\ h264\)\ \[6CC82EDB\].mkv 
 8=`
 9=q
+10=cd Nabari no Ou/
+11=xine \[AonE_-_Conclave\]_Nabari_no_Ou_-_01_\[XviD\]\[704x396\]\[E574B19D\].avi 
+12=smplayer Futurama\ -\ S05E10\ -\ The\ Farnsworth\ Parabox\ \[dd\].avi 
+13=smplayer Futurama\ -\ S05E11\ -\ Three\ Hundred\ Big\ Boys\ \[dd\].avi 
+14=smplayer Futurama\ -\ S05E12\ -\ Spanish\ Fry\ \[dd\].avi 
 
 [Dir Hist New Right Panel]
 0=/boot
@@ -64,20 +72,23 @@
 15=/data/series/Rules of Engagement/rules_of_engagement
 16=/data/series/Rules of Engagement
 17=/
-18=/data/series
-19=/home/archlucas/.gnupg
-20=/home/archlucas/.gimp-2.4/tmp
-21=/home/archlucas/.gimp-2.4
-22=/home/archlucas/.vim/EnhancedCommentify-2.3
-23=/home/archlucas/.vim/ftplugin
-24=/home/archlucas/.vim/doc/EnhancedCommentify-2.3/doc
-25=/home/archlucas/.vim/doc/EnhancedCommentify-2.3
-26=/home/archlucas/.vim
-27=/home/archlucas/.vim/doc
-28=/data/anime
-29=/data/anime/Code Geass R2
-30=/data
-31=/home/archlucas
-
-[inp Filter ]
-0=*
+18=/home/archlucas/.gnupg
+19=/home/archlucas/.gimp-2.4/tmp
+20=/home/archlucas/.gimp-2.4
+21=/home/archlucas/.vim/EnhancedCommentify-2.3
+22=/home/archlucas/.vim/ftplugin
+23=/home/archlucas/.vim/doc/EnhancedCommentify-2.3/doc
+24=/home/archlucas/.vim/doc/EnhancedCommentify-2.3
+25=/home/archlucas/.vim
+26=/home/archlucas/.vim/doc
+27=/data/anime/Code Geass R2
+28=/home/archlucas
+29=/data/anime
+30=/data/anime/Nabari no Ou
+31=/data/.backups
+32=/data/projects
+33=/data
+34=/data/series
+35=/data/series/Futurama
+36=/data/series/Futurama/Futurama
+37=/data/series/Futurama/Futurama/Futurama - Season 5

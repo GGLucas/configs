@@ -48,19 +48,4 @@ if $SHELL =~ 'bin/fish'
     set shell=/bin/sh
 endif
 
-
-let g:EnhCommentifyFirstLineMode = "yes"
-let g:EnhCommentifyUserBindings  = "yes"
-
-nmap <silent> <Leader>ehc <Plug>Comment
-nmap <silent> <Leader>ehd <Plug>DeComment
-nmap <silent> <Leader>eht <Plug>Traditional
-nmap <silent> <Leader>ehf <Plug>FirstLine
-vmap <silent> <Leader>ehc <Plug>VisualComment
-vmap <silent> <Leader>ehd <Plug>VisualDeComment
-vmap <silent> <Leader>eht <Plug>VisualTraditional
-vmap <silent> <Leader>ehf <Plug>VisualFirstLine
-exe "imap <silent> <Leader>ehc \<c-o><Plug>Comment"
-exe "imap <silent> <Leader>ehd \<c-o><Plug>DeComment"
-exe "imap <silent> <Leader>eht \<c-o><Plug>Traditional"
-exe "imap <silent> <Leader>ehf \<c-o><Plug>FirstLine"
+let NERDDefaultNesting = 1

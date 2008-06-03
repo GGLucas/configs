@@ -55,8 +55,7 @@ urxvt*color2:      #4E9A06
 !yellow
 urxvt*color3:      #C4A000
 !blue
-urxvt*color5:      #3465A4 
-!#31496E
+!urxvt*color4:      #2E3436
 !purple
 urxvt*color5:      #744E7A
 !cyan
