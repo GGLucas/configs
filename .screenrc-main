@@ -8,6 +8,12 @@ bind ^k
 bind L
 bind ^\
 
+screen -t 'irc' 1 'irssi'
+screen -t 'im' 2 'irssi_im'
+screen -t 'mpd' 3 'ncmpc'
+screen -t 'dl' 4 'rtor'
+
+
 altscreen on 
 hardstatus on
 

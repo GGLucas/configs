@@ -220,13 +220,6 @@ maintaglist:mouse(k_n, 4, function ()
 
 -- }}}
 
-mytasklist = widget.new({ type = "tasklist", name = "mytasklist" })
-mytasklist:mouse({ }, 1, function (c) c:focus_set(); c:raise() end)
-mytasklist:mouse({ }, 4, function () awful.client.focus(1) end)
-mytasklist:mouse({ }, 5, function () awful.client.focus(-1) end)
-mytasklist:set("text_focus", "<bg color=\"#555555\"/> <title/> ")
-
-
 -- {{{ MPD Widget
 mpdwidget = widget.new({
     type = 'textbox',
