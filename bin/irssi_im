@@ -1,2 +1,2 @@
 #!/bin/bash
-irssi --config=~/.irssi/imconfig
+exec irssi --config=~/.irssi/imconfig

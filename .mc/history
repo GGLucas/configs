@@ -52,6 +52,9 @@
 12=smplayer Futurama\ -\ S05E10\ -\ The\ Farnsworth\ Parabox\ \[dd\].avi 
 13=smplayer Futurama\ -\ S05E11\ -\ Three\ Hundred\ Big\ Boys\ \[dd\].avi 
 14=smplayer Futurama\ -\ S05E12\ -\ Spanish\ Fry\ \[dd\].avi 
+15=cd anime/
+16=cd Kanokon/
+17=cd /mnt/data-2
 
 [Dir Hist New Right Panel]
 0=/boot
@@ -83,12 +86,16 @@
 26=/home/archlucas/.vim/doc
 27=/data/anime/Code Geass R2
 28=/home/archlucas
-29=/data/anime
-30=/data/anime/Nabari no Ou
-31=/data/.backups
-32=/data/projects
-33=/data
-34=/data/series
-35=/data/series/Futurama
-36=/data/series/Futurama/Futurama
-37=/data/series/Futurama/Futurama/Futurama - Season 5
+29=/data/anime/Nabari no Ou
+30=/data/.backups
+31=/data/projects
+32=/data/series
+33=/data/series/Futurama
+34=/data/series/Futurama/Futurama
+35=/data/series/Futurama/Futurama/Futurama - Season 5
+36=/data/anime
+37=/data/anime/Kanokon
+38=/data
+39=/mnt/data-2/VirtualXP
+40=/mnt/data-2/writings
+41=/mnt/data-2

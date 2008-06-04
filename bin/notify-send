@@ -1,0 +1,2 @@
+#!/bin/bash
+exec urxvtc -b 5 -bg '#2E3436' -cr '#2E3436' -fg '#ffffff' -title 'urxvtcnotify' -e 'bash' -c "notify-do \"$1\" \"$2\""

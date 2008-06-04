@@ -424,32 +424,38 @@ awesome.mouse(k_n, 3, function ()
 ---- {{{ Application Launchers
 -- Alt+Q: Launch a new terminal
 keybinding.new(k_a, "q", function () 
-    awful.spawn( terminal ) end):add()
+    awful.spawn(terminal) end):add()
 
 -- Mod+K: Launch a new terminal with screen in it
 keybinding.new(k_m, "k", function () 
-    awful.spawn( 'urxvtc -e "fish" -c "exec screen -x main"' ) end):add()
+    awful.spawn('urxvtc -e "fish" -c "exec screen -x main"') end):add()
 
 -- Alt+W: Launch the menu application set before
 keybinding.new(k_a, "w", function () 
-    awful.spawn( menu ) end):add()
+    awful.spawn(menu) end):add()
 
 -- Alt+E: Toggle music playing
 keybinding.new(k_a, "e", function () 
-    awful.spawn( music_toggle ) end):add()
+    awful.spawn(music_toggle) end):add()
 
 -- Mod+L: Lock the screen
 keybinding.new(k_m, "l", function () 
-    awful.spawn( lock ) end):add()
+    awful.spawn(lock) end):add()
 
 -- Alt+D: Spawn file manager in /data
 keybinding.new(k_a, "d", function ()
-    awful.spawn( filemanager..' /data')
+    awful.spawn(filemanager..' /data')
 end):add()
 
 -- Alt+A: Spawn file manager in ~
 keybinding.new(k_a, "a", function ()
-    awful.spawn( filemanager..' /home/archlucas')
+    awful.spawn(filemanager..' /home/archlucas')
+end):add()
+
+-- Alt+S: Kill all libnotify message on screen
+-- Note: custom script
+keybinding.new(k_a, "s", function ()
+    awful.spawn('stopnotify')
 end):add()
 
 ---- }}}
@@ -688,6 +694,14 @@ end
 
 -- {{{ Hooks
 function hook_focus(c)
+    -- Skip over urxvtcnotify
+    local name = c:name_get():lower()
+
+    if name:find('urxvtcnotify') and awful.client.next() ~= c then
+        awful.client.focus(1)
+        return 0
+    end
+
     -- Set border to active color
     c:border_set({ 
         width = border_width, 
@@ -712,6 +726,48 @@ function hook_mouseover(c)
 end
 
 function hook_newclient(c)
+    -- Create border
+    c:border_set({ 
+        width = border_width, 
+        color = border_focus 
+    })
+
+    -- Make certain windows floating
+    local name = c:name_get():lower()
+    if  name:find('gimp') or
+        name:find('urxvtcnotify')
+    then
+        c:floating_set(true)
+    end
+
+    if name:find('urxvtcnotify') then
+        -- I got sick of libnotify/notification-daemon
+        -- and their dependencies, so I'm using a little
+        -- urxvtc window with some text in it as notifications :P
+        -- This makes it appear at the correct place
+
+        c:screen_set(2)
+        c:coords_set({
+            x = screen.coords_get(2)['x']+1400,
+            y = 18,
+            width = 276,
+            height = 106
+        })
+
+        c:border_set({
+            width = border_width,
+            color = border_normal
+        })
+
+        for i,t in pairs(eminent.tags[2]) do
+            if eminent.tag.isoccupied(2, t) then
+                c:tag(t, true)
+            end
+        end
+
+        return 0
+    end
+
     -- Focus new clients
     c:focus_set()
    
@@ -724,16 +780,6 @@ function hook_newclient(c)
         end
     end
     
-    -- Create border
-    c:border_set({ 
-        width = border_width, 
-        color = border_focus 
-    })
-
-    -- Make gimp floating
-    if c:name_get():lower():find('gimp') then
-        c:floating_set(true)
-    end
 end
 
 -- Attach the hooks

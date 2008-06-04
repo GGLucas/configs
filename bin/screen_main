@@ -1,2 +1,2 @@
 #!/bin/bash
-screen -S main -c ~/.screenrc-main
+exec screen -S main -c ~/.screenrc-main
