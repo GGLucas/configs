@@ -19,7 +19,7 @@ nmap gl :Ex<CR>
 nmap gd :tabclose<CR>
 nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>
-nmap <Leader>cn :source /usr/share/vim/plugin/guicolorscheme.vim<CR>:GuiColorScheme darkspectrum<CR>:source ~/.vim/after/plugin/guicolorscheme.vim<CR>
+nmap <Leader>fd :set fdm=marker<CR>
 
 set nocompatible
 

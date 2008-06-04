@@ -108,6 +108,8 @@ eminent.tag.name(2, 2, 'msg')
 eminent.tag.name(3, 2, 'mpd')
 eminent.tag.name(4, 2, 'dl')
 
+-- }}}
+
 -- {{{ Markup helper functions
 -- Inline markup is a tad ugly, so use these functions
 -- to dynamically create markup.
@@ -200,22 +202,22 @@ maintaglist:set('text_urgent',
 
 maintaglist:set('show_empty', 'false')
 
-maintaglist:mouse(k_n, 1,
-    awful.tag.viewonly
-)
+maintaglist:mouse(k_n, 1, function (object, tag)
+    awful.tag.viewonly(tag)
+end)
 
-maintaglist:mouse(k_m, 1,
-    tag_toggleview
-)
+maintaglist:mouse(k_m, 1, function (object, tag)
+    tag_toggleview(tag)
+end)
 
-maintaglist:mouse(k_a, 1,
-    awful.client.movetotag
-)
+maintaglist:mouse(k_a, 1, function (object, tag)
+    awful.client.movetotag(tag)
+end)
 
-maintaglist:mouse(k_n, 5, function ()
+maintaglist:mouse(k_n, 5, function (object, tag)
     eminent.tag.next(mouse.screen_get()) end)
 
-maintaglist:mouse(k_n, 4, function () 
+maintaglist:mouse(k_n, 4, function (object, tag)
     eminent.tag.prev(mouse.screen_get()) end)
 
 -- }}}
@@ -369,11 +371,11 @@ wicked.register(memgraphwidget, 'mem', 'mem $1', 1, 'data')
 
 -- }}}
 --
--- {{ Other Widget
+-- {{{ Other Widget
 spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
 spacerwidget:set('text', spacer..separator)
 
--- }}
+-- }}}
 
 -- {{{ Statusbar
 mainstatusbar = {}
@@ -415,7 +417,7 @@ client.mouse(k_a, 3, function()
 end)
 
 -- Button3 on root window: spawn terminal
-awesome.mouse(k_n, 3, function () 
+awesome.mouse(k_n, 3, function ()
     awful.spawn(terminal) end)
 
 -- }}}
@@ -507,12 +509,6 @@ keybinding.new(k_m, "#49", function ()
 -- Mod+Shift+`: Redraw all windows
 keybinding.new(k_ms, "#49", function ()
     redraw_all() end):add()
-
-
--- Mod+M: Toggle window maximized
-keybinding.new(k_m, "m", function ()
-    awful.client.togglemax() end):add()
-
 
 -- Mod+{Q/W}: Focus Prev/Next window
 keybinding.new(k_m, "q", function ()
@@ -691,7 +687,6 @@ end
 
 -- }}}
 
-
 -- {{{ Hooks
 function hook_focus(c)
     -- Skip over urxvtcnotify
@@ -744,7 +739,9 @@ function hook_newclient(c)
         -- I got sick of libnotify/notification-daemon
         -- and their dependencies, so I'm using a little
         -- urxvtc window with some text in it as notifications :P
-        -- This makes it appear at the correct place
+        -- This makes it appear at the correct place,
+        -- feel free to remove the whole section, you probably
+        -- won't need it.
 
         c:screen_set(2)
         c:coords_set({
@@ -789,3 +786,5 @@ awful.hooks.newclient(hook_newclient)
 awful.hooks.mouseover(hook_mouseover)
 
 -- }}}
+
+-- vim: set filetype=lua fdm=marker tabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent nu:
