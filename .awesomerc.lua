@@ -312,7 +312,7 @@ wicked.register(loadwidget, 'function', function (widget, args)
 
     return spacer..heading('Load')..': '..n:sub(1,pos-1)..spacer..separator 
 
-end, 120)
+end, 2)
 
 -- }}}
 
