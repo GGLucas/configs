@@ -1,4 +1,0 @@
-#!/bin/bash
-cd /data/programs/applications/emesene
-svn up
-svn log --limit 5

@@ -1,6 +1,0 @@
-#!/usr/bin/env python
-import os
-p = os.popen("mpc").readlines()[0]
-if p.find('AnimeNfo') != -1:
-    p= p.replace("AnimeNfo Radio  | Serving you the best Anime music!: ", "")
-print p

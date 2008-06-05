@@ -294,6 +294,28 @@ end, 120)
 
 -- }}}
 
+-- {{{ Load Averages Widget
+loadwidget = widget.new({
+    type = 'textbox',
+    name = 'gpuwidget',
+    align = 'right'
+})
+
+wicked.register(loadwidget, 'function', function (widget, args)
+    -- Use /proc/loadavg to get the average system load on 1, 5 and 15 minute intervals
+    local f = io.open('/proc/loadavg')
+    local n = f:read()
+    f:close()
+
+    -- Find the third space
+    local pos = n:find(' ', n:find(' ', n:find(' ')+1)+1)
+
+    return spacer..heading('Load')..': '..n:sub(1,pos-1)..spacer..separator 
+
+end, 120)
+
+-- }}}
+
 -- {{{ CPU Usage Widget
 cputextwidget = widget.new({
     type = 'textbox',
@@ -349,7 +371,7 @@ wicked.register(memtextwidget, 'mem', function (widget, args)
     return spacer..heading('MEM')..': '..args[1]..'% ('..args[2]..'/'..args[3]..')'..spacer..separator end)
 
 -- }}}
---
+
 -- {{{ Memory Graph Widget
 memgraphwidget = widget.new({
     type = 'graph',
@@ -370,7 +392,7 @@ memgraphwidget:set('vertical_gradient', 'mem false')
 wicked.register(memgraphwidget, 'mem', 'mem $1', 1, 'data')
 
 -- }}}
---
+
 -- {{{ Other Widget
 spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
 spacerwidget:set('text', spacer..separator)
@@ -393,6 +415,7 @@ for s = 1, screen.count() do
     mainstatusbar[s]:widget_add(mpdwidget)
     mainstatusbar[s]:widget_add(gmailwidget)
     mainstatusbar[s]:widget_add(gpuwidget)
+    mainstatusbar[s]:widget_add(loadwidget)
     mainstatusbar[s]:widget_add(cputextwidget)
     mainstatusbar[s]:widget_add(cpugraphwidget)
     mainstatusbar[s]:widget_add(spacerwidget)
@@ -422,7 +445,6 @@ awesome.mouse(k_n, 3, function ()
 
 -- }}}
 
--- {{{ Key bindings
 ---- {{{ Application Launchers
 -- Alt+Q: Launch a new terminal
 keybinding.new(k_a, "q", function () 
@@ -684,8 +706,6 @@ for i = 1, 9 do
 end
 
 ---- }}}
-
--- }}}
 
 -- {{{ Hooks
 function hook_focus(c)

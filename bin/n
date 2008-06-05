@@ -1,2 +1,2 @@
 #!/bin/bash
-nautilus $@
+urxvtc -e mc -c $@ &
