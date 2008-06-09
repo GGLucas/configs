@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo pacman-color $@
+exec sudo pacman-color $@

@@ -1,6 +1,3 @@
-imap <C-a> <Esc>
-nmap <C-a> <Esc>
-
 imap <C-h> <Left>
 imap <C-j> <Down>
 imap <C-k> <Up>
@@ -16,7 +13,6 @@ imap <S-Tab> <C-d>
 nmap gb :bprevious<CR>
 nmap gn :bnext<CR>
 nmap gl :Ex<CR> 
-nmap gd :tabclose<CR>
 nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>
 nmap <Leader>fd :set fdm=marker<CR>

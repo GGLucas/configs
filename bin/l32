@@ -12,3 +12,4 @@ chmod +x /tmp/l32cmd
 
 sudo /etc/rc.d/arch32 start
 sudo chroot /opt/arch32 su archlucas --command='/tmp/l32cmd'
+sudo /etc/rc.d/arch32 stop

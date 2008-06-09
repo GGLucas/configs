@@ -10,8 +10,8 @@ def adddir(dir):
    FILES.append(dir+'/'+file)
 
 if __name__ == '__main__':
-    adddir(sys.argv[1]) 
+    adddir(sys.argv[2]) 
 
     while True:
-        time.sleep(3)
+        time.sleep(float(sys.argv[1]))
         os.system('gqview -r "'+random.choice(FILES).replace('"','\\"')+'"')

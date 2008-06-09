@@ -1,2 +1,2 @@
 #!/bin/bash
-urxvtc -e "fish" -c "exec vim $@" >> /dev/null &
+exec urxvtc -e "fish" -c "exec vim $@" >> /dev/null &

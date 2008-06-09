@@ -14,6 +14,7 @@ urxvt.scrollTtyOutput: false
 urxvt.scrollWithBuffer: true
 urxvt.scrollTtyKeypress: true
 urxvt.secondaryScroll: true
+urxvt.skipScroll: true
 urxvt.perl-ext-common: default
 !,tabbed
 
@@ -44,6 +45,8 @@ urxvt.borderWidth: 0
 urxvt.urlLauncher: firefox
 urxvt.pointerBlank: true
 urxvt.internalBorder: 3 
+!urxvt.urgentOnBell: true
+!urxvt.visualBell: true
 
 
 !black

@@ -26,7 +26,7 @@ set -x LESS_TERMCAP_so (set_color green --bold)
 set -x LESS_TERMCAP_ue (set_color green --bold)
 set -x LESS_TERMCAP_us (set_color red --bold)
 
-if test -a /arch32
+if test -a /opt/arch32
     function fish_prompt
         echo (set_color blue --bold)'gglucas'
         echo (set_color green --bold)':'

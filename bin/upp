@@ -1,2 +1,2 @@
 #!/bin/bash
-yaourt -Syu --aur $@
+exec yaourt -Syu --aur $@

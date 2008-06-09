@@ -47,10 +47,10 @@ music_next = 'mpc next'
 music_prev = 'mpc prev'
 
 -- Sound
-vol_set = 'amixer set PCM '
-vol_up = 'amixer set PCM 8%+ > /dev/null'
-vol_down = 'amixer set PCM 8%- > /dev/null'
-vol_mute = 'amixer set Master togglemute > /dev/null'
+vol_set = 'amixer -q set PCM '
+vol_up = 'amixer -q set PCM 8%+'
+vol_down = 'amixer -q set PCM 8%-'
+vol_mute = 'amixer -q set Master togglemute'
 
 ---- }}}
 
@@ -244,6 +244,8 @@ gmailwidget = widget.new({
 })
 
 gmailwidget:set('text', spacer..heading('GMail')..': 0'..spacer..separator)
+gmailwidget:mouse(k_n, 1, function () wicked.update(gmailwidget) end)
+
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Call GMail check script to check for new email
     local f = io.popen('/home/archlucas/other/.gmail.py')
@@ -436,7 +438,7 @@ end)
 
 -- Alt+Button3: Resize window
 client.mouse(k_a, 3, function()
-    client.focus_get():mouse_resize()
+    client.focus_get():mouse_resize('bottomright')
 end)
 
 -- Button3 on root window: spawn terminal
@@ -476,7 +478,7 @@ keybinding.new(k_a, "a", function ()
     awful.spawn(filemanager..' /home/archlucas')
 end):add()
 
--- Alt+S: Kill all libnotify message on screen
+-- Alt+S: Kill all notification messages on screen
 -- Note: custom script
 keybinding.new(k_a, "s", function ()
     awful.spawn('stopnotify')
@@ -510,11 +512,11 @@ keybinding.new(k_a, "m", function ()
 end):add()
 
 keybinding.new(k_ma, "b", function ()
-    awful.spawn(vol_set..'50% > /dev/null')
+    awful.spawn(vol_set..'50%')
 end):add()
 
 keybinding.new(k_ma, "n", function ()
-    awful.spawn(vol_set..'100% > /dev/null')
+    awful.spawn(vol_set..'100%')
 end):add()
 
 ---- }}}
