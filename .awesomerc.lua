@@ -248,10 +248,21 @@ gmailwidget:mouse(k_n, 1, function () wicked.update(gmailwidget) end)
 
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Call GMail check script to check for new email
-    local f = io.popen('/home/archlucas/other/.gmail.py')
-    if f == nil then return '' end
+    os.execute('/home/archlucas/other/.gmail.py > /tmp/gmail-temp &')
+
+    local f = io.open('/tmp/gmail-temp')
+    if f == nil then
+        f:close()
+        return spacer..heading('GMail')..': 0'..spacer..separator
+    end
+
     local n = f:read()
-    if n == nil then return '' end
+
+    if n == nil then
+        f:close()
+        return spacer..heading('GMail')..': 0'..spacer..separator
+    end
+
     f:close()
     out = spacer..heading('GMail')..': '
 
@@ -266,6 +277,9 @@ wicked.register(gmailwidget, 'function', function (widget, args)
     return out
 end, 120)
 
+-- Trigger initial update so the temp file gets filled
+wicked.update(gmailwidget)
+
 -- }}}
 
 -- {{{ GPU Temp Widget
@@ -279,10 +293,21 @@ gpuwidget:set('text', spacer..heading('GPU')..': n/a°C'..spacer..separator)
 wicked.register(gpuwidget, 'function', function (widget, args)
     -- Use nvidia-settings to figure out the GPU temperature
     command = "nvidia-settings -q [gpu:0]/GPUCoreTemp | grep '):'"
-    local f = io.popen(command)
-    if f == nil then return '' end
+    os.execute(command..' > /tmp/nvidia-temp &')
+
+    local f = io.open('/tmp/nvidia-temp')
+    if f == nil then
+        f:close()
+        return spacer..heading('GPU')..': n/a°C'..spacer..separator
+    end
+
     local n = f:read()
-    if n == nil then return '' end
+
+    if n == nil then
+        f:close()
+        return spacer..heading('GPU')..': n/a°C'..spacer..separator
+    end
+
     out = ''
     f:close()
 
@@ -293,6 +318,9 @@ wicked.register(gpuwidget, 'function', function (widget, args)
     end
     return out
 end, 120)
+
+-- Trigger initial update so the temp file gets filled
+wicked.update(gpuwidget)
 
 -- }}}
 
