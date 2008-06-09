@@ -1,9 +1,13 @@
 -- GGLucas' Awesome-3 Lua Config :D
 ------
+-- If you have any suggestions or questions, feel free
+-- to pass me a message, find me in #awesome on OFTC, or
+-- email me at <lucasdevries[at]gmail.com>
+------
 -- I use both wicked and eminent, so to use it,
 -- you'll need to get both those helper libraries too.
 ------
--- Note that I use all-custom keybindings and you might
+-- Note that I use all-custom keybindings so you might
 -- want to copy the default awesomerc.lua's keybindings 
 -- into here if you wish to use those, although you might
 -- find you like mine better :P
