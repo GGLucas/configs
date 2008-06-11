@@ -639,13 +639,21 @@ end):add()
 --      untabbed client in it
 --
 keybinding.new(k_mc, "t", function () 
-    local i = tabulous.tabindex_get()
+    local tabbedview = tabulous.tabindex_get()
+    local nextclient = awful.client.next(1)
 
-    if i == nil then
-        i = tabulous.tab_create()
+    if tabbedview == nil then
+        tabbedview = tabulous.tabindex_get(nextclient)
+
+        if tabbedview == nil then
+            tabbedview = tabulous.tab_create()
+            tabulous.tab(tabbedview, nextclient)
+        else
+            tabulous.tab(tabbedview, client.focus_get())
+        end
+    else
+        tabulous.tab(tabbedview, nextclient)
     end
-
-    tabulous.tab(i, awful.client.next(1))
 end):add()
 
 -- Mod+Shift+T: Untab current window from tabbed view
