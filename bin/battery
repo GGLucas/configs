@@ -3,7 +3,7 @@ import os
 t=os.popen("acpi").readlines()[0]
 
 pos = t.find("%")
-if t.find("charged") != -1:
+if t.find("charged") != -1 or t.find("charging") != -1:
 	print "Plugged, "+t[(pos-3):(pos+1)].strip()+" "
 else:
 	print ""+t[(pos-3):(pos+1)].strip()+" "
