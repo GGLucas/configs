@@ -1,0 +1,31 @@
+#!/usr/bin/python
+# Syncs a file list between my laptop and desktop
+import os,sys
+
+home = 'home/archlucas/'
+data = 'data/'
+
+rsync_dirs = [
+    data+"projects",
+    data+"web",
+    data+"others/fxprofile",
+    data+"others/ava_sig",
+]
+
+sync_files = [
+        ''
+]
+
+if sys.argv[1] == 'up':
+    f = '/'
+    t = '/desktop/'
+else:
+    f = '/desktop/'
+    t = '/'
+
+for dir in rsync_dirs:
+    print('--- Syncing: '+f+dir+' -> '+t+dir+' ---')
+    os.system('rsync -avz "'+f+dir+'" "'+t+dir+'"')
+
+for file in sync_files:
+    os.system('cp -Rva "'+f+file+'" "'+t+file+'"')
