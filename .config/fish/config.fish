@@ -9,7 +9,7 @@ set fish_greeting ''
 #end
 
 function x
-    exec startx
+    exec xinit
 end
 
 function prs

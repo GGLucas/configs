@@ -817,7 +817,6 @@ end
 -- {{{ Tabbar
 local c_count = 0
 local w_count = 0
-local tabbedClients = {}
 
 -- Create a tabbar
 function tabbar_create(c)
@@ -869,7 +868,7 @@ function hook_focus(c)
     -- Skip over urxvtcnotify
     local name = c:name_get():lower()
 
-    if name:find('urxvtcnotify') and awful.client.next() ~= c then
+    if name:find('urxvtcnotify') and awful.client.next(1) ~= c then
         awful.client.focus(1)
         return 0
     end
