@@ -32,6 +32,20 @@ separator = " "
 awesome.resizehints_set(false)
 awesome.font_set(default_font)
 
+-- Since I use this config on multiple PCs, I check for the
+-- existance of a special file in my home directory to select the appropriate
+-- widget.
+local f = io.open('/home/archlucas/.laptop_mode')
+if f == nil then
+    mode = 'desktop'
+else
+    mode = 'laptop'
+end
+
+-- Uncomment to enable or disable all widgets
+-- mode = 'all'
+-- mode = 'none'
+
 -- }}}
 
 -- {{{ Applications
@@ -231,6 +245,7 @@ maintaglist:mouse(k_n, 4, function (object, tag)
 
 -- }}}
 
+if mode ~= 'none' then
 -- {{{ MPD Widget
 mpdwidget = widget.new({
     type = 'textbox',
@@ -442,6 +457,50 @@ spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'ri
 spacerwidget:set('text', spacer..separator)
 
 -- }}}
+end
+
+if mode == 'laptop' or mode == 'all' then
+-- {{{ Battery Widget
+batterywidget = widget.new({
+    type = 'textbox',
+    name = 'batterywidget',
+    align = 'right'
+})
+
+batterywidget:set('text', spacer..heading('Battery')..': n/a'..spacer..separator)
+wicked.register(batterywidget, 'function', function (widget, args)
+    -- Read temp file created by battery script
+    local f = io.open('/tmp/battery-temp')
+    if f == nil then
+        f:close()
+        return spacer..heading('Battery')..': n/a'..spacer..separator
+    end
+
+    local n = f:read()
+
+    if n == nil then
+        f:close()
+        return spacer..heading('Battery')..': n/a'..spacer..separator
+    end
+
+    out = ''
+    f:close()
+
+    if n ~= nil then
+        out = spacer..heading('Battery')..': '..n..spacer..separator
+    end
+    return out
+end, 30)
+
+-- Start timer to read the temp file
+awful.hooks.timer(28, function ()
+    -- Call battery script to get batt%
+    command = "battery"
+    os.execute(command..' > /tmp/battery-temp &')
+end, true)
+
+-- }}}
+end
 
 -- {{{ Statusbar
 mainstatusbar = {}
@@ -456,16 +515,24 @@ for s = 1, screen.count() do
         bg = bg_normal })
     
     mainstatusbar[s]:widget_add(maintaglist)
-    mainstatusbar[s]:widget_add(mpdwidget)
-    mainstatusbar[s]:widget_add(gmailwidget)
-    mainstatusbar[s]:widget_add(gpuwidget)
-    mainstatusbar[s]:widget_add(loadwidget)
-    mainstatusbar[s]:widget_add(cputextwidget)
-    mainstatusbar[s]:widget_add(cpugraphwidget)
-    mainstatusbar[s]:widget_add(spacerwidget)
-    mainstatusbar[s]:widget_add(memtextwidget)
-    mainstatusbar[s]:widget_add(memgraphwidget)
-    mainstatusbar[s]:widget_add(spacerwidget)
+
+    if mode == 'laptop' or mode == 'all' then
+        mainstatusbar[s]:widget_add(batterywidget)
+    end
+
+    if mode ~= 'none' then
+        mainstatusbar[s]:widget_add(mpdwidget)
+        mainstatusbar[s]:widget_add(gmailwidget)
+        mainstatusbar[s]:widget_add(gpuwidget)
+        mainstatusbar[s]:widget_add(loadwidget)
+        mainstatusbar[s]:widget_add(cputextwidget)
+        mainstatusbar[s]:widget_add(cpugraphwidget)
+        mainstatusbar[s]:widget_add(spacerwidget)
+        mainstatusbar[s]:widget_add(memtextwidget)
+        mainstatusbar[s]:widget_add(memgraphwidget)
+        mainstatusbar[s]:widget_add(spacerwidget)
+    end
+
     mainstatusbar[s]:add(s)
     statusbar_status[s] = 1
 end
@@ -598,6 +665,11 @@ keybinding.new(k_m, "c", function ()
 -- Mod+#94 (left of Z, not all keyboards have it): 
 -- Make window master
 keybinding.new(k_m, "#94", function ()
+    client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
+end):add()
+
+-- Mod+\: Alternative to Mod+#94 
+keybinding.new(k_m, "#51", function ()
     client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
 end):add()
 

@@ -13,7 +13,6 @@ rsync_dirs = [
 ]
 
 sync_files = [
-        ''
 ]
 
 if sys.argv[1] == 'up':
