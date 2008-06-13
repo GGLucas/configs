@@ -57,7 +57,7 @@ terminal = 'urxvtc'
 -- with how you call dmenu if you wish to use it.
 menu = 'mydmenu'
 lock = 'xscreensaver-command -lock'
-filemanager = terminal..' -e mc -c'
+filemanager = terminal..' -e fish -c "mc'
 
 --- {{{ Music
 -- Note: mpdtoggle is my own script for finding out if 
@@ -583,12 +583,12 @@ keybinding.new(k_m, "o", function ()
 
 -- Alt+D: Spawn file manager in /data
 keybinding.new(k_a, "d", function ()
-    awful.spawn(filemanager..' /data')
+    awful.spawn(filemanager..' /data"')
 end):add()
 
 -- Alt+A: Spawn file manager in ~
 keybinding.new(k_a, "a", function ()
-    awful.spawn(filemanager..' /home/archlucas')
+    awful.spawn(filemanager..' /home/archlucas"')
 end):add()
 
 -- Alt+S: Kill all notification messages on screen
