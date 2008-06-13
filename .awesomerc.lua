@@ -577,6 +577,10 @@ keybinding.new(k_a, "e", function ()
 keybinding.new(k_m, "l", function () 
     awful.spawn(lock) end):add()
 
+-- Mod+O: Turn the screen off (DPMS)
+keybinding.new(k_m, "o", function () 
+    awful.spawn('sleep 1; xset dpms force off') end):add()
+
 -- Alt+D: Spawn file manager in /data
 keybinding.new(k_a, "d", function ()
     awful.spawn(filemanager..' /data')

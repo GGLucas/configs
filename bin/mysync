@@ -24,7 +24,10 @@ else:
 
 for dir in rsync_dirs:
     print('--- Syncing: '+f+dir+' -> '+t+dir+' ---')
-    os.system('rsync -avz "'+f+dir+'" "'+t+dir+'"')
+    if len(sys.argv) > 2 and sys.argv[2] == '-n':
+        os.system('rsync -avz --delete -n "'+f+dir+'/" "'+t+dir+'"')
+    else:
+        os.system('rsync -avz --delete "'+f+dir+'/" "'+t+dir+'"')
 
 for file in sync_files:
     os.system('cp -Rva "'+f+file+'" "'+t+file+'"')
