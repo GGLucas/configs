@@ -225,23 +225,23 @@ maintaglist:set('text_urgent',
 
 maintaglist:set('show_empty', 'false')
 
-maintaglist:mouse(k_n, 1, function (object, tag)
+maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
-end)
+end))
 
-maintaglist:mouse(k_m, 1, function (object, tag)
+maintaglist:mouse_add(mouse.new(k_m, 1, function (object, tag)
     tag_toggleview(tag)
-end)
+end))
 
-maintaglist:mouse(k_a, 1, function (object, tag)
+maintaglist:mouse_add(mouse.new(k_a, 1, function (object, tag)
     awful.client.movetotag(tag)
-end)
+end))
 
-maintaglist:mouse(k_n, 5, function (object, tag)
-    eminent.tag.next(mouse.screen_get()) end)
+maintaglist:mouse_add(mouse.new(k_n, 5, function (object, tag)
+    eminent.tag.next(mouse.screen_get()) end))
 
-maintaglist:mouse(k_n, 4, function (object, tag)
-    eminent.tag.prev(mouse.screen_get()) end)
+maintaglist:mouse_add(mouse.new(k_n, 4, function (object, tag)
+    eminent.tag.prev(mouse.screen_get()) end))
 
 -- }}}
 
@@ -271,7 +271,7 @@ gmailwidget = widget.new({
 })
 
 gmailwidget:set('text', spacer..heading('GMail')..': 0'..spacer..separator)
-gmailwidget:mouse(k_n, 1, function () wicked.update(gmailwidget) end)
+gmailwidget:mouse_add(mouse.new(k_n, 1, function () wicked.update(gmailwidget) end))
 
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Read temp file created by gmail check script
@@ -536,23 +536,6 @@ for s = 1, screen.count() do
     mainstatusbar[s]:add(s)
     statusbar_status[s] = 1
 end
-
--- }}}
-
--- {{{ Mouse bindings
--- Alt+Button1: Move window
-client.mouse(k_a, 1, function()
-   client.focus_get():mouse_move() 
-end)
-
--- Alt+Button3: Resize window
-client.mouse(k_a, 3, function()
-    client.focus_get():mouse_resize('bottomright')
-end)
-
--- Button3 on root window: spawn terminal
-awesome.mouse(k_n, 3, function ()
-    awful.spawn(terminal) end)
 
 -- }}}
 
@@ -841,6 +824,10 @@ keybinding.new(k_m, "b", function ()
     end
 end):add()
 
+-- Mouse Button3 on root window: spawn terminal
+awesome.mouse_add(mouse.new(k_n, 3, function ()
+    awful.spawn(terminal) end))
+
 ---- }}}
 
 ---- {{{ Number keys
@@ -912,17 +899,17 @@ function tabbar_create(c)
             w:set('text', spacer..i..': '..bg(bg_tabbar, b:name_get())..spacer..separator)
         end
 
-        w:mouse(k_n, 1, function ()
+        w:mouse_add(mouse.new(k_n, 1, function ()
             tabulous.display(index, b)
-        end)
+        end))
 
-        w:mouse(k_n, 4, function ()
+        w:mouse_add(mouse.new(k_n, 4, function ()
             tabulous.display(index, tabulous.prev(index))
-        end)
+        end))
 
-        w:mouse(k_n, 5, function ()
+        w:mouse_add(mouse.new(k_n, 5, function ()
             tabulous.display(index, tabulous.next(index))
-        end)
+        end))
 
         tbar:widget_add(w)
     end
@@ -978,6 +965,15 @@ function hook_manage(c)
         width = border_width, 
         color = border_focus 
     })
+
+    -- Add mouse bindings
+    -- Alt+Button1: Move window
+    c:mouse_add(mouse.new(k_a, 1, function (c) c:mouse_move() end))
+
+    -- Alt+Button3: Resize window
+    c:mouse_add(mouse.new(k_a, 3, function (c)
+        client.focus_get():mouse_resize('bottomright')
+    end ))
 
     -- Make certain windows floating
     local name = c:name_get():lower()
