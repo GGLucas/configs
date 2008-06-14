@@ -972,7 +972,7 @@ function hook_manage(c)
 
     -- Alt+Button3: Resize window
     c:mouse_add(mouse.new(k_a, 3, function (c)
-        client.focus_get():mouse_resize('bottomright')
+        c:mouse_resize({ corner = 'bottomright' })
     end ))
 
     -- Make certain windows floating

@@ -93,7 +93,6 @@ aliases = {
   WI = "whois";
   WII = "whois $0 $0";
   WW = "whowas";
-  W = "who";
   N = "names";
   M = "msg";
   T = "topic";
@@ -118,6 +117,8 @@ aliases = {
   RUN = "SCRIPT LOAD";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
+  "/w" = "/win";
+  w = "win";
 };
 
 statusbar = {
