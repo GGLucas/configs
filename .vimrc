@@ -45,3 +45,5 @@ if $SHELL =~ 'bin/fish'
 endif
 
 let NERDDefaultNesting = 1
+set vb t_vb=""
+autocmd VimEnter * set vb t_vb=

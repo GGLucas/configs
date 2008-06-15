@@ -34,7 +34,7 @@ awesome.font_set(default_font)
 
 -- Since I use this config on multiple PCs, I check for the
 -- existance of a special file in my home directory to select the appropriate
--- widget.
+-- set of widgets.
 local f = io.open('/home/archlucas/.laptop_mode')
 if f == nil then
     mode = 'desktop'
