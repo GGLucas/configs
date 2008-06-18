@@ -116,6 +116,7 @@ user_mini_status=0
 [Misc]
 ftpfs_password=anonymous@
 ftp_proxy_host=gate
+display_codepage=Other_8_bit
 
 [Colors]
 base_color=gray,black:normal=white,black:selected=black,lightblue:marked=yellow,lightblue:markselect=black,yellow:errors=white,red:menu=yellow,gray:reverse=brightmagenta,black:dnormal=black,lightgray:dfocus=black,cyan:dhotnormal=blue,lightgray:dhotfocus=blue,cyan:viewunderline=black,lightblue:menuhot=red,gray:menusel=white,black:menuhotsel=yellow,black:helpnormal=black,lightgray:helpitalic=red,lightgray:helpbold=blue,lightgray:helplink=black,cyan:helpslink=yellow,blue:gauge=white,black:input=yellow,gray:directory=brightblue,gray:executable=brightlightblue,gray:link=brightcyan,gray:stalelink=brightred,blue:device=magenta,gray:core=red,blue:special=black,blue:editnormal=white,black:editbold=yellow,blue:editmarked=black,white:errdhotnormal=yellow,red:errdhotfocus=yellow,lightgray

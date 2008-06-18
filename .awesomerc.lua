@@ -356,7 +356,7 @@ end, true)
 -- {{{ Load Averages Widget
 loadwidget = widget.new({
     type = 'textbox',
-    name = 'gpuwidget',
+    name = 'loadwidget',
     align = 'right'
 })
 
