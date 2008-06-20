@@ -123,7 +123,13 @@ k_s = {shift}
 
 -- }}}
 
--- {{{ Set tag names
+-- {{{ Set tag properties
+-- Pre-create extra tags
+-- eminent.newtag(Screen_Number, Amount)
+eminent.newtag(1, 5)
+eminent.newtag(2, 5)
+
+-- Set tag names
 -- eminent.tag.name(Tag_Number, Screen_Number, Name)
 eminent.tag.name(1, 1, 'main')
 eminent.tag.name(1, 2, 'main')
@@ -839,28 +845,28 @@ awesome.mouse_add(mouse.new(k_n, 3, function ()
 for i = 1, 9 do
     keybinding.new(k_m, i,
                 function ()
-                    local t = eminent.tag.getn(i)
+                    local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                        awful.tag.viewonly(t) 
                     end
                 end):add()
     keybinding.new(k_ms, i,
                 function ()
-                    local t = eminent.tag.getn(i)
+                    local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         t:view( not t:isselected() )
                     end
                 end):add()
     keybinding.new(k_mc, i,
                 function ()
-                    local t = eminent.tag.getn(i)
+                    local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         awful.client.movetotag(t)
                     end
                 end):add()
     keybinding.new(k_ma, i,
                 function ()
-                    local t = eminent.tag.getn(i)
+                    local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         client.focus_get():tag(t, not client.focus_get():istagged(t))
                     end
