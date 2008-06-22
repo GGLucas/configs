@@ -210,6 +210,33 @@ function client_movetoscreen(i)
     sel:screen_set(i)
 end
 
+-- Mouse warp function
+function mouse.warp(c)
+    -- So we can disable warping for a single focus
+    if disableWarp_single then
+        disableWarp_single = false
+        return
+    end
+
+    -- Get vars
+    local sel = c or client.focus_get()
+    local coords = sel:coords_get()
+    local m = mouse.coords_get()
+
+    -- Settings
+    mouse_padd = 6
+    border_area = 5
+    
+    -- Check if mouse is not already inside the window
+    if  m['x'] < coords['x']-border_area or
+        m['y'] < coords['y']-border_area or
+        m['x'] > coords['x']+coords['width']+border_area or
+        m['y'] > coords['y']+coords['height']+border_area
+    then
+        mouse.coords_set(coords['x']+mouse_padd, coords['y']+mouse_padd)
+    end
+end
+
 -- }}}
 
 -- {{{ Taglist
@@ -234,20 +261,25 @@ maintaglist:set('show_empty', 'false')
 
 maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
+    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_m, 1, function (object, tag)
     tag_toggleview(tag)
+    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_a, 1, function (object, tag)
     awful.client.movetotag(tag)
+    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_n, 5, function (object, tag)
+    disableWarp_single = true
     eminent.tag.next(mouse.screen_get()) end))
 
 maintaglist:mouse_add(mouse.new(k_n, 4, function (object, tag)
+    disableWarp_single = true
     eminent.tag.prev(mouse.screen_get()) end))
 
 -- }}}
@@ -951,6 +983,9 @@ function hook_focus(c)
 
     -- Raise the client
     c:raise()
+
+    -- Warp the mouse
+    mouse.warp()
 end
 
 function hook_unfocus(c)
