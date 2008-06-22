@@ -126,8 +126,9 @@ k_s = {shift}
 -- {{{ Set tag properties
 -- Pre-create extra tags
 -- eminent.newtag(Screen_Number, Amount)
-eminent.newtag(1, 5)
-eminent.newtag(2, 5)
+for s = 1, screen.count() do 
+    eminent.newtag(s, 5)
+end
 
 -- Set tag names
 -- eminent.tag.name(Tag_Number, Screen_Number, Name)
