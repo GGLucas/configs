@@ -15,7 +15,7 @@ urxvt.scrollWithBuffer: true
 urxvt.scrollTtyKeypress: true
 urxvt.secondaryScroll: true
 urxvt.skipScroll: true
-urxvt.perl-ext-common: default
+urxvt.perl-ext-common: -default
 !,tabbed
 
 ! FONTS

@@ -211,10 +211,10 @@ function client_movetoscreen(i)
 end
 
 -- Mouse warp function
-function mouse.warp(c)
-    -- So we can disable warping for a single focus
-    if disableWarp_single then
-        disableWarp_single = false
+function mouse.warp(c, force)
+    -- Allow skipping a warp
+    if warp_skip then
+        warp_skip = false
         return
     end
 
@@ -228,13 +228,24 @@ function mouse.warp(c)
     border_area = 5
     
     -- Check if mouse is not already inside the window
-    if  m['x'] < coords['x']-border_area or
-        m['y'] < coords['y']-border_area or
-        m['x'] > coords['x']+coords['width']+border_area or
-        m['y'] > coords['y']+coords['height']+border_area
+    if  (( m.x < coords.x-border_area or
+           m.y < coords.y-border_area or
+           m.x > coords.x+coords.width+border_area or
+           m.y > coords.y+coords.height+border_area
+        ) and (
+           table.maxn(m.buttons) == 0
+        )) or force
     then
         mouse.coords_set(coords['x']+mouse_padd, coords['y']+mouse_padd)
     end
+end
+
+-- Redraw a client
+function redraw_client(cls)
+    local c = cls or client.focus_get()
+    c:redraw()
+    c:focus_set()
+    mouse.warp(c, true)
 end
 
 -- }}}
@@ -261,25 +272,22 @@ maintaglist:set('show_empty', 'false')
 
 maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
-    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_m, 1, function (object, tag)
     tag_toggleview(tag)
-    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_a, 1, function (object, tag)
     awful.client.movetotag(tag)
-    disableWarp_single = true
 end))
 
 maintaglist:mouse_add(mouse.new(k_n, 5, function (object, tag)
-    disableWarp_single = true
+    warp_skip = true
     eminent.tag.next(mouse.screen_get()) end))
 
 maintaglist:mouse_add(mouse.new(k_n, 4, function (object, tag)
-    disableWarp_single = true
+    warp_skip = true
     eminent.tag.prev(mouse.screen_get()) end))
 
 -- }}}
@@ -663,7 +671,7 @@ keybinding.new(k_a, "#49", function ()
 
 -- Mod+`: Redraw window
 keybinding.new(k_m, "#49", function ()
-    client.focus_get():redraw() end):add()
+    redraw_client() end):add()
 
 -- Mod+Shift+`: Redraw all windows
 keybinding.new(k_ms, "#49", function ()
@@ -795,9 +803,6 @@ keybinding.new(k_m, "s", function()
 
 keybinding.new(k_m, "n", function()
     awful.tag.viewonly(eminent.tag.new()) end):add()
-
-keybinding.new(k_ms, "n", function()
-    eminent.name_dialog() end):add()
 
 -- Alt+#94 (left of Z, not all keyboards have it):
 -- Switch to floating layout
@@ -983,9 +988,6 @@ function hook_focus(c)
 
     -- Raise the client
     c:raise()
-
-    -- Warp the mouse
-    mouse.warp()
 end
 
 function hook_unfocus(c)
@@ -1105,6 +1107,11 @@ function hook_unmanage(c)
     end
 end
 
+function hook_arrange(c)
+    -- Warp the mouse
+    mouse.warp()
+end
+
 -- Attach the hooks
 awful.hooks.focus(hook_focus)
 awful.hooks.unfocus(hook_unfocus)
@@ -1115,6 +1122,7 @@ awful.hooks.untabbed(hook_untabbed)
 awful.hooks.tabdisplay(hook_tabdisplay)
 awful.hooks.tabhide(hook_tabhide)
 awful.hooks.unmanage(hook_unmanage)
+awful.hooks.arrange(hook_arrange)
 awful.hooks.titleupdate(hook_titleupdate)
 
 
