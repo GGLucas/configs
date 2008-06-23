@@ -2,8 +2,8 @@
 if [[ "$@" == "" ]];
 then
 echo "Logging in to server"
-ssh root@67.223.225.108
+ssh root@glacicle.com
 else
 echo "Executing command \`$@\` remotely"
-ssh root@67.223.225.108 '$@'
+ssh root@glacicle.com '$@'
 fi
