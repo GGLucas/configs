@@ -14,8 +14,6 @@
 ------
 -- Libs included in awesome
 require("awful")
-require("tabulous")
-tabulous.autotab_start()
 
 -- External libs
 require("wicked")
@@ -83,7 +81,6 @@ vol_mute = 'amixer -q set Master togglemute'
 bg_normal = '#222222'
 bg_focus = '#285577'
 bg_urgent = '#A10000'
-bg_tabbar = '#333333'
 
 -- Text Colors
 fg_normal = '#888888'
@@ -220,6 +217,8 @@ function mouse.warp(c, force)
 
     -- Get vars
     local sel = c or client.focus_get()
+    if sel == nil then return end
+
     local coords = sel:coords_get()
     local m = mouse.coords_get()
 
@@ -236,7 +235,7 @@ function mouse.warp(c, force)
            table.maxn(m.buttons) == 0
         )) or force
     then
-        mouse.coords_set(coords['x']+mouse_padd, coords['y']+mouse_padd)
+        mouse.coords_set(coords.x+mouse_padd, coords.y+mouse_padd)
     end
 end
 
@@ -736,61 +735,6 @@ keybinding.new(k_ms, "d", function()
    client_movetoscreen(s)
 end):add()
 
--- Mod+Control+T: 
--- When client is tabbed:
---      Add the next client not already in a tabbed view,
---      to the current tabbed view
--- When client is not tabbed:
---      Create a new tabbed view with this and the next
---      untabbed client in it
---
-keybinding.new(k_mc, "t", function () 
-    local tabbedview = tabulous.tabindex_get()
-    local nextclient = awful.client.next(1)
-
-    if tabbedview == nil then
-        tabbedview = tabulous.tabindex_get(nextclient)
-
-        if tabbedview == nil then
-            tabbedview = tabulous.tab_create()
-            tabulous.tab(tabbedview, nextclient)
-        else
-            tabulous.tab(tabbedview, client.focus_get())
-        end
-    else
-        tabulous.tab(tabbedview, nextclient)
-    end
-end):add()
-
--- Mod+Shift+T: Untab current window from tabbed view
-keybinding.new(k_ms, "t", function () 
-    tabulous.untab() 
-end):add()
-
--- Mod+T:
--- When client is tabbed: 
---      Switch to next tab
--- When client is not tabbed: 
---      Create a new tabbed view with just this client
--- When client is the only tab in its view:
---      Destroy the tabbed view
---
-keybinding.new(k_m, "t", function ()
-    local index = tabulous.tabindex_get()
-    if index ~= nil then
-        local n = tabulous.next(index)
-
-        if n == client.focus_get() then
-            tabulous.untab_all( index )
-        else
-            tabulous.display( index, n )
-        end
-    else
-        tabulous.tab_create()
-    end
-end):add()
-
-
 ---- }}}
 
 ---- {{{ Tag hotkeys
@@ -921,55 +865,6 @@ end
 
 ---- }}}
 
--- {{{ Tabbar
-local c_count = 0
-local w_count = 0
-
--- Create a tabbar
-function tabbar_create(c)
-    c_count = c_count + 1
-
-    local tbar = titlebar.new({ position = 'top', name = 'client-titlebar-'..c_count, bg = bg_tabbar })
-    local index = tabulous.tabindex_get(c)
-    local clients = tabulous.clients_get(index)
-
-    for i,b in pairs(clients) do
-        w_count = w_count + 1
-        local w = widget.new({ type = 'textbox', name = 'client-titlebar-widget-'..w_count })
-
-        if not b:ishidden() then
-            w:set('text', spacer..bg(bg_focus, fg(fg_focus, i..': '..b:name_get()))..spacer..separator)
-        else
-            w:set('text', spacer..i..': '..bg(bg_tabbar, b:name_get())..spacer..separator)
-        end
-
-        w:mouse_add(mouse.new(k_n, 1, function ()
-            tabulous.display(index, b)
-        end))
-
-        w:mouse_add(mouse.new(k_n, 4, function ()
-            tabulous.display(index, tabulous.prev(index))
-        end))
-
-        w:mouse_add(mouse.new(k_n, 5, function ()
-            tabulous.display(index, tabulous.next(index))
-        end))
-
-        tbar:widget_add(w)
-    end
-
-    c:titlebar_set(tbar)
-end
-
--- Destroy a tabbar
-function tabbar_destroy(c)
-    if c ~= nil then
-        c:titlebar_set()
-    end
-end
-
--- }}}
-
 -- {{{ Hooks
 function hook_focus(c)
     -- Skip over urxvtcnotify
@@ -1062,7 +957,6 @@ function hook_manage(c)
     c:focus_set()
    
     -- Prevents new windows from becoming master
-    if tabulous.tabindex_get(c) == nil then
         cls = client.visible_get(mouse.screen_get())
         for i,p in pairs(cls) do
             if p ~= c then
@@ -1070,41 +964,6 @@ function hook_manage(c)
                 break
             end
         end
-    end
-    
-end
-
-function hook_tabbed(c)
-    tabbar_create(c)
-end
-
-function hook_untabbed(c)
-    tabbar_destroy(c)
-end
-
-function hook_tabdisplay(c)
-    tabbar_create(c)
-end
-
-function hook_tabhide(c)
-end
-
-function hook_titleupdate(c)
-    -- If it's tabbed, update the tabbar
-    if tabulous.tabindex_get(c) ~= nil and not c:ishidden() then
-        tabbar_create(c)
-    end
-end
-
-function hook_unmanage(c)
-    for i,b in pairs(client.visible_get(c:screen_get())) do
-        if not b:ishidden() then
-            local index = tabulous.tabindex_get(b)
-            if index ~= nil then
-                tabbar_create(b)
-            end
-        end
-    end
 end
 
 function hook_arrange(c)
@@ -1117,13 +976,7 @@ awful.hooks.focus(hook_focus)
 awful.hooks.unfocus(hook_unfocus)
 awful.hooks.manage(hook_manage)
 awful.hooks.mouseover(hook_mouseover)
-awful.hooks.tabbed(hook_tabbed)
-awful.hooks.untabbed(hook_untabbed)
-awful.hooks.tabdisplay(hook_tabdisplay)
-awful.hooks.tabhide(hook_tabhide)
-awful.hooks.unmanage(hook_unmanage)
 awful.hooks.arrange(hook_arrange)
-awful.hooks.titleupdate(hook_titleupdate)
 
 
 -- }}}
