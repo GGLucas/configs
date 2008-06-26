@@ -27,6 +27,11 @@ default_mwfact = 0.618033988769
 spacer = " "
 separator = " " 
 
+-- Highlight statusbars on the screen that has focus, 
+-- set this to false if you only have one screen or 
+-- you don't like it :P
+statusbar_highlight_focus = true
+
 awesome.font_set(default_font)
 
 -- Since I use this config on multiple PCs, I check for the
@@ -79,11 +84,13 @@ vol_mute = 'amixer -q set Master togglemute'
 -- Background Colors
 bg_normal = '#222222'
 bg_focus = '#285577'
+bg_sbfocus = '#113355'
 bg_urgent = '#A10000'
 
 -- Text Colors
-fg_normal = '#888888'
+fg_normal = '#999999'
 fg_focus = '#ffffff'
+fg_sbfocus = fg_normal
 fg_urgent = '#ffffff'
 
 -- Border Colors/Width
@@ -148,7 +155,7 @@ function title()
 end
 
 function title_normal()
-    return bg(bg_normal, fg(fg_normal, title()))
+    return title()
 end
 
 function title_focus()
@@ -159,8 +166,12 @@ function title_urgent()
     return bg(bg_urgent, fg(fg_urgent, title()))
 end
 
+function bold(text)
+    return '<b>'..text..'</b>'
+end
+
 function heading(text)
-    return fg(fg_focus, text)
+    return fg(fg_focus, bold(text))
 end
 
 -- }}}
@@ -246,19 +257,16 @@ maintaglist = widget.new(
   name = 'maintaglist'
 })
 
-maintaglist:set('text_normal',
-    spacer..title_normal()..spacer    
-)
-
-maintaglist:set('text_focus',
-    spacer..title_focus()..spacer
-)
-
-maintaglist:set('text_urgent',
+maintaglist:text_set({
+normal =
+    spacer..title_normal()..spacer,
+focus =
+    spacer..title_focus()..spacer,
+urgent =
     spacer..title_urgent()..spacer
-)
+})
 
-maintaglist:set('show_empty', 'false')
+maintaglist:showempty_set(false)
 
 maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
@@ -290,7 +298,7 @@ mpdwidget = widget.new({
     align = 'right'
 })
 
-mpdwidget:set('text', spacer..heading('MPD')..': '..spacer..separator)
+mpdwidget:text_set(spacer..heading('MPD')..': '..spacer..separator)
 wicked.register(mpdwidget, 'mpd', function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
@@ -307,7 +315,7 @@ gmailwidget = widget.new({
     align = 'right'
 })
 
-gmailwidget:set('text', spacer..heading('GMail')..': 0'..spacer..separator)
+gmailwidget:text_set( spacer..heading('GMail')..': 0'..spacer..separator)
 gmailwidget:mouse_add(mouse.new(k_n, 1, function () wicked.update(gmailwidget) end))
 
 wicked.register(gmailwidget, 'function', function (widget, args)
@@ -376,7 +384,7 @@ cputextwidget = widget.new({
     align = 'right'
 })
 
-cputextwidget:set('text', spacer..heading('CPU')..': '..spacer..separator)
+cputextwidget:text_set(spacer..heading('CPU')..': '..spacer..separator)
 wicked.register(cputextwidget, 'cpu', function (widget, args) 
     -- Add a zero if lower than 10
     if args[1] < 10 then 
@@ -394,17 +402,22 @@ cpugraphwidget = widget.new({
     align = 'right'
 })
 
-cpugraphwidget:set('height', '0.85')
-cpugraphwidget:set('width', '45')
-cpugraphwidget:set('grow', 'left')
-cpugraphwidget:set('bg', '#333333')
-cpugraphwidget:set('bordercolor', '#0a0a0a')
-cpugraphwidget:set('fg', 'cpu #AEC6D8')
-cpugraphwidget:set('fg_center', 'cpu #285577')
-cpugraphwidget:set('fg_end', 'cpu #285577')
-cpugraphwidget:set('vertical_gradient', 'cpu false')
+cpugraphwidget:properties_set({
+    height = 0.85,
+    width = 45,
+    bg = '#333333',
+    bordercolor = '#0a0a0a',
+    grow = 'left'
+})
 
-wicked.register(cpugraphwidget, 'cpu', 'cpu $1', 1, 'data')
+cpugraphwidget:plot_properties_set('cpu', {
+    fg = '#AEC6D8',
+    fg_center = '#285577',
+    fg_end = '#285577',
+    vertical_gradient = false
+})
+
+wicked.register(cpugraphwidget, 'cpu', '$1', 1, 'cpu')
 
 -- }}}
 
@@ -415,7 +428,7 @@ memtextwidget = widget.new({
     align = 'right'
 })
 
-memtextwidget:set('text', spacer..heading('MEM')..': '..spacer..separator)
+memtextwidget:text_set(spacer..heading('MEM')..': '..spacer..separator)
 wicked.register(memtextwidget, 'mem', function (widget, args) 
     -- Add extra preceding zeroes when needed
     if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
@@ -432,23 +445,28 @@ memgraphwidget = widget.new({
     align = 'right'
 })
 
-memgraphwidget:set('height', '0.85')
-memgraphwidget:set('width', '45')
-memgraphwidget:set('grow', 'left')
-memgraphwidget:set('bg', '#333333')
-memgraphwidget:set('bordercolor', '#0a0a0a')
-memgraphwidget:set('fg', 'mem #AEC6D8')
-memgraphwidget:set('fg_center', 'mem #285577')
-memgraphwidget:set('fg_end', 'mem #285577')
-memgraphwidget:set('vertical_gradient', 'mem false')
+memgraphwidget:properties_set({
+    height = 0.85,
+    width = 45,
+    bg = '#333333',
+    bordercolor = '#0a0a0a',
+    grow = 'left'
+})
 
-wicked.register(memgraphwidget, 'mem', 'mem $1', 1, 'data')
+memgraphwidget:plot_properties_set('mem', {
+    fg = '#AEC6D8',
+    fg_center = '#285577',
+    fg_end = '#285577',
+    vertical_gradient = false
+})
+
+wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
 
 -- }}}
 
 -- {{{ Other Widget
 spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
-spacerwidget:set('text', spacer..separator)
+spacerwidget:text_set(spacer..separator)
 
 -- }}}
 end
@@ -461,7 +479,7 @@ batterywidget = widget.new({
     align = 'right'
 })
 
-batterywidget:set('text', spacer..heading('Battery')..': n/a'..spacer..separator)
+batterywidget:text_set(spacer..heading('Battery')..': n/a'..spacer..separator)
 wicked.register(batterywidget, 'function', function (widget, args)
     -- Read temp file created by battery script
     local f = io.open('/tmp/battery-temp')
@@ -830,6 +848,25 @@ function hook_focus(c)
 
     -- Raise the client
     c:raise()
+
+    -- Set statusbar color
+    local s = c:screen_get()
+
+    if last_s == nil or last_s ~= s and statusbar_highlight_focus then
+        mainstatusbar[c:screen_get()]:colors_set({
+            bg = bg_sbfocus,
+            fg = fg_sbfocus
+        })
+
+        if last_s then
+            mainstatusbar[last_s]:colors_set({
+                bg = bg_normal,
+                fg = fg_normal
+            })
+        end
+    end
+
+    last_s = c:screen_get()
 end
 
 function hook_unfocus(c)
