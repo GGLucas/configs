@@ -30,7 +30,9 @@ separator = " "
 -- Highlight statusbars on the screen that has focus, 
 -- set this to false if you only have one screen or 
 -- you don't like it :P
-statusbar_highlight_focus = true
+if screen.count() > 1 then
+    statusbar_highlight_focus = true
+end
 
 awesome.font_set(default_font)
 
