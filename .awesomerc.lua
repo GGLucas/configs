@@ -783,6 +783,13 @@ end):add()
 awesome.mouse_add(mouse.new(k_n, 3, function ()
     awful.spawn(terminal) end))
 
+-- Control+Alt+#: Switch to screen #
+for i= 1,screen.count() do
+    keybinding.new(k_ac, i, function ()
+        awful.screen.focus(i)
+    end):add()
+end
+
 ---- }}}
 
 ---- {{{ Number keys
@@ -930,8 +937,8 @@ function hook_manage(c)
             color = border_normal
         })
 
-        for i,t in pairs(eminent.tags[2]) do
-            if eminent.tag.isoccupied(2, t) then
+        for i,t in pairs(eminent.tags[3]) do
+            if eminent.tag.isoccupied(3, t) then
                 c:tag(t, true)
             end
         end
@@ -943,13 +950,13 @@ function hook_manage(c)
     c:focus_set()
    
     -- Prevents new windows from becoming master
-        cls = client.visible_get(mouse.screen_get())
-        for i,p in pairs(cls) do
-            if p ~= c then
-                c:swap(p)
-                break
-            end
+    cls = client.visible_get(mouse.screen_get())
+    for i,p in pairs(cls) do
+        if p ~= c then
+            c:swap(p)
+            break
         end
+    end
 end
 
 function hook_arrange(c)
