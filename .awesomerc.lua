@@ -783,13 +783,6 @@ end):add()
 awesome.mouse_add(mouse.new(k_n, 3, function ()
     awful.spawn(terminal) end))
 
--- Control+Alt+#: Switch to screen #
-for i= 1,screen.count() do
-    keybinding.new(k_ac, i, function ()
-        awful.screen.focus(i)
-    end):add()
-end
-
 ---- }}}
 
 ---- {{{ Number keys
