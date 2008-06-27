@@ -265,7 +265,7 @@ maintaglist = widget.new(
 maintaglist.text_normal = spacer..title_normal()..spacer
 maintaglist.text_focus = spacer..title_focus()..spacer
 maintaglist.text_urgent = spacer..title_urgent()..spacer
-maintaglist.showempty = false
+maintaglist.show_empty = false
 
 maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
