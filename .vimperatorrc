@@ -5,3 +5,4 @@ map gp <Escape>:tabprev<Return><Escape>
 map gn <Escape>:tabnext<Return><Escape>
 map gb gp
 set editor=g
+set visualbell

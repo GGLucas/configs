@@ -27,7 +27,6 @@ default_mwfact = 0.618033988769
 spacer = " "
 separator = " " 
 
-awesome.resizehints_set(false)
 awesome.font_set(default_font)
 
 -- Since I use this config on multiple PCs, I check for the
@@ -126,14 +125,6 @@ k_s = {shift}
 for s = 1, screen.count() do 
     eminent.newtag(s, 5)
 end
-
--- Set tag names
--- eminent.tag.name(Tag_Number, Screen_Number, Name)
-eminent.tag.name(1, 1, 'main')
-eminent.tag.name(1, 2, 'main')
-eminent.tag.name(2, 2, 'msg')
-eminent.tag.name(3, 2, 'mpd')
-eminent.tag.name(4, 2, 'dl')
 
 -- }}}
 
@@ -356,49 +347,6 @@ end, true)
 
 -- }}}
 
--- {{{ GPU Temp Widget
-gpuwidget = widget.new({
-    type = 'textbox',
-    name = 'gpuwidget',
-    align = 'right'
-})
-
-gpuwidget:set('text', spacer..heading('GPU')..': n/a°C'..spacer..separator)
-wicked.register(gpuwidget, 'function', function (widget, args)
-    -- Read temp file created by nvidia temp script
-    local f = io.open('/tmp/nvidia-temp')
-    if f == nil then
-        f:close()
-        return spacer..heading('GPU')..': n/a°C'..spacer..separator
-    end
-
-    local n = f:read()
-
-    if n == nil then
-        f:close()
-        return spacer..heading('GPU')..': n/a°C'..spacer..separator
-    end
-
-    out = ''
-    f:close()
-
-    if n ~= nil then
-        n = string.sub(n, -3, -2)
-
-        out = spacer..heading('GPU')..': '..n..'°C'..spacer..separator 
-    end
-    return out
-end, 120)
-
--- Start timer to read the temp file
-awful.hooks.timer(110, function ()
-    -- Use nvidia-settings to figure out the GPU temperature
-    command = "nvidia-settings -q [gpu:0]/GPUCoreTemp | grep '):'"
-    os.execute(command..' > /tmp/nvidia-temp &')
-end, true)
-
--- }}}
-
 -- {{{ Load Averages Widget
 loadwidget = widget.new({
     type = 'textbox',
@@ -569,7 +517,6 @@ for s = 1, screen.count() do
     if mode ~= 'none' then
         mainstatusbar[s]:widget_add(mpdwidget)
         mainstatusbar[s]:widget_add(gmailwidget)
-        mainstatusbar[s]:widget_add(gpuwidget)
         mainstatusbar[s]:widget_add(loadwidget)
         mainstatusbar[s]:widget_add(cputextwidget)
         mainstatusbar[s]:widget_add(cpugraphwidget)
@@ -931,9 +878,9 @@ function hook_manage(c)
         -- feel free to remove the whole section, you probably
         -- won't need it.
 
-        c:screen_set(2)
+        c:screen_set(3)
         c:coords_set({
-            x = screen.coords_get(2)['x']+1400,
+            x = screen.coords_get(3)['x']+1400,
             y = 18,
             width = 276,
             height = 106

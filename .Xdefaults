@@ -14,8 +14,9 @@ urxvt.scrollTtyOutput: false
 urxvt.scrollWithBuffer: true
 urxvt.scrollTtyKeypress: true
 urxvt.secondaryScroll: true
+urxvt.jumpScroll: true
 urxvt.skipScroll: true
-urxvt.perl-ext-common: -default
+urxvt.perl-ext-common: default
 !,tabbed
 
 ! FONTS
@@ -39,6 +40,7 @@ urxvt.tintColor: grey30
 !urxvt.tintColor: black
 !urxvt.inheritPixmap: true 
 urxvt.saveLines: 500
+urxvt.visualBell: false
 urxvt.dynamicColors:  on
 urxvt.highlightSelection:  true
 urxvt.borderWidth: 0 
