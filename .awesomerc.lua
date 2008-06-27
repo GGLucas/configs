@@ -30,8 +30,11 @@ separator = " "
 -- Highlight statusbars on the screen that has focus, 
 -- set this to false if you only have one screen or 
 -- you don't like it :P
+print(screen.count())
 if screen.count() > 1 then
     statusbar_highlight_focus = true
+else
+    statusbar_highlight_focus = false
 end
 
 awesome.font_set(default_font)
@@ -259,16 +262,10 @@ maintaglist = widget.new(
   name = 'maintaglist'
 })
 
-maintaglist:text_set({
-normal =
-    spacer..title_normal()..spacer,
-focus =
-    spacer..title_focus()..spacer,
-urgent =
-    spacer..title_urgent()..spacer
-})
-
-maintaglist:showempty_set(false)
+maintaglist.text_normal = spacer..title_normal()..spacer
+maintaglist.text_focus = spacer..title_focus()..spacer
+maintaglist.text_urgent = spacer..title_urgent()..spacer
+maintaglist.showempty = false
 
 maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
@@ -300,7 +297,7 @@ mpdwidget = widget.new({
     align = 'right'
 })
 
-mpdwidget:text_set(spacer..heading('MPD')..': '..spacer..separator)
+mpdwidget.text = spacer..heading('MPD')..': '..spacer..separator
 wicked.register(mpdwidget, 'mpd', function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
@@ -317,7 +314,7 @@ gmailwidget = widget.new({
     align = 'right'
 })
 
-gmailwidget:text_set( spacer..heading('GMail')..': 0'..spacer..separator)
+gmailwidget.text =  spacer..heading('GMail')..': 0'..spacer..separator
 gmailwidget:mouse_add(mouse.new(k_n, 1, function () wicked.update(gmailwidget) end))
 
 wicked.register(gmailwidget, 'function', function (widget, args)
@@ -386,7 +383,7 @@ cputextwidget = widget.new({
     align = 'right'
 })
 
-cputextwidget:text_set(spacer..heading('CPU')..': '..spacer..separator)
+cputextwidget.text = spacer..heading('CPU')..': '..spacer..separator
 wicked.register(cputextwidget, 'cpu', function (widget, args) 
     -- Add a zero if lower than 10
     if args[1] < 10 then 
@@ -430,7 +427,7 @@ memtextwidget = widget.new({
     align = 'right'
 })
 
-memtextwidget:text_set(spacer..heading('MEM')..': '..spacer..separator)
+memtextwidget.text = spacer..heading('MEM')..': '..spacer..separator
 wicked.register(memtextwidget, 'mem', function (widget, args) 
     -- Add extra preceding zeroes when needed
     if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
@@ -468,7 +465,7 @@ wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
 
 -- {{{ Other Widget
 spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
-spacerwidget:text_set(spacer..separator)
+spacerwidget.text = spacer..separator
 
 -- }}}
 end
@@ -481,7 +478,7 @@ batterywidget = widget.new({
     align = 'right'
 })
 
-batterywidget:text_set(spacer..heading('Battery')..': n/a'..spacer..separator)
+batterywidget.text = spacer..heading('Battery')..': n/a'..spacer..separator
 wicked.register(batterywidget, 'function', function (widget, args)
     -- Read temp file created by battery script
     local f = io.open('/tmp/battery-temp')
@@ -854,7 +851,7 @@ function hook_focus(c)
     -- Set statusbar color
     local s = c:screen_get()
 
-    if last_s == nil or last_s ~= s and statusbar_highlight_focus then
+    if (last_s == nil or last_s ~= s) and statusbar_highlight_focus then
         mainstatusbar[c:screen_get()]:colors_set({
             bg = bg_sbfocus,
             fg = fg_sbfocus
