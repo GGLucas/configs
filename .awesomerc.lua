@@ -30,7 +30,6 @@ separator = " "
 -- Highlight statusbars on the screen that has focus, 
 -- set this to false if you only have one screen or 
 -- you don't like it :P
-print(screen.count())
 if screen.count() > 1 then
     statusbar_highlight_focus = true
 else
@@ -401,13 +400,13 @@ cpugraphwidget = widget.new({
     align = 'right'
 })
 
-cpugraphwidget:properties_set({
-    height = 0.85,
-    width = 45,
-    bg = '#333333',
-    bordercolor = '#0a0a0a',
-    grow = 'left'
-})
+
+cpugraphwidget.height = 0.85
+cpugraphwidget.width = 45
+cpugraphwidget.bg = '#333333'
+cpugraphwidget.border_color = '#0a0a0a'
+cpugraphwidget.grow = 'left'
+
 
 cpugraphwidget:plot_properties_set('cpu', {
     fg = '#AEC6D8',
@@ -444,13 +443,11 @@ memgraphwidget = widget.new({
     align = 'right'
 })
 
-memgraphwidget:properties_set({
-    height = 0.85,
-    width = 45,
-    bg = '#333333',
-    bordercolor = '#0a0a0a',
-    grow = 'left'
-})
+memgraphwidget.height = 0.85
+memgraphwidget.width = 45
+memgraphwidget.bg = '#333333'
+memgraphwidget.border_color = '#0a0a0a'
+memgraphwidget.grow = 'left'
 
 memgraphwidget:plot_properties_set('mem', {
     fg = '#AEC6D8',
