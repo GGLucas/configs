@@ -63,7 +63,7 @@ terminal = 'urxvtc'
 -- with how you call dmenu if you wish to use it.
 menu = 'mydmenu'
 lock = 'xscreensaver-command -lock'
-filemanager = terminal..' -e fish -c "mc'
+filemanager = terminal..' -e fish -c "vifm'
 
 --- {{{ Music
 -- Note: mpdtoggle is my own script for finding out if 
