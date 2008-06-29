@@ -9,7 +9,7 @@
 # If you would like to use another vi clone such as Vim, Elvis, or Vile
 # you will need to change this setting.
 
-VI_COMMAND=vim
+VI_COMMAND=vifmw
 # VI_COMMAND=vim
 # VI_COMMAND=elvis -G termcap
 # VI_COMMAND=vile

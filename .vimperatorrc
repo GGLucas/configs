@@ -3,5 +3,7 @@ map <C-+> <Escape>:set go=bm<Return><Escape>
 map <C-=> <Escape>:set go=<Return><Escape>
 map gp <Escape>:tabprev<Return><Escape>
 map gn <Escape>:tabnext<Return><Escape>
+map <C-h> <Escape>:tabprev<Return><Escape>
+map <C-l> <Escape>:tabnext<Return><Escape>
 map gb gp
 set editor=g

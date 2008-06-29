@@ -278,7 +278,9 @@ keyboard = (
   { key = "meta-7"; id = "change_window"; data = "7"; },
   { key = "meta-8"; id = "change_window"; data = "8"; },
   { key = "meta-9"; id = "change_window"; data = "9"; },
-  { key = "meta-0"; id = "change_window"; data = "10"; }
+  { key = "meta-0"; id = "change_window"; data = "10"; },
+  { key = "^F"; id = "scroll_forward"; data = ""; },
+  { key = "^B"; id = "scroll_backward"; data = ""; }
 );
 
 windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };
