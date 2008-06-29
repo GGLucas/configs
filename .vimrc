@@ -16,6 +16,7 @@ nmap gl :Ex<CR>
 nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>
 nmap <Leader>fd :set fdm=marker<CR>
+nmap <Leader>ff :set fdm=indent<CR>
 
 set nocompatible
 
@@ -27,7 +28,6 @@ set nobackup
 set showmatch
 set modeline
 syntax on
-
 
 nnoremap <F5> :set invpaste paste?<Enter>
 imap <F5> <C-O><F5>
