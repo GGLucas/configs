@@ -9,7 +9,7 @@
 # If you would like to use another vi clone such as Vim, Elvis, or Vile
 # you will need to change this setting.
 
-VI_COMMAND=vifmw
+VI_COMMAND=vim
 # VI_COMMAND=vim
 # VI_COMMAND=elvis -G termcap
 # VI_COMMAND=vile
@@ -84,6 +84,11 @@ RUN_EXECUTABLE=0
 
 BOOKMARKS=H=/home/archlucas=../
 BOOKMARKS=z=/home/archlucas/.vifm=../
+BOOKMARKS=d=/data=../
+BOOKMARKS=a=/data/anime=../
+BOOKMARKS=s=/data/series=../
+BOOKMARKS=w=/data/web=../
+BOOKMARKS=p=/data/projects=../
 
 # COMMAND=command_name=action
 # The following macros can be used in a command
@@ -95,7 +100,6 @@ BOOKMARKS=z=/home/archlucas/.vifm=../
 # %m run the command in a menu window
 
 COMMAND=move=mv %f %D
-COMMAND=pl=smplayer %f
 
 # The file type is for the default programs to be used with
 # a file extension. 
@@ -106,3 +110,5 @@ COMMAND=pl=smplayer %f
 # The command macros %f, %F, %d, %F may be used in the commands.
 # The %a macro is ignored.  To use a % you must put %%.
 
+FILETYPE=Video=mkv,avi=smplayer %f
+FILETYPE=Video=mp4=xine %f
