@@ -12,6 +12,8 @@ imap <S-Tab> <C-d>
 
 nmap gb :bprevious<CR>
 nmap gn :bnext<CR>
+nmap gj <C-f>
+nmap gk <C-b>
 nmap gl :Ex<CR> 
 nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>

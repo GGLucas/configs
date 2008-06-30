@@ -83,12 +83,12 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
-BOOKMARKS=z=/home/archlucas/.vifm=../
-BOOKMARKS=d=/data=../
 BOOKMARKS=a=/data/anime=../
+BOOKMARKS=d=/data=../
+BOOKMARKS=p=/data/projects=../
 BOOKMARKS=s=/data/series=../
 BOOKMARKS=w=/data/web=../
-BOOKMARKS=p=/data/projects=../
+BOOKMARKS=z=/home/archlucas/.vifm=../
 
 # COMMAND=command_name=action
 # The following macros can be used in a command
