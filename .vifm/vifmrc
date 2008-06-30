@@ -22,7 +22,7 @@ VI_COMMAND=vim
 # I recommend not changing this until you are familiar with vifm.
 # This probably shouldn't be an option.
 
-USE_TRASH=1
+USE_TRASH=0
 
 # Show only one Window
 # If you would like to start vifm with only one window set this to 1
@@ -65,8 +65,8 @@ RIGHT_WINDOW_SORT_TYPE=1
 # of the .o files from the directory listing. LWIN_INVERT=0
 # would show only the .o files
 
-LWIN_FILTER=\.o$
-LWIN_INVERT=1
+LWIN_FILTER=*
+LWIN_INVERT=0
 RWIN_FILTER=\.o$
 RWIN_INVERT=1
 

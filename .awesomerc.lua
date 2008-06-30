@@ -256,7 +256,7 @@ end
 -- }}}
 
 -- {{{ Taglist
-maintaglist = widget.new(
+maintaglist = widget(
 { type = 'taglist',
   name = 'maintaglist'
 })
@@ -266,23 +266,23 @@ maintaglist.text_focus = spacer..title_focus()..spacer
 maintaglist.text_urgent = spacer..title_urgent()..spacer
 maintaglist.show_empty = false
 
-maintaglist:mouse_add(mouse.new(k_n, 1, function (object, tag)
+maintaglist:mouse_add(mouse(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)
 end))
 
-maintaglist:mouse_add(mouse.new(k_m, 1, function (object, tag)
+maintaglist:mouse_add(mouse(k_m, 1, function (object, tag)
     tag_toggleview(tag)
 end))
 
-maintaglist:mouse_add(mouse.new(k_a, 1, function (object, tag)
+maintaglist:mouse_add(mouse(k_a, 1, function (object, tag)
     awful.client.movetotag(tag)
 end))
 
-maintaglist:mouse_add(mouse.new(k_n, 5, function (object, tag)
+maintaglist:mouse_add(mouse(k_n, 5, function (object, tag)
     warp_skip = true
     eminent.tag.next(mouse.screen_get()) end))
 
-maintaglist:mouse_add(mouse.new(k_n, 4, function (object, tag)
+maintaglist:mouse_add(mouse(k_n, 4, function (object, tag)
     warp_skip = true
     eminent.tag.prev(mouse.screen_get()) end))
 
@@ -290,7 +290,7 @@ maintaglist:mouse_add(mouse.new(k_n, 4, function (object, tag)
 
 if mode ~= 'none' then
 -- {{{ MPD Widget
-mpdwidget = widget.new({
+mpdwidget = widget({
     type = 'textbox',
     name = 'mpdwidget',
     align = 'right'
@@ -307,14 +307,14 @@ wicked.register(mpdwidget, 'mpd', function (widget, args)
 -- }}}
 
 -- {{{ GMail Widget
-gmailwidget = widget.new({
+gmailwidget = widget({
     type = 'textbox',
     name = 'gmailwidget',
     align = 'right'
 })
 
 gmailwidget.text =  spacer..heading('GMail')..': 0'..spacer..separator
-gmailwidget:mouse_add(mouse.new(k_n, 1, function () wicked.update(gmailwidget) end))
+gmailwidget:mouse_add(mouse(k_n, 1, function () wicked.update(gmailwidget) end))
 
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Read temp file created by gmail check script
@@ -354,7 +354,7 @@ end, true)
 -- }}}
 
 -- {{{ Load Averages Widget
-loadwidget = widget.new({
+loadwidget = widget({
     type = 'textbox',
     name = 'loadwidget',
     align = 'right'
@@ -376,7 +376,7 @@ end, 2)
 -- }}}
 
 -- {{{ CPU Usage Widget
-cputextwidget = widget.new({
+cputextwidget = widget({
     type = 'textbox',
     name = 'cputextwidget',
     align = 'right'
@@ -394,7 +394,7 @@ wicked.register(cputextwidget, 'cpu', function (widget, args)
 -- }}}
 
 -- {{{ CPU Graph Widget
-cpugraphwidget = widget.new({
+cpugraphwidget = widget({
     type = 'graph',
     name = 'cpugraphwidget',
     align = 'right'
@@ -420,7 +420,7 @@ wicked.register(cpugraphwidget, 'cpu', '$1', 1, 'cpu')
 -- }}}
 
 -- {{{ Memory Usage Widget
-memtextwidget = widget.new({
+memtextwidget = widget({
     type = 'textbox',
     name = 'memtextwidget',
     align = 'right'
@@ -437,7 +437,7 @@ wicked.register(memtextwidget, 'mem', function (widget, args)
 -- }}}
 
 -- {{{ Memory Graph Widget
-memgraphwidget = widget.new({
+memgraphwidget = widget({
     type = 'graph',
     name = 'memgraphwidget',
     align = 'right'
@@ -461,7 +461,7 @@ wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
 -- }}}
 
 -- {{{ Other Widget
-spacerwidget = widget.new({ type = 'textbox', name = 'spacerwidget', align = 'right' })
+spacerwidget = widget({ type = 'textbox', name = 'spacerwidget', align = 'right' })
 spacerwidget.text = spacer..separator
 
 -- }}}
@@ -469,7 +469,7 @@ end
 
 if mode == 'laptop' or mode == 'all' then
 -- {{{ Battery Widget
-batterywidget = widget.new({
+batterywidget = widget({
     type = 'textbox',
     name = 'batterywidget',
     align = 'right'
@@ -515,7 +515,7 @@ mainstatusbar = {}
 statusbar_status = {}
 
 for s = 1, screen.count() do
-    mainstatusbar[s] = statusbar.new({ 
+    mainstatusbar[s] = statusbar({ 
         position = "top", 
         height = 18,
         name = "mainstatusbar" .. s,                        
@@ -548,77 +548,77 @@ end
 
 ---- {{{ Application Launchers
 -- Alt+Q: Launch a new terminal
-keybinding.new(k_a, "q", function () 
+keybinding(k_a, "q", function () 
     awful.spawn(terminal) end):add()
 
 -- Mod+K: Launch a new terminal with screen in it
-keybinding.new(k_m, "k", function () 
+keybinding(k_m, "k", function () 
     awful.spawn('urxvtc -e "fish" -c "exec screen -x main"') end):add()
 
 -- Alt+W: Launch the menu application set before
-keybinding.new(k_a, "w", function () 
+keybinding(k_a, "w", function () 
     awful.spawn(menu) end):add()
 
 -- Alt+E: Toggle music playing
-keybinding.new(k_a, "e", function () 
+keybinding(k_a, "e", function () 
     awful.spawn(music_toggle) end):add()
 
 -- Mod+L: Lock the screen
-keybinding.new(k_m, "l", function () 
+keybinding(k_m, "l", function () 
     awful.spawn(lock) end):add()
 
 -- Mod+O: Turn the screen off (DPMS)
-keybinding.new(k_m, "o", function () 
+keybinding(k_m, "o", function () 
     awful.spawn('sleep 1; xset dpms force off') end):add()
 
 -- Alt+D: Spawn file manager in /data
-keybinding.new(k_a, "d", function ()
+keybinding(k_a, "d", function ()
     awful.spawn(filemanager..' /data"')
 end):add()
 
 -- Alt+A: Spawn file manager in ~
-keybinding.new(k_a, "a", function ()
+keybinding(k_a, "a", function ()
     awful.spawn(filemanager..' /home/archlucas"')
 end):add()
 
 -- Alt+S: Kill all notification messages on screen
 -- Note: custom script
-keybinding.new(k_a, "s", function ()
+keybinding(k_a, "s", function ()
     awful.spawn('stopnotify')
 end):add()
 
 ---- }}}
 
 ---- {{{ Multimedia keyboard keys/Volume shortcuts
-keybinding.new(k_n, "#176", function ()
+keybinding(k_n, "#176", function ()
     awful.spawn(vol_up)
 end):add()
 
-keybinding.new(k_n, "#174", function ()
+keybinding(k_n, "#174", function ()
     awful.spawn(vol_down)
 end):add()
 
-keybinding.new(k_n, "#160", function ()
+keybinding(k_n, "#160", function ()
     awful.spawn(vol_mute)
 end):add()
 
-keybinding.new(k_a, "n", function ()
+keybinding(k_a, "n", function ()
     awful.spawn(vol_up)
 end):add()
 
-keybinding.new(k_a, "b", function ()
+keybinding(k_a, "b", function ()
     awful.spawn(vol_down)
 end):add()
 
-keybinding.new(k_a, "m", function ()
+keybinding(k_a, "m", function ()
     awful.spawn(vol_mute)
 end):add()
 
-keybinding.new(k_ma, "b", function ()
+keybinding(k_ma, "b", function ()
     awful.spawn(vol_set..'50%')
 end):add()
 
-keybinding.new(k_ma, "n", function ()
+keybinding(k_ma, "n", function ()
     awful.spawn(vol_set..'100%')
 end):add()
 
@@ -626,59 +626,59 @@ end):add()
 
 ---- {{{ Client hotkeys
 -- Alt+`: Close window
-keybinding.new(k_a, "#49", function ()
+keybinding(k_a, "#49", function ()
     client.focus_get():kill() end):add()
 
 -- Mod+`: Redraw window
-keybinding.new(k_m, "#49", function ()
+keybinding(k_m, "#49", function ()
     redraw_client() end):add()
 
 -- Mod+Shift+`: Redraw all windows
-keybinding.new(k_ms, "#49", function ()
+keybinding(k_ms, "#49", function ()
     redraw_all() end):add()
 
 -- Mod+{Q/W}: Focus Prev/Next window
-keybinding.new(k_m, "q", function ()
+keybinding(k_m, "q", function ()
     awful.client.focus(-1) end):add()
 
-keybinding.new(k_m, "w", function ()
+keybinding(k_m, "w", function ()
     awful.client.focus(1) end):add()
 
 -- Mod+Shift+{Q/W}: Swap window with the Prev/Next one
-keybinding.new(k_ms, "q", function ()
+keybinding(k_ms, "q", function ()
     awful.client.swap(-1) end):add()
 
-keybinding.new(k_ms, "w", function ()
+keybinding(k_ms, "w", function ()
     awful.client.swap(1) end):add()
 
 
 -- Mod+C: Toggle window floating
-keybinding.new(k_m, "c", function ()
+keybinding(k_m, "c", function ()
     awful.client.togglefloating() end):add()
 
 -- Mod+#94 (left of Z, not all keyboards have it): 
 -- Make window master
-keybinding.new(k_m, "#94", function ()
+keybinding(k_m, "#94", function ()
     client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
 end):add()
 
 -- Mod+\: Alternative to Mod+#94 
-keybinding.new(k_m, "#51", function ()
+keybinding(k_m, "#51", function ()
     client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
 end):add()
 
 -- Mod+Shift+{A/S}: Move window to Prev/Next tag
-keybinding.new(k_ms, "a", function()
+keybinding(k_ms, "a", function()
     awful.client.movetotag(eminent.tag.getprev())
 end):add()
 
-keybinding.new(k_ms, "s", function()
+keybinding(k_ms, "s", function()
     awful.client.movetotag(eminent.tag.getnext())
 end):add()
 
 
 -- Mod+Shift_{E/D}: move window to next/prev screen
-keybinding.new(k_ms, "e", function()
+keybinding(k_ms, "e", function()
    local s = getscreen()+1
    while s > screen.count() do
        s = s-screen.count()
@@ -687,7 +687,7 @@ keybinding.new(k_ms, "e", function()
    client_movetoscreen(s)
 end):add()
 
-keybinding.new(k_ms, "d", function()
+keybinding(k_ms, "d", function()
    local s = getscreen()-1
    while s < 1 do
        s = s+screen.count()
@@ -700,67 +700,67 @@ end):add()
 
 ---- {{{ Tag hotkeys
 -- Mod+{A/S}: Switch to prev/next tag
-keybinding.new(k_m, "a", function()
+keybinding(k_m, "a", function()
     eminent.tag.prev() end):add()
 
-keybinding.new(k_m, "s", function()
+keybinding(k_m, "s", function()
     eminent.tag.next() end):add()
 
-keybinding.new(k_m, "n", function()
-    awful.tag.viewonly(eminent.tag.new()) end):add()
+keybinding(k_m, "n", function()
+    awful.tag.viewonly(eminent.tag()) end):add()
 
 -- Alt+#94 (left of Z, not all keyboards have it):
 -- Switch to floating layout
-keybinding.new(k_a, "#94", function ()
+keybinding(k_a, "#94", function ()
     awful.tag.selected():layout_set('floating')
     redraw_all()
 end):add()
 
 -- Alt+Z: Switch to max layout
-keybinding.new(k_a, "z", function ()
+keybinding(k_a, "z", function ()
     awful.tag.selected():layout_set('max')
     redraw_all()
 end):add()
 
 -- Alt+X: Switch to regular tile layout
-keybinding.new(k_a, "x", function ()
+keybinding(k_a, "x", function ()
     awful.tag.selected():layout_set('tile')
     redraw_all()
 end):add()
 
 -- Mod+{Z/X}: Decrease/Increase the amount of masters
-keybinding.new(k_m, "z", function ()
+keybinding(k_m, "z", function ()
     awful.tag.incnmaster(-1)
 end):add()
 
-keybinding.new(k_m, "x", function ()
+keybinding(k_m, "x", function ()
     awful.tag.incnmaster(1)
 end):add()
 
 -- Mod+Control+Z: Switch to default mwfact
-keybinding.new(k_mc, "z", function ()
+keybinding(k_mc, "z", function ()
     awful.tag.setmwfact(default_mwfact) end):add()
 
 -- Mod+Control+X: Switch to mwfact 0.5
-keybinding.new(k_mc, "x", function ()
+keybinding(k_mc, "x", function ()
     awful.tag.setmwfact(0.5) end):add()
 
 ---- }}}
 
 ---- {{{ Miscellaneous hotkeys
 -- Mod+R: Restart awesome
-keybinding.new(k_m, "r", 
+keybinding(k_m, "r", 
     awesome.restart):add()
 
 -- Mod+{E/D}: Switch to next/previous screen
-keybinding.new(k_m, "e", function ()
+keybinding(k_m, "e", function ()
     awful.screen.focus(1) end):add()
 
-keybinding.new(k_m, "d", function ()
+keybinding(k_m, "d", function ()
     awful.screen.focus(-1) end):add()
 
 -- Mod+B: Turn off statusbar on current screen
-keybinding.new(k_m, "b", function ()
+keybinding(k_m, "b", function ()
     local w = getscreen()
     local s = mainstatusbar[w]
 
@@ -774,7 +774,7 @@ keybinding.new(k_m, "b", function ()
 end):add()
 
 -- Mouse Button3 on root window: spawn terminal
-awesome.mouse_add(mouse.new(k_n, 3, function ()
+awesome.mouse_add(mouse(k_n, 3, function ()
     awful.spawn(terminal) end))
 
 ---- }}}
@@ -786,35 +786,35 @@ awesome.mouse_add(mouse.new(k_n, 3, function ()
 -- Mod+Alt+#: Toggle client on tag
 -- Alt+Shift+#: Switch to a tabbed client 
 for i = 1, 9 do
-    keybinding.new(k_m, i,
+    keybinding(k_m, i,
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                        awful.tag.viewonly(t) 
                     end
                 end):add()
-    keybinding.new(k_ms, i,
+    keybinding(k_ms, i,
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         t:view( not t:isselected() )
                     end
                 end):add()
-    keybinding.new(k_mc, i,
+    keybinding(k_mc, i,
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         awful.client.movetotag(t)
                     end
                 end):add()
-    keybinding.new(k_ma, i,
+    keybinding(k_ma, i,
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
                         client.focus_get():tag(t, not client.focus_get():istagged(t))
                     end
                 end):add()
-    keybinding.new(k_as, i,
+    keybinding(k_as, i,
                 function ()
                     local index = tabulous.tabindex_get()
                     local t = tabulous.position_get(index, i)
@@ -887,10 +887,10 @@ function hook_manage(c)
 
     -- Add mouse bindings
     -- Alt+Button1: Move window
-    c:mouse_add(mouse.new(k_a, 1, function (c) c:mouse_move() end))
+    c:mouse_add(mouse(k_a, 1, function (c) c:mouse_move() end))
 
     -- Alt+Button3: Resize window
-    c:mouse_add(mouse.new(k_a, 3, function (c)
+    c:mouse_add(mouse(k_a, 3, function (c)
         c:mouse_resize({ corner = 'bottomright' })
     end ))
 
