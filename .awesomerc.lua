@@ -901,12 +901,12 @@ function hook_manage(c)
         -- won't need it.
 
         c.screen = 3
-        c:coords_set({
+        c.coords = {
             x = screen.coords_get(3)['x']+1400,
             y = 18,
             width = 276,
             height = 106
-        })
+        }
 
         for i,t in pairs(eminent.tags[3]) do
             if eminent.tag.isoccupied(3, t) then
