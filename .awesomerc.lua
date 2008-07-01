@@ -302,7 +302,7 @@ wicked.register(mpdwidget, 'mpd', function (widget, args)
     -- feel free to remove this bit
     return spacer..heading('MPD')..': '
     ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
-    ..spacer..separator end, 0)
+    ..spacer..separator end)
 
 -- }}}
 
