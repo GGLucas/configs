@@ -22,7 +22,7 @@ VI_COMMAND=vim
 # I recommend not changing this until you are familiar with vifm.
 # This probably shouldn't be an option.
 
-USE_TRASH=0
+USE_TRASH=1
 
 # Show only one Window
 # If you would like to start vifm with only one window set this to 1

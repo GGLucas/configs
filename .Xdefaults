@@ -39,6 +39,7 @@ urxvt.cursorBlink: false
 urxvt.tintColor: grey30
 !urxvt.tintColor: black
 !urxvt.inheritPixmap: true 
+
 urxvt.saveLines: 500
 urxvt.visualBell: false
 urxvt.dynamicColors:  on

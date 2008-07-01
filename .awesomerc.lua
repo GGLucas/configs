@@ -86,10 +86,10 @@ vol_mute = 'amixer -q set Master togglemute'
 
 -- {{{ Colors
 -- Background Colors
-bg_normal = '#222222'
+bg_normal = '#22222222'
 bg_focus = '#285577'
-bg_sbfocus = '#113355'
-bg_urgent = '#A10000'
+bg_sbfocus = '#11335565'
+bg_urgent = '#A1000022'
 
 -- Text Colors
 fg_normal = '#999999'
@@ -712,19 +712,19 @@ keybinding(k_m, "n", function()
 -- Alt+#94 (left of Z, not all keyboards have it):
 -- Switch to floating layout
 keybinding(k_a, "#94", function ()
-    awful.tag.selected():layout_set('floating')
+    awful.tag.selected().layout = 'floating'
     redraw_all()
 end):add()
 
 -- Alt+Z: Switch to max layout
 keybinding(k_a, "z", function ()
-    awful.tag.selected():layout_set('max')
+    awful.tag.selected().layout = 'max'
     redraw_all()
 end):add()
 
 -- Alt+X: Switch to regular tile layout
 keybinding(k_a, "x", function ()
-    awful.tag.selected():layout_set('tile')
+    awful.tag.selected().layout = 'tile'
     redraw_all()
 end):add()
 
@@ -829,7 +829,7 @@ end
 -- {{{ Hooks
 function hook_focus(c)
     -- Skip over urxvtcnotify
-    local name = c:name_get():lower()
+    local name = c.name:lower()
 
     if name:find('urxvtcnotify') and awful.client.next(1) ~= c then
         awful.client.focus(1)
@@ -849,16 +849,13 @@ function hook_focus(c)
     local s = c:screen_get()
 
     if (last_s == nil or last_s ~= s) and statusbar_highlight_focus then
-        mainstatusbar[c:screen_get()]:colors_set({
-            bg = bg_sbfocus,
-            fg = fg_sbfocus
-        })
+
+        mainstatusbar[s].bg = bg_sbfocus
+        mainstatusbar[s].fg = fg_sbfocus
 
         if last_s then
-            mainstatusbar[last_s]:colors_set({
-                bg = bg_normal,
-                fg = fg_normal
-            })
+            mainstatusbar[last_s].bg = bg_normal
+            mainstatusbar[last_s].fg = fg_normal
         end
     end
 
@@ -895,7 +892,7 @@ function hook_manage(c)
     end ))
 
     -- Make certain windows floating
-    local name = c:name_get():lower()
+    local name = c.name:lower()
     local class = c:class_get():lower()
     if  class:find('gimp') or
         name:find('urxvtcnotify')
