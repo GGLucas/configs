@@ -225,7 +225,7 @@ function mouse.warp(c, force)
     local sel = c or client.focus_get()
     if sel == nil then return end
 
-    local coords = sel:coords_get()
+    local coords = sel.coords
     local m = mouse.coords_get()
 
     -- Settings
