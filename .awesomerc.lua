@@ -183,7 +183,7 @@ end
 -- {{{ Functions
 -- Toggle whether we're viewing a tag
 function tag_toggleview(tag)
-    tag:view(not tag:isselected())
+    tag.selected = not tag.selected
 end
 
 -- Redraw all currently visible clients
@@ -241,7 +241,7 @@ function mouse.warp(c, force)
            table.maxn(m.buttons) == 0
         )) or force
     then
-        mouse.coords_set(coords.x+mouse_padd, coords.y+mouse_padd)
+        mouse.coords_set({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
     end
 end
 
@@ -797,7 +797,7 @@ for i = 1, 9 do
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
-                        t:view( not t:isselected() )
+                        t.selected = not t.selected
                     end
                 end):add()
     keybinding(k_mc, i,
