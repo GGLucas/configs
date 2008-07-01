@@ -199,7 +199,7 @@ function getscreen()
     local sel = client.focus_get()
     local s
     if sel then
-        s = sel:screen_get()
+        s = sel.screen
     else
         s = mouse.screen_get()
     end
@@ -210,7 +210,7 @@ end
 -- Move current client to a specific screen
 function client_movetoscreen(i)
     local sel = client.focus_get()
-    sel:screen_set(i)
+    sel.screen = i
 end
 
 -- Mouse warp function
@@ -659,12 +659,12 @@ keybinding(k_m, "c", function ()
 -- Mod+#94 (left of Z, not all keyboards have it): 
 -- Make window master
 keybinding(k_m, "#94", function ()
-    client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
+    client.visible_get(client.focus_get().screen)[1]:swap(client.focus_get())
 end):add()
 
 -- Mod+\: Alternative to Mod+#94 
 keybinding(k_m, "#51", function ()
-    client.visible_get(client.focus_get():screen_get())[1]:swap(client.focus_get())
+    client.visible_get(client.focus_get().screen)[1]:swap(client.focus_get())
 end):add()
 
 -- Mod+Shift+{A/S}: Move window to Prev/Next tag
@@ -843,7 +843,7 @@ function hook_focus(c)
     c:raise()
 
     -- Set statusbar color
-    local s = c:screen_get()
+    local s = c.screen
 
     if (last_s == nil or last_s ~= s) and statusbar_highlight_focus then
 
@@ -856,7 +856,7 @@ function hook_focus(c)
         end
     end
 
-    last_s = c:screen_get()
+    last_s = c.screen
 end
 
 function hook_unfocus(c)
@@ -885,7 +885,7 @@ function hook_manage(c)
 
     -- Make certain windows floating
     local name = c.name:lower()
-    local class = c.class_get():lower()
+    local class = c.class:lower()
     if  class:find('gimp') or
         name:find('urxvtcnotify')
     then
@@ -900,7 +900,7 @@ function hook_manage(c)
         -- feel free to remove the whole section, you probably
         -- won't need it.
 
-        c:screen_set(3)
+        c.screen = 3
         c:coords_set({
             x = screen.coords_get(3)['x']+1400,
             y = 18,
