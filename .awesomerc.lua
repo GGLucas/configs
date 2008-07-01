@@ -302,7 +302,7 @@ wicked.register(mpdwidget, 'mpd', function (widget, args)
     -- feel free to remove this bit
     return spacer..heading('MPD')..': '
     ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
-    ..spacer..separator end)
+    ..spacer..separator end, 0)
 
 -- }}}
 
@@ -837,10 +837,7 @@ function hook_focus(c)
     end
 
     -- Set border to active color
-    c:border_set({ 
-        width = border_width, 
-        color = border_focus 
-    })
+    c.border_color = border_focus 
 
     -- Raise the client
     c:raise()
@@ -864,10 +861,7 @@ end
 
 function hook_unfocus(c)
     -- Set border back to normal
-    c:border_set({ 
-        width = border_width, 
-        color = border_normal 
-    })
+    c.border_color = border_normal 
 end
 
 function hook_mouseover(c)
@@ -877,10 +871,8 @@ end
 
 function hook_manage(c)
     -- Create border
-    c:border_set({ 
-        width = border_width, 
-        color = border_focus 
-    })
+    c.border_width = border_width 
+    c.border_color = border_focus 
 
     -- Add mouse bindings
     -- Alt+Button1: Move window
@@ -893,11 +885,11 @@ function hook_manage(c)
 
     -- Make certain windows floating
     local name = c.name:lower()
-    local class = c:class_get():lower()
+    local class = c.class_get():lower()
     if  class:find('gimp') or
         name:find('urxvtcnotify')
     then
-        c:floating_set(true)
+        c.floating = true
     end
 
     if name:find('urxvtcnotify') then
@@ -914,11 +906,6 @@ function hook_manage(c)
             y = 18,
             width = 276,
             height = 106
-        })
-
-        c:border_set({
-            width = border_width,
-            color = border_normal
         })
 
         for i,t in pairs(eminent.tags[3]) do
