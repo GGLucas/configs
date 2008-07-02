@@ -50,4 +50,9 @@ let NERDDefaultNesting = 1
 let NERDShutUp = 1
 set vb t_vb=""
 autocmd VimEnter * set vb t_vb=
-set t_Co=256
+
+if $TERM =~ "linux"
+    set t_Co=256
+else
+    colorscheme default
+endif
