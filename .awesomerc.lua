@@ -908,6 +908,8 @@ function hook_manage(c)
             height = 106
         }
 
+        c.border_color = border_normal
+
         for i,t in pairs(eminent.tags[3]) do
             if eminent.tag.isoccupied(3, t) then
                 c:tag(t, true)
