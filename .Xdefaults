@@ -30,15 +30,16 @@ urxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
 !urxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:pixelsize=12
 
 urxvt.background: #000000
+urxvt.background: #000000
 !urxvt.background: #2E3436
 !urxvt.foreground:  #EBEBFF
 !urxvt.foreground: #ffffff
 urxvt.foreground: #ffffff
 urxvt.cursorColor: #FFFFFF
 urxvt.cursorBlink: false
-urxvt.tintColor: grey30
 !urxvt.tintColor: black
 !urxvt.inheritPixmap: true 
+!urxvt.backgroundPixmap: /home/archlucas/pictures/bg.png;:root
 
 urxvt.saveLines: 500
 urxvt.visualBell: false

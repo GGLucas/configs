@@ -89,7 +89,7 @@ vol_mute = 'amixer -q set Master togglemute'
 bg_normal = '#22222222'
 bg_focus = '#285577'
 bg_sbfocus = '#11335565'
-bg_urgent = '#A1000022'
+bg_urgent = '#A10000'
 
 -- Text Colors
 fg_normal = '#999999'
