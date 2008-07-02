@@ -1,4 +1,6 @@
-if $TERM =~ "linux"
+if $TERM == "linux"
+
+else
     if !has("gui_running")
         GuiColorScheme darkspectrum
     endif
@@ -15,4 +17,4 @@ if $TERM =~ "linux"
     hi Constant ctermfg=202
     hi Identifier ctermfg=74
     hi Type ctermfg=112
-end
+endif
