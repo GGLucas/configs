@@ -188,7 +188,7 @@ end
 
 -- Redraw all currently visible clients
 function redraw_all()
-    local cls = client.visible_get(mouse.screen_get())
+    local cls = client.visible_get(mouse.screen)
     for idx, c in ipairs(cls) do
         c:redraw()
     end
@@ -201,7 +201,7 @@ function getscreen()
     if sel then
         s = sel.screen
     else
-        s = mouse.screen_get()
+        s = mouse.screen
     end
 
     return s
@@ -214,7 +214,7 @@ function client_movetoscreen(i)
 end
 
 -- Mouse warp function
-function mouse.warp(c, force)
+function mouse_warp(c, force)
     -- Allow skipping a warp
     if warp_skip then
         warp_skip = false
@@ -226,7 +226,7 @@ function mouse.warp(c, force)
     if sel == nil then return end
 
     local coords = sel.coords
-    local m = mouse.coords_get()
+    local m = mouse.coords
 
     -- Settings
     mouse_padd = 6
@@ -241,7 +241,7 @@ function mouse.warp(c, force)
            table.maxn(m.buttons) == 0
         )) or force
     then
-        mouse.coords_set({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
+        mouse.coords = { x=coords.x+mouse_padd, y=coords.y+mouse_padd}
     end
 end
 
@@ -250,7 +250,7 @@ function redraw_client(cls)
     local c = cls or client.focus_get()
     c:redraw()
     c:focus_set()
-    mouse.warp(c, true)
+    mouse_warp(c, true)
 end
 
 -- }}}
@@ -280,11 +280,11 @@ end))
 
 maintaglist:mouse_add(mouse(k_n, 5, function (object, tag)
     warp_skip = true
-    eminent.tag.next(mouse.screen_get()) end))
+    eminent.tag.next(mouse.screen) end))
 
 maintaglist:mouse_add(mouse(k_n, 4, function (object, tag)
     warp_skip = true
-    eminent.tag.prev(mouse.screen_get()) end))
+    eminent.tag.prev(mouse.screen) end))
 
 -- }}}
 
@@ -921,7 +921,7 @@ function hook_manage(c)
     c:focus_set()
    
     -- Prevents new windows from becoming master
-    cls = client.visible_get(mouse.screen_get())
+    cls = client.visible_get(mouse.screen)
     for i,p in pairs(cls) do
         if p ~= c then
             c:swap(p)
@@ -932,7 +932,7 @@ end
 
 function hook_arrange(c)
     -- Warp the mouse
-    mouse.warp()
+    mouse_warp()
 end
 
 -- Attach the hooks
