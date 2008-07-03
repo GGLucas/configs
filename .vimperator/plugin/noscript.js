@@ -1,6 +1,6 @@
 // Integration plugin for noscript extension
 // @author Martin Stubenschrott
-// @version 0.1
+// @version 0.2
 
 liberator.mappings.addUserMap([liberator.modes.NORMAL], ["<Leader>s"],
 	"Toggle scripts temporarily on current web page",
@@ -11,11 +11,7 @@ liberator.mappings.addUserMap([liberator.modes.NORMAL], ["<Leader>S"],
 	function()
 	{
 		const ns = noscriptOverlay.ns;
-		var level = ns.getPref("toolbarToggle", 3) || force;
-		if (!level) return false;
-    
-		const url = ns.getQuickSite(content.document.documentURI, level);
-    
+		const url = ns.getQuickSite(content.document.documentURI, /*level*/ 3);
 		noscriptOverlay.safeAllow(url, !ns.isJSEnabled(url), false);
 	});
 
