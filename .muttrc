@@ -1,0 +1,175 @@
+# .muttrc file - Suresh Ramasubramanian
+# Don't display certain headers
+ignore *
+unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
+
+# Order to display the headers in
+hdr_order From: Date: To: Cc: Subject:
+
+set imap_user = "lucasdevries@gmail.com"
+set smtp_url = "smtp://lucasdevries@smtp.gmail.com:587/"
+set from = "lucasdevries@gmail.com"
+set realname = "Lucas de Vries"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+# set record="+[Gmail]/Sent Mail”
+set postponed=”+[Gmail]/Drafts”
+
+set header_cache=/home/archlucas/.mutt/cache/headers
+set message_cachedir=/home/archlucas/.mutt/cache/bodies
+set certificate_file=/home/archlucas/.mutt/certificates
+
+set move = no
+unset beep
+
+bind index "y" imap-fetch-mail
+bind index "l" display-message
+bind pager "h" exit
+
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+
+
+# Default From: line for when mailing in batch mode
+my_hdr From: lucasdevries@gmail.com (Lucas de Vries)
+set edit_headers
+
+# Append messages to other mailboxes automatically
+unset confirmappend
+
+# Automatically quote message
+set include=yes
+
+# Set quotemark to 1 byte
+set indent_str="> "
+
+set index_format   = "%4C %Z %{%b %d} %-15.15F (%4l) %s"
+set forward_format="Fw: %s"     # subject in forwarded messages
+set date_format="%a %d %B %Y %H:%M %Z"
+set quote_regexp="^([A-Za-z ]+>|[]%>:|}-][]>:|}-]*)"
+#set reply_regexp="^(re([\\[0-9\\]+])*|aw):[ \t]*"
+set reply_regexp='^((re(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*'
+
+set mime_forward=ask-yes
+
+# Use vim as the editor - this line will wrap
+# Set wordwrap on in vim to automatically wrap lines - 
+# no :gq all the time
+set editor="vim +':set textwidth=77' +':set wrap' +\`awk '/^$/ {print i+2; exit} {i++}' %s\` %s" 
+#set visual=vim			# editor invoked by ~v in the builtin editor
+
+# set format=flowed
+set text_flowed
+
+# Location for postponed messages
+set postponed="=postponed"
+
+# I don't want to resume postponed messages
+#set recall=no
+
+# Save copies of outgoing e-mail
+set record="=sent-mail"
+
+# Don't confirm using Reply-To: headers
+set reply_to=yes
+
+# Delete empty mailboxes
+unset save_empty
+
+# Use as from the address mail was sent to
+# You'd have to define $alternates for this
+# set reverse_name
+
+# Set my web browser
+#set web_browser="fx %s"
+
+# Save mail to =received when I press ">", like in Elm
+set mbox="=received"
+
+# Apply operations to tagged messages automatically
+set auto_tag
+
+# Don't ask to move read messages to mbox on exit
+set move=no
+
+###
+# Bindings - change key bindings
+###
+
+# Customize the pager
+bind pager [ previous-line
+bind pager < previous-line
+bind pager ] next-line
+bind pager > next-line
+bind pager down next-page
+bind pager up previous-page
+# dual window view in mutt
+# set pager_index_lines=10
+
+# Similar settings for the index
+bind index [ previous-line
+bind index ] next-line
+
+# imitate the old search-body function
+macro index \eb '/~b ' 'search in message bodies'
+
+# simluate the old url menu
+macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
+macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+# Show documentation when pressing F1
+macro generic <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
+macro index   <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
+macro pager   <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
+
+# Set and source our alias file
+set alias_file=~/.mutt-aliases
+source ~/.mutt-aliases
+
+
+color attachment brightmagenta black  
+color error brightwhite red   # errors yell at you in red
+color hdrdefault red black   # headers
+color indicator brightyellow magenta # currently selected message
+color markers brightcyan black  # the + for wrapped pager lines
+color message brightcyan black  # informational messages, not mail
+color normal white black    # plain text
+color quoted green black  # quoted text
+color search brightgreen black # hilite search patterns in the pager
+color signature red black    # signature (after "-- ") is red 
+color status brightyellow blue # status bar is yellow *on blue*   
+color tilde blue black  # ~'s after message body
+color tree red black    # thread tree in index menu is magenta
+color signature brightred black
+color underline yellow black
+color header cyan black ^(From|Subject): # Important headers
+color body magenta black "(ftp|http)://[^ ]+"  # picks up URLs
+color body magenta black [-a-z_0-9.]+@[-a-z_0-9.]+ 
+
+#  Coloring quoted text - coloring the first 7 levels:
+color quoted    cyan black
+color quoted1   yellow black
+color quoted2   red black
+color quoted3   green black
+color quoted4   cyan black
+color quoted5   yellow black
+color quoted6   red black
+color quoted7   green black
+
+#  Colorize smileys:  :-)  ;-)  :-/  :-(
+color body  yellow black "[;:]-[)/(|]"
+color body  yellow black "[;:][)/(|]"
+color body  green black "[[:alpha:]]\+://[^ ]*"
+
+color index brightyellow black ~N      # New
+color index yellow black ~O              # Old
+color index magenta black ~F
+color index blue black ~T
+color index red black ~D
+
