@@ -1,5 +1,0 @@
-map <C-]> <Escape>:set go=mT<Return><Escape>
-map <C-=> <Escape>:set go=<Return><Escape>
-map gj <C-f>
-map gk <C-b>
-set editor=g
