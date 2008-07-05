@@ -34,6 +34,7 @@ sub notify {
     $message =~ s/`//g;
     $message =~ s/<//g;
     $message =~ s/>//g;
+    $message =~ s/\\//g;
 
     my $cmd = 'EXEC - notify-send "' . $summary . '" "' . $message . '"';
 

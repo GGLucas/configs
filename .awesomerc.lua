@@ -766,9 +766,9 @@ keybinding(k_m, "b", function ()
 
     if statusbar_status[w] == 0 then
         statusbar_status[w] = 1
-        s:position_set('top')
+        s.position = 'top'
     else
-        s:position_set('off')
+        s.position = 'off'
         statusbar_status[w] = 0
     end
 end):add()
