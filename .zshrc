@@ -59,6 +59,15 @@ alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto'
 
+# 'less' colors
+export LESS_TERMCAP_mb = $PR_RED
+export LESS_TERMCAP_md = $PR_BLUE
+export LESS_TERMCAP_me = $PR_GREEN
+export LESS_TERMCAP_se = $PR_GREEN
+export LESS_TERMCAP_so = $PR_GREEN
+export LESS_TERMCAP_ue = $PR_GREEN
+export LESS_TERMCAP_us = $PR_RED
+
 # functions
 mdc() { mkdir -p "$1" && cd "$1" }
 setenv() { export $1=$2 }  # csh compatibility
