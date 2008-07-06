@@ -60,13 +60,13 @@ alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto'
 
 # 'less' colors
-export LESS_TERMCAP_mb = $PR_RED
-export LESS_TERMCAP_md = $PR_BLUE
-export LESS_TERMCAP_me = $PR_GREEN
-export LESS_TERMCAP_se = $PR_GREEN
-export LESS_TERMCAP_so = $PR_GREEN
-export LESS_TERMCAP_ue = $PR_GREEN
-export LESS_TERMCAP_us = $PR_RED
+export LESS_TERMCAP_mb="$terminfo[bold]$fg[red]"
+export LESS_TERMCAP_md="$terminfo[bold]$fg[blue]"
+export LESS_TERMCAP_me="$terminfo[bold]$fg[green]"
+export LESS_TERMCAP_se="$terminfo[bold]$fg[green]"
+export LESS_TERMCAP_so="$terminfo[bold]$fg[green]"
+export LESS_TERMCAP_ue="$terminfo[bold]$fg[green]"
+export LESS_TERMCAP_us="$terminfo[bold]$fg[red]"
 
 # functions
 mdc() { mkdir -p "$1" && cd "$1" }
