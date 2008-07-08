@@ -25,7 +25,7 @@ set nocompatible
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set smarttab autoindent
+set smarttab
 set nobackup
 set showmatch
 set modeline
@@ -48,8 +48,8 @@ endif
 
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
-set vb t_vb=""
-autocmd VimEnter * set vb t_vb=
+"set vb t_vb=""
+"autocmd VimEnter * set vb t_vb=
 
 if $TERM == 'linux'
     colorscheme default
