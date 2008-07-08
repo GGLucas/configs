@@ -57,7 +57,7 @@ compinit
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -F'
 
 # 'less' colors
 export LESS_TERMCAP_mb="$terminfo[bold]$fg[red]"
