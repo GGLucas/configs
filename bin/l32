@@ -2,7 +2,7 @@
 echo '#!/bin/bash' > /tmp/l32cmd
 
 if [[ "$@" == "" ]]; then
-echo "fish" >> /tmp/l32cmd
+echo $SHELL >> /tmp/l32cmd
 else
 echo "$@" >> /tmp/l32cmd
 fi
