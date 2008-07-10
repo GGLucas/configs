@@ -154,20 +154,20 @@ function font(font, text)
     return '<span font_desc="'..font..'">'..text..'</span>'
 end
 
-function title()
-    return '<title />'
+function title(t)
+    return t
 end
 
-function title_normal()
-    return title()
+function title_normal(t)
+    return title(t)
 end
 
-function title_focus()
-    return bg(bg_focus, fg(fg_focus, title()))
+function title_focus(t)
+    return bg(bg_focus, fg(fg_focus, title(t)))
 end
 
-function title_urgent()
-    return bg(bg_urgent, fg(fg_urgent, title()))
+function title_urgent(t)
+    return bg(bg_urgent, fg(fg_urgent, title(t)))
 end
 
 function bold(text)
@@ -261,10 +261,15 @@ maintaglist = widget(
   name = 'maintaglist'
 })
 
-maintaglist.text_normal = spacer..title_normal()..spacer
-maintaglist.text_focus = spacer..title_focus()..spacer
-maintaglist.text_urgent = spacer..title_urgent()..spacer
 maintaglist.show_empty = false
+
+function maintaglist.label(t)
+    if t.selected then
+        return spacer..title_focus(t.name)..spacer
+    else
+        return spacer..title_normal(t.name)..spacer
+    end
+end
 
 maintaglist:mouse_add(mouse(k_n, 1, function (object, tag)
     awful.tag.viewonly(tag)

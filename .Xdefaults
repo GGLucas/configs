@@ -52,7 +52,6 @@ urxvt.internalBorder: 3
 !urxvt.urgentOnBell: true
 !urxvt.visualBell: true
 
-
 !black
 urxvt*color0:      #2E3436
 !red
