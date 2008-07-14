@@ -11,12 +11,12 @@ if playlist.readlines()[0].find("AnimeNfo Radio") == -1:
         if os.access('/home/archlucas/.mpdstreamlock', os.F_OK):
             #Stream is stopped
             #print "stopped, toggling on nostream"
-            os.system("mpc toggle")
+            os.system("mpc oplay")
             os.remove('/home/archlucas/.mpdstreamlock')
         else:
             #Stream is playing
             #print "stopping nostream"
-            os.system("mpc toggle")
+            os.system("mpc stop")
             f=open('/home/archlucas/.mpdstreamlock', 'w')
             f.write('Stopped')
             f.close()
@@ -32,7 +32,7 @@ else:
         if os.access('/home/archlucas/.mpdstreamlock', os.F_OK):
             #Stream is stopped
             #print "stopped, toggling on"
-            os.system("mpc toggle > /dev/null")
+            os.system("mpc play > /dev/null")
             os.remove('/home/archlucas/.mpdstreamlock')
         else:
             #Stream is playing

@@ -25,7 +25,7 @@ done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 # default apps
-PAGER='less'
+PAGER='vimpager'
 EDITOR='vim'
 
 # prompt

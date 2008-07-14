@@ -17,6 +17,11 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
  dbus-launch --sh-syntax -with-session
 fi
 
+# SCIM
+export XMODIFIERS=@im=SCIM
+export GTK_IM_MODULE="scim"
+export QT_IM_MODULE="scim"
+
 # Start WM
 #exec awesome && exit
 awesome &
