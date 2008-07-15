@@ -8,42 +8,42 @@ playlist = os.popen("mpc playlist")
 if playlist.readlines()[0].find("AnimeNfo Radio") == -1:
     # Not playing animenfo
     if sys.argv[1] == 'toggle':
-        if os.access('/home/archlucas/.mpdstreamlock', os.F_OK):
+        if os.access('/tmp/.mpdstreamlock', os.F_OK):
             #Stream is stopped
             #print "stopped, toggling on nostream"
-            os.system("mpc oplay")
-            os.remove('/home/archlucas/.mpdstreamlock')
+            os.system("mpc play")
+            os.remove('/tmp/.mpdstreamlock')
         else:
             #Stream is playing
             #print "stopping nostream"
             os.system("mpc stop")
-            f=open('/home/archlucas/.mpdstreamlock', 'w')
+            f=open('/tmp/.mpdstreamlock', 'w')
             f.write('Stopped')
             f.close()
     elif sys.argv[1] == 'stop':
         #print "stopping arg nostream"
         os.system("mpc stop")
-        f=open('/home/archlucas/.mpdstreamlock', 'w')
+        f=open('/tmp/.mpdstreamlock', 'w')
         f.write('Stopped')
         f.close()
 else:
     #Playing animenfo
     if sys.argv[1] == 'toggle':
-        if os.access('/home/archlucas/.mpdstreamlock', os.F_OK):
+        if os.access('/tmp/.mpdstreamlock', os.F_OK):
             #Stream is stopped
             #print "stopped, toggling on"
             os.system("mpc play > /dev/null")
-            os.remove('/home/archlucas/.mpdstreamlock')
+            os.remove('/tmp/.mpdstreamlock')
         else:
             #Stream is playing
             #print "stopping"
             os.system("mpc stop > /dev/null")
-            f=open('/home/archlucas/.mpdstreamlock', 'w')
+            f=open('/tmp/.mpdstreamlock', 'w')
             f.write('Stopped')
             f.close()
     elif sys.argv[1] == 'stop':
         #print "stopping arg"
         os.system("mpc stop")
-        f=open('/home/archlucas/.mpdstreamlock', 'w')
+        f=open('/tmp/.mpdstreamlock', 'w')
         f.write('Stopped')
         f.close()

@@ -59,6 +59,9 @@ alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto -F'
 
+alias pp='sudo pacman'
+alias yy='yaourt'
+
 # 'less' colors
 export LESS_TERMCAP_mb="$terminfo[bold]$fg[red]"
 export LESS_TERMCAP_md="$terminfo[bold]$fg[blue]"
