@@ -74,12 +74,6 @@ music_stop = 'mpdtoggle stop'
 music_next = 'mpc next'
 music_prev = 'mpc prev'
 
--- Sound
-vol_set = 'amixer -q set PCM '
-vol_up = 'amixer -q set PCM 8%+'
-vol_down = 'amixer -q set PCM 8%-'
-vol_mute = 'amixer -q set Master togglemute'
-
 ---- }}}
 
 -- }}}
@@ -593,39 +587,6 @@ keybinding(k_a, "s", function ()
 end):add()
 
 ---- }}}
-
----- {{{ Multimedia keyboard keys/Volume shortcuts
-keybinding(k_n, "#176", function ()
-    awful.spawn(vol_up)
-end):add()
-
-keybinding(k_n, "#174", function ()
-    awful.spawn(vol_down)
-end):add()
-
-keybinding(k_n, "#160", function ()
-    awful.spawn(vol_mute)
-end):add()
-
-keybinding(k_a, "n", function ()
-    awful.spawn(vol_up)
-end):add()
-
-keybinding(k_a, "b", function ()
-    awful.spawn(vol_down)
-end):add()
-
-keybinding(k_a, "m", function ()
-    awful.spawn(vol_mute)
-end):add()
-
-keybinding(k_ma, "b", function ()
-    awful.spawn(vol_set..'50%')
-end):add()
-
-keybinding(k_ma, "n", function ()
-    awful.spawn(vol_set..'100%')
-end):add()
 
 ---- }}}
 
