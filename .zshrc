@@ -59,7 +59,7 @@ alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto -F'
 
-alias pp='sudo pacman'
+alias pp='sudo pacman-color'
 alias yy='yaourt'
 
 # 'less' colors

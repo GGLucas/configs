@@ -21,7 +21,6 @@ nmap <Leader>fd :set fdm=marker<CR>
 nmap <Leader>ff :set fdm=indent<CR>
 
 vmap K k
-vmap J j
 
 set nocompatible
 
