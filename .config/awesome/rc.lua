@@ -539,7 +539,7 @@ for s = 1, screen.count() do
         mainstatusbar[s]:widget_add(spacerwidget)
     end
 
-    mainstatusbar[s]:add(s)
+    mainstatusbar[s].screen = s
     statusbar_status[s] = 1
 end
 
