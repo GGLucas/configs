@@ -255,9 +255,9 @@ maintaglist = widget(
   name = 'maintaglist'
 })
 
-maintaglist.show_empty = false
-
 function maintaglist.label(t)
+    if not eminent.isoccupied(t.screen, t) and not t.selected then return end
+
     if t.selected then
         return spacer..title_focus(t.name)..spacer
     else
@@ -319,7 +319,6 @@ wicked.register(gmailwidget, 'function', function (widget, args)
     -- Read temp file created by gmail check script
     local f = io.open('/tmp/gmail-temp')
     if f == nil then
-        f:close()
         return spacer..heading('GMail')..': 0'..spacer..separator
     end
 
@@ -715,7 +714,7 @@ keybinding(k_mc, "x", function ()
 
 ---- {{{ Miscellaneous hotkeys
 -- Mod+R: Restart awesome
-keybinding(k_m, "r", 
+keybinding(k_ma, "r", 
     awesome.restart):add()
 
 -- Mod+{E/D}: Switch to next/previous screen
