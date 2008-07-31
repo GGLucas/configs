@@ -1,10 +1,6 @@
 Xcursor.size: 22
 Xcursor.theme: Vanilla-DMZ-AA
 
-!------------------!
-!       XFT        !
-!------------------!
-
 Xft*dpi:        99
 Xft*antialias:    true
 
