@@ -792,6 +792,7 @@ end
 ---- }}}
 
 -- {{{ Hooks
+V
 function hook_focus(c)
     -- Skip over urxvtcnotify
     local name = c.name:lower()
@@ -910,10 +911,8 @@ end
 
 -- Attach the hooks
 awful.hooks.focus(hook_focus)
-awful.hooks.focus(awful.client.focus.history.add)
 awful.hooks.unfocus(hook_unfocus)
 awful.hooks.manage(hook_manage)
-awful.hooks.unmanage(awful.client.focus.history.delete)
 awful.hooks.mouseover(hook_mouseover)
 awful.hooks.arrange(hook_arrange)
 
