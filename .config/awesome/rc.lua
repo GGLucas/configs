@@ -604,10 +604,10 @@ keybinding(k_ms, "#49", function ()
 
 -- Mod+{Q/W}: Focus Prev/Next window
 keybinding(k_m, "q", function ()
-    awful.client.focus(-1) end):add()
+    awful.client.focusbyidx(-1) end):add()
 
 keybinding(k_m, "w", function ()
-    awful.client.focus(1) end):add()
+    awful.client.focusbyidx(1) end):add()
 
 -- Mod+Shift+{Q/W}: Swap window with the Prev/Next one
 keybinding(k_ms, "q", function ()
@@ -797,7 +797,7 @@ function hook_focus(c)
     local name = c.name:lower()
 
     if name:find('urxvtcnotify') and awful.client.next(1) ~= c then
-        awful.client.focus(1)
+        awful.client.focusbyidx(1)
         return 0
     end
 
@@ -897,15 +897,23 @@ function hook_manage(c)
     end
 end
 
-function hook_arrange(c)
+function hook_arrange(screen)
     -- Warp the mouse
     mouse_warp()
+
+    -- Check focus
+    if not client.focus_get() then
+        local c = awful.client.focus.history.get(screen, 0)
+        if c then c:focus_set() end
+    end
 end
 
 -- Attach the hooks
 awful.hooks.focus(hook_focus)
+awful.hooks.focus(awful.client.focus.history.add)
 awful.hooks.unfocus(hook_unfocus)
 awful.hooks.manage(hook_manage)
+awful.hooks.unmanage(awful.client.focus.history.delete)
 awful.hooks.mouseover(hook_mouseover)
 awful.hooks.arrange(hook_arrange)
 
