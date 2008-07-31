@@ -792,7 +792,7 @@ end
 ---- }}}
 
 -- {{{ Hooks
-V
+ 
 function hook_focus(c)
     -- Skip over urxvtcnotify
     local name = c.name:lower()
