@@ -188,19 +188,6 @@ function redraw_all()
     end
 end
 
--- Get the screen number we're on
-function getscreen()
-    local sel = client.focus_get()
-    local s
-    if sel then
-        s = sel.screen
-    else
-        s = mouse.screen
-    end
-
-    return s
-end
-
 -- Move current client to a specific screen
 function client_movetoscreen(i)
     local sel = client.focus_get()
@@ -245,6 +232,26 @@ function redraw_client(cls)
     c:redraw()
     c:focus_set()
     mouse_warp(c, true)
+end
+
+-- Awful's cycle function
+local function cycle(t, i)
+    while i > t do i = i - t end
+    while i < 1 do i = i + t end
+    return i
+end
+
+-- Modified screen.focus, gets current screen by mouse cursor
+-- only, fixes some annoying behaviours with empty tags 
+-- and mouse warping/sloppy focus.
+function screen_focus(i)
+    local s
+    s = mouse.screen
+    s = cycle(screen.count(), s + i)
+    local c = awful.client.focus.history.get(s, 0)
+    if c then c:focus_set() end
+    -- Move the mouse on the screen
+    mouse.coords = screen.coords_get(s)
 end
 
 -- }}}
@@ -634,17 +641,17 @@ end):add()
 
 -- Mod+Shift+{A/S}: Move window to Prev/Next tag
 keybinding(k_ms, "a", function()
-    awful.client.movetotag(eminent.tag.getprev())
+    awful.client.movetotag(eminent.tag.getprev(mouse.screen))
 end):add()
 
 keybinding(k_ms, "s", function()
-    awful.client.movetotag(eminent.tag.getnext())
+    awful.client.movetotag(eminent.tag.getnext(mouse.screen))
 end):add()
 
 
 -- Mod+Shift_{E/D}: move window to next/prev screen
 keybinding(k_ms, "e", function()
-   local s = getscreen()+1
+   local s = mouse.screen+1
    while s > screen.count() do
        s = s-screen.count()
    end
@@ -653,7 +660,7 @@ keybinding(k_ms, "e", function()
 end):add()
 
 keybinding(k_ms, "d", function()
-   local s = getscreen()-1
+   local s = mouse.screen-1
    while s < 1 do
        s = s+screen.count()
    end
@@ -666,10 +673,10 @@ end):add()
 ---- {{{ Tag hotkeys
 -- Mod+{A/S}: Switch to prev/next tag
 keybinding(k_m, "a", function()
-    eminent.tag.prev() end):add()
+    eminent.tag.prev(mouse.screen) end):add()
 
 keybinding(k_m, "s", function()
-    eminent.tag.next() end):add()
+    eminent.tag.next(mouse.screen) end):add()
 
 keybinding(k_m, "n", function()
     awful.tag.viewonly(eminent.tag()) end):add()
@@ -719,14 +726,14 @@ keybinding(k_ma, "r",
 
 -- Mod+{E/D}: Switch to next/previous screen
 keybinding(k_m, "e", function ()
-    awful.screen.focus(1) end):add()
+    screen_focus(1) end):add()
 
 keybinding(k_m, "d", function ()
-    awful.screen.focus(-1) end):add()
+    screen_focus(-1) end):add()
 
 -- Mod+B: Turn off statusbar on current screen
 keybinding(k_m, "b", function ()
-    local w = getscreen()
+    local w = mouse.screen
     local s = mainstatusbar[w]
 
     if statusbar_status[w] == 0 then
