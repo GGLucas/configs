@@ -351,7 +351,7 @@ wicked.register(gmailwidget, 'function', function (widget, args)
 end, 120)
 
 -- Start timer to read the temp file
-awful.hooks.timer(110, function ()
+awful.hooks.timer.register(110, function ()
     -- Call GMail check script to check for new email
     os.execute('/home/archlucas/other/.gmail.py > /tmp/gmail-temp &')
 end, true)
@@ -783,7 +783,7 @@ for i = 1, 9 do
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
-                        client.focus_get():tag(t, not client.focus_get():istagged(t))
+                        awful.client.toggletag(t, client.focus_get())
                     end
                 end):add()
     keybinding(k_as, i,
@@ -883,11 +883,14 @@ function hook_manage(c)
 
         c.border_color = border_normal
 
+        local tags = {}
         for i,t in pairs(eminent.tags[3]) do
             if eminent.tag.isoccupied(3, t) then
-                c:tag(t, true)
+                table.insert(tags, t)
             end
         end
+
+        c.tags = tags
 
         return 0
     end
@@ -917,11 +920,11 @@ function hook_arrange(screen)
 end
 
 -- Attach the hooks
-awful.hooks.focus(hook_focus)
-awful.hooks.unfocus(hook_unfocus)
-awful.hooks.manage(hook_manage)
-awful.hooks.mouseover(hook_mouseover)
-awful.hooks.arrange(hook_arrange)
+awful.hooks.focus.register(hook_focus)
+awful.hooks.unfocus.register(hook_unfocus)
+awful.hooks.manage.register(hook_manage)
+awful.hooks.mouseover.register(hook_mouseover)
+awful.hooks.arrange.register(hook_arrange)
 
 
 -- }}}
