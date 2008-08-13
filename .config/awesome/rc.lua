@@ -190,7 +190,7 @@ end
 
 -- Move current client to a specific screen
 function client_movetoscreen(i)
-    local sel = client.focus_get()
+    local sel = client.focus
     sel.screen = i
 end
 
@@ -203,7 +203,7 @@ function mouse_warp(c, force)
     end
 
     -- Get vars
-    local sel = c or client.focus_get()
+    local sel = c or client.focus
     if sel == nil then return end
 
     local coords = sel.coords
@@ -228,9 +228,9 @@ end
 
 -- Redraw a client
 function redraw_client(cls)
-    local c = cls or client.focus_get()
+    local c = cls or client.focus
     c:redraw()
-    c:focus_set()
+    client.focus = c
     mouse_warp(c, true)
 end
 
@@ -249,7 +249,7 @@ function screen_focus(i)
     s = mouse.screen
     s = cycle(screen.count(), s + i)
     local c = awful.client.focus.history.get(s, 0)
-    if c then c:focus_set() end
+    if c then client.focus = c end
     -- Move the mouse on the screen
     mouse.coords = screen.coords_get(s)
 end
@@ -526,25 +526,28 @@ for s = 1, screen.count() do
         name = "mainstatusbar" .. s,                        
         fg = fg_normal, 
         bg = bg_normal })
+
+    local widgets = {}
     
-    mainstatusbar[s]:widget_add(maintaglist)
+    table.insert(widgets, maintaglist)
 
     if mode == 'laptop' or mode == 'all' then
-        mainstatusbar[s]:widget_add(batterywidget)
+        table.insert(widgets, batterywidget)
     end
 
     if mode ~= 'none' then
-        mainstatusbar[s]:widget_add(mpdwidget)
-        mainstatusbar[s]:widget_add(gmailwidget)
-        mainstatusbar[s]:widget_add(loadwidget)
-        mainstatusbar[s]:widget_add(cputextwidget)
-        mainstatusbar[s]:widget_add(cpugraphwidget)
-        mainstatusbar[s]:widget_add(spacerwidget)
-        mainstatusbar[s]:widget_add(memtextwidget)
-        mainstatusbar[s]:widget_add(memgraphwidget)
-        mainstatusbar[s]:widget_add(spacerwidget)
+        table.insert(widgets, mpdwidget)
+        table.insert(widgets, gmailwidget)
+        table.insert(widgets, loadwidget)
+        table.insert(widgets, cputextwidget)
+        table.insert(widgets, cpugraphwidget)
+        table.insert(widgets, spacerwidget)
+        table.insert(widgets, memtextwidget)
+        table.insert(widgets, memgraphwidget)
+        table.insert(widgets, spacerwidget)
     end
 
+    mainstatusbar[s].widgets = widgets
     mainstatusbar[s].screen = s
     statusbar_status[s] = 1
 end
@@ -599,7 +602,7 @@ end):add()
 ---- {{{ Client hotkeys
 -- Alt+`: Close window
 keybinding(k_a, "#49", function ()
-    client.focus_get():kill() end):add()
+    client.focus:kill() end):add()
 
 -- Mod+`: Redraw window
 keybinding(k_m, "#49", function ()
@@ -631,12 +634,12 @@ keybinding(k_m, "c", function ()
 -- Mod+#94 (left of Z, not all keyboards have it): 
 -- Make window master
 keybinding(k_m, "#94", function ()
-    client.visible_get(client.focus_get().screen)[1]:swap(client.focus_get())
+    client.visible_get(client.focus.screen)[1]:swap(client.focus)
 end):add()
 
 -- Mod+\: Alternative to Mod+#94 
 keybinding(k_m, "#51", function ()
-    client.visible_get(client.focus_get().screen)[1]:swap(client.focus_get())
+    client.visible_get(client.focus.screen)[1]:swap(client.focus)
 end):add()
 
 -- Mod+Shift+{A/S}: Move window to Prev/Next tag
@@ -783,7 +786,7 @@ for i = 1, 9 do
                 function ()
                     local t = eminent.tag.getn(i, nil, true)
                     if t ~= nil then
-                        awful.client.toggletag(t, client.focus_get())
+                        awful.client.toggletag(t, client.focus)
                     end
                 end):add()
     keybinding(k_as, i,
@@ -839,7 +842,7 @@ end
 
 function hook_mouseover(c)
     -- Set focus for sloppy focus
-    c:focus_set()
+    client.focus = c
 end
 
 function hook_manage(c)
@@ -874,8 +877,9 @@ function hook_manage(c)
         -- won't need it.
 
         c.screen = 3
+
         c.coords = {
-            x = screen.coords_get(3)['x']+1400,
+            x = 1680*2+1400,
             y = 18,
             width = 276,
             height = 106
@@ -896,7 +900,7 @@ function hook_manage(c)
     end
 
     -- Focus new clients
-    c:focus_set()
+    client.focus = c
    
     -- Prevents new windows from becoming master
     cls = client.visible_get(mouse.screen)
@@ -913,9 +917,9 @@ function hook_arrange(screen)
     mouse_warp()
 
     -- Check focus
-    if not client.focus_get() then
+    if not client.focus then
         local c = awful.client.focus.history.get(screen, 0)
-        if c then c:focus_set() end
+        if c then client.focus = c end
     end
 end
 
