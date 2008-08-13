@@ -1,4 +1,5 @@
 -- GGLucas' Awesome-3 Lua Config :D
+-- Version 2
 ------
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or
@@ -8,193 +9,668 @@
 -- you'll need to get both those helper libraries too.
 ------
 -- Note that I use all-custom keybindings, so you might
--- want to copy the default awesomerc.lua's keybindings 
+-- want to copy the default rc.lua's keybindings 
 -- into here if you wish to use those, although you might
 -- find you like mine better :P
 ------
--- Libs included in awesome
+
+---- {{{ Require lua libraries
+-- Shipped with awesome
 require("awful")
+require("beautiful")
 
--- External libs
-require("wicked")
-require("eminent")
+-- External
+require("wicked") -- Widgets
+require("eminent") -- Dynamic tagging
+-- }}}
 
--- {{{ Settings
--- We define variables here we can later use to set
--- the specific settings.
-default_font = 'Terminus 8'
-default_mwfact = 0.618033988769
-spacer = " "
-separator = " " 
+---- {{{ 'Beautiful' theme settings
+-- Font
+beautiful.font = "Terminus 8"
 
--- Highlight statusbars on the screen that has focus, 
--- set this to false if you only have one screen or 
--- you don't like it :P
-if screen.count() > 1 then
-    statusbar_highlight_focus = true
-else
-    statusbar_highlight_focus = false
-end
+-- Background
+beautiful.bg_normal = '#22222222'
+beautiful.bg_focus = '#285577'
+beautiful.bg_sbfocus = '#11335565'
+beautiful.bg_urgent = '#A10000'
 
-awesome.font_set(default_font)
+-- Foreground
+beautiful.fg_normal = '#999999'
+beautiful.fg_focus = '#ffffff'
+beautiful.fg_urgent = '#ffffff'
 
--- Since I use this config on multiple PCs, I check for the
--- existance of a special file in my home directory to select the appropriate
--- set of widgets.
-local f = io.open('/home/archlucas/.laptop_mode')
-if f == nil then
-    mode = 'desktop'
-else
-    mode = 'laptop'
-end
+-- Border
+beautiful.border_width = 2
+beautiful.border_normal = '#333333'
+beautiful.border_focus = '#4C7899'
+beautiful.border_marked = '#91231c'
 
--- Uncomment to enable or disable all widgets
--- mode = 'all'
--- mode = 'none'
+-- }}}
+
+---- {{{ Modkeys
+key = {}
+key.none = {}
+key.alt = {"Mod1"}
+key.super = {"Mod4"}
+key.shift = {"Shift"}
+key.control = {"Control"}
+
+key.super_alt = {key.super[1], key.alt[1]}
+key.super_shift = {key.super[1], key.shift[1]}
+key.super_control = {key.super[1], key.control[1]}
+key.control_alt = {key.control[1], key.alt[1]}
+key.shift_alt = {key.shift[1], key.alt[1]}
+
+-- }}}
+
+---- {{{ Settings
+-- Initialise tables
+settings = {}
+settings.widget = {}
+settings.apps = {}
+settings.tag = {}
+settings.bindings = {}
+
+-- {{{ General
+-- Widget spacer and separator
+settings.widget_spacer = " "
+settings.widget_separator = " "
+
+-- Warp mouse
+settings.warp_mouse = true
+
+-- New become master
+settings.new_become_master = false
+
+-- Tag mwfact
+settings.tag.mwfact = 0.618033988769
 
 -- }}}
 
 -- {{{ Applications
--- We define frequently used applications into variables
--- so we can easily change which ones we use.
-terminal = 'urxvtc'
--- Note: mydmenu is my own script that feeds
--- specific options/values into dmenu, replace it
--- with how you call dmenu if you wish to use it.
-menu = 'mydmenu'
-lock = 'xscreensaver-command -lock'
-filemanager = terminal..' -e fish -c "vifm'
+-- Terminal application
+settings.apps.terminal = 'urxvtc'
 
---- {{{ Music
+-- Terminal with gnu screen
+settings.apps.gnu_screen = settings.apps.terminal..' -e zsh -c "exec screen -x main"'
+
+-- Command to lock the screen
+settings.apps.lock_screen = 'xscreensaver-command -lock'
+
+-- Command to turn screen off with DPMS
+settings.apps.screen_off = 'sleep 1; xset dpms force off'
+
+-- File manager application
+settings.apps.filemanager = settings.apps.terminal..' -e zsh -c "vifm %s"'
+
+-- Toggle music
 -- Note: mpdtoggle is my own script for finding out if 
 -- I want to toggle or play/stop, replace it with mpc if
 -- you wish to use it.
-music_toggle = 'mpdtoggle toggle'
-music_stop = 'mpdtoggle stop'
-music_next = 'mpc next'
-music_prev = 'mpc prev'
-
----- }}}
+settings.apps.music_toggle = "mpdtoggle toggle"
 
 -- }}}
 
--- {{{ Colors
--- Background Colors
-bg_normal = '#22222222'
-bg_focus = '#285577'
-bg_sbfocus = '#11335565'
-bg_urgent = '#A10000'
+-- {{{ Floating windows
+settings.floating = {
+    ["gimp"] = true,
+    ["urxvtcnotify"] = true,
+}
 
--- Text Colors
-fg_normal = '#999999'
-fg_focus = '#ffffff'
-fg_sbfocus = fg_normal
-fg_urgent = '#ffffff'
+-- }}}
 
--- Border Colors/Width
-border_width = 2
-border_normal = '#333333'
-border_focus = '#4C7899'
+-- {{{ Other
+-- Check what widget mode to use
+if io.open(os.getenv("HOME").."/.laptop_mode") then
+    -- Special file exists, display widgets I want
+    -- on my laptop
+    settings.widget_mode = 'laptop'
+else 
+    settings.widget_mode = 'desktop'
+end
+
+-- Highlight statusbar of focussed screen on multiple-monitor setups
+if screen.count() > 1 then
+    settings.statusbar_highlight_focus = {true, 1}
+end
+
+-- }}}
+
+-- }}}
+
+---- {{{ Keybindings
+-- Initialise table
+settings.bindings.wm = {}
+settings.bindings.mouse = {}
+
+-- {{{ Open the filemanager at specific locations
+settings.bindings.filemanager = {
+    -- Data partition
+    ["/data"] = {key.alt, "d"},
+
+    -- Home Directory
+    [os.getenv("HOME")] = {key.alt, "a"},
+}
+-- }}}
+
+-- {{{ Run specific commands
+settings.bindings.commands = {
+    -- Open Terminal
+    [settings.apps.terminal] = {key.alt, "q"},
+
+    -- GNU Screen
+    [settings.apps.gnu_screen] = {key.super, "k"},
+
+    -- Lock screen
+    [settings.apps.lock_screen] = {key.super, "l"},
+
+    -- Screen off with DPMS
+    [settings.apps.screen_off] = {key.super, "o"},
+
+    -- Toggle music
+    [settings.apps.music_toggle] = {key.alt, "e"},
+}
+-- }}}
+
+-- {{{ Client keybindings
+settings.bindings.wm.client = {
+    -- Alt+`: Close window
+    [function() client.focus:kill() end] = {key.alt, "#49"},
+
+    -- Mod+q: Focus previous window
+    [function() awful.client.focusbyidx(-1) end] = {key.super, "q"},
+
+    -- Mod+w: Focus next window
+    [function() awful.client.focusbyidx(1) end] = {key.super, "w"},
+
+    -- Mod+Shift+q: Swap with previous window
+    [function() awful.client.swap(-1) end] = {key.super_shift, "q"},
+
+    -- Mod+Shift+w: Swap with previous window
+    [function() awful.client.swap(1) end] = {key.super_shift, "w"},
+
+    -- Mod+c: Toggle floating
+    [awful.client.togglefloating] = {key.super, "c"},
+
+    -- Mod+\: Make window master
+    [function() local c = awful.client.master(); if c ~= client.focus then c:swap(client.focus) end end] =
+        {key.super, "#51"},
+
+    -- Mod+Shift+a: Move window to previous tag
+    [function () awful.client.movetotag(eminent.tag.getprev(mouse.screen)) end] =
+        {key.super_shift, "a"},
+
+    -- Mod+Shift+s: Move window to next tag
+    [function () awful.client.movetotag(eminent.tag.getnext(mouse.screen)) end] =
+        {key.super_shift, "s"},
+
+    -- Mod+Shift+e: Move window to next screen
+    [function () s = client.focus.screen+1; if s > screen.count() then s = 1 end; client.focus.screen = s end] =
+        {key.super_shift, "e"},
+
+    -- Mod+Shift+d: Move window to previous screen
+    [function () s = client.focus.screen-1; if s < 1 then s = screen.count() end; client.focus.screen = s end] =
+        {key.super_shift, "d"},
+}
+-- }}}
+
+-- {{{ Tag bindings
+settings.bindings.wm.tag = {
+    -- Mod+a: Switch to previous tag
+    [function() eminent.tag.prev(mouse.screen) end] = {key.super, "a"},
+
+    -- Mod+s: Switch to next tag
+    [function() eminent.tag.next(mouse.screen) end] = {key.super, "s"},
+
+    -- Alt+\: Switch to float layout
+    [function() awful.layout.set('floating') end] = {key.alt, "#51"},
+
+    -- Alt+z: Switch to max layout
+    [function() awful.layout.set('max') end] = {key.alt, "z"},
+
+    -- Alt+x: Switch to tile layout
+    [function() awful.layout.set('tile') end] = {key.alt, "x"},
+}
+-- }}}
+
+-- {{{ Prompt bindings
+settings.bindings.prompt = {
+    -- Alt+w: Run prompt
+    [{awful.spawn, "Run: "}] = {key.alt, "w"},
+
+    -- Mod+Alt+w: Lua eval prompt
+    [{awful.eval, "Run Lua: "}] = {key.super_alt, "w"},
+}
+
+-- }}}
+
+-- {{{ Miscellaneous bindings
+settings.bindings.wm.misc = {
+    -- Mod+Alt+r: Restart awesome
+    [awesome.restart] = {key.super_alt, "r"},
+
+    -- Mod+e: Switch focus to next screen
+    [function() awful.screen.focus(1) end] = {key.super, "e"},
+
+    -- Mod+d: Switch focus to previous screen
+    [function() awful.screen.focus(-1) end] = {key.super, "d"},
+}
+-- }}}
+
+-- {{{ Keyboard digit bindings
+settings.bindings.digits = {
+    -- Mod+##: View tag
+    [awful.tag.viewonly] = key.super,
+
+    -- Mod+Shift+##: Toggle tag view
+    [function(t) t.selected = not t.selected end] = key.super_shift,
+
+    -- Mod+Control+##: Move window to tag
+    [awful.client.movetotag] = key.super_control,
+
+    -- Mod+Alt+##: Toggle window on tag
+    [awful.client.toggletag] = key.super_alt,
+
+}
+-- }}}
+
+-- {{{ Mouse bindings
+settings.bindings.mouse.desktop = {
+    [function() awful.spawn(settings.apps.terminal) end] = {key.none, 3},
+}
+
+settings.bindings.mouse.client = {
+    [function(c) c:mouse_move() end] = {key.alt, 1},
+    [function(c) c:mouse_resize({corner="bottomright"}) end] = {key.alt, 3},
+}
+-- }}}
+
+-- }}}
+
+---- {{{ Markup helper functions
+-- Inline markup is a tad ugly, so use these functions
+-- to dynamically create markup, we hook them into
+-- the beautiful namespace for clarity.
+beautiful.markup = {}
+
+function beautiful.markup.bg(color, text)
+    return '<bg color="'..color..'" />'..text
+end
+
+function beautiful.markup.fg(color, text)
+    return '<span color="'..color..'">'..text..'</span>'
+end
+
+function beautiful.markup.font(font, text)
+    return '<span font_desc="'..font..'">'..text..'</span>'
+end
+
+function beautiful.markup.title(t)
+    return t
+end
+
+function beautiful.markup.title_normal(t)
+    return beautiful.title(t)
+end
+
+function beautiful.markup.title_focus(t)
+    return beautiful.markup.bg(beautiful.bg_focus, beautiful.markup.fg(beautiful.fg_focus, beautiful.markup.title(t)))
+end
+
+function beautiful.markup.title_urgent(t)
+    return beautiful.markup.bg(beautiful.bg_urgent, beautiful.markup.fg(beautiful.fg_urgent, beautiful.markup.title(t)))
+end
+
+function beautiful.markup.bold(text)
+    return '<b>'..text..'</b>'
+end
+
+function beautiful.markup.heading(text)
+    return beautiful.markup.fg(beautiful.fg_focus, beautiful.markup.bold(text))
+end
+
+-- }}}
+
+---- {{{ Widgets
+settings.statusbars = {}
+settings.widgets = {}
+
+settings.statusbars[1] = {{
+    position = "top",
+    height = 18,
+    fg = beautiful.fg_normal,
+    bg = beautiful.bg_normal,
+    name = "mainstatusbar",
+}, "all"}
+
+settings.promptbar = {
+    position = "top",
+    height = 18,
+    fg = beautiful.fg_normal,
+    bg = beautiful.bg_normal,
+    name = "promptbar",
+}
+
+-- {{{ Taglist
+maintaglist = widget({ type = 'taglist', name = 'maintaglist' })
+maintaglist:mouse_add(mouse(key.none, 1, function (o, t) awful.tag.viewonly(t) end))
+table.insert(settings.widgets, {1, maintaglist})
+
+function maintaglist.label(t)
+    return awful.widget.taglist.label.noempty(t)
+end
+-- }}}
+
+if settings.widget_mode ~= 'none' then
+-- {{{ MPD Widget
+mpdwidget = widget({
+    type = 'textbox',
+    name = 'mpdwidget',
+    align = 'right'
+})
+
+mpdwidget.text = settings.widget_spacer..beautiful.markup.heading('MPD')..': '..settings.widget_spacer..settings.widget_separator
+wicked.register(mpdwidget, 'mpd', function (widget, args)
+    -- I don't want the stream name on my statusbar, so I gsub it out,
+    -- feel free to remove this bit
+    return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
+    ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
+    ..settings.widget_spacer..settings.widget_separator end)
+
+table.insert(settings.widgets, {1, mpdwidget})
+
+-- }}}
+
+-- {{{ GMail Widget
+gmailwidget = widget({
+    type = 'textbox',
+    name = 'gmailwidget',
+    align = 'right'
+})
+
+gmailwidget.text =  settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
+gmailwidget:mouse_add(mouse(key.none, 1, function () wicked.update(gmailwidget) end))
+
+wicked.register(gmailwidget, 'function', function (widget, args)
+    -- Read temp file created by gmail check script
+    local f = io.open('/tmp/gmail-temp')
+    if f == nil then
+        return settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
+    end
+
+    local n = f:read()
+
+    if n == nil then
+        f:close()
+        return settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
+    end
+
+    f:close()
+    out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
+
+    if tonumber(n) > 0 then
+        out = out..beautiful.markup.bg(bg_urgent, beautiful.markup.fg(fg_urgent, tostring(n)))
+    else
+        out = out .. tostring(n)
+    end
+
+    out = out..settings.widget_spacer..settings.widget_separator
+
+    return out
+end, 120)
+
+-- Start timer to read the temp file
+awful.hooks.timer.register(110, function ()
+    -- Call GMail check script to check for new email
+    os.execute('/home/archlucas/other/.gmail.py > /tmp/gmail-temp &')
+end, true)
+
+table.insert(settings.widgets, {1, gmailwidget})
+
+-- }}}
+
+-- {{{ Load Averages Widget
+loadwidget = widget({
+    type = 'textbox',
+    name = 'loadwidget',
+    align = 'right'
+})
+
+wicked.register(loadwidget, 'function', function (widget, args)
+    -- Use /proc/loadavg to get the average system load on 1, 5 and 15 minute intervals
+    local f = io.open('/proc/loadavg')
+    local n = f:read()
+    f:close()
+
+    -- Find the third space
+    local pos = n:find(' ', n:find(' ', n:find(' ')+1)+1)
+
+    return settings.widget_spacer..beautiful.markup.heading('Load')..': '..n:sub(1,pos-1)..settings.widget_spacer..settings.widget_separator 
+
+end, 2)
+
+table.insert(settings.widgets, {1, loadwidget})
+
+-- }}}
+
+-- {{{ CPU Usage Widget
+cputextwidget = widget({
+    type = 'textbox',
+    name = 'cputextwidget',
+    align = 'right'
+})
+
+cputextwidget.text = settings.widget_spacer..beautiful.markup.heading('CPU')..': '..settings.widget_spacer..settings.widget_separator
+wicked.register(cputextwidget, 'cpu', function (widget, args) 
+    -- Add a zero if lower than 10
+    if args[1] < 10 then 
+        args[1] = '0'..args[1]
+    end
+
+    return settings.widget_spacer..beautiful.markup.heading('CPU')..': '..args[1]..'%'..settings.widget_spacer..settings.widget_separator end) 
+
+table.insert(settings.widgets, {1, cputextwidget})
+
+-- }}}
+
+-- {{{ CPU Graph Widget
+cpugraphwidget = widget({
+    type = 'graph',
+    name = 'cpugraphwidget',
+    align = 'right'
+})
+
+
+cpugraphwidget.height = 0.85
+cpugraphwidget.width = 45
+cpugraphwidget.bg = '#333333'
+cpugraphwidget.border_color = '#0a0a0a'
+cpugraphwidget.grow = 'left'
+
+
+cpugraphwidget:plot_properties_set('cpu', {
+    fg = '#AEC6D8',
+    fg_center = '#285577',
+    fg_end = '#285577',
+    vertical_gradient = false
+})
+
+wicked.register(cpugraphwidget, 'cpu', '$1', 1, 'cpu')
+table.insert(settings.widgets, {1, cpugraphwidget})
+
+-- }}}
+
+-- {{{ Memory Usage Widget
+memtextwidget = widget({
+    type = 'textbox',
+    name = 'memtextwidget',
+    align = 'right'
+})
+
+memtextwidget.text = settings.widget_spacer..beautiful.markup.heading('MEM')..': '..settings.widget_spacer..settings.widget_separator
+wicked.register(memtextwidget, 'mem', function (widget, args) 
+    -- Add extra preceding zeroes when needed
+    if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
+    if tonumber(args[2]) < 1000 then args[2] = '0'..args[2] end
+    if tonumber(args[3]) < 1000 then args[3] = '0'..args[3] end
+    return settings.widget_spacer..beautiful.markup.heading('MEM')..': '..args[1]..'% ('..args[2]..'/'..args[3]..')'..settings.widget_spacer..settings.widget_separator end)
+
+table.insert(settings.widgets, {1, memtextwidget})
+
+-- }}}
+
+-- {{{ Memory Graph Widget
+memgraphwidget = widget({
+    type = 'graph',
+    name = 'memgraphwidget',
+    align = 'right'
+})
+
+memgraphwidget.height = 0.85
+memgraphwidget.width = 45
+memgraphwidget.bg = '#333333'
+memgraphwidget.border_color = '#0a0a0a'
+memgraphwidget.grow = 'left'
+
+memgraphwidget:plot_properties_set('mem', {
+    fg = '#AEC6D8',
+    fg_center = '#285577',
+    fg_end = '#285577',
+    vertical_gradient = false
+})
+
+wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
+table.insert(settings.widgets, {1, memgraphwidget})
+
+-- }}}
+
+-- {{{ Other Widget
+settings.widget_spacerwidget = widget({ type = 'textbox', name = 'settings.widget_spacerwidget', align = 'right' })
+settings.widget_spacerwidget.text = settings.widget_spacer..settings.widget_separator
+table.insert(settings.widgets, {1, settings.widget_spacerwidget})
+
+-- }}}
+end
+
+if settings.widget_mode == 'laptop' or settings.widget_mode == 'all' then
+-- {{{ Battery Widget
+batterywidget = widget({
+    type = 'textbox',
+    name = 'batterywidget',
+    align = 'right'
+})
+
+batterywidget.text = settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+wicked.register(batterywidget, 'function', function (widget, args)
+    -- Read temp file created by battery script
+    local f = io.open('/tmp/battery-temp')
+    if f == nil then
+        f:close()
+        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+    end
+
+    local n = f:read()
+
+    if n == nil then
+        f:close()
+        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+    end
+
+    out = ''
+    f:close()
+
+    if n ~= nil then
+        out = settings.widget_spacer..beautiful.markup.heading('Battery')..': '..n..settings.widget_spacer..settings.widget_separator
+    end
+    return out
+end, 30)
+
+-- Start timer to read the temp file
+awful.hooks.timer(28, function ()
+    -- Call battery script to get batt%
+    command = "battery"
+    os.execute(command..' > /tmp/battery-temp &')
+end, true)
+
+table.insert(settings.widgets, {1, batterywidget})
+
+-- }}}
+end
+
+
+-- }}}
+
+-------------------------------------------------------
+-- You shouldn't have to edit the code after this, 
+-- it takes care of applying the settings above.
+-------------------------------------------------------
+
+---- {{{ Initialisations
+-- Register beautiful with awful
+awful.beautiful.register(beautiful)
 
 -- Set default colors
-awesome.colors_set({ fg = fg_normal, bg = bg_normal })
+awesome.colors_set({ 
+    fg = beautiful.fg_normal, 
+    bg = beautiful.bg_normal })
 
--- }}}
+-- Set default font
+awesome.font_set(beautiful.font)
 
--- {{{ Modkeys
-modkey = "Mod4"
-shift = "Shift"
-alt = "Mod1"
-control = "Control"
-
--- }}}
-
--- {{{ Key combinations
-k_n = {}
-k_m = {modkey}
-k_ms = {modkey, shift}
-k_ma = {modkey, alt}
-k_mc = {modkey, control}
-k_a = {alt}
-k_ac = {alt, control}
-k_as = {alt, shift}
-k_c = {control}
-k_cs = {control, shift}
-k_s = {shift}
-
--- }}}
-
--- {{{ Set tag properties
--- Pre-create extra tags
--- eminent.newtag(Screen_Number, Amount)
-for s = 1, screen.count() do 
+-- Pre-create new tags with eminent
+for s=1, screen.count() do
     eminent.newtag(s, 5)
 end
 
 -- }}}
 
--- {{{ Markup helper functions
--- Inline markup is a tad ugly, so use these functions
--- to dynamically create markup.
-function bg(color, text)
-    return '<bg color="'..color..'" />'..text
-end
+---- {{{ Create statusbars
+local mainstatusbar = {}
 
-function fg(color, text)
-    return '<span color="'..color..'">'..text..'</span>'
-end
+for i, b in pairs(settings.statusbars) do
+    mainstatusbar[i] = {}
 
-function font(font, text)
-    return '<span font_desc="'..font..'">'..text..'</span>'
-end
+    for s=1,screen.count() do
+        this_screen = false
 
-function title(t)
-    return t
-end
+        if b[2] ~= "all" then
+            for sc in pairs(b[2]) do
+                if sc == s then
+                    this_screen = true
+                    break
+                end
+            end
+        end
 
-function title_normal(t)
-    return title(t)
-end
+        if b[2] == "all" or this_screen then
+            mainstatusbar[i][s] = statusbar(b[1])
+            local widgets = {}
 
-function title_focus(t)
-    return bg(bg_focus, fg(fg_focus, title(t)))
-end
+            for ii, w in pairs(settings.widgets) do
+                if w[1] == i then
+                    table.insert(widgets, w[2])
+                end
+            end
 
-function title_urgent(t)
-    return bg(bg_urgent, fg(fg_urgent, title(t)))
-end
-
-function bold(text)
-    return '<b>'..text..'</b>'
-end
-
-function heading(text)
-    return fg(fg_focus, bold(text))
+            mainstatusbar[i][s].widgets = widgets
+            mainstatusbar[i][s].screen = s
+        end
+    end
 end
 
 -- }}}
 
--- {{{ Functions
--- Toggle whether we're viewing a tag
-function tag_toggleview(tag)
-    tag.selected = not tag.selected
-end
+---- {{{ Create prompt statusbar
+local mainpromptbar = statusbar(settings.promptbar)
+local mainpromptbox = widget({type = "textbox", align = "left", name = "mainpromptbox"})
 
--- Redraw all currently visible clients
-function redraw_all()
-    local cls = client.visible_get(mouse.screen)
-    for idx, c in ipairs(cls) do
-        c:redraw()
-    end
-end
+mainpromptbar.widgets = {mainpromptbox}
+mainpromptbar.screen = nil
 
--- Move current client to a specific screen
-function client_movetoscreen(i)
-    local sel = client.focus
-    sel.screen = i
-end
+-- }}}
 
--- Mouse warp function
+---- {{{ Useful functions
+-- {{{ Mouse warp function
 function mouse_warp(c, force)
     -- Allow skipping a warp
     if warp_skip then
@@ -225,647 +701,154 @@ function mouse_warp(c, force)
         mouse.coords = { x=coords.x+mouse_padd, y=coords.y+mouse_padd}
     end
 end
-
--- Redraw a client
-function redraw_client(cls)
-    local c = cls or client.focus
-    c:redraw()
-    client.focus = c
-    mouse_warp(c, true)
-end
-
--- Awful's cycle function
-local function cycle(t, i)
-    while i > t do i = i - t end
-    while i < 1 do i = i + t end
-    return i
-end
-
--- Modified screen.focus, gets current screen by mouse cursor
--- only, fixes some annoying behaviours with empty tags 
--- and mouse warping/sloppy focus.
-function screen_focus(i)
-    local s
-    s = mouse.screen
-    s = cycle(screen.count(), s + i)
-    local c = awful.client.focus.history.get(s, 0)
-    if c then client.focus = c end
-    -- Move the mouse on the screen
-    mouse.coords = screen.coords_get(s)
-end
-
 -- }}}
 
--- {{{ Taglist
-maintaglist = widget(
-{ type = 'taglist',
-  name = 'maintaglist'
-})
+-- {{{ Prompt with statusbar
+function prompt_statusbar(s, callback, prompt)
+    if not callback then callback = awful.spawn end
+    if not prompt then prompt = "Run: " end
 
-function maintaglist.label(t)
-    if not eminent.isoccupied(t.screen, t) and not t.selected then return end
-
-    if t.selected then
-        return spacer..title_focus(t.name)..spacer
-    else
-        return spacer..title_normal(t.name)..spacer
-    end
-end
-
-maintaglist:mouse_add(mouse(k_n, 1, function (object, tag)
-    awful.tag.viewonly(tag)
-end))
-
-maintaglist:mouse_add(mouse(k_m, 1, function (object, tag)
-    tag_toggleview(tag)
-end))
-
-maintaglist:mouse_add(mouse(k_a, 1, function (object, tag)
-    awful.client.movetotag(tag)
-end))
-
-maintaglist:mouse_add(mouse(k_n, 5, function (object, tag)
-    warp_skip = true
-    eminent.tag.next(mouse.screen) end))
-
-maintaglist:mouse_add(mouse(k_n, 4, function (object, tag)
-    warp_skip = true
-    eminent.tag.prev(mouse.screen) end))
-
--- }}}
-
-if mode ~= 'none' then
--- {{{ MPD Widget
-mpdwidget = widget({
-    type = 'textbox',
-    name = 'mpdwidget',
-    align = 'right'
-})
-
-mpdwidget.text = spacer..heading('MPD')..': '..spacer..separator
-wicked.register(mpdwidget, 'mpd', function (widget, args)
-    -- I don't want the stream name on my statusbar, so I gsub it out,
-    -- feel free to remove this bit
-    return spacer..heading('MPD')..': '
-    ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
-    ..spacer..separator end)
-
--- }}}
-
--- {{{ GMail Widget
-gmailwidget = widget({
-    type = 'textbox',
-    name = 'gmailwidget',
-    align = 'right'
-})
-
-gmailwidget.text =  spacer..heading('GMail')..': 0'..spacer..separator
-gmailwidget:mouse_add(mouse(k_n, 1, function () wicked.update(gmailwidget) end))
-
-wicked.register(gmailwidget, 'function', function (widget, args)
-    -- Read temp file created by gmail check script
-    local f = io.open('/tmp/gmail-temp')
-    if f == nil then
-        return spacer..heading('GMail')..': 0'..spacer..separator
+    for i, b in pairs(mainstatusbar) do
+        for ii, bb in pairs(b) do
+            if bb.screen == s then
+                bb.screen = nil
+            end
+        end 
     end
 
-    local n = f:read()
-
-    if n == nil then
-        f:close()
-        return spacer..heading('GMail')..': 0'..spacer..separator
-    end
-
-    f:close()
-    out = spacer..heading('GMail')..': '
-
-    if tonumber(n) > 0 then
-        out = out..bg(bg_urgent, fg(fg_urgent, tostring(n)))
-    else
-        out = out .. tostring(n)
-    end
-
-    out = out..spacer..separator
-
-    return out
-end, 120)
-
--- Start timer to read the temp file
-awful.hooks.timer.register(110, function ()
-    -- Call GMail check script to check for new email
-    os.execute('/home/archlucas/other/.gmail.py > /tmp/gmail-temp &')
-end, true)
-
--- }}}
-
--- {{{ Load Averages Widget
-loadwidget = widget({
-    type = 'textbox',
-    name = 'loadwidget',
-    align = 'right'
-})
-
-wicked.register(loadwidget, 'function', function (widget, args)
-    -- Use /proc/loadavg to get the average system load on 1, 5 and 15 minute intervals
-    local f = io.open('/proc/loadavg')
-    local n = f:read()
-    f:close()
-
-    -- Find the third space
-    local pos = n:find(' ', n:find(' ', n:find(' ')+1)+1)
-
-    return spacer..heading('Load')..': '..n:sub(1,pos-1)..spacer..separator 
-
-end, 2)
-
--- }}}
-
--- {{{ CPU Usage Widget
-cputextwidget = widget({
-    type = 'textbox',
-    name = 'cputextwidget',
-    align = 'right'
-})
-
-cputextwidget.text = spacer..heading('CPU')..': '..spacer..separator
-wicked.register(cputextwidget, 'cpu', function (widget, args) 
-    -- Add a zero if lower than 10
-    if args[1] < 10 then 
-        args[1] = '0'..args[1]
-    end
-
-    return spacer..heading('CPU')..': '..args[1]..'%'..spacer..separator end) 
-
--- }}}
-
--- {{{ CPU Graph Widget
-cpugraphwidget = widget({
-    type = 'graph',
-    name = 'cpugraphwidget',
-    align = 'right'
-})
-
-
-cpugraphwidget.height = 0.85
-cpugraphwidget.width = 45
-cpugraphwidget.bg = '#333333'
-cpugraphwidget.border_color = '#0a0a0a'
-cpugraphwidget.grow = 'left'
-
-
-cpugraphwidget:plot_properties_set('cpu', {
-    fg = '#AEC6D8',
-    fg_center = '#285577',
-    fg_end = '#285577',
-    vertical_gradient = false
-})
-
-wicked.register(cpugraphwidget, 'cpu', '$1', 1, 'cpu')
-
--- }}}
-
--- {{{ Memory Usage Widget
-memtextwidget = widget({
-    type = 'textbox',
-    name = 'memtextwidget',
-    align = 'right'
-})
-
-memtextwidget.text = spacer..heading('MEM')..': '..spacer..separator
-wicked.register(memtextwidget, 'mem', function (widget, args) 
-    -- Add extra preceding zeroes when needed
-    if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
-    if tonumber(args[2]) < 1000 then args[2] = '0'..args[2] end
-    if tonumber(args[3]) < 1000 then args[3] = '0'..args[3] end
-    return spacer..heading('MEM')..': '..args[1]..'% ('..args[2]..'/'..args[3]..')'..spacer..separator end)
-
--- }}}
-
--- {{{ Memory Graph Widget
-memgraphwidget = widget({
-    type = 'graph',
-    name = 'memgraphwidget',
-    align = 'right'
-})
-
-memgraphwidget.height = 0.85
-memgraphwidget.width = 45
-memgraphwidget.bg = '#333333'
-memgraphwidget.border_color = '#0a0a0a'
-memgraphwidget.grow = 'left'
-
-memgraphwidget:plot_properties_set('mem', {
-    fg = '#AEC6D8',
-    fg_center = '#285577',
-    fg_end = '#285577',
-    vertical_gradient = false
-})
-
-wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
-
--- }}}
-
--- {{{ Other Widget
-spacerwidget = widget({ type = 'textbox', name = 'spacerwidget', align = 'right' })
-spacerwidget.text = spacer..separator
-
--- }}}
-end
-
-if mode == 'laptop' or mode == 'all' then
--- {{{ Battery Widget
-batterywidget = widget({
-    type = 'textbox',
-    name = 'batterywidget',
-    align = 'right'
-})
-
-batterywidget.text = spacer..heading('Battery')..': n/a'..spacer..separator
-wicked.register(batterywidget, 'function', function (widget, args)
-    -- Read temp file created by battery script
-    local f = io.open('/tmp/battery-temp')
-    if f == nil then
-        f:close()
-        return spacer..heading('Battery')..': n/a'..spacer..separator
-    end
-
-    local n = f:read()
-
-    if n == nil then
-        f:close()
-        return spacer..heading('Battery')..': n/a'..spacer..separator
-    end
-
-    out = ''
-    f:close()
-
-    if n ~= nil then
-        out = spacer..heading('Battery')..': '..n..spacer..separator
-    end
-    return out
-end, 30)
-
--- Start timer to read the temp file
-awful.hooks.timer(28, function ()
-    -- Call battery script to get batt%
-    command = "battery"
-    os.execute(command..' > /tmp/battery-temp &')
-end, true)
-
--- }}}
-end
-
--- {{{ Statusbar
-mainstatusbar = {}
-statusbar_status = {}
-
-for s = 1, screen.count() do
-    mainstatusbar[s] = statusbar({ 
-        position = "top", 
-        height = 18,
-        name = "mainstatusbar" .. s,                        
-        fg = fg_normal, 
-        bg = bg_normal })
-
-    local widgets = {}
-    
-    table.insert(widgets, maintaglist)
-
-    if mode == 'laptop' or mode == 'all' then
-        table.insert(widgets, batterywidget)
-    end
-
-    if mode ~= 'none' then
-        table.insert(widgets, mpdwidget)
-        table.insert(widgets, gmailwidget)
-        table.insert(widgets, loadwidget)
-        table.insert(widgets, cputextwidget)
-        table.insert(widgets, cpugraphwidget)
-        table.insert(widgets, spacerwidget)
-        table.insert(widgets, memtextwidget)
-        table.insert(widgets, memgraphwidget)
-        table.insert(widgets, spacerwidget)
-    end
-
-    mainstatusbar[s].widgets = widgets
-    mainstatusbar[s].screen = s
-    statusbar_status[s] = 1
-end
-
--- }}}
-
----- {{{ Application Launchers
--- Alt+Q: Launch a new terminal
-keybinding(k_a, "q", function () 
-    awful.spawn(terminal) end):add()
-
--- Mod+K: Launch a new terminal with screen in it
-keybinding(k_m, "k", function () 
-    awful.spawn('urxvtc -e "fish" -c "exec screen -x main"') end):add()
-
--- Alt+W: Launch the menu application set before
-keybinding(k_a, "w", function () 
-    awful.spawn(menu) end):add()
-
--- Alt+E: Toggle music playing
-keybinding(k_a, "e", function () 
-    awful.spawn(music_toggle) end):add()
-
--- Mod+L: Lock the screen
-keybinding(k_m, "l", function () 
-    awful.spawn(lock) end):add()
-
--- Mod+O: Turn the screen off (DPMS)
-keybinding(k_m, "o", function () 
-    awful.spawn('sleep 1; xset dpms force off') end):add()
-
--- Alt+D: Spawn file manager in /data
-keybinding(k_a, "d", function ()
-    awful.spawn(filemanager..' /data"')
-end):add()
-
--- Alt+A: Spawn file manager in ~
-keybinding(k_a, "a", function ()
-    awful.spawn(filemanager..' /home/archlucas"')
-end):add()
-
--- Alt+S: Kill all notification messages on screen
--- Note: custom script
-keybinding(k_a, "s", function ()
-    awful.spawn('stopnotify')
-end):add()
-
----- }}}
-
----- }}}
-
----- {{{ Client hotkeys
--- Alt+`: Close window
-keybinding(k_a, "#49", function ()
-    client.focus:kill() end):add()
-
--- Mod+`: Redraw window
-keybinding(k_m, "#49", function ()
-    redraw_client() end):add()
-
--- Mod+Shift+`: Redraw all windows
-keybinding(k_ms, "#49", function ()
-    redraw_all() end):add()
-
--- Mod+{Q/W}: Focus Prev/Next window
-keybinding(k_m, "q", function ()
-    awful.client.focusbyidx(-1) end):add()
-
-keybinding(k_m, "w", function ()
-    awful.client.focusbyidx(1) end):add()
-
--- Mod+Shift+{Q/W}: Swap window with the Prev/Next one
-keybinding(k_ms, "q", function ()
-    awful.client.swap(-1) end):add()
-
-keybinding(k_ms, "w", function ()
-    awful.client.swap(1) end):add()
-
-
--- Mod+C: Toggle window floating
-keybinding(k_m, "c", function ()
-    awful.client.togglefloating() end):add()
-
--- Mod+#94 (left of Z, not all keyboards have it): 
--- Make window master
-keybinding(k_m, "#94", function ()
-    client.visible_get(client.focus.screen)[1]:swap(client.focus)
-end):add()
-
--- Mod+\: Alternative to Mod+#94 
-keybinding(k_m, "#51", function ()
-    client.visible_get(client.focus.screen)[1]:swap(client.focus)
-end):add()
-
--- Mod+Shift+{A/S}: Move window to Prev/Next tag
-keybinding(k_ms, "a", function()
-    awful.client.movetotag(eminent.tag.getprev(mouse.screen))
-end):add()
-
-keybinding(k_ms, "s", function()
-    awful.client.movetotag(eminent.tag.getnext(mouse.screen))
-end):add()
-
-
--- Mod+Shift_{E/D}: move window to next/prev screen
-keybinding(k_ms, "e", function()
-   local s = mouse.screen+1
-   while s > screen.count() do
-       s = s-screen.count()
-   end
-
-   client_movetoscreen(s)
-end):add()
-
-keybinding(k_ms, "d", function()
-   local s = mouse.screen-1
-   while s < 1 do
-       s = s+screen.count()
-   end
-
-   client_movetoscreen(s)
-end):add()
-
----- }}}
-
----- {{{ Tag hotkeys
--- Mod+{A/S}: Switch to prev/next tag
-keybinding(k_m, "a", function()
-    eminent.tag.prev(mouse.screen) end):add()
-
-keybinding(k_m, "s", function()
-    eminent.tag.next(mouse.screen) end):add()
-
-keybinding(k_m, "n", function()
-    awful.tag.viewonly(eminent.tag()) end):add()
-
--- Alt+#94 (left of Z, not all keyboards have it):
--- Switch to floating layout
-keybinding(k_a, "#94", function ()
-    awful.tag.selected().layout = 'floating'
-    redraw_all()
-end):add()
-
--- Alt+Z: Switch to max layout
-keybinding(k_a, "z", function ()
-    awful.tag.selected().layout = 'max'
-    redraw_all()
-end):add()
-
--- Alt+X: Switch to regular tile layout
-keybinding(k_a, "x", function ()
-    awful.tag.selected().layout = 'tile'
-    redraw_all()
-end):add()
-
--- Mod+{Z/X}: Decrease/Increase the amount of masters
-keybinding(k_m, "z", function ()
-    awful.tag.incnmaster(-1)
-end):add()
-
-keybinding(k_m, "x", function ()
-    awful.tag.incnmaster(1)
-end):add()
-
--- Mod+Control+Z: Switch to default mwfact
-keybinding(k_mc, "z", function ()
-    awful.tag.setmwfact(default_mwfact) end):add()
-
--- Mod+Control+X: Switch to mwfact 0.5
-keybinding(k_mc, "x", function ()
-    awful.tag.setmwfact(0.5) end):add()
-
----- }}}
-
----- {{{ Miscellaneous hotkeys
--- Mod+R: Restart awesome
-keybinding(k_ma, "r", 
-    awesome.restart):add()
-
--- Mod+{E/D}: Switch to next/previous screen
-keybinding(k_m, "e", function ()
-    screen_focus(1) end):add()
-
-keybinding(k_m, "d", function ()
-    screen_focus(-1) end):add()
-
--- Mod+B: Turn off statusbar on current screen
-keybinding(k_m, "b", function ()
-    local w = mouse.screen
-    local s = mainstatusbar[w]
-
-    if statusbar_status[w] == 0 then
-        statusbar_status[w] = 1
-        s.position = 'top'
-    else
-        s.position = 'off'
-        statusbar_status[w] = 0
-    end
-end):add()
-
--- Mouse Button3 on root window: spawn terminal
-awesome.mouse_add(mouse(k_n, 3, function ()
-    awful.spawn(terminal) end))
-
----- }}}
-
----- {{{ Number keys
--- Mod+#: Switch to tag
--- Mod+Shift+#: Toggle tag display
--- Mod+Control+#: Move client to tag
--- Mod+Alt+#: Toggle client on tag
--- Alt+Shift+#: Switch to a tabbed client 
-for i = 1, 9 do
-    keybinding(k_m, i,
-                function ()
-                    local t = eminent.tag.getn(i, nil, true)
-                    if t ~= nil then
-                       awful.tag.viewonly(t) 
+    mainpromptbar.screen = s
+
+    awful.prompt.run({prompt = prompt}, mainpromptbox, callback, 
+        awful.completion.bash, os.getenv("HOME") .. "/.cache/awesome_history", 50, function ()
+            mainpromptbar.screen = nil
+
+            for i, b in pairs(mainstatusbar) do
+                for ii, bb in pairs(b) do
+                    if ii == s then
+                        bb.screen = ii
                     end
-                end):add()
-    keybinding(k_ms, i,
-                function ()
-                    local t = eminent.tag.getn(i, nil, true)
-                    if t ~= nil then
-                        t.selected = not t.selected
-                    end
-                end):add()
-    keybinding(k_mc, i,
-                function ()
-                    local t = eminent.tag.getn(i, nil, true)
-                    if t ~= nil then
-                        awful.client.movetotag(t)
-                    end
-                end):add()
-    keybinding(k_ma, i,
-                function ()
-                    local t = eminent.tag.getn(i, nil, true)
-                    if t ~= nil then
-                        awful.client.toggletag(t, client.focus)
-                    end
-                end):add()
-    keybinding(k_as, i,
-                function ()
-                    local index = tabulous.tabindex_get()
-                    local t = tabulous.position_get(index, i)
-                    if t ~= nil then
-                        tabulous.display(index, t)
-                    end
-                end):add()
+                end 
+            end
+        end)
 end
 
----- }}}
+-- }}}
 
--- {{{ Hooks
- 
-function hook_focus(c)
-    -- Skip over urxvtcnotify
-    local name = c.name:lower()
+-- }}}
 
-    if name:find('urxvtcnotify') and awful.client.next(1) ~= c then
+---- {{{ Create bindings
+--- This reads the binding tables and turns them into actual keybindings
+
+-- WM Bindings
+for i,table in pairs(settings.bindings.wm) do
+    for f, keys in pairs(table) do
+        keybinding(keys[1], keys[2], f):add()
+    end
+end
+
+-- Keyboard digit bindings
+for i=1,9 do
+    for f, mod in pairs(settings.bindings.digits) do
+        keybinding(mod, i, function()
+            t = eminent.tag.getn(i, nil, true)
+            if not t then return end
+            f(t)
+        end):add()
+    end
+end
+
+-- Prompt Bindings
+for prompt, keys in pairs(settings.bindings.prompt) do
+    keybinding(keys[1], keys[2], function() prompt_statusbar(mouse.screen, unpack(prompt)) end):add()
+end
+
+-- Filemanager bindings
+for loc, keys in pairs(settings.bindings.filemanager) do
+    keybinding(keys[1], keys[2], function() awful.spawn(string.format(settings.apps.filemanager, loc)) end):add()
+end
+
+-- Custom command bindings
+for command, keys in pairs(settings.bindings.commands) do
+    keybinding(keys[1], keys[2], function() awful.spawn(command) end):add()
+end
+
+-- Desktop mouse bindings
+for f, keys in pairs(settings.bindings.mouse.desktop) do
+    awesome.mouse_add(mouse(keys[1], keys[2], f))
+end
+
+-- }}}
+
+---- {{{ Set hooks
+
+-- {{{ Focus hook
+awful.hooks.focus.register(function (c)
+
+    -- Skip over my urxvtcnotify
+    if c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
         awful.client.focusbyidx(1)
-        return 0
+        return
     end
 
-    -- Set border to active color
-    c.border_color = border_focus 
+    -- Set border
+    c.border_color = beautiful.border_focus
 
     -- Raise the client
     c:raise()
 
     -- Set statusbar color
-    local s = c.screen
+    if settings.statusbar_highlight_focus and settings.statusbar_highlight_focus[1] then
+        if last_screen == nil or last_screen ~= c.screen then
+            mainstatusbar[settings.statusbar_highlight_focus[2]][c.screen].bg = beautiful.bg_sbfocus
 
-    if (last_s == nil or last_s ~= s) and statusbar_highlight_focus then
-
-        mainstatusbar[s].bg = bg_sbfocus
-        mainstatusbar[s].fg = fg_sbfocus
-
-        if last_s then
-            mainstatusbar[last_s].bg = bg_normal
-            mainstatusbar[last_s].fg = fg_normal
+            if last_screen then
+                mainstatusbar[settings.statusbar_highlight_focus[2]][last_screen].bg = beautiful.bg_normal
+            end
         end
+
+        last_screen = c.screen
     end
 
-    last_s = c.screen
-end
+end)
+-- }}}
 
-function hook_unfocus(c)
-    -- Set border back to normal
-    c.border_color = border_normal 
-end
+-- {{{ Unfocus hook
+awful.hooks.unfocus.register(function (c)
+    -- Set border
+    c.border_color = beautiful.border_normal
+end)
+-- }}}
 
-function hook_mouseover(c)
+-- {{{ Mouseover hook
+awful.hooks.mouseover.register(function (c)
     -- Set focus for sloppy focus
     client.focus = c
-end
+end)
+-- }}}
 
-function hook_manage(c)
+-- {{{ Manage hook
+awful.hooks.manage.register(function (c)
+    local class = c.class:lower()
+    local name = c.name:lower()
+
     -- Create border
-    c.border_width = border_width 
-    c.border_color = border_focus 
+    c.border_width = beautiful.border_width
+    c.border_color = beautiful.border_normal
+
+    -- Smart floating placement
+    c.floating_placement = "smart"
 
     -- Add mouse bindings
-    -- Alt+Button1: Move window
-    c:mouse_add(mouse(k_a, 1, function (c) c:mouse_move() end))
+    for f, keys in pairs(settings.bindings.mouse.client) do
+        c:mouse_add(mouse(keys[1], keys[2], f))
+    end
 
-    -- Alt+Button3: Resize window
-    c:mouse_add(mouse(k_a, 3, function (c)
-        c:mouse_resize({ corner = 'bottomright' })
-    end ))
-
-    -- Make certain windows floating
-    local name = c.name:lower()
-    local class = c.class:lower()
-    if  class:find('gimp') or
-        name:find('urxvtcnotify')
-    then
-        c.floating = true
+    -- Check if floating
+    for app, i in pairs(settings.floating) do
+        if class:find(app) or name:find(app) then
+            c.floating = i
+            break
+        end
     end
 
     if name:find('urxvtcnotify') then
@@ -894,42 +877,38 @@ function hook_manage(c)
             end
         end
 
-        c.tags = tags
+        c:tags(tags)
 
         return 0
     end
 
     -- Focus new clients
     client.focus = c
-   
-    -- Prevents new windows from becoming master
-    cls = client.visible_get(mouse.screen)
-    for i,p in pairs(cls) do
-        if p ~= c then
-            c:swap(p)
-            break
-        end
-    end
-end
 
-function hook_arrange(screen)
+    -- Prevent new windows from becoming master
+    if not settings.new_become_master then
+        awful.client.swap(1, c)
+    end
+
+    -- Don't honor size hints
+    c.honorsizehints = false
+end)
+-- }}}
+
+-- {{{ Arrange hook
+awful.hooks.arrange.register(function(s)
     -- Warp the mouse
-    mouse_warp()
+    if settings.warp_mouse then
+        mouse_warp()
+    end
 
     -- Check focus
     if not client.focus then
-        local c = awful.client.focus.history.get(screen, 0)
+        local c = awful.client.focus.history.get(s, 0)
         if c then client.focus = c end
     end
-end
-
--- Attach the hooks
-awful.hooks.focus.register(hook_focus)
-awful.hooks.unfocus.register(hook_unfocus)
-awful.hooks.manage.register(hook_manage)
-awful.hooks.mouseover.register(hook_mouseover)
-awful.hooks.arrange.register(hook_arrange)
-
+end)
+-- }}}
 
 -- }}}
 
