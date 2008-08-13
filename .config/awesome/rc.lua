@@ -236,10 +236,10 @@ settings.bindings.wm.tag = {
 -- {{{ Prompt bindings
 settings.bindings.prompt = {
     -- Alt+w: Run prompt
-    [{awful.spawn, "Run: "}] = {key.alt, "w"},
+    [{awful.spawn, " Run: "}] = {key.alt, "w"},
 
     -- Mod+Alt+w: Lua eval prompt
-    [{awful.eval, "Run Lua: "}] = {key.super_alt, "w"},
+    [{awful.eval, " Run Lua: "}] = {key.super_alt, "w"},
 }
 
 -- }}}
@@ -706,7 +706,7 @@ end
 -- {{{ Prompt with statusbar
 function prompt_statusbar(s, callback, prompt)
     if not callback then callback = awful.spawn end
-    if not prompt then prompt = "Run: " end
+    if not prompt then prompt = " Run: " end
 
     for i, b in pairs(mainstatusbar) do
         for ii, bb in pairs(b) do
@@ -868,7 +868,7 @@ awful.hooks.manage.register(function (c)
             height = 106
         }
 
-        c.border_color = border_normal
+        c.border_color = beautiful.border_normal
 
         local tags = {}
         for i,t in pairs(eminent.tags[3]) do
