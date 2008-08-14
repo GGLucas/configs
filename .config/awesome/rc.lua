@@ -276,11 +276,15 @@ settings.bindings.digits = {
 
 -- {{{ Mouse bindings
 settings.bindings.mouse.desktop = {
+    -- Right click on desktop: Open terminal
     [function() awful.spawn(settings.apps.terminal) end] = {key.none, 3},
 }
 
 settings.bindings.mouse.client = {
+    -- Alt+Left: Move window
     [function(c) c:mouse_move() end] = {key.alt, 1},
+
+    -- Alt+Right: Resize window
     [function(c) c:mouse_resize({corner="bottomright"}) end] = {key.alt, 3},
 }
 -- }}}
