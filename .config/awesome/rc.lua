@@ -365,6 +365,50 @@ function maintaglist.label(t)
 end
 -- }}}
 
+if settings.widget_mode == 'laptop' or settings.widget_mode == 'all' then
+-- {{{ Battery Widget
+batterywidget = widget({
+    type = 'textbox',
+    name = 'batterywidget',
+    align = 'right'
+})
+
+batterywidget.text = settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+wicked.register(batterywidget, 'function', function (widget, args)
+    -- Read temp file created by battery script
+    local f = io.open('/tmp/battery-temp')
+    if f == nil then
+        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+    end
+
+    local n = f:read()
+
+    if n == nil then
+        f:close()
+        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+    end
+
+    out = ''
+    f:close()
+
+    if n ~= nil then
+        out = settings.widget_spacer..beautiful.markup.heading('Battery')..': '..n..settings.widget_spacer..settings.widget_separator
+    end
+    return out
+end, 30)
+
+-- Start timer to read the temp file
+awful.hooks.timer.register(28, function ()
+    -- Call battery script to get batt%
+    command = "battery"
+    os.execute(command..' > /tmp/battery-temp &')
+end, true)
+
+table.insert(settings.widgets, {1, batterywidget})
+
+-- }}}
+end
+
 if settings.widget_mode ~= 'none' then
 -- {{{ MPD Widget
 mpdwidget = widget({
@@ -555,51 +599,6 @@ table.insert(settings.widgets, {1, settings.widget_spacerwidget})
 
 -- }}}
 end
-
-if settings.widget_mode == 'laptop' or settings.widget_mode == 'all' then
--- {{{ Battery Widget
-batterywidget = widget({
-    type = 'textbox',
-    name = 'batterywidget',
-    align = 'right'
-})
-
-batterywidget.text = settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
-wicked.register(batterywidget, 'function', function (widget, args)
-    -- Read temp file created by battery script
-    local f = io.open('/tmp/battery-temp')
-    if f == nil then
-        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
-    end
-
-    local n = f:read()
-
-    if n == nil then
-        f:close()
-        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
-    end
-
-    out = ''
-    f:close()
-
-    if n ~= nil then
-        out = settings.widget_spacer..beautiful.markup.heading('Battery')..': '..n..settings.widget_spacer..settings.widget_separator
-    end
-    return out
-end, 30)
-
--- Start timer to read the temp file
-awful.hooks.timer.register(28, function ()
-    -- Call battery script to get batt%
-    command = "battery"
-    os.execute(command..' > /tmp/battery-temp &')
-end, true)
-
-table.insert(settings.widgets, {1, batterywidget})
-
--- }}}
-end
-
 
 -- }}}
 
