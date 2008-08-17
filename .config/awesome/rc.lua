@@ -569,7 +569,6 @@ wicked.register(batterywidget, 'function', function (widget, args)
     -- Read temp file created by battery script
     local f = io.open('/tmp/battery-temp')
     if f == nil then
-        f:close()
         return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
     end
 
@@ -590,7 +589,7 @@ wicked.register(batterywidget, 'function', function (widget, args)
 end, 30)
 
 -- Start timer to read the temp file
-awful.hooks.timer(28, function ()
+awful.hooks.timer.register(28, function ()
     -- Call battery script to get batt%
     command = "battery"
     os.execute(command..' > /tmp/battery-temp &')
