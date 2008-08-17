@@ -76,3 +76,15 @@ mdc() { mkdir -p "$1" && cd "$1" }
 setenv() { export $1=$2 }  # csh compatibility
 pc() { awk "{print \$$1}" }
 rot13 () { tr "[a-m][n-z][A-M][N-Z]" "[n-z][a-m][N-Z][A-M]" }
+
+websync()
+{
+    source ~/.rsync_locs
+    for name in $@; do
+        eval "r=\$RSYNC_$name"
+        echo Syncing $name
+        echo "rsync -tavz --delete $r"
+        echo --------------------
+        eval "rsync -tavz --delete $r"
+    done
+}

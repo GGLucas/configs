@@ -413,7 +413,7 @@ wicked.register(gmailwidget, 'function', function (widget, args)
     out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
 
     if tonumber(n) > 0 then
-        out = out..beautiful.markup.bg(bg_urgent, beautiful.markup.fg(fg_urgent, tostring(n)))
+        out = out..beautiful.markup.bg(beautiful.bg_urgent, beautiful.markup.fg(beautiful.fg_urgent, tostring(n)))
     else
         out = out .. tostring(n)
     end
