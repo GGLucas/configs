@@ -654,7 +654,7 @@ for i, b in pairs(settings.statusbars) do
                 end
             end
 
-            mainstatusbar[i][s].widgets = widgets
+            mainstatusbar[i][s]:widgets(widgets)
             mainstatusbar[i][s].screen = s
         end
     end
@@ -666,7 +666,7 @@ end
 local mainpromptbar = statusbar(settings.promptbar)
 local mainpromptbox = widget({type = "textbox", align = "left", name = "mainpromptbox"})
 
-mainpromptbar.widgets = {mainpromptbox}
+mainpromptbar:widgets({mainpromptbox})
 mainpromptbar.screen = nil
 
 -- }}}

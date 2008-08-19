@@ -24,6 +24,13 @@ servers = (
     port = "6667";
     autoconnect = "yes";
     nick = "GGLucas";
+  },
+  {
+    address = "irc.foonetic.net";
+    chatnet = "foonetic";
+    port = "6667";
+    autoconnect = "yes";
+    nick = "GGLucas";
   }
 );
 
@@ -70,11 +77,14 @@ chatnets = {
   SILC = { type = "SILC"; };
   freenode = { type = "IRC"; };
   oftc = { type = "IRC"; };
+  foonetic = { type = "IRC"; };
 };
 
 channels = (
   { name = "#awesome"; chatnet = "oftc"; autojoin = "Yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; }
+  { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#xkcd"; chatnet = "foonetic"; autojoin = "Yes"; },
+  { name = "#xkcd-signal"; chatnet = "foonetic"; autojoin = "Yes"; }
 );
 
 aliases = {
