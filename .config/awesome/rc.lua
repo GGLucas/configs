@@ -94,6 +94,9 @@ settings.apps.terminal = 'urxvtc'
 -- Terminal with gnu screen
 settings.apps.gnu_screen = settings.apps.terminal..' -e zsh -c "exec screen -x main"'
 
+-- Terminal with gnu screen over ssh to my main machine
+settings.apps.gnu_screen_ssh = settings.apps.terminal..' -e zsh -c "ssh -t me.glacicle.com screen -x main"'
+
 -- Command to lock the screen
 settings.apps.lock_screen = 'xscreensaver-command -lock'
 
@@ -160,6 +163,9 @@ settings.bindings.commands = {
 
     -- GNU Screen
     [settings.apps.gnu_screen] = {key.super, "k"},
+
+    -- GNU Screen over SSH
+    [settings.apps.gnu_screen_ssh] = {key.super_shift, "k"},
 
     -- Lock screen
     [settings.apps.lock_screen] = {key.super, "l"},
