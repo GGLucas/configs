@@ -88,3 +88,16 @@ websync()
         eval "rsync -tavz --delete $r"
     done
 }
+
+convert_mkv()
+{
+    for e in *.$1; do
+        b=$(basename $e .$1).mkv
+
+        if [[ -a $b ]]; then;
+            echo $b Exists;
+        else
+            mkvmerge -o $b $e;
+        fi;
+    done;
+}
