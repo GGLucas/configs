@@ -690,8 +690,8 @@ function mouse_warp(c, force)
     local sel = c or client.focus
     if sel == nil then return end
 
-    local coords = sel.coords
-    local m = mouse.coords
+    local coords = sel:coords()
+    local m = mouse.coords()
 
     -- Settings
     mouse_padd = 6
@@ -706,7 +706,7 @@ function mouse_warp(c, force)
            table.maxn(m.buttons) == 0
         )) or force
     then
-        mouse.coords = { x=coords.x+mouse_padd, y=coords.y+mouse_padd}
+        mouse.coords({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
     end
 end
 -- }}}
@@ -869,12 +869,12 @@ awful.hooks.manage.register(function (c)
 
         c.screen = 3
 
-        c.coords = {
+        c:coords({
             x = 1680*2+1400,
             y = 18,
             width = 276,
             height = 106
-        }
+        })
 
         c.border_color = beautiful.border_normal
 
