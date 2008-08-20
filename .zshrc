@@ -101,3 +101,5 @@ convert_mkv()
         fi;
     done;
 }
+
+export color=
