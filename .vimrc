@@ -31,6 +31,7 @@ set smarttab
 set nobackup
 set showmatch
 set modeline
+set hidden
 syntax on
 
 nnoremap <F5> :set invpaste paste?<Enter>
