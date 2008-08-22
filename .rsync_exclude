@@ -1,0 +1,6 @@
+*~
+*.swp
+*.tmp
+config_*.py
+.git
+*.pyc

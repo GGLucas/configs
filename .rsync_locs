@@ -1,0 +1,5 @@
+#!/bin/zsh
+RSYNC_glasys_system="--exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/system/ http@glacicle.com:/srv/www/0-glasys/system"
+RSYNC_glasys_global="--exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/global/ http@glacicle.com:/srv/www/0-glasys/global"
+RSYNC_glaciergaming="--exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/sites/glaciergaming.co.uk/ http@glacicle.com:/srv/www/1-glaciergaming/glaciergaming.co.uk"
+RSYNC_backups="--exclude-from=$HOME/.rsync_exclude archlucas@glacicle.com:/srv/backup/ /data/.backups/server"

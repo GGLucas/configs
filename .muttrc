@@ -128,11 +128,6 @@ macro generic <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
 macro index   <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
 macro pager   <f1> "!less /usr/doc/mutt/manual.txt\n" "Show Mutt documentation"
 
-# Set and source our alias file
-set alias_file=~/.mutt-aliases
-source ~/.mutt-aliases
-
-
 color attachment brightmagenta black  
 color error brightwhite red   # errors yell at you in red
 color hdrdefault red black   # headers
