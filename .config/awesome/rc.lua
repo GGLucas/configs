@@ -154,6 +154,9 @@ settings.bindings.filemanager = {
     -- Data partition
     ["/data"] = {key.alt, "d"},
 
+    -- Data partition on desktop pc from laptop (sshfs mount)
+    ["/desktop/data"] = {key.shift_alt, "d"},
+
     -- Home Directory
     [os.getenv("HOME")] = {key.alt, "a"},
 }
@@ -434,7 +437,7 @@ wicked.register(mpdwidget, 'mpd', function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
     return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
-    ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
+    ..awful.escape(args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ',''))
     ..settings.widget_spacer..settings.widget_separator end)
 
 table.insert(settings.widgets, {1, mpdwidget})

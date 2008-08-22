@@ -83,9 +83,9 @@ websync()
     for name in $@; do
         eval "r=\$RSYNC_$name"
         echo Syncing $name
-        echo "rsync -tavz --delete $r"
+        echo "rsync -tavz --delete --progress $r"
         echo --------------------
-        eval "rsync -tavz --delete $r"
+        eval "rsync -tavz --delete --progress $r"
     done
 }
 
