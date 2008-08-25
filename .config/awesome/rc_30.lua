@@ -5,6 +5,7 @@
 ------
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or
+-- email me at <lucas[at]glacicle.com>
 -- email me at <lucasdevries[at]gmail.com>
 ------
 -- I use both wicked and eminent, so to use it,
@@ -373,13 +374,18 @@ settings.promptbar = {
 }
 
 -- {{{ Taglist
-maintaglist = widget({ type = 'taglist', name = 'maintaglist' })
-maintaglist:mouse_add(mouse(key.none, 1, function (o, t) awful.tag.viewonly(t) end))
-table.insert(settings.widgets, {1, maintaglist})
+maintaglist = widget({ 
+    type = 'taglist', 
+    name = 'maintaglist' 
+})
 
 function maintaglist.label(t)
     return awful.widget.taglist.label.noempty(t)
 end
+
+maintaglist:mouse_add(mouse(key.none, 1, function (o, t) awful.tag.viewonly(t) end))
+
+table.insert(settings.widgets, {1, maintaglist})
 -- }}}
 
 if settings.widget_mode == 'laptop' or settings.widget_mode == 'all' then
@@ -390,29 +396,26 @@ batterywidget = widget({
     align = 'right'
 })
 
-batterywidget.text = settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
-wicked.register(batterywidget, 'function', function (widget, args)
-    -- Read temp file created by battery script
+function read_battery_temp(format)
     local f = io.open('/tmp/battery-temp')
-    if f == nil then
-        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+
+    if f == nil then 
+        return 'n/a'
     end
 
     local n = f:read()
 
     if n == nil then
         f:close()
-        return settings.widget_spacer..beautiful.markup.heading('Battery')..': n/a'..settings.widget_spacer..settings.widget_separator
+        return 'n/a'
     end
 
-    out = ''
-    f:close()
+    return n
+end
 
-    if n ~= nil then
-        out = settings.widget_spacer..beautiful.markup.heading('Battery')..': '..n..settings.widget_spacer..settings.widget_separator
-    end
-    return out
-end, 30)
+wicked.register(batterywidget, read_battery_temp,
+        settings.widget_spacer..beautiful.markup.heading('Battery')..': $1'..settings.widget_spacer..settings.widget_separator
+30)
 
 -- Start timer to read the temp file
 awful.hooks.timer.register(28, function ()
@@ -434,8 +437,7 @@ mpdwidget = widget({
     align = 'right'
 })
 
-mpdwidget.text = settings.widget_spacer..beautiful.markup.heading('MPD')..': '..settings.widget_spacer..settings.widget_separator
-wicked.register(mpdwidget, 'mpd', function (widget, args)
+wicked.register(mpdwidget, wicked.widgets.mpd, function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
     return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
@@ -453,27 +455,32 @@ gmailwidget = widget({
     align = 'right'
 })
 
-gmailwidget.text =  settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
 gmailwidget:mouse_add(mouse(key.none, 1, function () wicked.update(gmailwidget) end))
 
-wicked.register(gmailwidget, 'function', function (widget, args)
-    -- Read temp file created by gmail check script
+function read_gmail_temp(format)
     local f = io.open('/tmp/gmail-temp')
-    if f == nil then
-        return settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
+
+    if f == nil then 
+        return 'n/a'
     end
 
     local n = f:read()
 
     if n == nil then
         f:close()
-        return settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
+        return 'n/a'
     end
 
-    f:close()
-    out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
+    return n
+end
 
-    if tonumber(n) > 0 then
+
+wicked.register(gmailwidget, 'function', function (widget, args)
+    local n = args[1]
+
+    local out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
+
+    if n ~= "n/a" and tonumber(n) > 0 then
         out = out..beautiful.markup.bg(beautiful.bg_urgent, beautiful.markup.fg(beautiful.fg_urgent, tostring(n)))
     else
         out = out .. tostring(n)
@@ -501,7 +508,7 @@ loadwidget = widget({
     align = 'right'
 })
 
-wicked.register(loadwidget, 'function', function (widget, args)
+function widget_loadavg(format)
     -- Use /proc/loadavg to get the average system load on 1, 5 and 15 minute intervals
     local f = io.open('/proc/loadavg')
     local n = f:read()
@@ -510,9 +517,11 @@ wicked.register(loadwidget, 'function', function (widget, args)
     -- Find the third space
     local pos = n:find(' ', n:find(' ', n:find(' ')+1)+1)
 
-    return settings.widget_spacer..beautiful.markup.heading('Load')..': '..n:sub(1,pos-1)..settings.widget_spacer..settings.widget_separator 
+    return n:sub(1,pos-1)
+end
 
-end, 2)
+wicked.register(loadwidget, widget_loadavg,
+    settings.widget_spacer..beautiful.markup.heading('Load')..': $1'..settings.widget_spacer..settings.widget_separator, 2)
 
 table.insert(settings.widgets, {1, loadwidget})
 
@@ -525,8 +534,7 @@ cputextwidget = widget({
     align = 'right'
 })
 
-cputextwidget.text = settings.widget_spacer..beautiful.markup.heading('CPU')..': '..settings.widget_spacer..settings.widget_separator
-wicked.register(cputextwidget, 'cpu', function (widget, args) 
+wicked.register(cputextwidget, wicked.widgets.cpu, function (widget, args) 
     -- Add a zero if lower than 10
     if args[1] < 10 then 
         args[1] = '0'..args[1]
@@ -560,7 +568,7 @@ cpugraphwidget:plot_properties_set('cpu', {
     vertical_gradient = false
 })
 
-wicked.register(cpugraphwidget, 'cpu', '$1', 1, 'cpu')
+wicked.register(cpugraphwidget, wicked.widgets.cpu, '$1', 1, 'cpu')
 table.insert(settings.widgets, {1, cpugraphwidget})
 
 -- }}}
@@ -572,8 +580,7 @@ memtextwidget = widget({
     align = 'right'
 })
 
-memtextwidget.text = settings.widget_spacer..beautiful.markup.heading('MEM')..': '..settings.widget_spacer..settings.widget_separator
-wicked.register(memtextwidget, 'mem', function (widget, args) 
+wicked.register(memtextwidget, wicked.widgets.mem, function (widget, args) 
     -- Add extra preceding zeroes when needed
     if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
     if tonumber(args[2]) < 1000 then args[2] = '0'..args[2] end
@@ -604,7 +611,7 @@ memgraphwidget:plot_properties_set('mem', {
     vertical_gradient = false
 })
 
-wicked.register(memgraphwidget, 'mem', '$1', 1, 'mem')
+wicked.register(memgraphwidget, wicked.widgets.mem, '$1', 1, 'mem')
 table.insert(settings.widgets, {1, memgraphwidget})
 
 -- }}}
