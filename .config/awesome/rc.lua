@@ -1,6 +1,8 @@
 -- GGLucas' Awesome-3 Lua Config :D
 -- Version 2
 ------
+-- For use with the awesome-next git branch
+------
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or
 -- email me at <lucasdevries[at]gmail.com>
@@ -372,7 +374,7 @@ settings.promptbar = {
 
 -- {{{ Taglist
 maintaglist = widget({ type = 'taglist', name = 'maintaglist' })
-maintaglist:mouse_add(mouse(key.none, 1, function (o, t) awful.tag.viewonly(t) end))
+maintaglist:buttons({button(key.none, 1, function (o, t) awful.tag.viewonly(t) end)})
 table.insert(settings.widgets, {1, maintaglist})
 
 function maintaglist.label(t)
@@ -452,7 +454,7 @@ gmailwidget = widget({
 })
 
 gmailwidget.text =  settings.widget_spacer..beautiful.markup.heading('GMail')..': 0'..settings.widget_spacer..settings.widget_separator
-gmailwidget:mouse_add(mouse(key.none, 1, function () wicked.update(gmailwidget) end))
+gmailwidget:buttons({button(key.none, 1, function () wicked.update(gmailwidget) end)})
 
 wicked.register(gmailwidget, 'function', function (widget, args)
     -- Read temp file created by gmail check script
@@ -790,9 +792,13 @@ for command, keys in pairs(settings.bindings.commands) do
 end
 
 -- Desktop mouse bindings
+local buttons = {}
+
 for f, keys in pairs(settings.bindings.mouse.desktop) do
-    awesome.mouse_add(mouse(keys[1], keys[2], f))
+    table.insert(buttons, button(keys[1], keys[2], f))
 end
+
+awesome.buttons(buttons)
 
 -- }}}
 
@@ -837,7 +843,7 @@ end)
 -- }}}
 
 -- {{{ Mouseover hook
-awful.hooks.mouseover.register(function (c)
+awful.hooks.mouse_over.register(function (c)
     -- Set focus for sloppy focus
     client.focus = c
 end)
@@ -845,8 +851,13 @@ end)
 
 -- {{{ Manage hook
 awful.hooks.manage.register(function (c)
-    local class = c.class:lower()
-    local name = c.name:lower()
+    if c.class then
+        local class = c.class:lower()
+    else local class = "" end
+
+    if c.name then
+        local name = c.name:lower()
+    else local name = "" end
 
     -- Create border
     c.border_width = beautiful.border_width
@@ -856,9 +867,13 @@ awful.hooks.manage.register(function (c)
     c.floating_placement = "smart"
 
     -- Add mouse bindings
+    local buttons = {}
+
     for f, keys in pairs(settings.bindings.mouse.client) do
-        c:mouse_add(mouse(keys[1], keys[2], f))
+       table.insert(buttons, button(keys[1], keys[2], f))
     end
+
+    c:buttons(buttons)
 
     -- Check if floating
     for app, i in pairs(settings.floating) do
