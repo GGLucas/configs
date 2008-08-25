@@ -6,7 +6,6 @@
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or
 -- email me at <lucas[at]glacicle.com>
--- email me at <lucasdevries[at]gmail.com>
 ------
 -- I use both wicked and eminent, so to use it,
 -- you'll need to get both those helper libraries too.
