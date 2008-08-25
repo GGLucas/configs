@@ -399,17 +399,17 @@ function read_battery_temp(format)
     local f = io.open('/tmp/battery-temp')
 
     if f == nil then 
-        return 'n/a'
+        return {'n/a'}
     end
 
     local n = f:read()
 
     if n == nil then
         f:close()
-        return 'n/a'
+        return {'n/a'}
     end
 
-    return {n}
+    return {awful.escape(n)}
 end
 
 wicked.register(batterywidget, read_battery_temp,
