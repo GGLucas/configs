@@ -411,11 +411,11 @@ function read_battery_temp(format)
         return 'n/a'
     end
 
-    return n
+    return {n}
 end
 
 wicked.register(batterywidget, read_battery_temp,
-        settings.widget_spacer..beautiful.markup.heading('Battery')..': $1'..settings.widget_spacer..settings.widget_separator
+        settings.widget_spacer..beautiful.markup.heading('Battery')..': $1'..settings.widget_spacer..settings.widget_separator,
 30)
 
 -- Start timer to read the temp file
@@ -457,28 +457,28 @@ gmailwidget = widget({
 })
 
 gmailwidget:buttons({
-    button(key.none, 1, function () wicked.update(gmailwidget) end)]
+    button(key.none, 1, function () wicked.update(gmailwidget) end)
 })
 
 function read_gmail_temp(format)
     local f = io.open('/tmp/gmail-temp')
 
     if f == nil then 
-        return 'n/a'
+        return {'n/a'}
     end
 
     local n = f:read()
 
-    if n == nil then
+    if n == nil or f == ' ' or f == '' then
         f:close()
-        return 'n/a'
+        return {'n/a'}
     end
 
-    return n
+    return {n}
 end
 
 
-wicked.register(gmailwidget, 'function', function (widget, args)
+wicked.register(gmailwidget, read_gmail_temp, function (widget, args)
     local n = args[1]
 
     local out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
@@ -486,7 +486,7 @@ wicked.register(gmailwidget, 'function', function (widget, args)
     if n ~= "n/a" and tonumber(n) > 0 then
         out = out..beautiful.markup.bg(beautiful.bg_urgent, beautiful.markup.fg(beautiful.fg_urgent, tostring(n)))
     else
-        out = out .. tostring(n)
+        out = out..tostring(n)
     end
 
     out = out..settings.widget_spacer..settings.widget_separator
@@ -494,11 +494,13 @@ wicked.register(gmailwidget, 'function', function (widget, args)
     return out
 end, 120)
 
--- Start timer to read the temp file
+-- Start timer to fill the temp file
 awful.hooks.timer.register(110, function ()
     -- Call GMail check script to check for new email
-    os.execute('/home/archlucas/other/.gmail.py > /tmp/gmail-temp &')
+    os.execute(os.getenv("HOME")..'/other/.gmail.py > /tmp/gmail-temp &')
 end, true)
+
+wicked.update(gmailwidget)
 
 table.insert(settings.widgets, {1, gmailwidget})
 
@@ -520,7 +522,7 @@ function widget_loadavg(format)
     -- Find the third space
     local pos = n:find(' ', n:find(' ', n:find(' ')+1)+1)
 
-    return n:sub(1,pos-1)
+    return {n:sub(1,pos-1)}
 end
 
 wicked.register(loadwidget, widget_loadavg,
