@@ -442,7 +442,7 @@ wicked.register(mpdwidget, wicked.widgets.mpd, function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
     return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
-    ..awful.escape(args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ',''))
+    ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
     ..settings.widget_spacer..settings.widget_separator end)
 
 table.insert(settings.widgets, {1, mpdwidget})
@@ -565,7 +565,6 @@ cpugraphwidget.bg = '#333333'
 cpugraphwidget.border_color = '#0a0a0a'
 cpugraphwidget.grow = 'left'
 
-
 cpugraphwidget:plot_properties_set('cpu', {
     fg = '#AEC6D8',
     fg_center = '#285577',
@@ -574,6 +573,7 @@ cpugraphwidget:plot_properties_set('cpu', {
 })
 
 wicked.register(cpugraphwidget, wicked.widgets.cpu, '$1', 1, 'cpu')
+
 table.insert(settings.widgets, {1, cpugraphwidget})
 
 -- }}}
@@ -820,7 +820,7 @@ awesome.buttons(buttons)
 awful.hooks.focus.register(function (c)
 
     -- Skip over my urxvtcnotify
-    if c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
+    if c.name and c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
         awful.client.focusbyidx(1)
         return
     end
@@ -877,9 +877,6 @@ awful.hooks.manage.register(function (c)
     -- Create border
     c.border_width = beautiful.border_width
     c.border_color = beautiful.border_normal
-
-    -- Smart floating placement
-    c.floating_placement = "smart"
 
     -- Add mouse bindings
     local buttons = {}

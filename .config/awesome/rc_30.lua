@@ -440,7 +440,7 @@ wicked.register(mpdwidget, wicked.widgets.mpd, function (widget, args)
     -- I don't want the stream name on my statusbar, so I gsub it out,
     -- feel free to remove this bit
     return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
-    ..awful.escape(args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ',''))
+    ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
     ..settings.widget_spacer..settings.widget_separator end)
 
 table.insert(settings.widgets, {1, mpdwidget})
@@ -812,7 +812,7 @@ end
 awful.hooks.focus.register(function (c)
 
     -- Skip over my urxvtcnotify
-    if c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
+    if c.name and c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
         awful.client.focusbyidx(1)
         return
     end
@@ -855,8 +855,16 @@ end)
 
 -- {{{ Manage hook
 awful.hooks.manage.register(function (c)
-    local class = c.class:lower()
-    local name = c.name:lower()
+    local class = ""
+    local name = ""
+
+    if c.class then
+        class = c.class:lower()
+    end
+
+    if c.name then
+        name = c.name:lower()
+    end
 
     -- Create border
     c.border_width = beautiful.border_width
