@@ -535,13 +535,9 @@ cputextwidget = widget({
     align = 'right'
 })
 
-wicked.register(cputextwidget, wicked.widgets.cpu, function (widget, args) 
-    -- Add a zero if lower than 10
-    if args[1] < 10 then 
-        args[1] = '0'..args[1]
-    end
-
-    return settings.widget_spacer..beautiful.markup.heading('CPU')..': '..args[1]..'%'..settings.widget_spacer..settings.widget_separator end) 
+wicked.register(cputextwidget, wicked.widgets.cpu, 
+    settings.widget_spacer..beautiful.markup.heading('CPU')..': $1%'..settings.widget_spacer..settings.widget_separator,
+nil, nil, 2) 
 
 table.insert(settings.widgets, {1, cputextwidget})
 
@@ -581,12 +577,10 @@ memtextwidget = widget({
     align = 'right'
 })
 
-wicked.register(memtextwidget, wicked.widgets.mem, function (widget, args) 
-    -- Add extra preceding zeroes when needed
-    if tonumber(args[1]) < 10 then args[1] = '0'..args[1] end
-    if tonumber(args[2]) < 1000 then args[2] = '0'..args[2] end
-    if tonumber(args[3]) < 1000 then args[3] = '0'..args[3] end
-    return settings.widget_spacer..beautiful.markup.heading('MEM')..': '..args[1]..'% ('..args[2]..'/'..args[3]..')'..settings.widget_spacer..settings.widget_separator end)
+wicked.register(memtextwidget, wicked.widgets.mem,
+    settings.widget_spacer..beautiful.markup.heading('MEM')..': '..
+    '$1% ($2/$3)'..settings.widget_spacer..settings.widget_separator,
+3, nil, {2, 4, 4})
 
 table.insert(settings.widgets, {1, memtextwidget})
 
@@ -869,9 +863,6 @@ awful.hooks.manage.register(function (c)
     -- Create border
     c.border_width = beautiful.border_width
     c.border_color = beautiful.border_normal
-
-    -- Smart floating placement
-    c.floating_placement = "smart"
 
     -- Add mouse bindings
     for f, keys in pairs(settings.bindings.mouse.client) do
