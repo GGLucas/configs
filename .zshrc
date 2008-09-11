@@ -102,4 +102,10 @@ convert_mkv()
     done;
 }
 
+jr()
+{
+    /opt/java/bin/javac $1.java
+    /opt/java/bin/java $1
+}
+
 export color=
