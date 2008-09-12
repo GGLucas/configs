@@ -20,8 +20,12 @@ xmodmap $HOME/.Xmodmap
 
 # Start WM
 #exec awesome && exit
-awesome &
-#wmii &
+if [ -n $AWE_CONF ]
+then
+    awesome -c $AWE_CONF &
+else
+    awesome &
+fi
 
 # Launch autostart script
 exec bash $HOME/.autostart

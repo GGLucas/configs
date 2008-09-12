@@ -1,7 +1,7 @@
 # history
 HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=1000
+HISTSIZE=9000
+SAVEHIST=9000
 setopt   appendhistory allexport
 setopt   notify globdots correct pushdtohome cdablevars autolist
 setopt   correctall autocd recexact longlistjobs

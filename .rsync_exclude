@@ -4,3 +4,4 @@
 config_*.py
 .git
 *.pyc
+*.conf.php
