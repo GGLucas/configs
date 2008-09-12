@@ -635,12 +635,12 @@ end
 awful.beautiful.register(beautiful)
 
 -- Set default colors
-awesome.colors_set({ 
+awesome.colors({ 
     fg = beautiful.fg_normal, 
     bg = beautiful.bg_normal })
 
 -- Set default font
-awesome.font_set(beautiful.font)
+awesome.font(beautiful.font)
 
 -- Pre-create new tags with eminent
 for s=1, screen.count() do
