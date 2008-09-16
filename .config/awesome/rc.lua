@@ -153,39 +153,39 @@ settings.bindings.mouse = {}
 
 -- {{{ Open the filemanager at specific locations
 settings.bindings.filemanager = {
-    -- Data partition
-    ["/data"] = {key.alt, "d"},
+    -- Alt+d: Data partition
+    ["/data"] = {key.alt, "#40"},
 
-    -- Data partition on desktop pc from laptop (sshfs mount)
-    ["/desktop/data"] = {key.shift_alt, "d"},
+    -- Shift+Alt+d: Data partition on desktop pc from laptop (sshfs mount)
+    ["/desktop/data"] = {key.shift_alt, "#40"},
 
-    -- Home Directory
-    [os.getenv("HOME")] = {key.alt, "a"},
+    -- Alt+a: Home Directory
+    [os.getenv("HOME")] = {key.alt, "#38"},
 }
 -- }}}
 
 -- {{{ Run specific commands
 settings.bindings.commands = {
-    -- Open Terminal
-    [settings.apps.terminal] = {key.alt, "q"},
+    -- Alt+q: Open Terminal
+    [settings.apps.terminal] = {key.alt, "#24"},
 
-    -- GNU Screen
-    [settings.apps.gnu_screen] = {key.super, "k"},
+    -- Mod+k: GNU Screen
+    [settings.apps.gnu_screen] = {key.super, "#45"},
 
-    -- GNU Screen over SSH to Desktop
-    [settings.apps.gnu_screen_ssh_desktop] = {key.super_shift, "k"},
+    -- Mod+Shift+k: GNU Screen over SSH to Desktop
+    [settings.apps.gnu_screen_ssh_desktop] = {key.super_shift, "#45"},
 
-    -- GNU Screen over SSH to VPS
-    [settings.apps.gnu_screen_ssh_server] = {key.super_alt, "k"},
+    -- Mod+Alt+k: GNU Screen over SSH to VPS
+    [settings.apps.gnu_screen_ssh_server] = {key.super_alt, "#45"},
 
-    -- Lock screen
-    [settings.apps.lock_screen] = {key.super, "l"},
+    -- Mod+l: Lock screen
+    [settings.apps.lock_screen] = {key.super, "#46"},
 
-    -- Screen off with DPMS
-    [settings.apps.screen_off] = {key.super, "o"},
+    -- Mod+o: Screen off with DPMS
+    [settings.apps.screen_off] = {key.super, "#32"},
 
-    -- Toggle music
-    [settings.apps.music_toggle] = {key.alt, "e"},
+    -- Alt+e: Toggle music
+    [settings.apps.music_toggle] = {key.alt, "#26"},
 }
 -- }}}
 
@@ -195,19 +195,19 @@ settings.bindings.wm.client = {
     [function() client.focus:kill() end] = {key.alt, "#49"},
 
     -- Mod+q: Focus previous window
-    [function() awful.client.focusbyidx(-1) end] = {key.super, "q"},
+    [function() awful.client.focusbyidx(-1) end] = {key.super, "#24"},
 
     -- Mod+w: Focus next window
-    [function() awful.client.focusbyidx(1) end] = {key.super, "w"},
+    [function() awful.client.focusbyidx(1) end] = {key.super, "#25"},
 
     -- Mod+Shift+q: Swap with previous window
-    [function() awful.client.swap(-1) end] = {key.super_shift, "q"},
+    [function() awful.client.swap(-1) end] = {key.super_shift, "#24"},
 
-    -- Mod+Shift+w: Swap with previous window
-    [function() awful.client.swap(1) end] = {key.super_shift, "w"},
+    -- Mod+Shift+w: Swap with next window
+    [function() awful.client.swap(1) end] = {key.super_shift, "#25"},
 
     -- Mod+c: Toggle floating
-    [awful.client.togglefloating] = {key.super, "c"},
+    [awful.client.togglefloating] = {key.super, "#54"},
 
     -- Mod+\: Make window master
     [function() local c = awful.client.master(); if c ~= client.focus then c:swap(client.focus) end end] =
@@ -215,48 +215,48 @@ settings.bindings.wm.client = {
 
     -- Mod+Shift+a: Move window to previous tag
     [function () awful.client.movetotag(eminent.tag.getprev(mouse.screen)) end] =
-        {key.super_shift, "a"},
+        {key.super_shift, "#38"},
 
     -- Mod+Shift+s: Move window to next tag
     [function () awful.client.movetotag(eminent.tag.getnext(mouse.screen)) end] =
-        {key.super_shift, "s"},
+        {key.super_shift, "#39"},
 
     -- Mod+Shift+e: Move window to next screen
     [function () s = client.focus.screen+1; if s > screen.count() then s = 1 end; client.focus.screen = s end] =
-        {key.super_shift, "e"},
+        {key.super_shift, "#26"},
 
     -- Mod+Shift+d: Move window to previous screen
     [function () s = client.focus.screen-1; if s < 1 then s = screen.count() end; client.focus.screen = s end] =
-        {key.super_shift, "d"},
+        {key.super_shift, "#40"},
 }
 -- }}}
 
 -- {{{ Tag bindings
 settings.bindings.wm.tag = {
     -- Mod+a: Switch to previous tag
-    [function() eminent.tag.prev(mouse.screen) end] = {key.super, "a"},
+    [function() eminent.tag.prev(mouse.screen) end] = {key.super, "#38"},
 
     -- Mod+s: Switch to next tag
-    [function() eminent.tag.next(mouse.screen) end] = {key.super, "s"},
+    [function() eminent.tag.next(mouse.screen) end] = {key.super, "#39"},
 
     -- Alt+\: Switch to float layout
     [function() awful.layout.set('floating') end] = {key.alt, "#51"},
 
     -- Alt+z: Switch to max layout
-    [function() awful.layout.set('max') end] = {key.alt, "z"},
+    [function() awful.layout.set('max') end] = {key.alt, "#52"},
 
     -- Alt+x: Switch to tile layout
-    [function() awful.layout.set('tile') end] = {key.alt, "x"},
+    [function() awful.layout.set('tile') end] = {key.alt, "#53"},
 }
 -- }}}
 
 -- {{{ Prompt bindings
 settings.bindings.prompt = {
     -- Alt+w: Run prompt
-    [{awful.spawn, " Run: "}] = {key.alt, "w"},
+    [{awful.spawn, " Run: "}] = {key.alt, "#25"},
 
     -- Mod+Alt+w: Lua eval prompt
-    [{awful.eval, " Run Lua: "}] = {key.super_alt, "w"},
+    [{awful.eval, " Run Lua: "}] = {key.super_alt, "#25"},
 }
 
 -- }}}
@@ -264,13 +264,13 @@ settings.bindings.prompt = {
 -- {{{ Miscellaneous bindings
 settings.bindings.wm.misc = {
     -- Mod+Alt+r: Restart awesome
-    [awesome.restart] = {key.super_alt, "r"},
+    [awesome.restart] = {key.super_alt, "#27"},
 
     -- Mod+e: Switch focus to next screen
-    [function() awful.screen.focus(1) end] = {key.super, "e"},
+    [function() awful.screen.focus(1) end] = {key.super, "#26"},
 
     -- Mod+d: Switch focus to previous screen
-    [function() awful.screen.focus(-1) end] = {key.super, "d"},
+    [function() awful.screen.focus(-1) end] = {key.super, "#40"},
 }
 -- }}}
 
