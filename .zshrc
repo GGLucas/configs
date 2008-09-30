@@ -58,6 +58,7 @@ alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto -F'
+alias no='ls'
 
 alias pp='sudo pacman-color'
 alias yy='yaourt'

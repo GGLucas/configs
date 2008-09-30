@@ -137,9 +137,9 @@ else
     settings.widget_mode = 'desktop'
 end
 
--- Highlight statusbar of focussed screen on multiple-monitor setups
+-- Highlight wibox of focussed screen on multiple-monitor setups
 if screen.count() > 1 then
-    settings.statusbar_highlight_focus = {true, 1}
+    settings.wibox_highlight_focus = {true, 1}
 end
 
 -- }}}
@@ -195,10 +195,10 @@ settings.bindings.wm.client = {
     [function() client.focus:kill() end] = {key.alt, "#49"},
 
     -- Mod+q: Focus previous window
-    [function() awful.client.focusbyidx(-1) end] = {key.super, "#24"},
+    [function() awful.client.focus.byidx(-1) end] = {key.super, "#24"},
 
     -- Mod+w: Focus next window
-    [function() awful.client.focusbyidx(1) end] = {key.super, "#25"},
+    [function() awful.client.focus.byidx(1) end] = {key.super, "#25"},
 
     -- Mod+Shift+q: Swap with previous window
     [function() awful.client.swap(-1) end] = {key.super_shift, "#24"},
@@ -253,7 +253,7 @@ settings.bindings.wm.tag = {
 -- {{{ Prompt bindings
 settings.bindings.prompt = {
     -- Alt+w: Run prompt
-    [{awful.spawn, " Run: "}] = {key.alt, "#25"},
+    [{awful.util.spawn, " Run: "}] = {key.alt, "#25"},
 
     -- Mod+Alt+w: Lua eval prompt
     [{awful.eval, " Run Lua: "}] = {key.super_alt, "#25"},
@@ -264,7 +264,7 @@ settings.bindings.prompt = {
 -- {{{ Miscellaneous bindings
 settings.bindings.wm.misc = {
     -- Mod+Alt+r: Restart awesome
-    [awesome.restart] = {key.super_alt, "#27"},
+    [awful.util.restart] = {key.super_alt, "#27"},
 
     -- Mod+e: Switch focus to next screen
     [function() awful.screen.focus(1) end] = {key.super, "#26"},
@@ -294,7 +294,7 @@ settings.bindings.digits = {
 -- {{{ Mouse bindings
 settings.bindings.mouse.desktop = {
     -- Right click on desktop: Open terminal
-    [function() awful.spawn(settings.apps.terminal) end] = {key.none, 3},
+    [function() awful.util.spawn(settings.apps.terminal) end] = {key.none, 3},
 }
 
 settings.bindings.mouse.client = {
@@ -353,15 +353,15 @@ end
 -- }}}
 
 ---- {{{ Widgets
-settings.statusbars = {}
+settings.wiboxes = {}
 settings.widgets = {}
 
-settings.statusbars[1] = {{
+settings.wiboxes[1] = {{
     position = "top",
     height = 18,
     fg = beautiful.fg_normal,
     bg = beautiful.bg_normal,
-    name = "mainstatusbar",
+    name = "mainwibox",
 }, "all"}
 
 settings.promptbar = {
@@ -439,7 +439,7 @@ mpdwidget = widget({
 })
 
 wicked.register(mpdwidget, wicked.widgets.mpd, function (widget, args)
-    -- I don't want the stream name on my statusbar, so I gsub it out,
+    -- I don't want the stream name on my wibox, so I gsub it out,
     -- feel free to remove this bit
     return settings.widget_spacer..beautiful.markup.heading('MPD')..': '
     ..args[1]:gsub('AnimeNfo Radio  | Serving you the best Anime music!: ','')
@@ -649,11 +649,11 @@ end
 
 -- }}}
 
----- {{{ Create statusbars
-local mainstatusbar = {}
+---- {{{ Create wiboxes
+local mainwibox = {}
 
-for i, b in pairs(settings.statusbars) do
-    mainstatusbar[i] = {}
+for i, b in pairs(settings.wiboxes) do
+    mainwibox[i] = {}
 
     for s=1,screen.count() do
         this_screen = false
@@ -668,7 +668,7 @@ for i, b in pairs(settings.statusbars) do
         end
 
         if b[2] == "all" or this_screen then
-            mainstatusbar[i][s] = statusbar(b[1])
+            mainwibox[i][s] = wibox(b[1])
             local widgets = {}
 
             for ii, w in pairs(settings.widgets) do
@@ -677,16 +677,16 @@ for i, b in pairs(settings.statusbars) do
                 end
             end
 
-            mainstatusbar[i][s]:widgets(widgets)
-            mainstatusbar[i][s].screen = s
+            mainwibox[i][s]:widgets(widgets)
+            mainwibox[i][s].screen = s
         end
     end
 end
 
 -- }}}
 
----- {{{ Create prompt statusbar
-local mainpromptbar = statusbar(settings.promptbar)
+---- {{{ Create prompt wibox
+local mainpromptbar = wibox(settings.promptbar)
 local mainpromptbox = widget({type = "textbox", align = "left", name = "mainpromptbox"})
 
 mainpromptbar:widgets({mainpromptbox})
@@ -728,12 +728,12 @@ function mouse_warp(c, force)
 end
 -- }}}
 
--- {{{ Prompt with statusbar
-function prompt_statusbar(s, callback, prompt)
-    if not callback then callback = awful.spawn end
+-- {{{ Prompt with wibox
+function prompt_wibox(s, callback, prompt)
+    if not callback then callback = awful.util.spawn end
     if not prompt then prompt = " Run: " end
 
-    for i, b in pairs(mainstatusbar) do
+    for i, b in pairs(mainwibox) do
         for ii, bb in pairs(b) do
             if bb.screen == s then
                 bb.screen = nil
@@ -747,7 +747,7 @@ function prompt_statusbar(s, callback, prompt)
         awful.completion.bash, os.getenv("HOME") .. "/.cache/awesome_history", 50, function ()
             mainpromptbar.screen = nil
 
-            for i, b in pairs(mainstatusbar) do
+            for i, b in pairs(mainwibox) do
                 for ii, bb in pairs(b) do
                     if ii == s then
                         bb.screen = ii
@@ -784,17 +784,17 @@ end
 
 -- Prompt Bindings
 for prompt, keys in pairs(settings.bindings.prompt) do
-    keybinding(keys[1], keys[2], function() prompt_statusbar(mouse.screen, unpack(prompt)) end):add()
+    keybinding(keys[1], keys[2], function() prompt_wibox(mouse.screen, unpack(prompt)) end):add()
 end
 
 -- Filemanager bindings
 for loc, keys in pairs(settings.bindings.filemanager) do
-    keybinding(keys[1], keys[2], function() awful.spawn(string.format(settings.apps.filemanager, loc)) end):add()
+    keybinding(keys[1], keys[2], function() awful.util.spawn(string.format(settings.apps.filemanager, loc)) end):add()
 end
 
 -- Custom command bindings
 for command, keys in pairs(settings.bindings.commands) do
-    keybinding(keys[1], keys[2], function() awful.spawn(command) end):add()
+    keybinding(keys[1], keys[2], function() awful.util.spawn(command) end):add()
 end
 
 -- Desktop mouse bindings
@@ -825,13 +825,13 @@ awful.hooks.focus.register(function (c)
     -- Raise the client
     c:raise()
 
-    -- Set statusbar color
-    if settings.statusbar_highlight_focus and settings.statusbar_highlight_focus[1] then
+    -- Set wibox color
+    if settings.wibox_highlight_focus and settings.wibox_highlight_focus[1] then
         if last_screen == nil or last_screen ~= c.screen then
-            mainstatusbar[settings.statusbar_highlight_focus[2]][c.screen].bg = beautiful.bg_sbfocus
+            mainwibox[settings.wibox_highlight_focus[2]][c.screen].bg = beautiful.bg_sbfocus
 
             if last_screen then
-                mainstatusbar[settings.statusbar_highlight_focus[2]][last_screen].bg = beautiful.bg_normal
+                mainwibox[settings.wibox_highlight_focus[2]][last_screen].bg = beautiful.bg_normal
             end
         end
 
@@ -848,8 +848,8 @@ awful.hooks.unfocus.register(function (c)
 end)
 -- }}}
 
--- {{{ Mouseover hook
-awful.hooks.mouse_over.register(function (c)
+-- {{{ Mouse Enter hook
+awful.hooks.mouse_enter.register(function (c)
     -- Set focus for sloppy focus
     client.focus = c
 end)
