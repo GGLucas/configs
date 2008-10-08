@@ -1,7 +1,7 @@
 -- GGLucas' Awesome-3 Lua Config :D
 -- Version 2
 ------
--- This config is for use with awesome 3.0.
+-- This config is for use with awesome 3.0 stable.
 ------
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or

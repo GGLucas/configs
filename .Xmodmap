@@ -1,4 +1,5 @@
 keycode 229 = Alt_L
+keycode 115 = Super_L
 remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
 keysym Caps_Lock = Escape

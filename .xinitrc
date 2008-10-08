@@ -6,9 +6,6 @@ xrdb -merge $HOME/.Xresources
 # Keytouch launch
 #bash /etc/X11/Xsession.d/92_keytouchd_launch
 
-# Xmodmap keys
-xmodmap $HOME/.Xmodmap
-
 # Turn on numlock
 #numlockx
 
@@ -17,6 +14,9 @@ xmodmap $HOME/.Xmodmap
 #export GTK_IM_MODULE="scim"
 #export QT_IM_MODULE="scim"
 #scim -d
+
+# Desktop BG
+nitrogen --restore
 
 # Start WM
 #exec awesome && exit

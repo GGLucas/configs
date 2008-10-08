@@ -1,9 +1,6 @@
 #!/bin/bash
 sleep 1
 
-# Desktop BG
-nitrogen --restore
-
 # VNC Server
 x11vnc -usepw -shared -forever > /dev/null &
 
@@ -19,6 +16,10 @@ mpc volume 74
 
 # Run urxvtd, to start terminals faster
 urxvtd &
+
+# Xmodmap keys
+xmodmap $HOME/.Xmodmap
+
 
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null

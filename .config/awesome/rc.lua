@@ -1,7 +1,7 @@
 -- GGLucas' Awesome-3 Lua Config :D
 -- Version 2
 ------
--- For use with the awesome-next git branch
+-- For use with awesome-git.
 ------
 -- If you have any suggestions or questions, feel free
 -- to pass me a message, find me in #awesome on OFTC, or
