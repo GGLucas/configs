@@ -373,17 +373,11 @@ settings.promptbar = {
 }
 
 -- {{{ Taglist
-maintaglist = widget({ 
-    type = 'taglist', 
-    name = 'maintaglist' 
-})
-
-function maintaglist.label(t)
-    return awful.widget.taglist.label.noempty(t)
-end
-
-maintaglist:buttons({
-    button(key.none, 1, function (o, t) awful.tag.viewonly(t) end)
+maintaglist = awful.widget.taglist.new(1,
+    function (t)
+        return awful.widget.taglist.label.noempty(t)
+    end, {
+        button(key.none, 1, function (o, t) awful.tag.viewonly(t) end)
 })
 
 table.insert(settings.widgets, {1, maintaglist})
@@ -677,7 +671,7 @@ for i, b in pairs(settings.wiboxes) do
                 end
             end
 
-            mainwibox[i][s]:widgets(widgets)
+            mainwibox[i][s].widgets = widgets
             mainwibox[i][s].screen = s
         end
     end
@@ -689,7 +683,7 @@ end
 local mainpromptbar = wibox(settings.promptbar)
 local mainpromptbox = widget({type = "textbox", align = "left", name = "mainpromptbox"})
 
-mainpromptbar:widgets({mainpromptbox})
+mainpromptbar.widgets = {mainpromptbox}
 mainpromptbar.screen = nil
 
 -- }}}
