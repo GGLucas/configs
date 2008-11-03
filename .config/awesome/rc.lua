@@ -405,7 +405,7 @@ function read_battery_temp(format)
         return {'n/a'}
     end
 
-    return {awful.escape(n)}
+    return {awful.util.escape(n)}
 end
 
 wicked.register(batterywidget, read_battery_temp,
@@ -701,7 +701,7 @@ function mouse_warp(c, force)
     local sel = c or client.focus
     if sel == nil then return end
 
-    local coords = sel:coords()
+    local coords = sel:geometry()
     local m = mouse.coords()
 
     -- Settings
@@ -893,7 +893,7 @@ awful.hooks.manage.register(function (c)
 
         c.screen = 3
 
-        c:coords({
+        c:geometry({
             x = 1680*2+1400,
             y = 18,
             width = 276,
