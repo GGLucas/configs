@@ -373,14 +373,14 @@ settings.promptbar = {
 }
 
 -- {{{ Taglist
-maintaglist = awful.widget.taglist.new(1,
-    function (t)
-        return awful.widget.taglist.label.noempty(t)
-    end, {
+maintaglist = {
+    awful.widget.taglist.label.noempty
+    , {
         button(key.none, 1, function (o, t) awful.tag.viewonly(t) end)
-})
+    }
+}
 
-table.insert(settings.widgets, {1, maintaglist})
+table.insert(settings.widgets, {1, "taglist", maintaglist})
 -- }}}
 
 if settings.widget_mode == 'laptop' or settings.widget_mode == 'all' then
@@ -667,7 +667,11 @@ for i, b in pairs(settings.wiboxes) do
 
             for ii, w in pairs(settings.widgets) do
                 if w[1] == i then
-                    table.insert(widgets, w[2])
+                    if w[2] == "taglist" then
+                        table.insert(widgets, awful.widget.taglist.new(s, w[3][1], w[3][2]))
+                    else
+                        table.insert(widgets, w[2])
+                    end
                 end
             end
 
