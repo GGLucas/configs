@@ -24,6 +24,13 @@ servers = (
     port = "6667";
     autoconnect = "yes";
     nick = "GGLucas";
+  },
+  {
+    address = "irc.foonetic.net";
+    chatnet = "foonetic";
+    port = "6667";
+    autoconnect = "yes";
+    nick = "GGLucas";
   }
 );
 
@@ -68,17 +75,16 @@ chatnets = {
     max_msgs = "100";
   };
   SILC = { type = "SILC"; };
-  freenode = {
-    type = "IRC";
-    autosendcmd = "/mg NickServ IDENTIFY serpent";
-  };
+  freenode = { type = "IRC"; };
   oftc = { type = "IRC"; };
+  foonetic = { type = "IRC"; };
 };
 
 channels = (
   { name = "#awesome"; chatnet = "oftc"; autojoin = "Yes"; },
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
-
+  { name = "#xkcd"; chatnet = "foonetic"; autojoin = "Yes"; },
+  { name = "#xkcd-signal"; chatnet = "foonetic"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -97,7 +103,6 @@ aliases = {
   WI = "whois";
   WII = "whois $0 $0";
   WW = "whowas";
-  W = "who";
   N = "names";
   M = "msg";
   T = "topic";
@@ -122,6 +127,8 @@ aliases = {
   RUN = "SCRIPT LOAD";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
+  "/w" = "/win";
+  w = "win";
 };
 
 statusbar = {
@@ -161,7 +168,7 @@ statusbar = {
     # the "default statusbar" to be displayed at the bottom of the window.
     # contains all the normal items.
     window = {
-      disabled = "no";
+      disabled = "yes";
 
       # window, root
       type = "window";
@@ -175,12 +182,10 @@ statusbar = {
       # list of items in statusbar in the display order
       items = {
         barstart = { priority = "100"; };
-        time = { };
         user = { };
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
@@ -230,6 +235,15 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    remove = { disabled = "yes"; };
+    all = { disabled = "yes"; };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -244,15 +258,26 @@ settings = {
     autolog_path = "~/irclogs/$tag/$0-%m%y.log";
     show_nickmode_empty = "yes";
     theme = "default";
+    show_names_on_join = "no";
   };
   "fe-text" = {
     colors = "yes";
     autostick_split_windows = "yes";
     actlist_sort = "refnum";
+    indent_always = "yes";
+  };
+  "perl/core/scripts" = {
+    awl_display_key = "$Q%K::%n$H$C$S ";
+    neat_left_actions = "yes";
+    neat_colors = "rRgGyYmMcC";
+    notify_time = "3000";
   };
 };
 logs = { };
-ignores = ( );
+ignores = (
+  { mask = "JOINS"; level = "PARTS QUITS NICKS"; },
+  { level = "JOINS PARTS QUITS NICKS"; }
+);
 keyboard = (
   { key = "meta-1"; id = "change_window"; data = "1"; },
   { key = "meta-2"; id = "change_window"; data = "2"; },
@@ -263,8 +288,11 @@ keyboard = (
   { key = "meta-7"; id = "change_window"; data = "7"; },
   { key = "meta-8"; id = "change_window"; data = "8"; },
   { key = "meta-9"; id = "change_window"; data = "9"; },
-  { key = "meta-0"; id = "change_window"; data = "10"; }
+  { key = "meta-0"; id = "change_window"; data = "10"; },
+  { key = "^F"; id = "scroll_forward"; data = ""; },
+  { key = "^B"; id = "scroll_backward"; data = ""; }
 );
 
 windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };
 mainwindows = { 1 = { first_line = "1"; lines = "52"; }; };
+
