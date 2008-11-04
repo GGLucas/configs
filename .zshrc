@@ -35,10 +35,6 @@ PS1="${PR_BLUE}gglucas${PR_LIGHT_GREEN}:${PR_MAGENTA}%~${PR_NO_COLOR}> "
 # vi editing
 bindkey -v
 bindkey ' ' magic-space
-bindkey '^I' complete-word
-bindkey '^P' history-complete-older
-bindkey '^[OH' beginning-of-line
-bindkey '^[OF' end-of-line
 bindkey "^r" history-incremental-search-backward
 bindkey "^[OA" up-line-or-search
 bindkey "^[OB" down-line-or-search
@@ -48,8 +44,6 @@ bindkey "^[[B" down-line-or-search
 
 # colorful listings
 zmodload -i zsh/complist
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
 autoload -U compinit
 compinit
 
@@ -115,3 +109,59 @@ unzipsep()
 }
 
 export color=
+
+# Make cd push the old directory onto the directory stack.
+set -o AUTO_PUSHD
+
+# don't push duplicate directories
+set -o PUSHD_IGNORE_DUPS
+
+alias dv="dirs -v"
+
+# clear dirs from dirstack
+# usage:
+#    cld               - delete all entries in dirstack
+#    cld entry         - delete nth entry in dirstack
+#    cld entry1 entry2 - delete range of entries in dirstack
+cld () {
+
+   # if no args given, wipe out dirstack
+   if [ "$#" -eq "0" ]; then
+      dirs "."
+      popd
+      return
+   fi
+
+   # remove ranges of directory from dirstack
+   if [ "$#" -eq "1" ]; then
+      # if one arg given, wipe out that single dirstack entry
+      num1=$1
+      num2=$1
+   else
+      # delete ranges of directories from dirstack
+      num1=$1
+      num2=$2
+   fi
+
+   range=$(( $num2 - $num1 +1 ))
+
+   dirstackindex=0
+   while [[ $dirstackindex -lt $range ]]; do
+      popd +$num1 > /dev/null
+      dirstackindex=$(( $dirstackindex + 1 ))
+   done
+   dirs -v
+}
+
+# cd into a directory on the dirstack
+# usage:
+#    pd       - "pop" first directory off dirstack, cd into second dir
+#    pd entry - cd into nth entry in dirstack
+pd() {
+   if [ $# -gt 0 ]; then
+      cd ~+$1
+      dv
+   else
+      cld 0
+   fi
+}
