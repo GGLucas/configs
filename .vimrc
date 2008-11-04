@@ -44,7 +44,7 @@ endif
 set expandtab
 
 " do not break lines when line lenght increases
-set textwidth=0
+set textwidth=72
 
 " user 4 spaces to represent a tab
 set tabstop=4
@@ -81,6 +81,14 @@ set showmatch
 
 " indent folds
 set foldmethod=marker
+
+" remember history
+set history=50
+set viminfo=/10,'10,r/mnt/zip,r/mnt/floppy,f0,h,\"100
+
+" other
+set wrap
+set gdefault
 
 " syntax highlight
 syntax on

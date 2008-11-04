@@ -376,7 +376,7 @@ settings.promptbar = {
 maintaglist = {
     awful.widget.taglist.label.noempty
     , {
-        button(key.none, 1, function (o, t) awful.tag.viewonly(t) end)
+        button(key.none, 1, function (t) awful.tag.viewonly(t) end)
     }
 }
 
