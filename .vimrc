@@ -17,6 +17,7 @@ nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>
 nmap <Leader>fd :set fdm=marker<CR>
 nmap <Leader>ff :set fdm=indent<CR>
+nmap <Leader>tw :set textwidth=0<CR>
 
 vmap K k
 
@@ -44,7 +45,7 @@ endif
 set expandtab
 
 " do not break lines when line lenght increases
-set textwidth=72
+set textwidth=79
 
 " user 4 spaces to represent a tab
 set tabstop=4
