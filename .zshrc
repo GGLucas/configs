@@ -99,8 +99,8 @@ convert_mkv()
 
 jr()
 {
-    /opt/java/bin/javac $1.java
-    /opt/java/bin/java $1
+    /opt/jdk1.7.0/bin/javac $1.java
+    /opt/jdk1.7.0/bin/java $1
 }
 
 unzipsep()
