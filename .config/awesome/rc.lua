@@ -201,10 +201,10 @@ settings.bindings.wm.client = {
     [function() awful.client.focus.byidx(1) end] = {key.super, "#25"},
 
     -- Mod+Shift+q: Swap with previous window
-    [function() awful.client.swap(-1) end] = {key.super_shift, "#24"},
+    [function() awful.client.swap.byidx(-1) end] = {key.super_shift, "#24"},
 
     -- Mod+Shift+w: Swap with next window
-    [function() awful.client.swap(1) end] = {key.super_shift, "#25"},
+    [function() awful.client.swap.byidx(1) end] = {key.super_shift, "#25"},
 
     -- Mod+c: Toggle floating
     [awful.client.togglefloating] = {key.super, "#54"},
@@ -625,16 +625,12 @@ end
 -------------------------------------------------------
 
 ---- {{{ Initialisations
--- Register beautiful with awful
-awful.beautiful.register(beautiful)
-
 -- Set default colors
-awesome.colors({ 
-    fg = beautiful.fg_normal, 
-    bg = beautiful.bg_normal })
+awesome.fg = beautiful.fg_normal
+awesome.bg = beautiful.bg_normal
 
 -- Set default font
-awesome.font(beautiful.font)
+awesome.font = beautiful.font
 
 -- Pre-create new tags with eminent
 for s=1, screen.count() do
@@ -923,7 +919,7 @@ awful.hooks.manage.register(function (c)
 
     -- Prevent new windows from becoming master
     if not settings.new_become_master then
-        awful.client.swap(1, c)
+        awful.client.swap.byidx(1, c)
     end
 
     -- Don't honor size hints
