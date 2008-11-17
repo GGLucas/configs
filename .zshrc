@@ -84,3 +84,5 @@ unzipsep()
 {
     for a in *.zip; do o=$(basename $a .zip); mkdir $o; mv $a $o/; cd $o/; unzip $a; cd ..; done;
 }
+
+export color=
