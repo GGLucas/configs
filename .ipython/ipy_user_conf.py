@@ -23,6 +23,7 @@ def main():
     o.autocall = 1
     o.automagic = 1
     o.autoindent = 1
+    o.banner = 0
 
     o.autoedit_syntax = 0
 
@@ -75,6 +76,9 @@ def main():
     ip.magic("env EDITOR=vim")
 
     ip.set_hook("input_prefilter", directcd)
+
+    ip.IP.log = lambda *args: True
+    ip.runlines(["!clear"])
     
 
 def directcd(self, cmd):
