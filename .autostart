@@ -20,6 +20,5 @@ urxvtd &
 # Xmodmap keys
 xmodmap $HOME/.Xmodmap
 
-
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null

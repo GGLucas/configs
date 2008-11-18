@@ -29,3 +29,5 @@ defbce "on"
 
 term screen-256color
 escape \034\034
+
+bindkey -m > eval "stuff ' '" writebuf "exec bash -c 'xsel < /tmp/screen-exchange'"

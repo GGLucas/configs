@@ -11,7 +11,7 @@ bind ^\
 altscreen on 
 hardstatus on
 
-screen -t 'zsh' 1 'zsh'
+screen -t 'bash' 1 'bash'
 
 hardstatus  alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c %{g}]'
 attrcolor b ".I"
@@ -24,3 +24,5 @@ defbce "on"
 term screen-256color
 escape \034\034
 activity '-'
+
+bindkey -m > eval "stuff ' '" writebuf "exec bash -c 'xsel < /tmp/screen-exchange'"

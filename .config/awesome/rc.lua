@@ -94,13 +94,13 @@ settings.tag.mwfact = 0.618033988769
 settings.apps.terminal = 'urxvtc'
 
 -- Terminal with gnu screen
-settings.apps.gnu_screen = settings.apps.terminal..' -e zsh -c "exec screen -x main"'
+settings.apps.gnu_screen = settings.apps.terminal..' -e bash -c "exec screen -x main"'
 
 -- Terminal with gnu screen over ssh to my main machine
-settings.apps.gnu_screen_ssh_desktop = settings.apps.terminal..' -e zsh -c "ssh -t me.glacicle.com screen -x main"'
+settings.apps.gnu_screen_ssh_desktop = settings.apps.terminal..' -e bash -c "ssh -t me.glacicle.com screen -x main"'
 
 -- Terminal with gnu screen over ssh to my vps server
-settings.apps.gnu_screen_ssh_server = settings.apps.terminal..' -e zsh -c "ssh -t glacicle.com screen -x"'
+settings.apps.gnu_screen_ssh_server = settings.apps.terminal..' -e bash -c "ssh -t glacicle.com screen -x"'
 
 -- Command to lock the screen
 settings.apps.lock_screen = 'xscreensaver-command -lock'
@@ -109,7 +109,7 @@ settings.apps.lock_screen = 'xscreensaver-command -lock'
 settings.apps.screen_off = 'sleep 1; xset dpms force off'
 
 -- File manager application
-settings.apps.filemanager = settings.apps.terminal..' -e zsh -c "vifm %s"'
+settings.apps.filemanager = settings.apps.terminal..' -e bash -c "vifm %s"'
 
 -- Toggle music
 -- Note: mpdtoggle is my own script for finding out if 
