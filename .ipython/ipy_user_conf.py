@@ -10,7 +10,7 @@ def main():
     import ipy_profile_sh
     
     # Default Imports
-    import_all("os sys IPython.Extensions.InterpreterExec")
+    import_all("os sys IPython.Extensions.InterpreterExec ipipe")
 
     # Editor
     import ipy_editors
@@ -60,9 +60,11 @@ def main():
     # Readline
     import readline
     readline.parse_and_bind('set completion-query-items 1000')
-    readline.parse_and_bind('set page-completions no')
+    readline.parse_and_bind('set page-completions on')
+    readline.parse_and_bind('set visible-stats on')
 
     readline.parse_and_bind('"\C-l" clear-screen')
+    readline.parse_and_bind('TAB menu-complete')
 
     # Aliases
     ip.magic("alias ls ls --color=auto -F")
