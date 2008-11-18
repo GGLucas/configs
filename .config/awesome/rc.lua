@@ -809,7 +809,7 @@ awful.hooks.focus.register(function (c)
 
     -- Skip over my urxvtcnotify
     if c.name and c.name:lower():find('urxvtcnotify') and awful.client.next(1) ~= c then
-        awful.client.focusbyidx(1)
+        awful.client.focus.byidx(1)
         return
     end
 
