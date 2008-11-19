@@ -1,25 +1,35 @@
-set nocompatible
-
 " Leader
 let mapleader=","
 
-" Maps
+" Window/split navigation
 nmap <C-H> <C-w>h
 nmap <C-J> <C-w>j
 nmap <C-K> <C-w>k
 nmap <C-L> <C-w>l
 
+" Previous completion
 imap <S-Tab> <C-d>
 
+" Handy shortcut for save
 nmap e :w<CR>
-nmap <Leader>cd :colorscheme default<CR>
+
+" Fold methods
 nmap <Leader>fd :set fdm=marker<CR>
 nmap <Leader>ff :set fdm=indent<CR>
+
+" Text width
 nmap <Leader>tw :set textwidth=0<CR>
 
+" Spellcheck
+nmap <Leader>hh :set nospell<CR>
+nmap <Leader>he :set spell spelllang=en<CR>
+nmap <Leader>hn :set spell spelllang=nl<CR>
+
+" Buffer Navigation
 nmap gb :bprevious<CR>
 nmap gn :bnext<CR>
 
+" To prevent K mispresses right after V
 vmap K k
 
 " Swap marks
@@ -33,12 +43,13 @@ let NERDShutUp = 1
 " Color Scheme
 colorscheme darkspectrum
 
+" Extra highlights
 highlight Pmenu ctermbg=139 ctermfg=0
 highlight PmenuSel ctermbg=11 ctermfg=0
 highlight PmenuSbar ctermbg=248 ctermfg=0
 highlight Statement cterm=bold
 
-" Lusty Juggler/Explorer
+" Lusty Explorer
 nmap <silent> <Leader>y <Leader>mbc:FilesystemExplorer<CR>
 nmap <silent> <Leader>d <Leader>mbc:FilesystemExplorerFromHere<CR>
 nmap <silent> <Leader>g <Leader>mbc:BufferExplorer<CR>
@@ -116,8 +127,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " Filetype
 filetype plugin on
 
-" Other
-set wrap
+" Global match by default
 set gdefault
 
 " Syntax highlighting
