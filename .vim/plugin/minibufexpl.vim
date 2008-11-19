@@ -716,6 +716,11 @@ function! <SID>StopExplorer(sticky)
     let g:miniBufExplorerAutoUpdate = 0
   endif
 
+  let l:bufNum = bufnr('-MiniBufExplorer-')
+  if l:bufNum != -1
+    exec l:bufNum.' bwipeout!'
+  endif
+
   let l:winNum = <SID>FindWindow('-MiniBufExplorer-', 1)
 
   if l:winNum != -1 
@@ -813,7 +818,6 @@ function! <SID>FindCreateWindow(bufName, forceEdge, isExplorer, doDebug)
     exec l:winNum.' wincmd w'
     let l:winFound = 1
   else
-
     if g:miniBufExplSplitToEdge == 1 || a:forceEdge >= 0
 
         let l:edge = &splitbelow

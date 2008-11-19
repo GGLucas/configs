@@ -36,6 +36,15 @@ vmap K k
 nnoremap ' ` 
 nnoremap ` '
 
+" Command line cursor keys
+cnoremap <C-H> <Left>
+cnoremap <C-J> <Up>
+cnoremap <C-K> <Down>
+cnoremap <C-L> <Right>
+cnoremap <C-X> <Delete>
+cnoremap <Esc>h <S-Left>
+cnoremap <Esc>l <S-Right>
+
 " Plugin vars
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
@@ -50,9 +59,12 @@ highlight PmenuSbar ctermbg=248 ctermfg=0
 highlight Statement cterm=bold
 
 " Lusty Explorer
-nmap <silent> <Leader>y <Leader>mbc:FilesystemExplorer<CR>
-nmap <silent> <Leader>d <Leader>mbc:FilesystemExplorerFromHere<CR>
-nmap <silent> <Leader>g <Leader>mbc:BufferExplorer<CR>
+nmap <silent> <Leader>y :CMiniBufExplorer<CR>:FilesystemExplorer<CR>
+nmap <silent> <Leader>d :CMiniBufExplorer<CR>:FilesystemExplorerFromHere<CR>
+nmap <silent> <Leader>g :CMiniBufExplorer<CR>:BufferExplorer<CR>
+
+" Minibufexpl
+let g:miniBufExplorerMoreThanOne=1
 
 " Color scheme for vc
 if $TERM == 'linux'
@@ -108,7 +120,7 @@ set autochdir
 " Show matching
 set showmatch
 
-" Indent folds
+" Fold methods
 set foldmethod=indent
 
 " Remember history

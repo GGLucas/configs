@@ -386,8 +386,8 @@ class LustyExplorer
       Window.select @calling_window
       @settings.restore
       @running = false
-      msg ""
       exe "TMiniBufExplorer"
+      msg ""
     end
 
     # Set the "#" (previous) buffer to something valid.  After killing the
