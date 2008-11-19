@@ -10,7 +10,7 @@ def main():
     import ipy_profile_sh
     
     # Default Imports
-    import_all("IPython.Extensions.InterpreterExec ipipe")
+    import_all("IPython.Extensions.InterpreterExec ipipe pprint")
     ip.ex("import os, sys")
 
     # Editor

@@ -1,5 +1,8 @@
 set nocompatible
 
+" Leader
+let mapleader=","
+
 " Maps
 nmap <C-H> <C-w>h
 nmap <C-J> <C-w>j
@@ -8,18 +11,20 @@ nmap <C-L> <C-w>l
 
 imap <S-Tab> <C-d>
 
-nmap gb :bprevious<CR>
-nmap gn :bnext<CR>
-nmap gj <C-f>
-nmap gk <C-b>
-nmap gl :Ex<CR> 
 nmap e :w<CR>
 nmap <Leader>cd :colorscheme default<CR>
 nmap <Leader>fd :set fdm=marker<CR>
 nmap <Leader>ff :set fdm=indent<CR>
 nmap <Leader>tw :set textwidth=0<CR>
 
+nmap gb :bprevious<CR>
+nmap gn :bnext<CR>
+
 vmap K k
+
+" Swap marks
+nnoremap ' ` 
+nnoremap ` '
 
 " Plugin vars
 let NERDDefaultNesting = 1
@@ -33,6 +38,11 @@ highlight PmenuSel ctermbg=11 ctermfg=0
 highlight PmenuSbar ctermbg=248 ctermfg=0
 highlight Statement cterm=bold
 
+" Lusty Juggler/Explorer
+nmap <silent> <Leader>y <Leader>mbc:FilesystemExplorer<CR>
+nmap <silent> <Leader>d <Leader>mbc:FilesystemExplorerFromHere<CR>
+nmap <silent> <Leader>g <Leader>mbc:BufferExplorer<CR>
+
 " Color scheme for vc
 if $TERM == 'linux'
     colorscheme default
@@ -41,55 +51,74 @@ else
 endif
 
 " Config
-" enter spaces when tab is pressed:
+" Enter spaces when tab is pressed:
 set expandtab
 
-" do not break lines when line lenght increases
-set textwidth=79
+" Faster scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
-" user 4 spaces to represent a tab
+" Text width
+set textwidth=76
+
+" Use 4 spaces to represent a tab
 set tabstop=4
 set softtabstop=4
 
-" number of space to use for auto indent
-" you can use >> or << keys to indent current line or selection
-" in normal mode.
+" Number of spaces to use for auto indent
 set shiftwidth=4
 
 " Copy indent from current line when starting a new line.
 set autoindent
 
-" makes backspace key more powerful.
+" Makes the backspace key more powerful.
 set backspace=indent,eol,start
 
-" shows the match while typing
+" Shows the match while typing
 set incsearch
 
-" case insensitive search
+" Case insensitive search
 set ignorecase
 
-" show line and column number
+" Show line and column number
 set number
+set ruler
 
-" allow hidden buffers with changes
+" Allow hidden buffers with changes
 set hidden
 
-" show some autocomplete options in status bar
+" Show some autocomplete options in status bar
 set wildmenu
+set wildmode=list:longest,full
 
-" show matching
+" Autocd
+set autochdir
+
+" Show matching
 set showmatch
 
-" indent folds
-set foldmethod=marker
+" Indent folds
+set foldmethod=indent
 
-" remember history
-set history=50
-set viminfo=/10,'10,r/mnt/zip,r/mnt/floppy,f0,h,\"100
+" Remember history
+set history=100
 
-" other
+" Scrolloff
+set scrolloff=3
+
+" Shortmess
+set shortmess=atI
+
+" Swap files
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" Filetype
+filetype plugin on
+
+" Other
 set wrap
 set gdefault
 
-" syntax highlight
+" Syntax highlighting
 syntax on
