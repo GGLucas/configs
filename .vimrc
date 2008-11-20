@@ -1,6 +1,9 @@
 " Leader
 let mapleader=","
 
+" Use UTF-8 encoding
+set encoding=utf-8
+
 " Window/split navigation
 nmap <C-H> <C-w>h
 nmap <C-J> <C-w>j
@@ -32,10 +35,6 @@ nmap gn :bnext<CR>
 " To prevent K mispresses right after V
 vmap K k
 
-" Swap marks
-nnoremap ' ` 
-nnoremap ` '
-
 " Command line cursor keys
 cnoremap <C-H> <Left>
 cnoremap <C-J> <Up>
@@ -45,7 +44,7 @@ cnoremap <C-X> <Delete>
 cnoremap <Esc>h <S-Left>
 cnoremap <Esc>l <S-Right>
 
-" Plugin vars
+" NERD Commenter
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
 
@@ -64,7 +63,7 @@ nmap <silent> <Leader>d :CMiniBufExplorer<CR>:FilesystemExplorerFromHere<CR>
 nmap <silent> <Leader>g :CMiniBufExplorer<CR>:BufferExplorer<CR>
 
 " Minibufexpl
-let g:miniBufExplorerMoreThanOne=1
+let g:miniBufExplorerMoreThanOne=0
 
 " Color scheme for vc
 if $TERM == 'linux'
@@ -136,8 +135,12 @@ set shortmess=atI
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" Viminfo
+set viminfo='1000,f1,<500,:500,/500,h
+
 " Filetype
 filetype plugin on
+filetype indent on
 
 " Global match by default
 set gdefault

@@ -1,17 +1,36 @@
+" Editor
+set editor=g
+
+" Show tabline only with more than one tab
+set showtabline=1
+
+" Unfocus textfields
+set focuscontent
+
+" Incremental search
+set incsearch
+
+" Smartcase
+set smartcase
+
+" Leader
+let mapleader=","
+
+" Show/hide toolbars
 map <C-]> <Escape>:set go=b<Return><Escape>
 map <C-+> <Escape>:set go=bm<Return><Escape>
 map <C-=> <Escape>:set go=<Return><Escape>
+
+" Next/Prev Tab
 map gp <Escape>:tabprev<Return><Escape>
 map gn <Escape>:tabnext<Return><Escape>
-map gj <C-f>
-map gk <C-b>
-map <C-h> <Escape>:tabprev<Return><Escape>
-map <C-l> <Escape>:tabnext<Return><Escape>
 map gb gp
-set editor=g
-set showtabline=1
-set focuscontent
 
-map <Leader>q <Esc>:javas stumble()<CR><Esc>
-map <Leader>w <Esc>:javas su_rate(1, false, false, false)<CR><Esc>
-map <Leader>e <Esc>:javas su_rate(0, false, false, false)<CR><Esc>
+" Stumble
+map <Leader>; <Esc>:javas stumble()<CR><Esc>
+map <Leader>, <Esc>:javas su_rate(1, false, false, false)<CR><Esc>
+map <Leader>. <Esc>:javas su_rate(0, false, false, false)<CR><Esc>
+
+" Faster scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>

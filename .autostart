@@ -2,7 +2,7 @@
 sleep 1
 
 # VNC Server
-x11vnc -usepw -shared -forever > /dev/null &
+#x11vnc -usepw -shared -forever > /dev/null &
 
 # Make forward&back mouse buttons work
 imwheel -k -b "67" > /dev/null &

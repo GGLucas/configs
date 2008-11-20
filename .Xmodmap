@@ -3,6 +3,6 @@ keycode 115 = Super_L
 remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
 keysym Caps_Lock = Escape
-keysym numbersign = numbersign grave
-
 remove mod1 = Super_L
+
+keycode 21 = numbersign grave
