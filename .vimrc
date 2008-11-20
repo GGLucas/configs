@@ -63,7 +63,7 @@ nmap <silent> <Leader>d :CMiniBufExplorer<CR>:FilesystemExplorerFromHere<CR>
 nmap <silent> <Leader>g :CMiniBufExplorer<CR>:BufferExplorer<CR>
 
 " Minibufexpl
-let g:miniBufExplorerMoreThanOne=0
+let g:miniBufExplorerMoreThanOne=2
 
 " Color scheme for vc
 if $TERM == 'linux'
