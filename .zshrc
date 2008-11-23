@@ -1,6 +1,6 @@
 # Applications
-PAGER='vimpager'
-EDITOR='vim'
+export PAGER='vimpager'
+export EDITOR='vim'
 
 # Options
 setopt   appendhistory allexport

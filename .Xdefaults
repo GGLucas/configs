@@ -4,7 +4,7 @@ Xcursor.theme: Vanilla-DMZ-AA
 Xft*dpi:        99
 Xft*antialias:    true
 
-URxvt.termName: rxvt
+urxvt.termName: rxvt
 urxvt.scrollBar: false
 urxvt.scrollTtyOutput: false
 urxvt.scrollWithBuffer: true

@@ -11,7 +11,7 @@ bind ^\
 altscreen on 
 hardstatus on
 
-screen -t 'bash' 1 'bash'
+screen -t 'zsh' 1 'zsh'
 
 hardstatus  alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c %{g}]'
 attrcolor b ".I"
