@@ -890,7 +890,7 @@ awful.hooks.manage.register(function (c)
     -- Check if floating
     for app, i in pairs(settings.floating) do
         if class:find(app) or name:find(app) then
-            c.floating = i
+            awful.client.floating.set(c, i)
             break
         end
     end
