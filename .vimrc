@@ -29,8 +29,9 @@ nmap <Leader>he :set spell spelllang=en<CR>
 nmap <Leader>hn :set spell spelllang=nl<CR>
 
 " Buffer Navigation
-nmap gb :bprevious<CR>
-nmap gn :bnext<CR>
+nmap <silent> gb :bprevious<CR>
+nmap <silent> gn :bnext<CR>
+nmap <silent> gl :Ex<CR>
 
 " To prevent K mispresses right after V
 vmap K k

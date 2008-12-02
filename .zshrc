@@ -29,6 +29,7 @@ bindkey "^_" up-line-or-search
 # Aliases
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
+alias ser="nocorrect ser"
 alias mkdir='nocorrect mkdir'
 alias ls='ls --color=auto -F'
 alias no='ls'
@@ -47,42 +48,5 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 # Prompt
 PS1="${PR_BLUE}gglucas${PR_LIGHT_GREEN}:${PR_MAGENTA}%~${PR_NO_COLOR}> "
-
-# Functions
-websync()
-{
-    source ~/.rsync_locs
-    for name in $@; do
-        eval "r=\$RSYNC_$name"
-        echo Syncing $name
-        echo "rsync -tavz --progress $r"
-        echo --------------------
-        eval "rsync -tavz --progress $r"
-    done
-}
-
-convert_mkv()
-{
-    for e in *.$1; do
-        b=$(basename $e .$1).mkv
-
-        if [[ -a $b ]]; then;
-            echo $b Exists;
-        else
-            mkvmerge -o $b $e;
-        fi;
-    done;
-}
-
-jr()
-{
-    /opt/jdk1.7.0/bin/javac $1.java
-    /opt/jdk1.7.0/bin/java $1
-}
-
-unzipsep()
-{
-    for a in *.zip; do o=$(basename $a .zip); mkdir $o; mv $a $o/; cd $o/; unzip $a; cd ..; done;
-}
 
 export color=

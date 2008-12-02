@@ -10,6 +10,9 @@ imwheel -k -b "67" > /dev/null &
 # Enable Glyph Cache :D
 #nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
 
+# Disable Glyph Cache :(
+nvidia-settings -a GlyphCache=0
+
 # Enable sound
 amixer set Front 100 unmute > /dev/null &
 mpc volume 74
@@ -19,6 +22,9 @@ urxvtd &
 
 # Xmodmap keys
 xmodmap $HOME/.Xmodmap
+
+# WMName for Java
+wmname compiz
 
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null

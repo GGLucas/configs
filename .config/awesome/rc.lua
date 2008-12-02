@@ -207,7 +207,7 @@ settings.bindings.wm.client = {
     [function() awful.client.swap.byidx(1) end] = {key.super_shift, "#25"},
 
     -- Mod+c: Toggle floating
-    [awful.client.togglefloating] = {key.super, "#54"},
+    [awful.client.floating.toggle] = {key.super, "#54"},
 
     -- Mod+\: Make window master
     [function() local c = awful.client.master(); if c ~= client.focus then c:swap(client.focus) end end] =
@@ -299,10 +299,16 @@ settings.bindings.mouse.desktop = {
 
 settings.bindings.mouse.client = {
     -- Alt+Left: Move window
-    [function(c) c:mouse_move() end] = {key.alt, 1},
+    [awful.mouse.client.move] = {key.alt, 1},
+
+    --Alt+Right: Resize window
+    [awful.mouse.client.resize] = {key.alt, 3},
+
+    -- Alt+Left: Move window
+    --[function(c) c:mouse_move() end] = {key.alt, 1},
 
     -- Alt+Right: Resize window
-    [function(c) c:mouse_resize({corner="bottomright"}) end] = {key.alt, 3},
+    --[function(c) c:mouse_resize({corner="bottomright"}) end] = {key.alt, 3},
 }
 -- }}}
 
@@ -706,17 +712,24 @@ function mouse_warp(c, force)
 
     -- Settings
     mouse_padd = 6
-    border_area = 5
-    
+    border_area = 10
+
     -- Check if mouse is not already inside the window
     if  (( m.x < coords.x-border_area or
            m.y < coords.y-border_area or
            m.x > coords.x+coords.width+border_area or
            m.y > coords.y+coords.height+border_area
-        ) and (
-           table.maxn(m.buttons) == 0
-        )) or force
+        )
+        or force)
     then
+        if not force then
+            for k,v in pairs(m.buttons) do
+                if v then
+                    return
+                end
+            end
+        end
+
         mouse.coords({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
     end
 end
@@ -832,6 +845,10 @@ awful.hooks.focus.register(function (c)
         last_screen = c.screen
     end
 
+    -- Warp the mouse
+    if settings.warp_mouse then
+        mouse_warp()
+    end
 end)
 -- }}}
 
@@ -924,16 +941,14 @@ awful.hooks.manage.register(function (c)
 
     -- Don't honor size hints
     c.honorsizehints = false
+
+    -- MWFact
+    awful.tag.setmwfact(settings.tag.mwfact)
 end)
 -- }}}
 
 -- {{{ Arrange hook
 awful.hooks.arrange.register(function(s)
-    -- Warp the mouse
-    if settings.warp_mouse then
-        mouse_warp()
-    end
-
     -- Check focus
     if not client.focus then
         local c = awful.client.focus.history.get(s, 0)
