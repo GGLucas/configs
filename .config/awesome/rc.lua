@@ -240,13 +240,13 @@ settings.bindings.wm.tag = {
     [function() eminent.tag.next(mouse.screen) end] = {key.super, "#39"},
 
     -- Alt+\: Switch to float layout
-    [function() awful.layout.set('floating') end] = {key.alt, "#51"},
+    [function() awful.layout.set(awful.layout.suit.floating) end] = {key.alt, "#51"},
 
     -- Alt+z: Switch to max layout
-    [function() awful.layout.set('max') end] = {key.alt, "#52"},
+    [function() awful.layout.set(awful.layout.suit.max) end] = {key.alt, "#52"},
 
     -- Alt+x: Switch to tile layout
-    [function() awful.layout.set('tile') end] = {key.alt, "#53"},
+    [function() awful.layout.set(awful.layou.suit.tile) end] = {key.alt, "#53"},
 }
 -- }}}
 
@@ -844,11 +844,6 @@ awful.hooks.focus.register(function (c)
 
         last_screen = c.screen
     end
-
-    -- Warp the mouse
-    if settings.warp_mouse then
-        mouse_warp()
-    end
 end)
 -- }}}
 
@@ -953,6 +948,11 @@ awful.hooks.arrange.register(function(s)
     if not client.focus then
         local c = awful.client.focus.history.get(s, 0)
         if c then client.focus = c end
+    end
+
+    -- Warp the mouse
+    if settings.warp_mouse then
+        mouse_warp()
     end
 end)
 -- }}}
