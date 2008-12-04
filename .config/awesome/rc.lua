@@ -246,7 +246,7 @@ settings.bindings.wm.tag = {
     [function() awful.layout.set(awful.layout.suit.max) end] = {key.alt, "#52"},
 
     -- Alt+x: Switch to tile layout
-    [function() awful.layout.set(awful.layou.suit.tile) end] = {key.alt, "#53"},
+    [function() awful.layout.set(awful.layout.suit.tile) end] = {key.alt, "#53"},
 }
 -- }}}
 
