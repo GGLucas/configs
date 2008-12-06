@@ -245,25 +245,25 @@ changeconfig true
 #feed 3h http://proxyfeed.example.com/proxied.rss http_proxy=http://localhost:1234/
 #feed 3h http://dupsfeed.example.com/duplicated.rss allowduplicates=true
 
-feed 3h http://www.xkcd.com/rss.xml
+feed 1h http://www.xkcd.com/rss.xml
 
-feed 3h http://syndication.thedailywtf.com/TheDailyWtf
-feed 3h http://feeds.feedburner.com/codinghorror/
-feed 3h http://www.userfriendly.org/rss/uf.rss
-feed 3h http://dailyvim.blogspot.com/feeds/posts/default
-feed 3h http://neopythonic.blogspot.com/feeds/posts/default
-feed 3h http://www.oreillynet.com/pub/feed/30
-feed 3h http://www.cad-comic.com/rss/rss.xml
-feed 3h http://egscomics.com/egs.rss
-feed 3h http://feeds.penny-arcade.com/pa-mainsite/
-feed 3h http://www.rsspect.com/rss/digitalunrest.xml
-feed 3h http://feeds.feedburner.com/DuelingAnalogs
-feed 3h http://www.smbc-comics.com/rss.php
-feed 3h http://www.myextralife.com/?feed=rss2
-feed 3h http://fanboys-online.com/rss/main.xml
-feed 3h http://www.giantitp.com/comics/oots.rss
-feed 3h http://www.giantitp.com/comics/erf.rss
-feed 3h http://www.vgcats.com/vgcats.rdf.xml
-feed 3h http://www.vgcats.com/super/se.rdf.xml
-feed 3h http://feedproxy.google.com/DilbertDailyStrip
-feed 3h http://www.sinfest.net/rss.php
+feed 1h http://syndication.thedailywtf.com/TheDailyWtf
+feed 1h http://feeds.feedburner.com/codinghorror/
+feed 1h http://www.userfriendly.org/rss/uf.rss
+feed 1h http://dailyvim.blogspot.com/feeds/posts/default
+feed 1h http://neopythonic.blogspot.com/feeds/posts/default
+feed 1h http://www.oreillynet.com/pub/feed/30
+feed 1h http://www.cad-comic.com/rss/rss.xml
+feed 1h http://egscomics.com/egs.rss
+feed 1h http://feeds.penny-arcade.com/pa-mainsite/
+feed 1h http://www.rsspect.com/rss/digitalunrest.xml
+feed 1h http://feeds.feedburner.com/DuelingAnalogs
+feed 1h http://www.smbc-comics.com/rss.php
+feed 1h http://www.myextralife.com/?feed=rss2
+feed 1h http://fanboys-online.com/rss/main.xml
+feed 1h http://www.giantitp.com/comics/oots.rss
+feed 1h http://www.giantitp.com/comics/erf.rss
+feed 1h http://www.vgcats.com/vgcats.rdf.xml
+feed 1h http://www.vgcats.com/super/se.rdf.xml
+feed 1h http://feedproxy.google.com/DilbertDailyStrip
+feed 1h http://www.sinfest.net/rss.php
