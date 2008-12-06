@@ -195,7 +195,7 @@ hideduplicates id
 
 # The period to use for new feeds added to the config file via the -a|--add
 # option.
-newfeedperiod 3h
+newfeedperiod 1h
 
 # Whether rawdog should automatically update this config file (and its
 # internal state) if feed URLs change (for instance, if a feed URL
