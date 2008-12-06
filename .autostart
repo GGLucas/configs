@@ -28,3 +28,6 @@ wmname compiz
 
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null
+
+# Update feeds
+rawdog -vuw &> /dev/null&
