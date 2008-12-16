@@ -30,4 +30,4 @@ wmname compiz
 xscreensaver > /dev/null
 
 # Update feeds
-rawdog -vuw &> /dev/null&
+rawdog -uw &> /dev/null&
