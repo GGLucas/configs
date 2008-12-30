@@ -1,2 +1,6 @@
 #!/bin/bash
-exec yaourt -Syu --aur $@
+#exec yaourt -Syu --aur $@
+echo " -- Updating Repositories -- "
+pp -Syu
+echo " -- Updating AUR -- "
+aursh -Su

@@ -1,9 +1,0 @@
-#!/bin/bash
-if [[ "$@" == "" ]];
-then
-echo "Logging in to server"
-ssh archlucas@glacicle.com
-else
-echo "Executing command \`$@\` remotely"
-ssh archlucas@glacicle.com '$@'
-fi

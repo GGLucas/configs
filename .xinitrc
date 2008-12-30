@@ -3,12 +3,6 @@
 # Merge X settings
 xrdb -merge $HOME/.Xresources
 
-# Keytouch launch
-#bash /etc/X11/Xsession.d/92_keytouchd_launch
-
-# Turn on numlock
-#numlockx
-
 # SCIM
 #export XMODIFIERS=@im=SCIM
 #export GTK_IM_MODULE="scim"
@@ -19,13 +13,7 @@ xrdb -merge $HOME/.Xresources
 nitrogen --restore
 
 # Start WM
-#exec awesome && exit
-if [ -n $AWE_CONF ]
-then
-    awesome -c $AWE_CONF &
-else
-    awesome &
-fi
+awesome -c ~/.config/awesome/rc_31.lua &
 
 # Launch autostart script
 exec bash $HOME/.autostart

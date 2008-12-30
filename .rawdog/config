@@ -267,3 +267,5 @@ feed 1h http://www.vgcats.com/vgcats.rdf.xml
 feed 1h http://www.vgcats.com/super/se.rdf.xml
 feed 1h http://feedproxy.google.com/DilbertDailyStrip
 feed 1h http://www.sinfest.net/rss.php
+feed 1h http://torvalds-family.blogspot.com/feeds/posts/default
+feed 1h http://www.gnu.org/rss/whatsnew.rss

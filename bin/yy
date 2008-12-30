@@ -1,2 +1,6 @@
 #!/bin/bash
-exec yaourt $@
+echo " -- Searching Repositories -- " 
+aursh pacnet search $@
+
+echo " -- Searching AUR -- " 
+aursh aur search $@

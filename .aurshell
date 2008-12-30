@@ -1,0 +1,86 @@
+
+# set aliases here
+
+[alias]
+
+compile = base makepkg
+makepkg = base makepkg
+install = base install
+edit = base edit
+copy = base copy
+builddir = base builddir
+aur install = aur info ; aur download ; base validate ; base makepkg ; base install << 
+
+# aurshell upgrade
+upgrade = aur download ; base validate ; base makepkg ; base install << aurshell-git
+
+# Pacman-like commands
+-Ss = aur search
+Ss  = aur search
+-S  = aur download ; base validate ; base makepkg ; base install << 
+S   = aur download ; base validate ; base makepkg ; base install << 
+-Si = aur info
+Si  = aur info
+-Sw = aur download
+Sw  = aur download
+-Su = aur upgrade
+Su  = aur upgrade
+
+
+#base configuration option
+
+[base]
+
+# use color output? [True/False]
+use_colors = True
+
+# history
+history_file = ~/.aurshell_history
+history_length = 500
+
+# package build path, by default in home dir
+build_dir = ~/sources
+
+# how to install package? DON'T use aurshell as root!
+install_cmd = sudo pacman -U 
+
+# compile command
+compile_cmd = makepkg -f
+editor = vim
+
+# separator for single line commands
+cmd_separator = ;
+
+# send list of arguments to many commands
+# abs search {cmd_separator} aur search << vim xorg
+# where {cmd_separator} is ; by default
+arguments_pipe = <<
+
+# paint with given color, or set to '' if don't want to 
+# mark_searchword = ''
+mark_searchword = RED
+
+# ABS path
+#abs_path = /var/abs
+
+# shell prompt
+shell_prompt = #{BOLD} aurshell #{BLUE}# #{NONE}
+
+# how to download web page (urllib doesn't work with google)
+# use lynx, links, w3m or something similar
+page_downloader = lynx -dump 
+
+# hello message
+#shell_intro = #{BOLD} Hello to #{BLUE}aurshell! #{none}
+
+# if PKGDEST in /etc/makepkg.conf is set, this value should
+# be set to $PKGDEST value. Else it can be empty or not set.
+makepkg_pkgdest = /data/others/pkgs
+
+
+[proxy] 
+
+#http = http://username:password@proxy.address.com:port
+#ftp = http://username:password@proxy.address.com:port
+#git = http://username:password@proxy.address.com:port
+
