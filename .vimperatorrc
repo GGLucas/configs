@@ -26,6 +26,9 @@ map gp <Escape>:tabprev<Return><Escape>
 map gn <Escape>:tabnext<Return><Escape>
 map gb gp
 
+map gH <Escape>:tabopen http://me.glacicle.com:81/planet<Return><Escape>
+map gh <Escape>:open http://me.glacicle.com:81/planet<Return><Escape>
+
 " Stumble
 map <Leader>; <Esc>:javas stumble()<CR><Esc>
 map <Leader>, <Esc>:javas su_rate(1, false, false, false)<CR><Esc>

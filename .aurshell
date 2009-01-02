@@ -75,7 +75,7 @@ page_downloader = lynx -dump
 
 # if PKGDEST in /etc/makepkg.conf is set, this value should
 # be set to $PKGDEST value. Else it can be empty or not set.
-makepkg_pkgdest = /data/others/pkgs
+#makepkg_pkgdest = /data/others/pkgs
 
 
 [proxy] 

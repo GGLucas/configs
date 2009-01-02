@@ -24,7 +24,7 @@ xmodmap $HOME/.Xmodmap
 wmname compiz
 
 # Update feeds
-rawdog -uw &> /dev/null &
+update_planet &> /dev/null &
 
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null
