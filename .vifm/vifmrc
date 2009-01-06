@@ -85,6 +85,7 @@ RUN_EXECUTABLE=0
 BOOKMARKS=H=/home/archlucas=../
 BOOKMARKS=d=/data=../
 BOOKMARKS=j=/data=../
+BOOKMARKS=m=/data/others/vifm_trash=[Chihiro]_Zettai_Karen_Children_15_[h264][36C55993].mkv
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action
