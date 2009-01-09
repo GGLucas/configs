@@ -21,8 +21,8 @@ chatnets = {
 settings = {
     core = {
         real_name = "Lucas";
-        user_name = "GGLucas";
-        nick = "GGLucas";
+        user_name = "gglucas";
+        nick = "gglucas";
     };
     "fe-common/core" = {
         show_names_on_join = "no";

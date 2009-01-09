@@ -1,3 +1,4 @@
 #!/bin/bash
 echo -- Finding *.pacnew and *.pacsave files --
-sudo find /etc -name "*.pac*"
+for i in $(sudo find /etc -name "*.pac*"); do sudo vimdiff $i $(echo $i | sed "s/.pacnew//;s/.pacsave//"); done;
+#for i in $(sudo find /etc -name "*.pac*"); do sudo rm $i; done;

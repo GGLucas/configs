@@ -11,7 +11,8 @@ def adddir(dir):
 
 if __name__ == '__main__':
     adddir(sys.argv[2]) 
+    print(len(FILES))
 
     while True:
-        time.sleep(float(sys.argv[1]))
         os.system('gqview -r "'+random.choice(FILES).replace('"','\\"')+'"')
+        time.sleep(float(sys.argv[1]))

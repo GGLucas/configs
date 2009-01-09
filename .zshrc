@@ -14,7 +14,6 @@ zmodload -a zsh/stat stat
 zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 
-
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=9000
@@ -31,7 +30,7 @@ alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias ser="nocorrect ser"
 alias mkdir='nocorrect mkdir'
-alias ls='ls --color=auto -F'
+alias ls='ls --color=auto -F --group-directories-first'
 alias no='ls'
 
 # Colours

@@ -43,3 +43,5 @@ map <Leader>comics <Esc>:tabopen cad<CR>:tabopen egs<CR>:tabopen pa<CR>:tabopen 
 
 noremap j 3j
 noremap k 3k
+
+" vim: set syn=vimperator:

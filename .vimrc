@@ -31,7 +31,12 @@ nmap <Leader>hn :set spell spelllang=nl<CR>
 " Buffer Navigation
 nmap <silent> gb :bprevious<CR>
 nmap <silent> gn :bnext<CR>
-nmap <silent> gl :Ex<CR>
+nmap <silent> gl :e .<CR>
+
+" Opening different plugin windows
+nmap <silent> ;p :NERDTree<CR>
+nmap <silent> ;. :MyBuf<CR>
+nmap <silent> ;; :MyBufDestroy<CR>;p;.
 
 " To prevent K mispresses right after V
 vmap K k
@@ -49,6 +54,18 @@ cnoremap <Esc>l <S-Right>
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
 
+" NERD Tree
+let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$']
+
+" Pydoc
+let g:pydoc_highlight = 0
+
+" Django projects
+source ~/.vim/plugin/django_projects.vim
+let g:django_terminal_program = "urxvtc -e"
+
+call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
+
 " Color Scheme
 colorscheme darkspectrum
 
@@ -57,14 +74,6 @@ highlight Pmenu ctermbg=139 ctermfg=0
 highlight PmenuSel ctermbg=11 ctermfg=0
 highlight PmenuSbar ctermbg=248 ctermfg=0
 highlight Statement cterm=bold
-
-" Lusty Explorer
-nmap <silent> <Leader>y :CMiniBufExplorer<CR>:FilesystemExplorer<CR>
-nmap <silent> <Leader>d :CMiniBufExplorer<CR>:FilesystemExplorerFromHere<CR>
-nmap <silent> <Leader>g :CMiniBufExplorer<CR>:BufferExplorer<CR>
-
-" Minibufexpl
-let g:miniBufExplorerMoreThanOne=2
 
 " Color scheme for vc
 if $TERM == 'linux'
@@ -120,9 +129,6 @@ set autochdir
 " Show matching
 set showmatch
 
-" Fold methods
-set foldmethod=indent
-
 " Remember history
 set history=100
 
@@ -148,3 +154,10 @@ set gdefault
 
 " Syntax highlighting
 syntax on
+
+" Autocommands
+autocmd BufEnter *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufEnter *.html filetype indent off
+autocmd BufEnter *.html setlocal ai
+
+autocmd BufEnter *.ccss setlocal syn=ccss
