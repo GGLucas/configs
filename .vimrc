@@ -60,26 +60,23 @@ let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$']
 " Pydoc
 let g:pydoc_highlight = 0
 
+" Python syntax
+let python_highlight_all = 1
+
 " Django projects
 source ~/.vim/plugin/django_projects.vim
 let g:django_terminal_program = "urxvtc -e"
 
 call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
 
-" Color Scheme
-colorscheme darkspectrum
-
-" Extra highlights
-highlight Pmenu ctermbg=139 ctermfg=0
-highlight PmenuSel ctermbg=11 ctermfg=0
-highlight PmenuSbar ctermbg=248 ctermfg=0
-highlight Statement cterm=bold
-
-" Color scheme for vc
+" Color Schemes
 if $TERM == 'linux'
+    " Virtual Console
     colorscheme default
 else
+    " Regular
     set t_Co=256
+    colorscheme oblivion
 endif
 
 " Config

@@ -99,7 +99,12 @@ channels = (
   { name = "#curseofsteel"; chatnet = "foonetic"; autojoin = "Yes"; },
 
   { name = "#doremi"; chatnet = "rizon"; autojoin = "Yes"; },
-  { name = "#DLQCT"; password = "dlqct"; chatnet = "rizon"; autojoin = "Yes"; }
+  {
+    name = "#DLQCT";
+    password = "dlqct";
+    chatnet = "rizon";
+    autojoin = "Yes";
+  }
 );
 
 aliases = {
