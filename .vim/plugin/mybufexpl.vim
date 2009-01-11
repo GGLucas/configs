@@ -18,14 +18,15 @@ let g:MyBufWin = -1
 let g:bufName = "-MyBufExplorer-"
 
 command! MyBuf call <SID>Create()
+command! MyBufUpdate call <SID>Update(-1)
 command! MyBufDestroy call <SID>Destroy()
 
 augroup MyBufExplorer
 autocmd MyBufExplorer VimEnter * call <SID>Create()
 
 function! <SID>Create()
-    autocmd MyBufExplorer BufDelete * call <SID>Update()
-    autocmd MyBufExplorer BufEnter * call <SID>Update()
+    autocmd MyBufExplorer BufDelete * call <SID>Update(expand('<abuf>'))
+    autocmd MyBufExplorer BufEnter * call <SID>Update(-1)
 
     exec "to sp ".g:bufName
     let g:MyBufWin = <SID>FindWindow(g:bufName)
@@ -55,7 +56,7 @@ function! <SID>Create()
     set noequalalways
     set nomousefocus
 
-    call <SID>Update()
+    call <SID>Update(-1)
 endfunction
 
 function! <SID>Destroy()
@@ -68,7 +69,7 @@ function! <SID>Destroy()
     let g:MyBufWin = -1
 endfunction
 
-function! <SID>Update()
+function! <SID>Update(ignore)
     if g:MyBufWin == -1 
         return
     endif
@@ -84,7 +85,7 @@ function! <SID>Update()
 
     setlocal modifiable
      
-    call <SID>Write()
+    call <SID>Write(a:ignore)
     call <SID>Resize()
 
     setlocal nomodifiable
@@ -97,7 +98,7 @@ function! <SID>Update()
 
 endfunction
 
-function! <SID>Write()
+function! <SID>Write(ignore)
     let l:nbufs = bufnr('$')
     let l:i = 0
     let l:filenames = ''
@@ -107,7 +108,7 @@ function! <SID>Write()
 
         if (getbufvar(l:i, '&buflisted') == 1)
             let l:name = bufname(l:i)
-            if (strlen(l:name) && l:name != g:bufName)
+            if (strlen(l:name) && l:name != g:bufName && l:i != a:ignore)
                 let l:shortBufName = fnamemodify(l:name, ":t")                  
                 let l:shortBufName = substitute(l:shortBufName, '[][()]', '', 'g') 
                 let l:tab = '['.l:i.':'.l:shortBufName.']'

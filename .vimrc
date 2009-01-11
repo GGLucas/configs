@@ -62,6 +62,7 @@ let g:pydoc_highlight = 0
 
 " Python syntax
 let python_highlight_all = 1
+let python_highlight_space_errors = 0
 
 " Django projects
 source ~/.vim/plugin/django_projects.vim

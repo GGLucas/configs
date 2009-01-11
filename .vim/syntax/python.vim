@@ -102,17 +102,17 @@ syn keyword pythonStatement	global assert
 syn keyword pythonStatement	lambda yield
 syn keyword pythonStatement	with nonlocal
 syn keyword pythonStatement	False None True
-syn keyword pythonStatement	def class nextgroup=pythonFunction skipwhite
-syn match   pythonFunction	"\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+syn keyword pythonStatement	def class nextgroup=pythonDefine skipwhite
+syn match   pythonDefine	"\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn keyword pythonRepeat	for while
 syn keyword pythonConditional	if elif else
 syn keyword pythonImport	import from
 syn keyword pythonException	try except finally
 syn keyword pythonOperator	and in is not or
-syn keyword pythonFunction	self
+syn keyword pythonIdentifier	self
 
 " Decorators (new in Python 2.4)
-syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
+syn match   pythonDecorator	"@" display nextgroup=pythonDefine skipwhite
 
 " Comments
 syn match   pythonComment	"#.*$" display contains=pythonTodo,@Spell
@@ -289,7 +289,9 @@ if version >= 508 || !exists("did_python_syn_inits")
 
   HiLink pythonStatement	Statement
   HiLink pythonImport		Statement
-  HiLink pythonFunction		Identifier
+  HiLink pythonFunction		Function
+  HiLink pythonIdentifier		Identifier
+  HiLink pythonDefine		Identifier
   HiLink pythonConditional	Conditional
   HiLink pythonRepeat		Repeat
   HiLink pythonException	Exception
