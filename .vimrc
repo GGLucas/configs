@@ -53,7 +53,7 @@ nnoremap <C-y> 3<C-y>
 
 " Function key shortcuts
 "" F4: Textwidth On
-nnoremap <F4> :set textwidth=76<CR>
+nnoremap <F4> :set textwidth=78<CR>
 imap <F4> <C-O><F4>
 
 "" F5: Paste toggle
@@ -103,7 +103,7 @@ endif
 set expandtab
 
 " Text width
-set textwidth=76
+set textwidth=78
 
 " Wrap lines
 set wrap

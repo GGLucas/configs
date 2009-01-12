@@ -96,6 +96,7 @@ channels = (
   { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
 
   { name = "#xkcd"; chatnet = "foonetic"; autojoin = "Yes"; },
+  { name = "#xkcd-signal"; chatnet = "foonetic"; autojoin = "Yes"; },
   { name = "#curseofsteel"; chatnet = "foonetic"; autojoin = "Yes"; },
 
   { name = "#doremi"; chatnet = "rizon"; autojoin = "Yes"; },
