@@ -10,9 +10,6 @@ nmap <C-J> <C-w>j
 nmap <C-K> <C-w>k
 nmap <C-L> <C-w>l
 
-" Previous completion
-imap <S-Tab> <C-d>
-
 " Handy shortcut for save
 nmap e :w<CR>
 
@@ -50,6 +47,27 @@ cnoremap <C-X> <Delete>
 cnoremap <Esc>h <S-Left>
 cnoremap <Esc>l <S-Right>
 
+" Faster scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" Function key shortcuts
+"" F4: Textwidth On
+nnoremap <F4> :set textwidth=76<CR>
+imap <F4> <C-O><F4>
+
+"" F5: Paste toggle
+nnoremap <F5> :set paste!<Bar>set paste?<CR>
+imap <F5> <C-O><F5>
+set pastetoggle=<F5>
+
+"" F6: Textwidth Off
+nnoremap <F6> :set textwidth=0<CR>
+imap <F6> <C-O><F6>
+
+"" F7: Search highlight toggle
+nmap <F7> :set hls!<Bar>set hls?<CR>
+
 " NERD Commenter
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
@@ -84,12 +102,11 @@ endif
 " Enter spaces when tab is pressed:
 set expandtab
 
-" Faster scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
 " Text width
 set textwidth=76
+
+" Wrap lines
+set wrap
 
 " Use 4 spaces to represent a tab
 set tabstop=4
@@ -109,6 +126,7 @@ set incsearch
 
 " Case insensitive search
 set ignorecase
+set smartcase
 
 " Show line and column number
 set number
@@ -116,10 +134,6 @@ set ruler
 
 " Allow hidden buffers with changes
 set hidden
-
-" Show some autocomplete options in status bar
-set wildmenu
-set wildmode=list:longest,full
 
 " Autocd
 set autochdir
@@ -152,6 +166,18 @@ set gdefault
 
 " Syntax highlighting
 syntax on
+
+" Read-only .doc through antiword
+autocmd BufReadPre *.doc set ro
+autocmd BufReadPost *.doc %!antiword "%"
+
+" Read-only odt/odp through odt2txt
+autocmd BufReadPre *.odt,*.odp set ro
+autocmd BufReadPost *.odt,*.odp %!odt2txt "%"
+
+" Read-only pdf through pdftotext
+autocmd BufReadPre *.pdf set ro
+autocmd BufReadPost *.pdf %!pdftotext "%" -
 
 " Autocommands
 autocmd BufEnter *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
