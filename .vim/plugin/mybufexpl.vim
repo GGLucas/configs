@@ -25,8 +25,8 @@ augroup MyBufExplorer
 autocmd MyBufExplorer VimEnter * call <SID>Create()
 
 function! <SID>Create()
-    autocmd MyBufExplorer BufDelete * call <SID>Update(expand('<abuf>'))
-    autocmd MyBufExplorer BufEnter * call <SID>Update(-1)
+    autocmd MyBufExplorer BufDelete * silent call <SID>Update(expand('<abuf>'))
+    autocmd MyBufExplorer BufEnter * silent call <SID>Update(-1)
 
     exec "to sp ".g:bufName
     let g:MyBufWin = <SID>FindWindow(g:bufName)

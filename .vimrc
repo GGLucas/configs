@@ -67,6 +67,12 @@ imap <F6> <C-O><F6>
 
 "" F7: Search highlight toggle
 nmap <F7> :set hls!<Bar>set hls?<CR>
+imap <F7> <C-O><F7>
+
+"" F8: Toggle list mode
+nmap <F8> :set list!<Bar>set list?<CR>
+imap <F8> <C-O><F8>
+
 
 " NERD Commenter
 let NERDDefaultNesting = 1
@@ -97,8 +103,11 @@ else
     set t_Co=256
     colorscheme oblivion
 endif
-
+  
 " Config
+" Characters to use in list mode
+set listchars=eol:$,tab:>-,trail:·
+
 " Enter spaces when tab is pressed:
 set expandtab
 
@@ -168,20 +177,20 @@ set gdefault
 syntax on
 
 " Read-only .doc through antiword
-autocmd BufReadPre *.doc set ro
-autocmd BufReadPost *.doc %!antiword "%"
+autocmd BufReadPre *.doc silent set ro
+autocmd BufReadPost *.doc silent %!antiword "%"
 
 " Read-only odt/odp through odt2txt
-autocmd BufReadPre *.odt,*.odp set ro
-autocmd BufReadPost *.odt,*.odp %!odt2txt "%"
+autocmd BufReadPre *.odt,*.odp silent set ro
+autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
 
 " Read-only pdf through pdftotext
-autocmd BufReadPre *.pdf set ro
-autocmd BufReadPost *.pdf %!pdftotext "%" -
+autocmd BufReadPre *.pdf silent set ro
+autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -csw78
 
 " Autocommands
-autocmd BufEnter *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufEnter *.html filetype indent off
-autocmd BufEnter *.html setlocal ai
+autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufEnter *.html silent filetype indent off
+autocmd BufEnter *.html silent setlocal ai
 
-autocmd BufEnter *.ccss setlocal syn=ccss
+autocmd BufEnter *.ccss silent setlocal syn=ccss
