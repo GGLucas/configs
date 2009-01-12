@@ -1,33 +1,9 @@
-startup_message off
-vbell off
-defscrollback 1000
-bind c screen 1
-bind 0 select 10
-activity '-'
+# Source original
+source .screenrc
 
-bind ^k
-bind L
-bind ^\
-
+# Define new windows
 screen -t 'irc' 1 'irssi'
 screen -t 'im' 2 'irssi_im'
 screen -t 'mpd' 3 'ncmpc'
 screen -t 'dl' 4 'rtor'
 screen -t 'mt' 4 'mutt'
-
-
-altscreen on 
-hardstatus on
-
-hardstatus  alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c %{g}]'
-attrcolor b ".I"
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-defbce "on"
-
-term screen-256color
-escape \034\034
-
-bindkey -m > eval "stuff ' '" writebuf "exec bash -c 'xsel < /tmp/screen-exchange'"

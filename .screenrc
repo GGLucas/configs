@@ -1,28 +1,31 @@
-startup_message off
-vbell off
-defscrollback 1000
-bind c screen 1
-bind 0 select 10
-
+# Bindings
+# Remove silly bindings
 bind ^k
 bind L
 bind ^\
 
+# Escape sequence
+escape \034\034
+
+# Settings
+vbell off
+defbce "on"
+attrcolor b ".I"
+
+startup_message off
+defscrollback 1000
+
 altscreen on 
 hardstatus on
 
-screen -t 'zsh' 1 'zsh'
-
-hardstatus  alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c %{g}]'
-attrcolor b ".I"
-termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
-defbce "on"
-
 term screen-256color
-escape \034\034
+
+# Statusline
+hardstatus  alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
 activity '-'
 
+# Termcap
+termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+
+# Easy X-clipboard copy
 bindkey -m > eval "stuff ' '" writebuf "exec bash -c 'xsel < /tmp/screen-exchange'"

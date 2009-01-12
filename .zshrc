@@ -46,6 +46,6 @@ done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 # Prompt
-PS1="${PR_BLUE}gglucas${PR_LIGHT_GREEN}:${PR_MAGENTA}%~${PR_NO_COLOR}> "
+PS1="${PR_MAGENTA}%~${PR_LIGHT_WHITE} $ ${PR_NO_COLOR}"
 
 export color=

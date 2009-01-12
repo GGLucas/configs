@@ -1,9 +1,12 @@
+! Pointer settings
 Xcursor.size: 22
 Xcursor.theme: Vanilla-DMZ-AA
 
+! Font render settings
 Xft*dpi:        99
 Xft*antialias:    true
 
+! urxvt settinsg
 urxvt.termName: rxvt
 urxvt.scrollBar: false
 urxvt.scrollTtyOutput: false
@@ -13,29 +16,15 @@ urxvt.secondaryScroll: true
 urxvt.jumpScroll: true
 urxvt.skipScroll: true
 urxvt.perl-ext-common: default
-!,tabbed
 
-! FONTS
 urxvt.font: xft:Terminus:size=10:antialias=false:hinting=false
 urxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
 
-!urxvt.font: -*-terminus-*-*-*-*-10-*-*-*-*-*-*-u
-!urxvt.boldFont: -*-terminus-bold-*-*-*-10-*-*-*-*-*-*-u
-
-!urxvt.font: xft:DejaVu Sans Mono:pixelsize=12
-!urxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:pixelsize=12
-
 urxvt.background: #000000
 urxvt.background: #000000
-!urxvt.background: #2E3436
-!urxvt.foreground:  #EBEBFF
-!urxvt.foreground: #ffffff
 urxvt.foreground: #ffffff
 urxvt.cursorColor: #FFFFFF
 urxvt.cursorBlink: false
-!urxvt.tintColor: black
-!urxvt.inheritPixmap: true 
-!urxvt.backgroundPixmap: /home/archlucas/pictures/bg.png;:root
 
 urxvt.saveLines: 500
 urxvt.visualBell: false
@@ -45,38 +34,20 @@ urxvt.borderWidth: 0
 urxvt.urlLauncher: firefox
 urxvt.pointerBlank: true
 urxvt.internalBorder: 3 
-!urxvt.urgentOnBell: true
-!urxvt.visualBell: true
 
-!black
+! Colors
 urxvt*color0:      #2E3436
-!red
 urxvt*color1:      #CC0000
-!green
 urxvt*color2:      #4E9A06
-!yellow
 urxvt*color3:      #C4A000
-!blue
-!urxvt*color4:      #113355
-!purple
 urxvt*color5:      #744E7A
-!cyan
 urxvt*color6:      #06989A
-!white
 urxvt*color7:      #D3D7CF
-!bright-black
 urxvt*color8:      #555753
-!bright-red
 urxvt*color9:      #EF2929
-!bright-green
 urxvt*color10:     #8AE234
-!bright-yellow
 urxvt*color11:     #FCE94F
-!bright-blue
 urxvt*color12:     #729FCF
-!bright-purple
 urxvt*color13:     #AD7FA8
-!bright-cyan
 urxvt*color14:     #59BCD9
-!bright-white
 urxvt*color15:     #EEEEEC

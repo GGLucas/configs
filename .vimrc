@@ -1,44 +1,56 @@
+" 
+" Lucas de Vries' .vimrc
+" Nick: GGLucas
+" Mail: lucas@glacicle.com
+" Website: lucas.glacicle.com
+"
+
+" {{{ Key Mappings
 " Leader
 let mapleader=","
 
-" Use UTF-8 encoding
-set encoding=utf-8
-
-" Window/split navigation
+" {{{ Window/split navigation
 nmap <C-H> <C-w>h
 nmap <C-J> <C-w>j
 nmap <C-K> <C-w>k
 nmap <C-L> <C-w>l
+" }}}
 
+" {{{ Basic shortcuts
 " Handy shortcut for save
 nmap e :w<CR>
-
-" Fold methods
-nmap <Leader>fd :set fdm=marker<CR>
-nmap <Leader>ff :set fdm=indent<CR>
-
-" Text width
-nmap <Leader>tw :set textwidth=0<CR>
-
-" Spellcheck
-nmap <Leader>hh :set nospell<CR>
-nmap <Leader>he :set spell spelllang=en<CR>
-nmap <Leader>hn :set spell spelllang=nl<CR>
-
-" Buffer Navigation
-nmap <silent> gb :bprevious<CR>
-nmap <silent> gn :bnext<CR>
-nmap <silent> gl :e .<CR>
-
-" Opening different plugin windows
-nmap <silent> ;p :NERDTree<CR>
-nmap <silent> ;. :MyBuf<CR>
-nmap <silent> ;; :MyBufDestroy<CR>;p;.
 
 " To prevent K mispresses right after V
 vmap K k
 
-" Command line cursor keys
+" Return to visual mode after indenting
+vmap < <gv
+vmap > >gv
+
+" Faster scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+" }}}
+
+" {{{ Spellcheck
+nmap <Leader>hh :set nospell<CR>
+nmap <Leader>he :set spell spelllang=en<CR>
+nmap <Leader>hn :set spell spelllang=nl<CR>
+" }}}
+
+" {{{ Buffer Navigation
+nmap <silent> gb :bprevious<CR>
+nmap <silent> gn :bnext<CR>
+nmap <silent> gl :e .<CR>
+" }}}
+
+" {{{ Opening different plugin windows
+nmap <silent> ;p :NERDTree<CR>
+nmap <silent> ;. :MyBuf<CR>
+nmap <silent> ;; :MyBufDestroy<CR>;p;.
+" }}}
+
+" {{{Command line cursor keys
 cnoremap <C-H> <Left>
 cnoremap <C-J> <Up>
 cnoremap <C-K> <Down>
@@ -46,34 +58,29 @@ cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
 cnoremap <Esc>h <S-Left>
 cnoremap <Esc>l <S-Right>
+" }}}
 
-" Faster scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" Function key shortcuts
-"" F4: Textwidth On
-nnoremap <F4> :set textwidth=78<CR>
-imap <F4> <C-O><F4>
-
-"" F5: Paste toggle
+" {{{ Function key shortcuts
+" F5: Paste toggle
 nnoremap <F5> :set paste!<Bar>set paste?<CR>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
-"" F6: Textwidth Off
-nnoremap <F6> :set textwidth=0<CR>
+" F6: Textwidth Toggle
+nnoremap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
 
-"" F7: Search highlight toggle
+" F7: Search highlight toggle
 nmap <F7> :set hls!<Bar>set hls?<CR>
 imap <F7> <C-O><F7>
 
-"" F8: Toggle list mode
+" F8: Toggle list mode
 nmap <F8> :set list!<Bar>set list?<CR>
 imap <F8> <C-O><F8>
+" }}}
+" }}}
 
-
+" {{{ Plugin Settings
 " NERD Commenter
 let NERDDefaultNesting = 1
 let NERDShutUp = 1
@@ -93,7 +100,9 @@ source ~/.vim/plugin/django_projects.vim
 let g:django_terminal_program = "urxvtc -e"
 
 call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
+" }}}
 
+" {{{ Vim Settings
 " Color Schemes
 if $TERM == 'linux'
     " Virtual Console
@@ -105,6 +114,9 @@ else
 endif
   
 " Config
+" Use UTF-8 encoding
+set encoding=utf-8
+
 " Characters to use in list mode
 set listchars=eol:$,tab:>-,trail:·
 
@@ -112,6 +124,7 @@ set listchars=eol:$,tab:>-,trail:·
 set expandtab
 
 " Text width
+let g:textwidth=78
 set textwidth=78
 
 " Wrap lines
@@ -166,16 +179,18 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " Viminfo
 set viminfo='1000,f1,<500,:500,/500,h
 
+" Global match by default
+set gdefault
+
 " Filetype
 filetype plugin on
 filetype indent on
 
-" Global match by default
-set gdefault
-
 " Syntax highlighting
 syntax on
+" }}}
 
+" {{{ Autocommands
 " Read-only .doc through antiword
 autocmd BufReadPre *.doc silent set ro
 autocmd BufReadPost *.doc silent %!antiword "%"
@@ -188,9 +203,29 @@ autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
 autocmd BufReadPre *.pdf silent set ro
 autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -csw78
 
-" Autocommands
+" HTML Indent
 autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.html silent filetype indent off
 autocmd BufEnter *.html silent setlocal ai
 
+" CleverCSS syntax
 autocmd BufEnter *.ccss silent setlocal syn=ccss
+" }}}
+
+" {{{ Functions
+" {{{ TextwidthToggle(): Change textwidth, 0<->78
+function! TextwidthToggle()
+    if g:textwidth == 0
+        let g:textwidth = 78
+        set textwidth=78
+    else
+        let g:textwidth = 0
+        set textwidth=0
+    endif
+
+    set textwidth?
+endfunction
+" }}}
+" }}}
+
+" vim: set fdm=marker:
