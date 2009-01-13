@@ -1,3 +1,8 @@
+"
+" Based on darkspectrum. (Ran through GuiColorScheme and tweaked)
+" Lucas de Vries <lucas@glacicle.com>
+"
+
 hi clear
 
 if version > 580
@@ -69,5 +74,5 @@ hi Todo          ctermfg=0 ctermbg=11
 hi String        ctermfg=221
 hi Number        ctermfg=214
 hi Function      ctermfg=139
-hi Normal        ctermbg=0
+hi Normal        ctermbg=0 ctermfg=white
 hi Cursor        ctermfg=16 ctermbg=231

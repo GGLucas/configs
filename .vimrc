@@ -30,6 +30,25 @@ vmap > >gv
 " Faster scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" Quickly send keys to a screen session through slime.vim
+" Allows for test-execution of scripts and whatnot without leaving vim.
+nmap <C-c>m :call Send_to_Screen("<C-v><C-m>")<CR>
+nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v><C-m>")<CR>
+
+" {{{ Call ToHTML
+nmap <silent> <Leader>html :TOhtml<CR>
+            \ :%s/^body { .* }$/body { font-family: monospace;
+            \ color: #ffffff; background-color: #2E3436; }/g<CR>:
+            \ %s/^pre { .* }$/pre { font-family: monospace;
+            \ color: #ffffff; background-color: #2E3436; }/g<CR><F7>
+
+vmap <silent> <Leader>html :TOhtml<CR>
+            \ :%s/^body { .* }$/body { font-family: monospace;
+            \ color: #ffffff; background-color: #2E3436; }/g<CR>:
+            \ %s/^pre { .* }$/pre { font-family: monospace;
+            \ color: #ffffff; background-color: #2E3436; }/g<CR><F7>
+" }}}
 " }}}
 
 " {{{ Spellcheck
@@ -182,6 +201,9 @@ set viminfo='1000,f1,<500,:500,/500,h
 " Global match by default
 set gdefault
 
+" Use fancy css for TOhtml
+let html_use_css=1
+
 " Filetype
 filetype plugin on
 filetype indent on
@@ -225,6 +247,9 @@ function! TextwidthToggle()
 
     set textwidth?
 endfunction
+" }}}
+
+" {{{ ToHTML(): Overrides TOhtml with bgcolor.
 " }}}
 " }}}
 

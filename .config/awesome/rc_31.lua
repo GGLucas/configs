@@ -535,7 +535,7 @@ cputextwidget = widget({
 
 wicked.register(cputextwidget, wicked.widgets.cpu, 
     settings.widget_spacer..beautiful.markup.heading('CPU')..': $1%'..settings.widget_spacer..settings.widget_separator,
-nil, nil, 2) 
+nil, nil, 2)
 
 table.insert(settings.widgets, {1, cputextwidget})
 
