@@ -33,8 +33,10 @@ nnoremap <C-y> 3<C-y>
 
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
-nmap <C-c>m :call Send_to_Screen("<C-v><C-m>")<CR>
-nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v><C-m>")<CR>
+nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
+nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v>")<CR>
+nmap <C-c>r :call Send_to_Screen(input("send to screen: ")."<C-v>")<CR>
+nmap <C-c>g :call Send_to_Screen(input("send to screen: "))<CR>
 
 " {{{ Call ToHTML
 nmap <silent> <Leader>html :TOhtml<CR>
