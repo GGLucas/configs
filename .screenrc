@@ -24,7 +24,9 @@ term screen-256color
 hardstatus  alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
 activity '-'
 
-# Termcap
+# Termcap, fix 256 colors
+termcapinfo rxvt 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+termcapinfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
 termcapinfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
 
 # Easy X-clipboard copy

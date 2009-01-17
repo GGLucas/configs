@@ -5,3 +5,5 @@ config_*.py
 .git
 *.pyc
 *.conf.php
+settings.py
+django.wsgi

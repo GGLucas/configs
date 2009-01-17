@@ -101,7 +101,7 @@ syn keyword pythonStatement	pass raise
 syn keyword pythonStatement	global assert
 syn keyword pythonStatement	lambda yield
 syn keyword pythonStatement	with nonlocal
-syn keyword pythonStatement	False None True
+syn keyword pythonBuiltinObj False None True
 syn keyword pythonStatement	def class nextgroup=pythonDefine skipwhite
 syn match   pythonDefine	"\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn keyword pythonRepeat	for while

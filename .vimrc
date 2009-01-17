@@ -121,6 +121,22 @@ source ~/.vim/plugin/django_projects.vim
 let g:django_terminal_program = "urxvtc -e"
 
 call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
+
+" Github's gist
+let g:gist_clip_command = 'xclip -selection clipboard'
+
+" ii Settings
+let g:ii_nickname = "GGLucas_"
+let g:ii_fullname = "Lucas de Vries"
+
+let g:ii_servers = [
+    \ ['irc.foonetic.net', 'foonetic', ['#iivim-test']],
+    \ ['irc.freenode.net', 'freenode', ['#iivim-test']]
+\]
+
+" ['irc.foonetic.net', ['#curseofsteel', '#xkcd', '#xkcd-signal']],
+" ['irc.freenode.net', ['#archlinux', '#vim', '#lojban', '#vimperator']]
+
 " }}}
 
 " {{{ Vim Settings
@@ -203,6 +219,9 @@ set viminfo='1000,f1,<500,:500,/500,h
 " Global match by default
 set gdefault
 
+" Format (gq) options
+set formatoptions+=w
+
 " Use fancy css for TOhtml
 let html_use_css=1
 
@@ -234,6 +253,10 @@ autocmd BufEnter *.html silent setlocal ai
 
 " CleverCSS syntax
 autocmd BufEnter *.ccss silent setlocal syn=ccss
+
+" Don't show space errors
+autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
+
 " }}}
 
 " {{{ Functions

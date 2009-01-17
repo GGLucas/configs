@@ -8,4 +8,4 @@ RSYNC_oglasys_global="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Gla
 RSYNC_flowz_bloemrijk="--exclude-from=$HOME/.rsync_exclude /data/web/Glasys/sites/bloemrijk.info/ glacicle.com:/srv/www/2-flowz/bloemrijk.info"
 
 RSYNC_cos="--exclude-from=$HOME/.rsync_exclude /data/web/CoS/ glacicle.com:/srv/www/1-curseofsteel/curseofsteel.com"
-RSYNC_home="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Home/ glacicle.com:/srv/www/1-glacicle/lucas.glacicle.com"
+RSYNC_home="--delete --exclude-from=$HOME/.rsync_exclude /data/web/home/ glacicle.com:/srv/www/1-tuple-typed/home"

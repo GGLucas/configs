@@ -38,10 +38,13 @@ map <Leader>. <Esc>:javas su_rate(0, false, false, false)<CR><Esc>
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
 
+noremap j 3j
+noremap k 3k
+
 " Comics
 map <Leader>comics <Esc>:tabopen cad<CR>:tabopen egs<CR>:tabopen pa<CR>:tabopen du<CR>:tabopen da<CR>:tabopen smbc<CR>:tabopen dilbert<CR>:tabopen jenny<CR>:tabopen sinfest<CR>:tabopen ts<CR>:tabopen el<CR>:tabopen f@<CR>:tabopen geek<CR>:tabopen oots<CR>:tabopen erf<CR>:tabopen vgcats<CR>:tabopen xkcd<CR>
 
-noremap j 3j
-noremap k 3k
+" F7: Search highlight toggle
+map <F7> :set hls!<CR>:set hls?<CR>
 
 " vim: set syn=vimperator:
