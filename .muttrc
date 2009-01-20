@@ -13,9 +13,9 @@ set record="+[Gmail]/Sent Mail"
 set postponed="+[Gmail]/Drafts"
 
 # Cache Files
-set header_cache=/home/archlucas/.mutt/cache/headers
-set message_cachedir=/home/archlucas/.mutt/cache/bodies
-set certificate_file=/home/archlucas/.mutt/certificates
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
 
 # Alias file
 set alias_file=~/.mutt/aliases
@@ -56,12 +56,19 @@ set edit_headers
 # Editor
 set editor="vim"
 
+# Signature
+set sig_dashes = no
+set signature=~/.signature
+
 # Show only interesting headers
 ignore *
 unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
 
 # Don't ask to move
 set move = no
+
+# Don't beep
+set beep = no
 
 # Colours
 color normal white black

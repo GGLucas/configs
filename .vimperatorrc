@@ -45,6 +45,6 @@ noremap k 3k
 map <Leader>comics <Esc>:tabopen cad<CR>:tabopen egs<CR>:tabopen pa<CR>:tabopen du<CR>:tabopen da<CR>:tabopen smbc<CR>:tabopen dilbert<CR>:tabopen jenny<CR>:tabopen sinfest<CR>:tabopen ts<CR>:tabopen el<CR>:tabopen f@<CR>:tabopen geek<CR>:tabopen oots<CR>:tabopen erf<CR>:tabopen vgcats<CR>:tabopen xkcd<CR>
 
 " F7: Search highlight toggle
-map <F7> :set hls!<CR>:set hls?<CR>
+map <F7> :noh<CR>
 
 " vim: set syn=vimperator:

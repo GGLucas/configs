@@ -94,6 +94,7 @@ channels = (
   { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#lojban"; chatnet = "freenode"; autojoin = "Yes"; },
   { name = "#vim"; chatnet = "freenode"; autojoin = "Yes"; },
+  { name = "#python"; chatnet = "freenode"; autojoin = "Yes"; },
 
   { name = "#xkcd"; chatnet = "foonetic"; autojoin = "Yes"; },
   { name = "#xkcd-signal"; chatnet = "foonetic"; autojoin = "Yes"; },
