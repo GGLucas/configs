@@ -66,4 +66,5 @@ dht_port = 6881
 peer_exchange = yes
 
 # Throttle upload
-upload_rate = 50
+# Try this again if QoS fails
+# upload_rate = 50
