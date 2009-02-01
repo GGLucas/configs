@@ -36,7 +36,7 @@ function! <SID>Create()
     setlocal noswapfile
     setlocal buftype=nofile
     setlocal bufhidden=delete
-    setlocal wrap
+    setlocal nowrap
 
     setlocal foldcolumn=0
     setlocal nonumber

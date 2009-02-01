@@ -43,7 +43,7 @@ def main():
     o.confirm_exit = 0
 
     # Prompt
-    o.prompt_in1 = r'\C_LightBluegglucas\C_LightGreen:\C_LightPurple\Y5\C_Normal> '
+    o.prompt_in1 = r'\C_LightBluepython\C_LightGreen:\C_LightPurple\Y5\C_Normal> '
     o.prompt_in2 = r' > '
     o.prompt_out = r'[\#] '
     

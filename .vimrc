@@ -73,10 +73,12 @@ nmap <silent> ;; :MyBufDestroy<CR>;p;.
 
 " {{{Command line cursor keys
 cnoremap <C-H> <Left>
-cnoremap <C-J> <Up>
-cnoremap <C-K> <Down>
 cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+cnoremap <Esc>j <Down>
+cnoremap <Esc>k <Up>
 cnoremap <Esc>h <S-Left>
 cnoremap <Esc>l <S-Right>
 " }}}
@@ -92,7 +94,7 @@ nnoremap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
 
 " F7: Search highlight toggle
-nmap <F7> :set hls!<Bar>set hls?<CR>
+nmap <F7> :noh<CR>
 imap <F7> <C-O><F7>
 
 " F8: Toggle list mode
@@ -121,21 +123,21 @@ source ~/.vim/plugin/django_projects.vim
 let g:django_terminal_program = "urxvtc -e"
 
 call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
-
-" Github's gist
-let g:gist_clip_command = 'xclip -selection clipboard'
+call g:DjangoInstall('home', '/data/web/home/', 'settings', 'manage.py', ['/data/web/home', '/data/web'], '')
 
 " ii Settings
-let g:ii_nickname = "GGLucas_"
-let g:ii_fullname = "Lucas de Vries"
+let g:ii_nickname = "GGLucas"
 
-let g:ii_servers = [
-    \ ['irc.foonetic.net', 'foonetic', ['#iivim-test']],
-    \ ['irc.freenode.net', 'freenode', ['#iivim-test']]
-\]
+let g:ii_highlight_patterns = ["GGLucas", "Lucas"]
+let g:ii_highlight_command = "notify-send '%(nick)s - %(channel)s' '%(msg)s' &> /dev/null"
 
-" ['irc.foonetic.net', ['#curseofsteel', '#xkcd', '#xkcd-signal']],
-" ['irc.freenode.net', ['#archlinux', '#vim', '#lojban', '#vimperator']]
+let g:ii_num_colors = [1,2,3,5,6,7,9,10,11,12,13,14,15]
+let g:ii_nick_delim = ":: "
+let g:ii_autoalign = 0
+
+let g:ii_show_date = 0
+let g:ii_show_joins = 0
+let g:ii_show_parts = 0
 
 " }}}
 
@@ -159,6 +161,9 @@ set listchars=eol:$,tab:>-,trail:·
 
 " Enter spaces when tab is pressed:
 set expandtab
+
+" Always display statusline
+set laststatus=2
 
 " Text width
 let g:textwidth=78

@@ -16,12 +16,18 @@ startup_message off
 defscrollback 1000
 
 altscreen on 
+
+# Show statusline
 hardstatus on
 
+# Enable 256 colors
 term screen-256color
 
+# Don't show annoying bell messages
+bell_msg ""
+
 # Statusline
-hardstatus  alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
+hardstatus alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
 activity '-'
 
 # Termcap, fix 256 colors

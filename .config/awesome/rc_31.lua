@@ -170,13 +170,13 @@ settings.bindings.commands = {
     [settings.apps.terminal] = {key.alt, "#24"},
 
     -- Mod+k: GNU Screen
-    [settings.apps.gnu_screen] = {key.super, "#45"},
+    [settings.apps.gnu_screen] = {key.super, "#59"},
 
     -- Mod+Shift+k: GNU Screen over SSH to Desktop
-    [settings.apps.gnu_screen_ssh_desktop] = {key.super_shift, "#45"},
+    [settings.apps.gnu_screen_ssh_desktop] = {key.super_shift, "#59"},
 
     -- Mod+Alt+k: GNU Screen over SSH to VPS
-    [settings.apps.gnu_screen_ssh_server] = {key.super_alt, "#45"},
+    [settings.apps.gnu_screen_ssh_server] = {key.super_alt, "#59"},
 
     -- Mod+l: Lock screen
     [settings.apps.lock_screen] = {key.super, "#46"},

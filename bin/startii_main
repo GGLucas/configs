@@ -1,0 +1,99 @@
+#!/bin/bash
+# Vars
+ROOT="$HOME/irc/main"
+NICK="GGLucas_"
+FULLNAME="Lucas de Vries"
+
+# Ask for password
+clear
+echo -n "Start ii ? [y/N] "
+read -n 1 START
+
+if [[ "$START" == "y" ]]
+then
+    echo ""
+    read -s -p "irc password: " PASSWD
+
+    # Recreate directory
+    rm -rf "$ROOT"
+    mkdir "$ROOT" || exit
+
+    # Goto root
+    cd "$ROOT"
+
+    # Start ii
+    echo ""
+    echo -n "Starting....   "
+
+    ii -i $ROOT -s "irc.freenode.net" -n "$NICK" -f "$FULLNAME" &> /dev/null &
+    ii -i $ROOT -s "irc.foonetic.net" -n "$NICK" -f "$FULLNAME" &> /dev/null &
+    ii -i $ROOT -s "irc.oftc.net" -n "$NICK" -f "$FULLNAME" &> /dev/null &
+    ii -i $ROOT -s "irc.rizon.net" -n "$NICK" -f "$FULLNAME" &> /dev/null &
+
+    sleep 3
+    echo "Done"
+
+    # Authenticate
+    echo -n "Identifying....   "
+
+    IDENT="/j NickServ IDENTIFY $PASSWD"
+    BIDENT="identify $PASSWD"
+
+    echo "$IDENT" >> "irc.freenode.net/in"
+    echo "$IDENT" >> "irc.oftc.net/in"
+    echo "$IDENT" >> "irc.rizon.net/in"
+    echo "$IDENT" >> "irc.foonetic.net/in"
+    echo "$BIDENT" >> "localhost/&bitlbee/in"
+
+    sleep 2
+    echo "Done"
+
+    echo -n "Joining channels....   "
+
+    # Join channels
+    # OFTC
+    echo "/j #awesome" >> "irc.oftc.net/in"
+
+    # Freenode
+    echo "/j #archlinux" >> "irc.freenode.net/in"
+    echo "/j #lojban" >> "irc.freenode.net/in"
+    echo "/j #vim" >> "irc.freenode.net/in"
+    echo "/j #python" >> "irc.freenode.net/in"
+
+    # Foonetic
+    echo "/j #iivim-test" >> "irc.foonetic.net/in"
+    echo "/j #xkcd" >> "irc.foonetic.net/in"
+    echo "/j #xkcd-signal" >> "irc.foonetic.net/in"
+    echo "/j #curseofsteel" >> "irc.foonetic.net/in"
+
+    # Rizon
+    echo "/j #doremi" >> "irc.rizon.net/in"
+    echo "/j #DLQCT dlqct" >> "irc.rizon.net/in"
+
+    sleep 2
+
+    # Remove channels we don't need
+    rm -rf "irc.freenode.net/nickserv"
+    rm -rf "irc.oftc.net/nickserv"
+    rm -rf "irc.foonetic.net/nickserv"
+    rm -rf "irc.rizon.net/nickserv"
+    rm -rf "irc.foonetic.net/chanserv"
+    rm -rf "irc.freenode.net/chanserv"
+    rm -rf "irc.rizon.net/py-bopm"
+    rm -rf "irc.rizon.net/py-ctcp"
+    rm -rf "irc.rizon.net/global"
+
+    echo "Done"
+    echo "Starting vim....   "
+fi
+
+# Start vim
+cd $HOME
+vim -R \
+        -c "let g:ii_root = '$ROOT'" \
+        -c "let g:loaded_mybufexplorer = 1" \
+        -c "let g:ii_nickname = '$NICK'" \
+        -c "set showbreak=\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ " \
+        -c "hi NonText ctermbg=0" \
+        -c "silent call ii:start()" \
+        -c "silent Bclose"
