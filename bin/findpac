@@ -1,4 +1,34 @@
 #!/bin/bash
 echo -- Finding *.pacnew and *.pacsave files --
-for i in $(sudo find /etc -name "*.pac*"); do sudo vimdiff $i $(echo $i | sed "s/.pacnew//;s/.pacsave//"); done;
+for i in $(sudo find /etc -name "*.pac*"); 
+do 
+    p=$(echo $i | sed "s/.pacnew//;s/.pacsave//")
+    echo ""
+    echo $i $p
+    echo -n "[v]imdiff, [r]eplace, [k]eep, [d]elete: "
+    read -n 1 action
+    echo ""
+
+    if [[ "$action" == "v" ]]
+    then
+        sudo vimdiff $i $p;
+    fi;
+
+    if [[ "$action" == "r" ]]
+    then
+        sudo mv $i $p;
+    fi;
+
+    if [[ "$action" == "k" ]]
+    then
+        sudo rm $i;
+    fi;
+
+    if [[ "$action" == "d" ]]
+    then
+        sudo rm $i;
+        sudo rm $p;
+    fi;
+done;
+
 #for i in $(sudo find /etc -name "*.pac*"); do sudo rm $i; done;
