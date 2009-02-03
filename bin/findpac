@@ -27,7 +27,7 @@ do
     then
         sudo mv $i $p;
 
-        echo -n "Edit original ? [y/N] "
+        echo -n "Edit new config ? [y/N] "
         read -n 1 rmv
         echo ""
 
