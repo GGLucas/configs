@@ -13,19 +13,26 @@ set incsearch
 " Smartcase
 set smartcase
 
+" Default search
+set ds=gg
+
+" Default GUI options
+set go=n
+
 " Leader
 let mapleader=","
 
 " Show/hide toolbars
-map <C-]> <Escape>:set go=b<Return><Escape>
-map <C-+> <Escape>:set go=bm<Return><Escape>
-map <C-=> <Escape>:set go=<Return><Escape>
+map <C-]> <Escape>:set go+=B<Return><Escape>
+map <C-+> <Escape>:set go+=Bm<Return><Escape>
+map <C-=> <Escape>:set go-=Bm<Return><Escape>
 
 " Next/Prev Tab
 map gp <Escape>:tabprev<Return><Escape>
 map gn <Escape>:tabnext<Return><Escape>
 map gb gp
 
+" Planet page
 map gH <Escape>:tabopen http://me.glacicle.com:81/planet<Return><Escape>
 map gh <Escape>:open http://me.glacicle.com:81/planet<Return><Escape>
 
@@ -43,10 +50,7 @@ noremap j 3j
 noremap k 3k
 noremap l 3l
 
-" Comics
-map <Leader>comics <Esc>:tabopen cad<CR>:tabopen egs<CR>:tabopen pa<CR>:tabopen du<CR>:tabopen da<CR>:tabopen smbc<CR>:tabopen dilbert<CR>:tabopen jenny<CR>:tabopen sinfest<CR>:tabopen ts<CR>:tabopen el<CR>:tabopen f@<CR>:tabopen geek<CR>:tabopen oots<CR>:tabopen erf<CR>:tabopen vgcats<CR>:tabopen xkcd<CR>
-
 " F7: Search highlight toggle
 map <F7> :noh<CR>
 
-" vim: set syn=vimperator:
+" vim:syn=vimperator:
