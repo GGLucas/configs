@@ -46,6 +46,9 @@ map <Leader>s <Esc>:noscript toggleperm<CR><Esc>
 map <Leader>S <Esc>:noscript toggletemp<CR><Esc>
 map <Leader>t <Esc>:noscript popup<CR><Esc>
 
+" Hint font size
+hi -append Hint font-size: 12px;
+
 " Faster scrolling
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
