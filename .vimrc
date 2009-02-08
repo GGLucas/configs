@@ -63,6 +63,9 @@ nmap <Leader>hn :set spell spelllang=nl<CR>
 nmap <silent> gb :bprevious<CR>
 nmap <silent> gn :bnext<CR>
 nmap <silent> gl :e .<CR>
+
+nmap <Esc>h gb
+nmap <Esc>l gn
 " }}}
 
 " {{{ Opening different plugin windows
@@ -71,7 +74,7 @@ nmap <silent> ;. :MyBuf<CR>
 nmap <silent> ;; :MyBufDestroy<CR>;p;.
 " }}}
 
-" {{{Command line cursor keys
+" {{{ Command line cursor keys
 cnoremap <C-H> <Left>
 cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
@@ -79,8 +82,7 @@ cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
 cnoremap <Esc>j <Down>
 cnoremap <Esc>k <Up>
-cnoremap <Esc>h <S-Left>
-cnoremap <Esc>l <S-Right>
+cnoremap <Esc>c <C-c>:
 " }}}
 
 " {{{ Function key shortcuts

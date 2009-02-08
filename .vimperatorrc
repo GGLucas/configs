@@ -23,27 +23,29 @@ set go=n
 let mapleader=","
 
 " Show/hide toolbars
-map <C-+> <Escape>:set go+=Bm<Return><Escape>
-map <C-=> <Escape>:set go-=Bm<Return><Escape>
+noremap <silent> <C-+> :set go+=Bm<CR>
+noremap <silent> <C-=> :set go-=Bm<CR>
 
 " Next/Prev Tab
-map gp <Escape>:tabprev<Return><Escape>
-map gn <Escape>:tabnext<Return><Escape>
-map gb gp
+noremap <silent> gp :tabprev<CR>
+noremap <silent> gn :tabnext<CR>
+noremap <silent> <Esc>h :tabprev<CR>
+noremap <silent> <Esc>l :tabprev<CR>
+noremap gb gp
 
 " Planet page
-map gH <Escape>:tabopen http://me.glacicle.com:81/planet<Return><Escape>
-map gh <Escape>:open http://me.glacicle.com:81/planet<Return><Escape>
+noremap <silent> gH :tabopen http://me.glacicle.com:81/planet<CR>
+noremap <silent> gh :open http://me.glacicle.com:81/planet<CR>
 
 " Stumble
-map <Leader>; <Esc>:javas stumble()<CR><Esc>
-map <Leader>, <Esc>:javas su_rate(1, false, false, false)<CR><Esc>
-map <Leader>. <Esc>:javas su_rate(0, false, false, false)<CR><Esc>
+noremap <silent> <Leader>; :javas stumble()<CR>
+noremap <silent> <Leader>, :javas su_rate(1, false, false, false)<CR>
+noremap <silent> <Leader>. :javas su_rate(0, false, false, false)<CR>
 
 " Noscript
-map <Leader>s <Esc>:noscript toggleperm<CR><Esc>
-map <Leader>S <Esc>:noscript toggletemp<CR><Esc>
-map <Leader>t <Esc>:noscript popup<CR><Esc>
+noremap <silent> <Leader>s :noscript toggleperm<CR>
+noremap <silent> <Leader>S :noscript toggletemp<CR>
+noremap <silent> <Leader>t :noscript popup<CR>
 
 " Hint font size
 hi -append Hint font-size: 12px;
@@ -56,6 +58,16 @@ noremap h 3h
 noremap j 3j
 noremap k 3k
 noremap l 3l
+
+" Command line cursor keys
+cnoremap <C-H> <Left>
+cnoremap <C-L> <Right>
+cnoremap <C-X> <Delete>
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+cnoremap <Esc>j <Down>
+cnoremap <Esc>k <Up>
+cnoremap <Esc>c <C-c>:
 
 " F7: Search highlight toggle
 map <F7> :noh<CR>

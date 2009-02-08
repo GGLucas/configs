@@ -278,6 +278,7 @@ settings = {
     notify_time = "3000";
     neat_maxlength = "11";
     openurl_app_http = "fx '$1'";
+    openurl_watch_mail = "no";
   };
 };
 logs = { };
@@ -301,6 +302,15 @@ keyboard = (
   { key = "^1"; id = "change_window"; data = "1"; },
   { key = "^F"; id = "scroll_forward"; data = ""; },
   { key = "^B"; id = "scroll_backward"; data = ""; }
+  { key = "^H"; id = "key"; data = "left"; },
+  { key = "^L"; id = "key"; data = "right"; },
+  { key = "^X"; id = "key"; data = "delete"; },
+  { key = "meta-x"; id = "next_window_item"; data = ""; },
+  { key = "meta-c"; id = "erase_line"; data = ""; },
+  { key = "meta-j"; id = "key"; data = "down"; },
+  { key = "meta-k"; id = "key"; data = "up"; },
+  { key = "meta-h"; id = "previous_window"; data = ""; },
+  { key = "meta-l"; id = "next_window"; data = ""; }
 );
 
 windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };
