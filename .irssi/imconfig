@@ -276,6 +276,7 @@ settings = {
     nicklist_width = "20";
     neat_colors = "mMcCYyGgRr";
     notify_time = "3000";
+    neat_maxlength = "11";
     openurl_app_http = "fx '$1'";
   };
 };

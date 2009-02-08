@@ -301,6 +301,7 @@ settings = {
     neat_colors = "rRgGyYmMcC";
     notify_time = "3000";
     openurl_app_http = "fx '$1'";
+    neat_maxlength = "11";
   };
 };
 logs = { };
