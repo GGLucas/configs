@@ -294,19 +294,19 @@ abstracts = {
 };
 formats = {
   "fe-common/core" = {
-    pubmsg = "{pubmsgnick {pubnick %c$[-14]0}$2}$1";
-    own_msg = "{ownmsgnick {ownnick $[-14]0$2}}$1";
-    own_msg_channel = "{ownmsgnick {ownnick $[-14]0$3}{msgchannel $1}}$2";
-    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-14]2}}$1";
-    pubmsg_me = "{pubmsgmenick {menick $[-14]0}$2}$1";
-    pubmsg_me_channel = "{pubmsgmenick {menick $[-14]0$3}{msgchannel $1}}$2";
-    pubmsg_hilight = "{pubmsghinick $0 $0 $[-14]1$3%n}$2";
-    pubmsg_hilight_channel = "{pubmsghinick $0 $[-14]1$4{msgchannel $2}}$3";
-    pubmsg_channel = "{pubmsgnick {pubnick %c$[-14]0}$2}$1";
-    msg_private_query = "{privmsgnick $[-14]0}$2";
+    pubmsg = "{pubmsgnick {pubnick $[-22]0}$2}$1";
+    own_msg = "{ownmsgnick {ownnick $[-22]0$2}}$1";
+    own_msg_channel = "{ownmsgnick {ownnick $[-22]0$3}{msgchannel $1}}$2";
+    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-22]2}}$1";
+    pubmsg_me = "{pubmsgmenick {menick $[-22]0}$2}$1";
+    pubmsg_me_channel = "{pubmsgmenick {menick $[-22]0$3}{msgchannel $1}}$2";
+    pubmsg_hilight = "{pubmsghinick $0 $0 $[-22]1$3%n}$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $[-22]1$4{msgchannel $2}}$3";
+    pubmsg_channel = "{pubmsgnick {pubnick $[-22]0}$2}$1";
+    msg_private_query = "{privmsgnick $[-22]0}$2";
   };
   "fe-common/irc" = {
-    own_action = "{ownaction $[-12]0} $1";
-    action_public = "{pubaction $[-12]0}$1";
+    own_action = "{ownaction $[20]0} $1";
+    action_public = "{pubaction $[20]0}$1";
   };
 };

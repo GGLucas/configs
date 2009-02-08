@@ -39,6 +39,11 @@ bind pager > next-line
 macro index I "c!\n" "Reload/Goto Inbox"
 macro pager I "c!\n" "Reload/Goto Inbox"
 
+# Call urlview
+macro index,pager \Cb ":set pipe_decode\n|urlview\n:unset pipe_decode\n"\
+                 "call urlview to extract URLs out of a message"
+
+
 # Split Window
 set pager_index_lines=15
 

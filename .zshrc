@@ -1,6 +1,7 @@
 # Applications
 export PAGER='vimpager'
 export EDITOR='vim'
+export BROWSER='fx'
 
 # Options
 setopt   appendhistory allexport

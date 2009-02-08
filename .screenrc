@@ -4,6 +4,9 @@ bind ^k
 bind L
 bind ^\
 
+# Urlview
+bind o eval 'hardcopy "/tmp/screen_hardcopy"' 'exec bash -c "urlview /tmp/screen_hardcopy"'
+
 # Escape sequence
 escape \034\034
 

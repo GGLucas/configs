@@ -300,6 +300,7 @@ settings = {
     neat_left_actions = "yes";
     neat_colors = "rRgGyYmMcC";
     notify_time = "3000";
+    openurl_app_http = "fx '$1'";
   };
 };
 logs = { };

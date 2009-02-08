@@ -23,7 +23,6 @@ set go=n
 let mapleader=","
 
 " Show/hide toolbars
-map <C-]> <Escape>:set go+=B<Return><Escape>
 map <C-+> <Escape>:set go+=Bm<Return><Escape>
 map <C-=> <Escape>:set go-=Bm<Return><Escape>
 
