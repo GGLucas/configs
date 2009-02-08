@@ -29,9 +29,7 @@ noremap <silent> <C-=> :set go-=Bm<CR>
 " Next/Prev Tab
 noremap <silent> gp :tabprev<CR>
 noremap <silent> gn :tabnext<CR>
-noremap <silent> <Esc>h :tabprev<CR>
-noremap <silent> <Esc>l :tabprev<CR>
-noremap gb gp
+map gb gp
 
 " Planet page
 noremap <silent> gH :tabopen http://me.glacicle.com:81/planet<CR>
@@ -65,9 +63,6 @@ cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
 cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
-cnoremap <Esc>j <Down>
-cnoremap <Esc>k <Up>
-cnoremap <Esc>c <C-c>:
 
 " F7: Search highlight toggle
 map <F7> :noh<CR>
