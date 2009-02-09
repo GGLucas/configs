@@ -302,8 +302,8 @@ keyboard = (
   { key = "^1"; id = "change_window"; data = "1"; },
   { key = "^F"; id = "scroll_forward"; data = ""; },
   { key = "meta-f"; id = "scroll_forward"; data = ""; },
-  { key = "^B"; id = "scroll_backward"; data = ""; }
-  { key = "meta-b"; id = "scroll_backward"; data = ""; }
+  { key = "^B"; id = "scroll_backward"; data = ""; },
+  { key = "meta-b"; id = "scroll_backward"; data = ""; },
   { key = "^H"; id = "key"; data = "left"; },
   { key = "^L"; id = "key"; data = "right"; },
   { key = "^X"; id = "key"; data = "delete"; },
