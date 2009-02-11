@@ -26,3 +26,5 @@ color article white black
 # Highlights
 highlight article "^(Feed|Title|Author|Link|Date):.*$" cyan black
 highlight article "https?://[^ ]+" red black
+
+notify-program "notify-send"
