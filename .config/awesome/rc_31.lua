@@ -100,7 +100,7 @@ settings.apps.gnu_screen = settings.apps.terminal..' -e bash -c "exec screen -x 
 settings.apps.gnu_screen_ssh_desktop = settings.apps.terminal..' -e bash -c "ssh -t me.glacicle.com screen -x main"'
 
 -- Terminal with gnu screen over ssh to my vps server
-settings.apps.gnu_screen_ssh_server = settings.apps.terminal..' -e bash -c "ssh -t glacicle.com screen -x"'
+settings.apps.gnu_screen_ssh_server = settings.apps.terminal..' -e bash -c "ssh -t glacicle.com screen -x main"'
 
 -- Command to lock the screen
 settings.apps.lock_screen = 'xscreensaver-command -lock'

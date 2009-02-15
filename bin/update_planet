@@ -1,3 +1,0 @@
-#!/bin/bash
-cd ~/.planet
-python /data/others/planet/planet.py ./config.ini

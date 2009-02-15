@@ -23,8 +23,5 @@ xmodmap $HOME/.Xmodmap
 # WMName for Java
 wmname compiz
 
-# Update feeds
-update_planet &> /dev/null &
-
 # Screensaver (Running as main process !)
 xscreensaver > /dev/null
