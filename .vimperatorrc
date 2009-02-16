@@ -54,11 +54,11 @@ noremap k 3k
 noremap l 3l
 
 " Command line cursor keys
-cnoremap <C-H> <Left>
-cnoremap <C-L> <Right>
-cnoremap <C-X> <Delete>
-cnoremap <C-J> <Down>
-cnoremap <C-K> <Up>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-x> <Right><BS>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
 
 " F7: Search highlight toggle
 map <F7> :noh<CR>

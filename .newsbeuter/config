@@ -11,10 +11,19 @@ save-path "~/Articles"
 # Keybindings
 bind-key j down
 bind-key k up
-bind-key h quit
 bind-key l open
 bind-key ] pagedown
 bind-key [ pageup
+
+# Quit bindings
+bind-key h quit filebrowser
+bind-key h quit help
+bind-key h quit articlelist
+bind-key h quit article
+bind-key h quit tagselection
+bind-key h quit filterselection
+bind-key h quit urlview
+bind-key h quit podbeuter
 
 # Colors
 color listnormal white black
