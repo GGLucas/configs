@@ -15,6 +15,9 @@ set postponed="+Postponed"
 # Statusline
 set status_format="mutt-notify '%u' '%f' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'|"
 
+# Index format
+set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E in thread ?"
+
 # Update imap more often
 set imap_idle = yes
 set imap_keepalive = 300
