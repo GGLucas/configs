@@ -443,19 +443,19 @@ table.insert(settings.widgets, {1, mpdwidget})
 
 -- }}}
 
--- {{{ GMail Widget
-gmailwidget = widget({
+-- {{{ Mail Widget
+mailwidget = widget({
     type = 'textbox',
-    name = 'gmailwidget',
+    name = 'mailwidget',
     align = 'right'
 })
 
-gmailwidget:buttons({
-    button(key.none, 1, function () wicked.update(gmailwidget) end)
+mailwidget:buttons({
+    button(key.none, 1, function () wicked.update(mailwidget) end)
 })
 
-function read_gmail_temp(format)
-    local f = io.open('/tmp/gmail-temp')
+function read_mail_temp(format)
+    local f = io.open('/tmp/mail-temp')
 
     if f == nil then 
         return {'n/a'}
@@ -472,10 +472,10 @@ function read_gmail_temp(format)
 end
 
 
-wicked.register(gmailwidget, read_gmail_temp, function (widget, args)
+wicked.register(mailwidget, read_mail_temp, function (widget, args)
     local n = args[1]
 
-    local out = settings.widget_spacer..beautiful.markup.heading('GMail')..': '
+    local out = settings.widget_spacer..beautiful.markup.heading('Mail')..': '
 
     if n ~= "n/a" and tonumber(n) > 0 then
         out = out..beautiful.markup.bg(beautiful.bg_urgent, beautiful.markup.fg(beautiful.fg_urgent, tostring(n)))
@@ -486,17 +486,9 @@ wicked.register(gmailwidget, read_gmail_temp, function (widget, args)
     out = out..settings.widget_spacer..settings.widget_separator
 
     return out
-end, 120)
+end, 5)
 
--- Start timer to fill the temp file
-awful.hooks.timer.register(110, function ()
-    -- Call GMail check script to check for new email
-    os.execute(os.getenv("HOME")..'/other/.gmail.py > /tmp/gmail-temp &')
-end, true)
-
-wicked.update(gmailwidget)
-
-table.insert(settings.widgets, {1, gmailwidget})
+table.insert(settings.widgets, {1, mailwidget})
 
 -- }}}
 
