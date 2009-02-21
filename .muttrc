@@ -2,15 +2,17 @@
 set from = "lucas@tuple-typed.org"
 set realname = "Lucas de Vries"
 
-# GMail Locations
+# Settings for IMAP
 set imap_user = "lucas@tuple-typed.org"
-set smtp_url = "smtp://lucas@tuple-typed.org@tuple-typed.org:587/"
 
-# Settings for GMail
 set folder = "imaps://tuple-typed.org"
 set spoolfile = "+INBOX"
 set record="+Sent"
 set postponed="+Postponed"
+mailboxes =INBOX
+
+# Settings for SMTP
+set smtp_url = "smtp://lucas@tuple-typed.org@tuple-typed.org:587/"
 
 # Statusline
 set status_format="mutt-notify '%u' '%f' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'|"
@@ -21,6 +23,10 @@ set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E in thre
 # Update imap more often
 set imap_idle = yes
 set imap_keepalive = 300
+
+# Mail check interval
+set mail_check = 30
+set timeout = 30
 
 # Cache Files
 set header_cache=~/.mutt/cache/headers
@@ -84,6 +90,7 @@ set signature=~/.signature
 # Show only interesting headers
 ignore *
 unignore From To Cc Subject Date Reply-To Organization X-Mailer User-Agent
+unignore X-Spam-Flag X-Spam-Score
 
 # Don't ask to move
 set move = no

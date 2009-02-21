@@ -63,9 +63,6 @@ nmap <Leader>hn :set spell spelllang=nl<CR>
 nmap <silent> gb :bprevious<CR>
 nmap <silent> gn :bnext<CR>
 nmap <silent> gl :e .<CR>
-
-nmap <Esc>h gb
-nmap <Esc>l gn
 " }}}
 
 " {{{ Opening different plugin windows

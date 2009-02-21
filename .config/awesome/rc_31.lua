@@ -182,7 +182,7 @@ settings.bindings.commands = {
     [settings.apps.lock_screen] = {key.super, "#46"},
 
     -- Mod+o: Screen off with DPMS
-    [settings.apps.screen_off] = {key.super, "#32"},
+    --[settings.apps.screen_off] = {key.super, "#32"},
 
     -- Alt+e: Toggle music
     [settings.apps.music_toggle] = {key.alt, "#26"},
