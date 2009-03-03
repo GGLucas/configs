@@ -1,0 +1,3 @@
+#!/bin/bash
+[[ "$2" == "=INBOX" ]] && echo $1 > /tmp/mail-temp
+echo $3
