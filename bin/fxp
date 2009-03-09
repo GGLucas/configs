@@ -1,0 +1,6 @@
+#!/bin/bash
+echo -n "DISLAY: "
+read disp
+echo ""
+
+DISPLAY=$disp fx $1

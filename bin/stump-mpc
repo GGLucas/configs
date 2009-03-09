@@ -1,0 +1,3 @@
+#!/bin/bash
+nom=$(mpc | head -n 1 | sed "s/AnimeNfo[^:]*: //" | sed "s/'//")
+eval "notify-send 'mpd playing: $nom'"

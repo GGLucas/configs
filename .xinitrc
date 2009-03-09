@@ -42,5 +42,7 @@ wmname compiz
 # Start WM
 while true;
 do
-    awesome -c ~/.config/awesome/rc_31.lua
+    stumpwm
+    #awesome -c ~/.config/awesome/rc_31.lua
+    #ratpoison
 done;

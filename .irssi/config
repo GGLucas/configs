@@ -300,7 +300,7 @@ settings = {
     neat_left_actions = "yes";
     neat_colors = "rRgGyYmMcC";
     notify_time = "3000";
-    openurl_app_http = "fx '$1'";
+    openurl_app_http = "fxs :0.2 '$1'";
     openurl_watch_mail = "no";
     neat_maxlength = "11";
   };

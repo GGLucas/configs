@@ -48,10 +48,10 @@ hi -append Hint font-size: 12px;
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
 
-noremap h 3h
-noremap j 3j
-noremap k 3k
-noremap l 3l
+noremap h 2h
+noremap j 2j
+noremap k 2k
+noremap l 2l
 
 " Command line cursor keys
 cnoremap <C-h> <Left>

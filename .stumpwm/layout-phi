@@ -1,0 +1,31 @@
+#S(SDUMP
+   :NUMBER 3
+   :GROUPS (#S(GDUMP
+               :NUMBER 1
+               :NAME "Default"
+               :TREE ((#S(FDUMP
+                          :NUMBER 0
+                          :X 0
+                          :Y 0
+                          :WIDTH 1040
+                          :HEIGHT 1050
+                          :WINDOWS (10485772)
+                          :CURRENT 10485772)
+                       (#S(FDUMP
+                           :NUMBER 1
+                           :X 1040
+                           :Y 0
+                           :WIDTH 640
+                           :HEIGHT 525
+                           :WINDOWS (10485798)
+                           :CURRENT 10485798)
+                        #S(FDUMP
+                           :NUMBER 2
+                           :X 1040
+                           :Y 525
+                           :WIDTH 640
+                           :HEIGHT 525
+                           :WINDOWS (10487314)
+                           :CURRENT 10487314))))
+               :CURRENT 1))
+   :CURRENT 1)

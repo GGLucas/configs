@@ -1,0 +1,13 @@
+#!/bin/sh 
+FH=/tmp/rpcat$(date +%s)$UID$$.tmp;cat > $FH << EOF
+
+frestore (frame :number 5 :x 0 :y 0 :width 1040 :height 1050 :screenw 1680 :screenh 1050 :window 0 :last-access 92 :dedicated 0),(frame :number 3 :x 1040 :y 0 :width 640 :height 525 :screenw 1680 :screenh 1050 :window 1 :last-access 84 :dedicated 0),(frame :number 4 :x 1040 :y 525 :width 640 :height 525 :screenw 1680 :screenh 1050 :window 2 :last-access 85 :dedicated 0),
+
+next
+focus
+next
+focus
+next
+
+EOF
+ratpoison -c "source $FH"; rm -f "$FH"
