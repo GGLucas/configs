@@ -43,7 +43,6 @@ wmname compiz
 while true;
 do
     #stumpwm
-    #awesome
+    awesome
     #ratpoison
-    sleep 100
 done;
