@@ -57,7 +57,7 @@ settings = {
         --dynamic = true,
 
         -- Tags to use
-        tags = {"www", "irc", "vim"},
+        tags = {"1", "2", "3", "4", "5", "6"},
 
         -- Default master width factor
         default_mwfact = 0.618033988769,
