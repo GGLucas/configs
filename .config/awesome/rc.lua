@@ -153,6 +153,9 @@ clientbindings = {
     -- Close window
     [{"Mod1", "$"}] = {":kill"},
 
+    -- Redraw client
+    [{"Mod4", "/"}] = {":redraw"},
+
     -- Window swapping
     [{"Mod4", "Shift", "t"}] = {awful.client.swap.byidx, 1},
     [{"Mod4", "Shift", "n"}] = {awful.client.swap.byidx, -1},
