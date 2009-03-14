@@ -109,7 +109,7 @@ function setup(settings)
             -- New become master
             if (settings.behaviour.new_become_master ~= nil and
                     settings.behaviour.new_become_master == false) then
-                awful.client.swap.byidx(1, c)
+                    awful.client.swap.byidx(1, c)
             end
 
             -- Size hints
@@ -445,7 +445,7 @@ end
 function prompt(text, callback, width, height, margin)
 -- {{{ Floating prompt
     -- Get current screen
-    local screen = capi.client.focus.screen
+    local screen = capi.mouse.screen
 
     -- Create wibox
     local promptbox = capi.wibox({

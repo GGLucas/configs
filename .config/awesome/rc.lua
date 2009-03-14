@@ -229,15 +229,19 @@ mailnotify.widgets = {mailnotify_text}
 -- Add hook to check mail
 awful.hooks.timer.register(3, function()
     local file = io.open('/tmp/mail-temp')
-    local number = file:read()
-    file:close()
 
-    if number ~= "0" then
-        mailnotify_text.text = "-*- Unread Mail: -["..number.."]- -*-"
-        mailnotify.screen = client.focus.screen
-    else
-        mailnotify.screen = nil
+    if file then
+        local number = file:read()
+        file:close()
+
+        if number ~= "0" then
+            mailnotify_text.text = "-*- Unread Mail: -["..number.."]- -*-"
+            mailnotify.screen = client.focus.screen
+            return
+        end
     end
+
+    mailnotify.screen = nil
 end)
 
 -- }}}
