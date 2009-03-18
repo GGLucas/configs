@@ -166,7 +166,10 @@ function setup(settings)
     awful.hooks.mouse_enter.register(function (c)
         -- Sloppy focus
         if settings.behaviour.sloppyfocus == nil or settings.behaviour.sloppyfocus then
-            capi.client.focus = c
+            if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+                and awful.client.focus.filter(c) then
+                capi.client.focus = c
+            end
         end
     end)
     -- }}}

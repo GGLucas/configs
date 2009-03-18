@@ -39,10 +39,14 @@ xmodmap $HOME/.Xmodmap
 # WMName for Java
 wmname compiz
 
+# Set keyboard repeat rate
+xset r rate 250 30
+
 # Start WM
 while true;
 do
     #stumpwm
-    awesome
+    #awesome
     #ratpoison
+    sleep 100
 done;

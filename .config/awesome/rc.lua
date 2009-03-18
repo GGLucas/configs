@@ -36,14 +36,14 @@ settings = {
 
     -- Behaviour settings
     behaviour = {
-        -- Warp the mouse cursor to the focussed window
-        warp_cursor = true,
-
         -- Add new windows to the stack instead of as master
         new_become_master = false,
 
         -- Don't honor size hints
         size_hints_honor = false,
+
+        -- No sloppy focus
+        sloppyfocus = false,
 
         -- Applications to put as floating
         floatapps = {

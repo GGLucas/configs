@@ -83,10 +83,6 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
-BOOKMARKS=d=/data=../
-BOOKMARKS=j=/data=../
-BOOKMARKS=m=/data/others/vifm_trash=[Chihiro]_Zettai_Karen_Children_15_[h264][36C55993].mkv
-BOOKMARKS=u=/data/films/Shaun.of.the.Dead.2004.DVDRIP-ZEKTORM=Shaun.of.the.Dead.2004.DVDRIP-ZEKTORM.mp4
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action
