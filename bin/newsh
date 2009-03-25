@@ -1,0 +1,5 @@
+#!/bin/bash
+# Create a new shell script ready for editting
+echo '#!/bin/bash' > $1
+chmod +x $1
+vim $1

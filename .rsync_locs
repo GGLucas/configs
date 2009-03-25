@@ -11,3 +11,4 @@ RSYNC_cos="--exclude-from=$HOME/.rsync_exclude /data/web/CoS/ glacicle.com:/srv/
 RSYNC_home="--delete --exclude-from=$HOME/.rsync_exclude /data/web/home/ glacicle.com:/srv/www/1-tuple-typed/home"
 RSYNC_welzijne25="--exclude-from=$HOME/.rsync_exclude /data/web/welzijne25/ glacicle.com:/srv/www/1-glacicle/welzijne25"
 RSYNC_piwik="--exclude-from=$HOME/.rsync_exclude /data/web/piwik/ glacicle.com:/srv/www/1-glacicle/piwik"
+RSYNC_followe25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ glacicle.com:/srv/www/2-followe/followe25"

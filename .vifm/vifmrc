@@ -83,6 +83,7 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
+BOOKMARKS=m=/data/music=Anime/
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action

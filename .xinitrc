@@ -46,7 +46,7 @@ xset r rate 250 30
 while true;
 do
     #stumpwm
-    #awesome
+    awesome
     #ratpoison
-    sleep 100
+    #sleep 100
 done;
