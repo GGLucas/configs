@@ -1,6 +1,6 @@
 #!/bin/bash
 echo " -- Searching Repositories -- " 
-aursh pacnet search $@
+pp -Ss $@
 
 echo " -- Searching AUR -- " 
 aursh aur search $@

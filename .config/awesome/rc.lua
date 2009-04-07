@@ -42,7 +42,7 @@ settings = {
         -- Don't honor size hints
         size_hints_honor = false,
 
-        -- No sloppy focus
+        -- Sloppy focus
         sloppyfocus = false,
 
         -- Applications to put as floating
