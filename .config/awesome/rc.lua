@@ -43,7 +43,10 @@ settings = {
         size_hints_honor = false,
 
         -- Sloppy focus
-        sloppyfocus = false,
+        sloppyfocus = true,
+
+        -- Warp cursor
+        warp_cursor = true,
 
         -- Applications to put as floating
         floatapps = {

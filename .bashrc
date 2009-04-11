@@ -6,7 +6,10 @@ export BROWSER='fx'
 # Options
 shopt -s autocd cdspell
 shopt -s dirspell extglob
-shopt -s cmdhist
+shopt -s cmdhist nocaseglob
+
+# History control
+export HISTCONTROL="ignoreboth"
 
 # Walk through completions with ^T
 bind "\\C-t: menu-complete"
@@ -15,7 +18,7 @@ bind "\\C-t: menu-complete"
 bind "\\C-l: clear-screen"
 
 # Aliases
-alias ls='ls --color=auto -F --group-directories-first'
+alias ls='ls --color=auto -Fh --group-directories-first'
 alias no='ls'
 
 # Prompt

@@ -167,7 +167,10 @@ function setup(settings)
         -- Sloppy focus
         if settings.behaviour.sloppyfocus == nil or settings.behaviour.sloppyfocus then
             if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-                and awful.client.focus.filter(c) then
+                and awful.client.focus.filter(c) 
+                    and capi.mouse.coords().x ~= 0
+                    and capi.mouse.coords().y ~= 0
+                then
                 capi.client.focus = c
             end
         end

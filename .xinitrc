@@ -1,21 +1,16 @@
 #!/bin/bash
 
+# Desktop BG
+BG=~/pictures/bg.png
+
 # Merge X settings
-xrdb -merge $HOME/.Xresources
+xrdb -merge $HOME/.Xresources &
 
 # SCIM
 #export XMODIFIERS=@im=SCIM
 #export GTK_IM_MODULE="scim"
 #export QT_IM_MODULE="scim"
 #scim -d
-
-# Desktop BG
-BG=~/pictures/bg.png
-
-for display in ":0.0" ":0.1" ":0.2" ":0.3";
-do
-    DISPLAY=$display feh --bg-scale $BG &
-done;
 
 # Start unclutter
 unclutter -idle 2 -root &
@@ -28,19 +23,28 @@ nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
 
 # Enable sound
 amixer set Front 100 unmute > /dev/null &
-mpc volume 74
+mpc volume 74 &
 
 # Run urxvtd, to start terminals faster
 urxvtd &
 
 # Xmodmap keys
-xmodmap $HOME/.Xmodmap
+xmodmap $HOME/.Xmodmap &
 
 # WMName for Java
-wmname compiz
+wmname compiz &
 
 # Set keyboard repeat rate
-xset r rate 250 30
+xset r rate 250 30 &
+
+for display in ":0.0" ":0.1" ":0.2" ":0.3";
+do
+    # Start feh for each display
+    DISPLAY=$display feh --bg-scale $BG &
+
+    # Start keynav for each display
+    (sleep 3; DISPLAY=$display keynav) &
+done;
 
 # Start WM
 while true;

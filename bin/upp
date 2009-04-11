@@ -3,4 +3,4 @@
 echo " -- Updating Repositories -- "
 pp -Syu
 echo " -- Updating AUR -- "
-aursh -Su
+aurb -U

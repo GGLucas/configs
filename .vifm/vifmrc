@@ -83,7 +83,6 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
-BOOKMARKS=m=/data/series=The Simpsons/
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action

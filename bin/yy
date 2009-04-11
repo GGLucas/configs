@@ -3,4 +3,4 @@ echo " -- Searching Repositories -- "
 pp -Ss $@
 
 echo " -- Searching AUR -- " 
-aursh aur search $@
+aurb -S $@
