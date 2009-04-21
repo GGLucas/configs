@@ -31,6 +31,12 @@ noremap <silent> gp :tabprev<CR>
 noremap <silent> gn :tabnext<CR>
 map gb gp
 
+noremap <silent> v :tabprev<CR>
+noremap <silent> w :tabnext<CR>
+
+noremap <silent> <A-h> :tabprev<CR>
+noremap <silent> <A-l> :tabnext<CR>
+
 " Stumble
 noremap <silent> <Leader>; :javas stumble()<CR>
 noremap <silent> <Leader>, :javas su_rate(1, false, false, false)<CR>

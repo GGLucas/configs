@@ -27,7 +27,7 @@ USE_TRASH=1
 # Show only one Window
 # If you would like to start vifm with only one window set this to 1
 
-USE_ONE_WINDOW=1
+USE_ONE_WINDOW=0
 
 # Screen configuration.  If you would like to use vifm with
 # the screen program set this to 1.

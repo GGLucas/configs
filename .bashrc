@@ -22,6 +22,9 @@ bind "\\C-l: clear-screen"
 alias ls='ls --color=auto -Fh --group-directories-first'
 alias no='ls'
 
+# Load autojump
+. /etc/profile.d/autojump.bash
+
 # Prompt
 PS1="\[\e[1;35m\]\w \[\e[1;37m\]\$ \[\e[0;37m\]"
 
