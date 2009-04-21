@@ -122,6 +122,9 @@ rootbindings = {
     -- Show MPD currently playing song
     [{"Mod1", "p"}] = {awful.util.spawn, "stump-mpc"},
 
+    -- Warp pointer to top left of the screen
+    [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
+
     -- Screen focus
     [{"Mod4", "l"}] = {awful.screen.focus, 1},
     [{"Mod4", "h"}] = {awful.screen.focus, -1},
