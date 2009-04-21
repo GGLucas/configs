@@ -250,6 +250,10 @@ autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
 autocmd BufReadPre *.pdf silent set ro
 autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -csw78
 
+" Read-only rtf through unrtf
+autocmd BufReadPre *.rtf silent set ro
+autocmd BufReadPost *.rtf silent %!unrtf --text
+
 " HTML Indent
 autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.html silent filetype indent off

@@ -1,5 +1,0 @@
-#!/bin/bash
-echo -e "\033[1m$1\033[0m"
-echo "$2"
-
-sleep 4

@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo urxvtc -e mc -c $@ &

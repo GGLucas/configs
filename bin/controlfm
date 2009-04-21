@@ -1,3 +1,0 @@
-#!/bin/bash
-# Control shell-fm remotely
-echo "$@" | nc localhost 2070

@@ -1,11 +1,11 @@
 #!/bin/bash
 for e in *.$1; do
-    b=$(basename $e .$1).mkv
+    b=$(basename "$e" .$1).mkv
 
-    if [[ -a $b ]]
+    if [[ -a "$b" ]]
     then
-        echo $b Exists;
+        echo "$b Exists"
     else
-        mkvmerge -o $b $e;
+        mkvmerge -o "$b" "$e"
     fi;
 done;
