@@ -15,7 +15,7 @@ urxvt.scrollTtyKeypress: true
 urxvt.secondaryScroll: true
 urxvt.jumpScroll: true
 urxvt.skipScroll: true
-urxvt.perl-ext-common: selection
+urxvt.perl-ext-common: default,mytabbed
 
 urxvt.font: xft:Terminus:size=10:antialias=false:hinting=false
 urxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
