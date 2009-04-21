@@ -1,6 +1,7 @@
 # Settings
 auto-reload yes
 reload-time 30
+reload-threads 5
 refresh-on-startup yes
 text-width 78
 always-display-description true
