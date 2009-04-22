@@ -63,7 +63,7 @@ sub refresh {
        $tab->XMoveResizeWindow (
           $tab->parent,
           0, 0,
-          $self->width, $self->height - $self->{tabheight}
+          $self->width, $self->height
        );
    }
 
