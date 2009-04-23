@@ -64,8 +64,8 @@ nmap <silent> gb :bprev<CR>
 nmap <silent> gn :bnext<CR>
 nmap <silent> gl :e .<CR>
 
-noremap <silent> <Esc>h :bprev<CR>
-noremap <silent> <Esc>l :bnext<CR>
+noremap <silent> <Esc>w :bnext<CR>
+noremap <silent> <Esc>v :bprev<CR>
 " }}}
 
 " {{{ Opening different plugin windows
