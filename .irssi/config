@@ -266,6 +266,13 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -326,7 +333,9 @@ keyboard = (
   { key = "meta-j"; id = "key"; data = "down"; },
   { key = "meta-k"; id = "key"; data = "up"; },
   { key = "meta-h"; id = "previous_window"; data = ""; },
-  { key = "meta-l"; id = "next_window"; data = ""; }
+  { key = "meta-l"; id = "next_window"; data = ""; },
+  { key = "meta-v"; id = "previous_window"; data = ""; },
+  { key = "meta-w"; id = "next_window"; data = ""; }
 );
 
 windows = { 1 = { immortal = "yes"; name = "(status)"; level = "ALL"; }; };

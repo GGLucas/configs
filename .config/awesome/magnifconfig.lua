@@ -77,7 +77,7 @@ function setup(settings)
                         end
                     end
 
-                    capi.mouse.coords({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
+                    --capi.mouse.coords({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
                 end
             end)
         end

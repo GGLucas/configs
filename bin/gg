@@ -1,2 +1,2 @@
 #!/bin/bash
-exec urxvtc -e "fish" -c "exec sudo vim $@" >> /dev/null &
+exec urxvtc -e "bash" -c "exec sudo vim $@" >> /dev/null &

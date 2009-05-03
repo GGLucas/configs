@@ -43,7 +43,7 @@ do
     DISPLAY=$display feh --bg-scale $BG &
 
     # Start keynav for each display
-    #(sleep 3; DISPLAY=$display keynav) &
+    (sleep 5; DISPLAY=$display keynav) &
 done;
 
 # Start WM

@@ -34,6 +34,9 @@ map gb gp
 noremap <silent> v :tabprev<CR>
 noremap <silent> w :tabnext<CR>
 
+noremap <silent> <A-v> :tabprev<CR>
+noremap <silent> <A-w> :tabnext<CR>
+
 noremap <silent> <A-h> :tabprev<CR>
 noremap <silent> <A-l> :tabnext<CR>
 
@@ -58,6 +61,10 @@ noremap h 2h
 noremap j 2j
 noremap k 2k
 noremap l 2l
+
+" Remove tabs
+noremap <silent> <leader>D :removetabsright<CR>
+noremap <silent> <leader>d :removetabsleft<CR>
 
 " Command line cursor keys
 cnoremap <C-h> <Left>

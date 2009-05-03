@@ -1,8 +1,11 @@
+! Map caps to escape
 remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
 keysym Caps_Lock = Escape
 
+! Make the grave key work
 keycode 21 = numbersign grave
 
+! Fix Super_L
 keycode 133 = Super_L
 remove mod1 = Super_L

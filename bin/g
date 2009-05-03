@@ -1,2 +1,2 @@
 #!/bin/bash
-exec urxvtc -e "zsh" -c "exec vim $@" >> /dev/null &
+exec urxvtc -e "bash" -c "exec vim $@" >> /dev/null &

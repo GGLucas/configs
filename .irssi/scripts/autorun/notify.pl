@@ -1,73 +1,62 @@
 ##
-## Put me in ~/.irssi/scripts, and then execute the following in irssi:
-##
-##       /load perl
-##       /script load notify
+## Put me in ~/.irssi/scripts/autorun
+## Taken from: http://awesome.naquadah.org/wiki/index.php?title=Irssi_tips
 ##
 
-use strict;
 use Irssi;
 use vars qw($VERSION %IRSSI);
 
-$VERSION = "0.01";
+$VERSION = "0.02";
 %IRSSI = (
-    authors     => 'Luke Macken, Paul W. Frields',
-    contact     => 'lewk@csh.rit.edu, stickster@gmail.com',
+    authors     => 'Donald Ephraim Curtis',
+    contact     => 'dcurtis@cs.uiowa.edu',
     name        => 'notify.pl',
-    description => 'Use libnotify to alert user to hilighted messages',
+    description => 'notify Awesome WM of irssi message',
     license     => 'GNU General Public License',
-    url         => 'http://lewk.org/log/code/irssi-notify',
 );
 
-Irssi::settings_add_str('notify', 'notify_icon', 'gtk-dialog-info');
-Irssi::settings_add_str('notify', 'notify_time', '5000');
-
 sub notify {
-    my ($server, $summary, $message) = @_;
+    my ($title, $text) = @_;
 
-    # Make the message entity-safe
-    $message =~ s/&/&amp;/g; # That could have been done better.
-    $message =~ s/</&lt;/g;
-    $message =~ s/>/&gt;/g;
-    $message =~ s/'//g;
-    $message =~ s/"//g;
-    $message =~ s/`//g;
-    $message =~ s/<//g;
-    $message =~ s/>//g;
-    $message =~ s/\\//g;
+    my %replacements = (
+        '<' => '<',
+        '>' => '>',
+        '&' => '&',
+        "\"" => '"',
+    );
 
-    my $cmd = 'EXEC - notify-send "' . $summary . '" "' . $message . '"';
+    # lazy way of constructing the regexp - I've done enough typing already!
+    my $replacement_string = join '', keys %replacements;
 
-    $server->command($cmd);
-}
- 
-sub print_text_notify {
-    my ($dest, $text, $stripped) = @_;
-    my $server = $dest->{server};
 
-    return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
-    my $sender = $stripped;
-    $sender =~ s/^\<.([^\>]+)\>.+/\1/ ;
-    $stripped =~ s/^\<.[^\>]+\>.// ;
-    my $summary = $dest->{target} . ": " . $sender;
-    notify($server, $summary, $stripped);
+    $title =~ s/([\Q$replacement_string\E])/$replacements{$1}/g;
+    $text =~ s/([\Q$replacement_string\E])/$replacements{$1}/g;
+
+    system("notify-send -t 7500 \"<span color='#ffffff'>".$title."</span>\""." \"".$text."\"");
 }
 
-sub message_private_notify {
-    my ($server, $msg, $nick, $address) = @_;
 
-    return if (!$server);
-    notify($server, "Private message from ".$nick, $msg);
+sub highlight {
+    my ($dest, $msg, $stripped) = @_;
+
+    my $window = Irssi::active_win();
+
+    if (($dest->{level} & MSGLEVEL_HILIGHT) && ($dest->{level} & MSGLEVEL_PUBLIC)) {
+        notify($dest->{target}, $stripped);
+    }
+
 }
 
-sub dcc_request_notify {
-    my ($dcc, $sendaddr) = @_;
-    my $server = $dcc->{server};
+sub query {
+    my ($server, $msg, $nick, $addr) = @_;
 
-    return if (!$dcc);
-    notify($server, "DCC ".$dcc->{type}." request", $dcc->{nick});
+    my $window = Irssi::active_win();
+
+    my $itemwindow = $server->window_find_item($nick);
+    if ($window->{refnum} != $itemwindow->{refnum}) {
+        notify($nick, $msg);
+    }
 }
 
-Irssi::signal_add('print text', 'print_text_notify');
-Irssi::signal_add('message private', 'message_private_notify');
-Irssi::signal_add('dcc request', 'dcc_request_notify');
+Irssi::signal_add('print text', 'highlight');
+Irssi::signal_add('message private', 'query');

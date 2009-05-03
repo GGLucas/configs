@@ -1,3 +1,19 @@
-space warp,click 1, end
-ctrl+h warp,click 1,end
-ctrl+l warp,click 3,end
+clear
+
+alt+r start
+r end
+
+h cut-left
+j cut-down
+k cut-up
+l cut-right
+
+shift+h move-left
+shift+j move-down
+shift+k move-up
+shift+l move-right
+
+space   warp,click 1,end
+ctrl+h  warp,click 1,end
+ctrl+l  warp,click 3,end
+ctrl+t  history-back

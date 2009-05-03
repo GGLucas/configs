@@ -51,6 +51,7 @@ settings = {
         -- Applications to put as floating
         floatapps = {
             ["gimp"] = true,
+            ["bashrun"] = true,
         },
     },
 
@@ -199,17 +200,22 @@ naughty.config.padding = 0
 naughty.config.spacing = -1
 
 -- Lower timeout
-naughty.config.presets.low.timeout = 3
 naughty.config.presets.normal.timeout = 3
-naughty.config.presets.critical.timeout = 60
 
 -- Wider notifications
 naughty.config.presets.normal.width = 500
 
 -- White text
-naughty.config.presets.low.fg = "#ffffff"
 naughty.config.presets.normal.fg = "#ffffff"
-naughty.config.presets.critical.fg = "#ffffff"
+
+-- Regular font
+naughty.config.presets.normal.font = "Terminus 10"
+
+-- Tell naughty about the currently focussed screen
+awful.hooks.focus.register(function (c)
+    naughty.config.presets.normal.screen = c.screen
+end)
+
 -- }}}
 
 -- {{{ Mail notifier box
