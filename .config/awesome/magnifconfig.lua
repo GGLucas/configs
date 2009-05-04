@@ -40,6 +40,9 @@ module("magnifconfig")
 -- Tags that were created
 tags = {}
 
+-- Dropdown apps
+dropdown = {}
+
 -- User hooks
 awful.hooks.user.create('newtag')
 
@@ -67,7 +70,7 @@ function setup(settings)
                        m.x > coords.x+coords.width+border_area or
                        m.y > coords.y+coords.height+border_area
                     )
-                    or force)
+                    or force or (m.x == 0 and m.y == 0))
                 then
                     if not force then
                         for k,v in pairs(m.buttons) do
@@ -77,7 +80,7 @@ function setup(settings)
                         end
                     end
 
-                    --capi.mouse.coords({ x=coords.x+mouse_padd, y=coords.y+mouse_padd})
+                    capi.mouse.coords({ x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd})
                 end
             end)
         end
@@ -154,7 +157,9 @@ function setup(settings)
 
         -- Raise if needed
         if settings.behaviour.focusraise == nil or settings.behaviour.focusraise then
-            c:raise()
+            if awful.client.floating.get(c) then
+                c:raise()
+            end
         end
     end)
 
@@ -520,6 +525,87 @@ util = {
             awful.client.movetotag(util.tag.getidx(-1), c)
         end,
     },
+
+    banish = function (c, padd)
+        if padd == nil then padd = 6 end
+        local client = c or capi.client.focus
+        local coords = client:geometry()
+
+        capi.mouse.coords({ x=coords.x+coords.width-padd, y=coords.y+coords.height-padd})
+    end,
+
+    dropdown = function (prog, screen, height)
+        if screen == nil then screen = capi.mouse.screen end
+        if height == nil then height = 0.2 end
+
+        if not dropdown[prog] then
+            -- Create table
+            dropdown[prog] = {}
+
+            -- Add unmanage hook
+            awful.hooks.unmanage.register(function (c)
+                for scr, cl in pairs(dropdown[prog]) do
+                    if cl == c then
+                        dropdown[prog][scr] = nil
+                    end
+                end
+            end)
+        end
+
+        if not dropdown[prog][screen] then
+            spawnw = function (c)
+                -- Store client
+                dropdown[prog][screen] = c
+
+                -- Float client
+                awful.client.floating.set(c, true)
+
+                -- Get screen geometry
+                screengeom = capi.screen[screen].workarea
+
+                -- Calculate height
+                if height < 1 then
+                    height = screengeom.height*height
+                end
+
+                -- Resize client
+                c:geometry({
+                    x = screengeom.x,
+                    y = screengeom.y,
+                    width = screengeom.width,
+                    height = height
+                })
+
+                -- Focus and raise client
+                c:raise()
+                capi.client.focus = c
+
+                -- Remove hook
+                awful.hooks.manage.unregister(spawnw)
+            end
+
+            -- Add hook
+            awful.hooks.manage.register(spawnw)
+
+            -- Spawn program
+            awful.util.spawn(prog)
+        else
+            -- Get client
+            c = dropdown[prog][screen]
+
+            -- Switch the client to the current workspace
+            awful.client.movetotag(awful.tag.selected(screen), c)
+
+            -- Focus and raise if not hidden
+            if c.hide then
+                c.hide = false
+                c:raise()
+                capi.client.focus = c
+            else
+                c.hide = true
+            end
+        end
+    end
 }
 
 -- vim: set ft=lua fdm=marker:

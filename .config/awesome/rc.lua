@@ -117,14 +117,17 @@ rootbindings = {
     -- Open vifm
     [{"Mod1", "e"}] = {awful.util.spawn, settings.apps.vifm},
 
+    -- Drop-down urxvtc terminal
+    [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},
+
     -- Show CPU/MEM/etc statistics
     [{"Mod1", "u"}] = {awful.util.spawn, "stump-stats"},
 
     -- Show MPD currently playing song
     [{"Mod1", "p"}] = {awful.util.spawn, "stump-mpc"},
 
-    -- Warp pointer to top left of the screen
-    [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
+    -- Warp pointer to bottom position in window
+    [{"Mod4", "$"}] = {magnifconfig.util.banish},
 
     -- Screen focus
     [{"Mod4", "l"}] = {awful.screen.focus, 1},
@@ -205,7 +208,8 @@ naughty.config.presets.normal.timeout = 3
 -- Wider notifications
 naughty.config.presets.normal.width = 500
 
--- White text
+-- Colours
+naughty.config.presets.normal.bg = "#444444"
 naughty.config.presets.normal.fg = "#ffffff"
 
 -- Regular font
