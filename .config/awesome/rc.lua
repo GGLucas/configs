@@ -46,20 +46,16 @@ settings = {
         sloppyfocus = true,
 
         -- Warp cursor
-        warp_cursor = true,
+        warp_cursor = false,
 
         -- Applications to put as floating
         floatapps = {
             ["gimp"] = true,
-            ["bashrun"] = true,
         },
     },
 
     -- Tagging settings
     tagging = {
-        -- Use dynamic tagging like wmii/eminent
-        --dynamic = true,
-
         -- Tags to use
         tags = {"1", "2", "3", "4", "5", "6"},
 
@@ -126,8 +122,8 @@ rootbindings = {
     -- Show MPD currently playing song
     [{"Mod1", "p"}] = {awful.util.spawn, "stump-mpc"},
 
-    -- Warp pointer to bottom position in window
-    [{"Mod4", "$"}] = {magnifconfig.util.banish},
+    -- Warp pointer to top left of the screen
+    [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
     -- Screen focus
     [{"Mod4", "l"}] = {awful.screen.focus, 1},

@@ -15,7 +15,7 @@ URxvt.scrollTtyKeypress: true
 URxvt.secondaryScroll: true
 URxvt.jumpScroll: true
 URxvt.skipScroll: true
-URxvt.perl-ext-common: default,mytabbed
+URxvt.perl-ext-common: default
 URxvt.saveLines: 500
 URxvt.visualBell: false
 URxvt.highlightSelection:  true

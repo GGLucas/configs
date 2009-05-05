@@ -576,6 +576,10 @@ util = {
                     height = height
                 })
 
+                -- Set ontop
+                c.above = true
+                c.ontop = true
+
                 -- Focus and raise client
                 c:raise()
                 capi.client.focus = c
