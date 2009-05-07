@@ -7,6 +7,7 @@
 # be used for the sub directories.
 
 # The standard ncurses colors are: 
+# Default = -1 used for fake transparency
 # Black = 0
 # Red = 1
 # Green = 2
@@ -15,6 +16,8 @@
 # Magenta = 5
 # Cyan = 6
 # White = 7
+
+# As vifm supports 256 colors you can use color numbers 0-255 (requires properly set up terminal).
 
 # COLORSCHEME=OneWordDescription
 # DIRECTORY=/Full/Path/To/Base/Directory
