@@ -157,9 +157,7 @@ function setup(settings)
 
         -- Raise if needed
         if settings.behaviour.focusraise == nil or settings.behaviour.focusraise then
-            if awful.client.floating.get(c) then
-                c:raise()
-            end
+            c:raise()
         end
     end)
 

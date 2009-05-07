@@ -2,7 +2,7 @@
 source ~/.vimrc
 
 " Apply colorscheme again
-colors oblivion
+colors zenburn
 
 " Remove GUI elements
 set guioptions=
