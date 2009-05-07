@@ -151,7 +151,7 @@ if $TERM == 'linux'
 else
     " Regular
     set t_Co=256
-    colorscheme zenburn
+    colorscheme oblivion
 endif
   
 " Config
