@@ -1,34 +1,8 @@
 servers = (
-  { address = "irc.stealth.net"; chatnet = "IRCNet"; port = "6668"; },
-  { address = "irc.efnet.net"; chatnet = "EFNet"; port = "6667"; },
-  { 
-    address = "irc.undernet.org";
-    chatnet = "Undernet";
-    port = "6667";
-  },
-  { address = "irc.dal.net"; chatnet = "DALnet"; port = "6667"; },
-  { address = "irc.openprojects.net"; chatnet = "OPN"; port = "6667"; },
-  { address = "irc.gnome.org"; chatnet = "GIMPNet"; port = "6667"; },
-  { address = "irc.ptlink.net"; chatnet = "PTlink"; port = "6667"; },
-  { address = "silc.pspt.fi"; chatnet = "SILC"; port = "706"; },
   {
-    address = "irc.freenode.net";
-    chatnet = "freenode";
-    port = "6667";
-    autoconnect = "no";
-    nick = "GGLucas";
-  },
-  {
-    address = "irc.oftc.net";
-    chatnet = "oftc";
-    port = "6667";
-    autoconnect = "no";
-    nick = "GGLucas";
-  },
-  {
-    address = "127.0.0.1";
+    address = "glacicle.com";
     chatnet = "bitlbee";
-    port = "6667";
+    port = "3340";
     autoconnect = "yes";
     nick = "GGLucas";
   }
@@ -84,9 +58,6 @@ chatnets = {
 };
 
 channels = (
-  { name = "#awesome"; chatnet = "oftc"; autojoin = "Yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "Yes"; },
-
 );
 
 aliases = {
@@ -280,6 +251,7 @@ settings = {
     openurl_app_http = "fxs :0.2 '$1'";
     openurl_watch_mail = "no";
   };
+  proxy = { irssiproxy_password = ""; };
 };
 logs = { };
 ignores = (

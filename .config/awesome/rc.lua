@@ -25,7 +25,16 @@ settings = {
         terminal = "urxvtc",
 
         -- Open a terminal with screen
+        -- * Local
         screen = "urxvtc -e screen -x main",
+        -- * Server
+        screen_server = "urxvtc -e ssh glacicle.com screen -x main",
+
+        -- Open irssi terminals connection to my proxy
+        -- * Main IRC
+        irssi = "urxvtc -e irssi --config=~/.irssi/.config",
+        -- * Bitlbee
+        irssi_bitlbee = "urxvtc -e irssi --config=~/.irssi/.imconfig",
 
         -- Toggle mpd music
         togglempd = "mpdtoggle toggle",
@@ -102,7 +111,16 @@ rootbindings = {
     [{"Mod1", ";"}] = {awful.util.spawn, settings.apps.terminal},
 
     -- Open terminal with screen
+    -- * Local
     [{"Mod4", "b"}] = {awful.util.spawn, settings.apps.screen},
+    -- * Server
+    [{"Mod4", "Shift", "b"}] = {awful.util.spawn, settings.apps.screen_server},
+
+    -- Open terminal with irssi
+    -- * Main IRC
+    [{"Mod4", "x"}] = {awful.util.spawn, settings.apps.irssi},
+    -- * Bitlbee
+    [{"Mod4", "Shift", "x"}] = {awful.util.spawn, settings.apps.irssi_bitlbee},
 
     -- Toggle music
     [{"Mod1", "."}] = {awful.util.spawn, settings.apps.togglempd},
