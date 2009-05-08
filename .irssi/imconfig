@@ -57,8 +57,7 @@ chatnets = {
   bitlbee = { type = "IRC"; };
 };
 
-channels = (
-);
+channels = ( );
 
 aliases = {
   J = "join";
@@ -100,6 +99,7 @@ aliases = {
   RUN = "SCRIPT LOAD";
   SBAR = "STATUSBAR";
   INVITELIST = "mode $C +I";
+  BL = "CTCP -proxy- IRSSIPROXY BACKLOG SEND";
   w = "win";
 };
 

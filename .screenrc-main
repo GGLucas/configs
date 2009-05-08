@@ -2,9 +2,18 @@
 source .screenrc
 
 # Define new windows
-screen -t 'irc' 1 'irssi'
-screen -t 'im' 2 'irssi_im'
-screen -t 'mpd' 3 'ncmpc'
-screen -t 'dl' 4 'rtor'
-screen -t 'mt' 5 'mutt'
-screen -t 'rss' 6 'screen_newsbeuter'
+screen -t irc  1  irssi --config=~/.irssi/.config
+screen -t im   2  irssi --config=~/.irssi/.imconfig
+screen -t mpd  3  ncmpc
+screen -t dl   4  rtor
+screen -t mt   5  mutt
+screen -t rss  6  screen_newsbeuter
+
+# Make these the only irssi instances that notify
+select 1
+stuff '/load notify.pl'
+
+select 2
+stuff '/load notify.pl'
+
+select 1

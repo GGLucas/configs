@@ -70,6 +70,9 @@ cnoremap <C-x> <Right><BS>
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 
+" Vim editting in textareas
+set noinsertmode
+
 " F7: Search highlight toggle
 map <F7> :noh<CR>
 
