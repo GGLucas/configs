@@ -1,8 +1,8 @@
 " Source original vimrc
 source ~/.vimrc
 
-" Apply colorscheme again
-colors oblivion
+" Apply zenburn colorscheme for gui
+colors zenburn
 
 " Remove GUI elements
 set guioptions=

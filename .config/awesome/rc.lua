@@ -7,11 +7,11 @@
 -- Awful: Standard awesome library
 require("awful")
 
--- Wicked: Dynamic widget library
-require("wicked")
-
 -- Naughty: Notification library
 require("naughty")
+
+-- Rodentbane: Utilities for controlling the cursor
+require("rodentbane")
 
 -- MagnifConfig: Easy automation of awesome configuration
 -- Note: Unreleased, bug me on IRC to remind me to work on releasing it
@@ -130,6 +130,9 @@ rootbindings = {
 
     -- Open vifm
     [{"Mod1", "e"}] = {awful.util.spawn, settings.apps.vifm},
+
+    -- Start rodentbane cursor navigation
+    [{"Mod1", "r"}] = rodentbane.start,
 
     -- Drop-down urxvtc terminal
     [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},

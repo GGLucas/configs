@@ -2,6 +2,7 @@
 
 # MPC:
 nom=$(mpc | head -n 1 | sed "s/AnimeNfo[^:]*: //" | sed "s/'//g")
+echo "notify-send 'Playing: $nom'"
 
 # Shell-fm
 #nom=$(controlfm "info %t - %a [%l]" | sed "s/'//")
