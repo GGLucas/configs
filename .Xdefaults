@@ -15,12 +15,14 @@ URxvt.scrollTtyKeypress: true
 URxvt.secondaryScroll: true
 URxvt.jumpScroll: true
 URxvt.skipScroll: true
-URxvt.perl-ext-common: default
+URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt.perl-ext: default,matcher,mark-yank-urls
+URxvt.perl-lib: /home/archlucas/bin/
 URxvt.saveLines: 500
 URxvt.visualBell: false
 URxvt.highlightSelection:  true
 URxvt.borderWidth: 0 
-URxvt.urlLauncher: firefox
+URxvt.urlLauncher: fxs :0.2
 URxvt.pointerBlank: true
 URxvt.internalBorder: 3 
 

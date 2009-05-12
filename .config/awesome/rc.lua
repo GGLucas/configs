@@ -137,11 +137,11 @@ rootbindings = {
     -- Drop-down urxvtc terminal
     [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},
 
-    -- Show CPU/MEM/etc statistics
-    [{"Mod1", "u"}] = {awful.util.spawn, "stump-stats"},
-
     -- Show MPD currently playing song
     [{"Mod1", "p"}] = {awful.util.spawn, "stump-mpc"},
+
+    -- Show CPU/MEM/etc statistics
+    [{"Mod1", "Shift", "p"}] = {awful.util.spawn, "stump-stats"},
 
     -- Warp pointer to top left of the screen
     [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
