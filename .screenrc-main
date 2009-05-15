@@ -2,6 +2,7 @@
 source .screenrc
 
 # Define new windows
+screen -t sh   0
 screen -t irc  1  weechat-curses
 screen -t rss  2  screen_newsbeuter
 screen -t mpd  3  ncmpc

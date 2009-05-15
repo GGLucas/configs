@@ -1,1 +1,1 @@
-/data/projects/rodentbane/rodentbane.lua
+/data/projects/awesome/rodentbane/rodentbane.lua

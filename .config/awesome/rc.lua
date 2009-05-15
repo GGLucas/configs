@@ -161,6 +161,15 @@ rootbindings = {
     -- Switch between layouts
     [{"Mod1", "'"}] = {awful.layout.set, awful.layout.suit.max},
     [{"Mod1", "q"}] = {awful.layout.set, awful.layout.suit.tile},
+    [{"Mod1", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
+
+    -- Switch between mwfact modes
+    [{"Mod1", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
+    [{"Mod1", "Shift", "q"}] = {awful.tag.setmwfact, 0.618033988769},
+
+    -- Increase or decrease the number of master windows
+    [{"Mod4", "'"}] = {awful.tag.incnmaster, -1},
+    [{"Mod4", "q"}] = {awful.tag.incnmaster, 1},
 
     -- Restart awesome
     [{"Mod1", "Mod4", "r"}] = awful.util.restart,
