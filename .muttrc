@@ -24,6 +24,9 @@ set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E in thre
 set imap_idle = yes
 set imap_keepalive = 300
 
+# Immediately go to message edit when replying
+set fast_reply = yes
+
 # Mail check interval
 set mail_check = 30
 set timeout = 30
@@ -65,6 +68,10 @@ macro pager \Cb ":set pipe_decode\n|urlview\n:unset pipe_decode\n"\
 # Mark all as read
 macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N" \
                 "Mark all new messages as read"
+
+# Mark message as spam
+macro index S "<copy-message>=Spam\ny<delete-message><sync-mailbox>y" \
+              "Mark a message as spam"
 
 # Split Window
 set pager_index_lines=15
