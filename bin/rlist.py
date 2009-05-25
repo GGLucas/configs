@@ -14,5 +14,5 @@ if __name__ == '__main__':
     print(len(FILES))
 
     while True:
-        os.system('gqview -r "'+random.choice(FILES).replace('"','\\"')+'"')
+        os.system('geeqie -r file:"'+random.choice(FILES).replace('"','\\"')+'"')
         time.sleep(float(sys.argv[1]))

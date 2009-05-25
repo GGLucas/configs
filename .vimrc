@@ -64,6 +64,9 @@ nmap <silent> gb :bprev<CR>
 nmap <silent> gn :bnext<CR>
 nmap <silent> gl :e .<CR>
 
+nmap <silent> ,g :FuzzyFinderBuffer<CR>
+nmap <silent> ,f :FuzzyFinderFile<CR>
+
 noremap <silent> <Esc>w :bnext<CR>
 noremap <silent> <Esc>v :bprev<CR>
 " }}}

@@ -10,7 +10,7 @@ shopt -s cmdhist nocaseglob
 
 # History control
 export HISTCONTROL="ignoreboth"
-export HISTFILESIZE=50000
+export HISTFILESIZE=500000
 
 # Walk through completions with ^T
 bind "\\C-t: menu-complete"
