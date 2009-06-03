@@ -18,7 +18,7 @@ nmap <C-L> <C-w>l
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-nmap e :w<CR>
+nmap <silent> e :w<CR>
 
 " To prevent K mispresses right after V
 vmap K k
@@ -265,10 +265,10 @@ autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.html silent filetype indent off
 autocmd BufEnter *.html silent setlocal ai
 
-" HAML Indent
-autocmd BufEnter *.haml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufEnter *.haml silent filetype indent off
-autocmd BufEnter *.haml silent setlocal ai
+" SASS Indent
+autocmd BufEnter *.sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufEnter *.sass silent filetype indent off
+autocmd BufEnter *.sass silent setlocal ai
 
 " CleverCSS syntax
 autocmd BufEnter *.ccss silent setlocal syn=ccss
@@ -291,9 +291,6 @@ function! TextwidthToggle()
 
     set textwidth?
 endfunction
-" }}}
-
-" {{{ ToHTML(): Overrides TOhtml with bgcolor.
 " }}}
 " }}}
 
