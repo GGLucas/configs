@@ -5,7 +5,7 @@ reload-threads 5
 refresh-on-startup yes
 text-width 78
 always-display-description true
-browser "fxs :0.2 %u"
+browser "fxs :0.0 %u"
 save-path "~/Articles"
 
 # Keybindings

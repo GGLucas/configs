@@ -26,9 +26,9 @@ settings = {
 
         -- Open a terminal with screen
         -- * Local
-        screen = "urxvtc -e screen -x main",
+        screen = "urxvtc -e screen -x main -p 0",
         -- * Server
-        screen_server = "urxvtc -e ssh glacicle.com screen -x main",
+        screen_server = "urxvtc -e ssh glacicle.com screen -x main -p 0",
 
         -- Open irssi terminals connection to my proxy
         -- * Main IRC
@@ -69,7 +69,7 @@ settings = {
         tags = {"1", "2", "3", "4", "5", "6"},
 
         -- Default master width factor
-        default_mwfact = 0.618033988769,
+        default_mwfact = 0.5,
 
         -- Default layout
         default_layout = awful.layout.suit.tile,
@@ -146,10 +146,6 @@ rootbindings = {
     -- Warp pointer to top left of the screen
     [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
-    -- Screen focus
-    [{"Mod4", "l"}] = {awful.screen.focus, 1},
-    [{"Mod4", "h"}] = {awful.screen.focus, -1},
-
     -- Tag selection
     [{"Mod4", "w"}] = awful.tag.viewnext,
     [{"Mod4", "v"}] = awful.tag.viewprev,
@@ -170,6 +166,61 @@ rootbindings = {
     -- Increase or decrease the number of master windows
     [{"Mod4", "'"}] = {awful.tag.incnmaster, -1},
     [{"Mod4", "q"}] = {awful.tag.incnmaster, 1},
+
+    -- Screen focus
+    [{"Mod4", "h"}] = function ()
+        local screen = mouse.screen
+
+        if screen == 1 then
+            screen = 4
+        elseif screen == 5 then
+            screen = 6
+        elseif screen == 6 then
+            screen = 5
+        else
+            screen = screen - 1
+        end
+            
+        local c = awful.client.focus.history.get(screen, 0)
+        if c then client.focus = c end
+        mouse.screen = screen
+    end,
+
+    [{"Mod4", "l"}] = function ()
+        local screen = mouse.screen
+
+        if screen == 4 then
+            screen = 1
+        elseif screen == 5 then
+            screen = 6
+        elseif screen == 6 then
+            screen = 5
+        else
+            screen = screen + 1
+        end
+            
+        local c = awful.client.focus.history.get(screen, 0)
+        if c then client.focus = c end
+        mouse.screen = screen
+    end,
+
+    [{"Mod4", "g"}] = function ()
+        local screen = mouse.screen
+
+        if screen == 5 then
+            screen = 1
+        elseif screen == 6 then
+            screen = 2
+        elseif screen == 1 or screen == 4 then
+            screen = 5
+        elseif screen == 2 or screen == 3 then
+            screen = 6
+        end
+
+        local c = awful.client.focus.history.get(screen, 0)
+        if c then client.focus = c end
+        mouse.screen = screen
+    end,
 
     -- Restart awesome
     [{"Mod1", "Mod4", "r"}] = awful.util.restart,
@@ -202,6 +253,30 @@ clientbindings = {
     -- Move to tag
     [{"Mod4", "Shift", "w"}] = magnifconfig.util.client.movetonexttag,
     [{"Mod4", "Shift", "v"}] = magnifconfig.util.client.movetoprevtag,
+
+    -- Left screenjoin
+    [{"Mod4", "+"}] = function ()
+        awful.client.floating.set(client.focus, true)
+
+        client.focus:geometry({
+            x = 0,
+            y = 0,
+            width = 3360,
+            height = 1050
+        })
+    end,
+
+    -- Right screenjoin
+    [{"Mod4", "]"}] = function ()
+        awful.client.floating.set(client.focus, true)
+
+        client.focus:geometry({
+            x = -1680,
+            y = 0,
+            width = 3360,
+            height = 1050
+        })
+    end,
 }
 
 -- Mouse clicks on a client

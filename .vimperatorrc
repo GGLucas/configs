@@ -31,11 +31,8 @@ map gb gp
 noremap <silent> v :tabprev<CR>
 noremap <silent> w :tabnext<CR>
 
-noremap <silent> <A-v> :tabprev<CR>
-noremap <silent> <A-w> :tabnext<CR>
-
-noremap <silent> <A-h> :tabprev<CR>
-noremap <silent> <A-l> :tabnext<CR>
+noremap <silent> V :tabmove -1<CR>
+noremap <silent> W :tabmove +1<CR>
 
 " Stumble
 noremap <silent> <Leader>; :javas stumble()<CR>

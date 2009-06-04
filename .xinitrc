@@ -37,7 +37,7 @@ wmname compiz &
 # Set keyboard repeat rate
 xset r rate 250 30 &
 
-for display in ":0.0" ":0.1" ":0.2" ":0.3";
+for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do
     # Start feh for each display
     DISPLAY=$display feh --bg-scale $BG &

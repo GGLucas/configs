@@ -22,7 +22,7 @@ URxvt.saveLines: 500
 URxvt.visualBell: false
 URxvt.highlightSelection:  true
 URxvt.borderWidth: 0 
-URxvt.urlLauncher: fxs :0.2
+URxvt.urlLauncher: fxs :0.0
 URxvt.pointerBlank: true
 URxvt.internalBorder: 3 
 

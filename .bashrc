@@ -21,6 +21,7 @@ bind "\\C-l: clear-screen"
 # Aliases
 alias ls='ls --color=auto -Fh --group-directories-first'
 alias no='ls'
+alias s='screen -x main -p 0'
 
 # Load autojump
 . /etc/profile.d/autojump.bash
