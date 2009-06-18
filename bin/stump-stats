@@ -15,4 +15,4 @@ with os.popen("top -b -n 1") as fl:
     cpu = fl.readline().split()
     cpu = "%s %s" % (cpu[1][:-1], cpu[2][:-1])
 
-os.system("notify-send 'Load: %s | Mem: %s | CPU: %s'" % (load, mem, cpu))
+os.system("notify-send --expire-time=6000 'Usage Statistics' 'Load: %s | Mem: %s | CPU: %s'" % (load, mem, cpu))

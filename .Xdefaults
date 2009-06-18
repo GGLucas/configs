@@ -27,8 +27,20 @@ URxvt.pointerBlank: true
 URxvt.internalBorder: 3 
 
 !! Font
-URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false
-URxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
+!URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false
+!URxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
+!URxvt.font: xft:Bitstream Vera Sans Mono-10:hinting=false
+!URxvt.boldFont: xft:Bitstream Vera Sans Mono-10:style=Bold:hinting=false
+
+URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false,\
+            -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
+            xft:Code2000:antialias=false
+
+URxvt.boldFont: xft:Terminus:size=10:style=Bold:antialias=false:hinting=false,\
+            -misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1,\
+            -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
+            xft:Code2000:antialias=false
+
 
 !! Window Colours
 URxvt.background: #000000

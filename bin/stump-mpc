@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # MPC:
-nom=$(mpc | head -n 1 | sed "s/AnimeNfo[^:]*: //" | sed "s/'//g")
+nom=$(mpc | head -n 1 | sed "s/AnimeNfo[^:]*: //" | sed "s/'//g" | sed "s/\&/\&amp;/g")
 
 # Shell-fm
 #nom=$(controlfm "info %t - %a [%l]" | sed "s/'//")
 
-eval "notify-send 'Playing: $nom'"
+eval "notify-send 'Now Playing' '$nom'"

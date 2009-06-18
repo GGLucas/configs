@@ -65,6 +65,6 @@ dht_port = 6881
 # Enable peer exchange (for torrents not marked private)
 peer_exchange = yes
 
-# Throttle upload
+# Throttle rates
 download_rate = 1900
 upload_rate = 30

@@ -83,7 +83,7 @@ module Aurb
             next if in_sync? result['Name']
             if package.any? { |pac| (result['Name'].include?(pac)) || (result['Description'].include?(pac)) }
               count += 1
-              puts "[#{result['OutOfDate'] == '1' ? color(color('✘', :red), :bold) : color(color('✔', :green), :bold)}] #{color(color(result['Name'], :white), :bold)} #{color(color(result['Version'], :green), :bold)}\n    #{result['Description']}\n"
+              puts "[#{result['OutOfDate'] == '1' ? color(color('[X]', :red), :bold) : color(color('[O]', :green), :bold)}] #{color(color(result['Name'], :white), :bold)} #{color(color(result['Version'], :green), :bold)}\n    #{result['Description']}\n"
             end
           end
         end

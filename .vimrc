@@ -161,6 +161,9 @@ endif
 " Use UTF-8 encoding
 set encoding=utf-8
 
+" Don't highlight the current line
+set nocursorline
+
 " Characters to use in list mode
 set listchars=eol:$,tab:>-,trail:·
 
