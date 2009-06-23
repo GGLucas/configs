@@ -60,6 +60,9 @@ noremap l 2l
 noremap <silent> <leader>D :removetabsright<CR>
 noremap <silent> <leader>d :removetabsleft<CR>
 
+" Background tab
+noremap <A-t> :tabopen! 
+
 " Command line cursor keys
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>

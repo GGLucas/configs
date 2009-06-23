@@ -134,6 +134,9 @@ rootbindings = {
     -- Start rodentbane cursor navigation
     [{"Mod1", "r"}] = rodentbane.start,
 
+    -- Start rodentbane cursor navigation in recall mode
+    [{"Mod4", "r"}] = {rodentbane.start, mouse.screen, true},
+
     -- Drop-down urxvtc terminal
     [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},
 
