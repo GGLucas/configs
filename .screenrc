@@ -29,8 +29,11 @@ term screen-256color
 # Don't show annoying bell messages
 bell_msg ""
 
+# Backtick commands
+backtick 42 0 10 ks 2
+
 # Statusline
-hardstatus alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{g}]'
+hardstatus alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{B}%42`%{g} ]'
 activity '-'
 
 # Termcap, fix 256 colors

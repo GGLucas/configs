@@ -279,6 +279,12 @@ autocmd BufEnter *.ccss silent setlocal syn=ccss
 " Don't show space errors
 autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
 
+" Jump to last known cursor position
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
 " }}}
 
 " {{{ Functions
