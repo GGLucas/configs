@@ -23,6 +23,14 @@ if len(sys.argv) > 1:
 
         if len(sys.argv) > 2:
             decims = int(sys.argv[2])
+    elif sys.argv[1][0] == "%":
+        s = float(sys.argv[1][1:])*1000.0
+        hours = int(s / 3600)
+        mins = int((s-(hours*3600)) / 60)
+        secs = s - hours*3600 - mins*60
+
+        print("%d:%d:%d" % (hours, mins, secs))
+        exit()
     else:
         decims = int(sys.argv[1])
 

@@ -30,7 +30,7 @@ term screen-256color
 bell_msg ""
 
 # Backtick commands
-backtick 42 0 10 ks 2
+backtick 42 0 100 ks 1
 
 # Statusline
 hardstatus alwayslastline '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c %{B}%42`%{g} ]'
