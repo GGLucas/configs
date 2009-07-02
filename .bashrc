@@ -22,7 +22,7 @@ bind "\\C-l: clear-screen"
 alias ls='ls --color=auto -Fh --group-directories-first'
 alias no='ls'
 alias s='screen -x main -p 0'
-alias slurpy='slurpy -c -t ~/sources/'
+alias aur='slurpy -c -t ~/sources/ -f'
 
 # Load autojump
 . /etc/profile.d/autojump.bash

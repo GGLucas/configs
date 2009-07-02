@@ -34,6 +34,9 @@ xmodmap $HOME/.Xmodmap &
 # WMName for Java
 wmname compiz &
 
+# Notify for rftg online
+rftg-notify &
+
 # Set keyboard repeat rate
 xset r rate 250 30 &
 

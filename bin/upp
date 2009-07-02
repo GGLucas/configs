@@ -3,4 +3,4 @@
 echo " -- Updating Repositories -- "
 pp -Syu
 echo " -- Updating AUR -- "
-slurpy -u
+slurpy -c -u
