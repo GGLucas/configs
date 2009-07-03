@@ -235,6 +235,9 @@ set gdefault
 " Format (gq) options
 set formatoptions+=w
 
+" Highlight search
+set hls
+
 " Use fancy css for TOhtml
 let html_use_css=1
 
