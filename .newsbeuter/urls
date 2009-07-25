@@ -3,7 +3,7 @@
 http://www.xkcd.com/rss.xml
 http://www.userfriendly.org/rss/uf.rss
 http://www.cad-comic.com/rss/rss.xml
-http://egscomics.com/egs.rss
+http://www.egscomics.com/rss.php
 http://feeds.penny-arcade.com/pa-mainsite/
 http://www.rsspect.com/rss/digitalunrest.xml
 http://feeds.feedburner.com/DuelingAnalogs
@@ -23,10 +23,8 @@ http://feeds2.feedburner.com/AbstruseGoose
 http://www.viruscomix.com/rss.xml
 http://marryme.keenspot.com/main/feed/
 http://snowflakescomic.com/rss.php
-http://www.rsspect.com/rss/dominicdeegan.xml
 http://feeds2.feedburner.com/rsspect/fJur
 
-http://feeds.feedburner.com/codinghorror/
 http://dailyvim.blogspot.com/feeds/posts/default
 http://neopythonic.blogspot.com/feeds/posts/default
 http://www.oreillynet.com/pub/feed/30
@@ -52,3 +50,4 @@ http://www.phpwtf.org/rss.xml
 http://www.decorumcomics.com/rss.php
 http://pygowave.p2k-network.org/blog/?feed=rss2
 http://feeds2.feedburner.com/wavetycom
+

@@ -44,6 +44,9 @@ noremap <silent> <Leader>s :noscript toggleperm<CR>
 noremap <silent> <Leader>S :noscript toggletemp<CR>
 noremap <silent> <Leader>t :noscript popup<CR>
 
+" Youtube play/pause
+map <silent> <Leader>p :norm p
+
 " Hint font size
 hi -append Hint font-size: 12px;
 

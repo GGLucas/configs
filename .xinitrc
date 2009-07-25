@@ -35,7 +35,7 @@ xmodmap $HOME/.Xmodmap &
 wmname compiz &
 
 # Notify for rftg online
-rftg-notify &
+#rftg-notify &
 
 # Set keyboard repeat rate
 xset r rate 250 30 &
