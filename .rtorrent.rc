@@ -66,5 +66,5 @@ dht_port = 6881
 peer_exchange = yes
 
 # Throttle rates
-download_rate = 1900
+download_rate = 5500
 upload_rate = 30

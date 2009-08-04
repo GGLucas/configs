@@ -1,13 +1,15 @@
 "query:Unread Articles:unread = \"yes\""
 
 http://www.xkcd.com/rss.xml
-http://www.userfriendly.org/rss/uf.rss
 http://www.cad-comic.com/rss/rss.xml
 http://www.egscomics.com/rss.php
 http://feeds.penny-arcade.com/pa-mainsite/
 http://www.rsspect.com/rss/digitalunrest.xml
 http://feeds.feedburner.com/DuelingAnalogs
+
 http://www.smbc-comics.com/rss.php
+http://www.smbc-theater.com/rss.php
+
 http://www.myextralife.com/?feed=rss2
 http://www.giantitp.com/comics/oots.rss
 http://www.giantitp.com/comics/erf.rss
@@ -50,4 +52,5 @@ http://www.phpwtf.org/rss.xml
 http://www.decorumcomics.com/rss.php
 http://pygowave.p2k-network.org/blog/?feed=rss2
 http://feeds2.feedburner.com/wavetycom
+http://www.osamuko.com/feed/
 
