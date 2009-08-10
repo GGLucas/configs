@@ -174,8 +174,8 @@ set expandtab
 set laststatus=2
 
 " Text width
-let g:textwidth=78
-set textwidth=78
+"let g:textwidth=78
+"set textwidth=78
 
 " Wrap lines
 set wrap
@@ -281,6 +281,12 @@ autocmd BufEnter *.ccss silent setlocal syn=ccss
 
 " Don't show space errors
 autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
+
+" Highlight long lines
+augroup hiLong
+autocmd BufRead * let w:m1=matchadd('StatusLine', '\%<81v.\%>77v', -1)
+autocmd BufRead * let w:m2=matchadd('IncSearch', '\%>80v.\+', -1)
+augroup END
 
 " Jump to last known cursor position
 autocmd BufReadPost *

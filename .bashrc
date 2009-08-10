@@ -35,5 +35,3 @@ PS1="\[\e[1;35m\]\w \[\e[1;37m\]\$ \[\e[0;37m\]"
 flat (){
     mkdir ../__flat && find . -print0 | xargs -0 -i'{}' cp '{}' ../__flat && mv ../__flat/* . && rmdir ../__flat
 }
-
-export color=

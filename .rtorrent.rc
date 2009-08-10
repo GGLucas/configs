@@ -67,4 +67,4 @@ peer_exchange = yes
 
 # Throttle rates
 download_rate = 5500
-upload_rate = 30
+upload_rate = 75
