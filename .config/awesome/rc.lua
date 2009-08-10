@@ -285,10 +285,10 @@ clientbindings = {
 -- Mouse clicks on a client
 clientmousebindings = {
     -- Move client
-    [{"Mod1", 1}] = awful.mouse.client.move,
+    [{"Mod4", 1}] = awful.mouse.client.move,
 
     -- Resize client
-    [{"Mod1", 3}] = awful.mouse.client.resize,
+    [{"Mod4", 3}] = awful.mouse.client.resize,
 }
 
 -- Run keybinds through MagnifConfig
