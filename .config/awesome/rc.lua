@@ -40,7 +40,7 @@ settings = {
         togglempd = "mpdtoggle toggle",
 
         -- Open filemanager
-        vifm = "urxvtc -e vifm /data",
+        vifm = "urxvtc -e vifm /data /data",
     },
 
     -- Behaviour settings
