@@ -12,3 +12,9 @@ add control = Control_R
 ! Fix Super_L
 keycode 133 = Super_L
 remove mod1 = Super_L
+
+! Arrow keys
+keycode 113 = Left
+keycode 114 = Right
+keycode 111 = Up
+keycode 116 = Down
