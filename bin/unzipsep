@@ -5,6 +5,7 @@ for a in *.zip; do
     mv "$a" "$o"/; 
     cd "$o"/; 
     unzip "$a"; 
+    rm "$a";
 
     if [[ $(ls | wc -w) -eq 1 ]]; then
         mv */* .
