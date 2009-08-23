@@ -132,10 +132,10 @@ rootbindings = {
     [{"Mod1", "e"}] = {awful.util.spawn, settings.apps.vifm},
 
     -- Start rodentbane cursor navigation
-    [{"Mod1", "r"}] = rodentbane.start,
+    [{"Mod4", "r"}] = rodentbane.start,
 
     -- Start rodentbane cursor navigation in recall mode
-    [{"Mod4", "r"}] = {rodentbane.start, mouse.screen, true},
+    [{"Mod4", "Mod1", "r"}] = {rodentbane.start, mouse.screen, true},
 
     -- Drop-down urxvtc terminal
     [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},
