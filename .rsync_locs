@@ -2,7 +2,7 @@
 RSYNC_glasys_system="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/system/ glacicle.com:/srv/www/0-glasys/system"
 RSYNC_glasys_global="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/global/ glacicle.com:/srv/www/0-glasys/global"
 RSYNC_glaciergaming="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/sites/glaciergaming.co.uk/ http@glacicle.com:/srv/www/1-glaciergaming/glaciergaming.co.uk"
-RSYNC_backups="--exclude-from=$HOME/.rsync_exclude archlucas@glacicle.com:/srv/backup/ /data/.backups/server"
+RSYNC_backups="--exclude-from=$HOME/.rsync_exclude archlucas@aegisgame.com:/srv/backup/ /data/.backups/server"
 
 RSYNC_doremi="--exclude-from=$HOME/.rsync_exclude /data/web/doremi/ mikeanim@doremi-fansubs.com:/home/mikeanim/django_projects/doremi"
 

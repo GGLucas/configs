@@ -3,7 +3,7 @@ source ~/.rsync_locs
 for name in $@; do
     eval "r=\$RSYNC_$name"
     echo Syncing $name
-    echo "rsync -tavz --progress $r"
+    echo "rsync -tavzh --progress $r"
     echo --------------------
-    eval "rsync -tavz --progress $r"
+    eval "rsync -tavzh --progress $r"
 done

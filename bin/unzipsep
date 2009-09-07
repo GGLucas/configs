@@ -7,9 +7,9 @@ for a in *.zip; do
     unzip "$a"; 
     rm "$a";
 
-    if [[ $(ls | wc -w) -eq 1 ]]; then
-        mv */* .
-    fi;
+    #if [[ $(ls | wc -w) -eq 1 ]]; then
+        #mv */* .
+    #fi;
 
 
     cd ..;
