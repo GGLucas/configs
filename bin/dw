@@ -3,7 +3,8 @@ if [[ -d "/data/others/dw" ]]
 then
 
 echo "Unmounting"
-sudo umount /data/others/dw && truecrypt -t -d /mnt/data-3/virtual/crypt.img && rmdir /data/others/dw
+sudo umount /data/others/dw && truecrypt -t -d /mnt/data-3/virtual/crypt.img
+rmdir /data/others/dw
 
 else
 
