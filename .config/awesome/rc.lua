@@ -225,6 +225,32 @@ rootbindings = {
         mouse.screen = screen
     end,
 
+    -- Toggle between low and high mpd volumes
+    [{"Mod4", "F11"}] = function ()
+        if settings._mpd_volume == nil then
+            settings._mpd_volume = 74
+        end
+
+        if settings._mpd_volume == 74 then
+            awful.util.spawn_with_shell("mpc volume 30")
+            settings._mpd_volume = 30
+        elseif settings._mpd_volume == 30 then
+            awful.util.spawn_with_shell("mpc volume 74")
+            settings._mpd_volume = 74
+        end
+    end,
+
+    -- Toggle between numbers and special characters by default on number row
+    [{"Mod4", "F12"}] = function ()
+        if settings._numbers then
+            settings._numbers = false
+            awful.util.spawn_with_shell("xmodmap ~/.Xmodmap-nonumbers")
+        else 
+            settings._numbers = true
+            awful.util.spawn_with_shell("xmodmap ~/.Xmodmap-numbers")
+        end
+    end,
+
     -- Restart awesome
     [{"Mod1", "Mod4", "r"}] = awful.util.restart,
 }
