@@ -2,8 +2,6 @@
 -- GGLucas' Awesome-3 Lua Config
 -- Version 3
 --------------------------------
--- Use with awesome-git/next
---------------------------------
 -- Awful: Standard awesome library
 require("awful")
 
@@ -26,21 +24,18 @@ settings = {
 
         -- Open a terminal with screen
         -- * Local
-        screen = "urxvtc -e screen -x main -p 0",
+        screen = "urxvtc -e screen -x main -p 4",
         -- * Server
-        screen_server = "urxvtc -e ssh glacicle.com screen -x main -p 0",
-
-        -- Open irssi terminals connection to my proxy
-        -- * Main IRC
-        irssi = "urxvtc -e irssi --config=~/.irssi/.config",
-        -- * Bitlbee
-        irssi_bitlbee = "urxvtc -e irssi --config=~/.irssi/.imconfig",
-
-        -- Toggle mpd music
-        togglempd = "mpdtoggle toggle",
+        screen_server = "urxvtc -e ssh -t root@tuple-typed.org screen -x main -p 0",
 
         -- Open filemanager
-        vifm = "urxvtc -e vifm /data /data",
+        filemanager = "urxvtc -e vifm /data /data",
+
+        -- MPD Control
+        -- * Toggle music
+        mpd_toggle = "mpc_toggle",
+        -- * Show currently playing
+        mpd_show = "mpc_show",
     },
 
     -- Behaviour settings
@@ -108,7 +103,10 @@ magnifconfig.setup(settings)
 -- Global keybindings
 rootbindings = {
     -- Open terminal
-    [{"Mod1", ";"}] = {awful.util.spawn, settings.apps.terminal},
+    [{"Mod4", ";"}] = {awful.util.spawn, settings.apps.terminal},
+
+    -- Drop-down urxvtc terminal
+    [{"Mod4", "a"}] = {magnifconfig.util.dropdown, settings.apps.terminal},
 
     -- Open terminal with screen
     -- * Local
@@ -116,38 +114,26 @@ rootbindings = {
     -- * Server
     [{"Mod4", "Shift", "b"}] = {awful.util.spawn, settings.apps.screen_server},
 
-    -- Open terminal with irssi
-    -- * Main IRC
-    [{"Mod4", "x"}] = {awful.util.spawn, settings.apps.irssi},
-    -- * Bitlbee
-    [{"Mod4", "Shift", "x"}] = {awful.util.spawn, settings.apps.irssi_bitlbee},
-
     -- Toggle music
-    [{"Mod1", "."}] = {awful.util.spawn, settings.apps.togglempd},
+    [{"Mod4", "."}] = {awful.util.spawn, settings.apps.mpd_toggle},
 
     -- Open spawn prompt
-    [{"Mod1", ","}] = {magnifconfig.prompt, "Run: ", awful.util.spawn},
+    [{"Mod4", ","}] = {magnifconfig.prompt, "Run: ", awful.util.spawn},
 
-    -- Open vifm
-    [{"Mod1", "e"}] = {awful.util.spawn, settings.apps.vifm},
+    -- Open file manager
+    [{"Mod4", "e"}] = {awful.util.spawn, settings.apps.filemanager},
+
+    -- Show MPD currently playing song
+    [{"Mod4", "p"}] = {awful.util.spawn_with_shell, settings.apps.mpd_show},
 
     -- Start rodentbane cursor navigation
     [{"Mod4", "r"}] = rodentbane.start,
 
     -- Start rodentbane cursor navigation in recall mode
-    [{"Mod4", "Mod1", "r"}] = {rodentbane.start, mouse.screen, true},
-
-    -- Drop-down urxvtc terminal
-    [{"Mod1", "a"}] = {magnifconfig.util.dropdown, "urxvtc"},
-
-    -- Show MPD currently playing song
-    [{"Mod1", "p"}] = {awful.util.spawn, "stump-mpc"},
-
-    -- Show CPU/MEM/etc statistics
-    [{"Mod1", "Shift", "p"}] = {awful.util.spawn, "stump-stats"},
+    [{"Mod4", "Shift", "r"}] = {rodentbane.start, mouse.screen, true},
 
     -- Warp pointer to top left of the screen
-    [{"Mod4", "$"}] = {mouse.coords, {x = 0, y = 0}},
+    [{"Mod4", "Shift", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
     -- Tag selection
     [{"Mod4", "w"}] = awful.tag.viewnext,
@@ -158,17 +144,17 @@ rootbindings = {
     [{"Mod4", "n"}] = {awful.client.focus.byidx, -1},
 
     -- Switch between layouts
-    [{"Mod1", "'"}] = {awful.layout.set, awful.layout.suit.max},
-    [{"Mod1", "q"}] = {awful.layout.set, awful.layout.suit.tile},
-    [{"Mod1", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
+    [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
+    [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.tile},
+    [{"Mod4", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
 
     -- Switch between mwfact modes
-    [{"Mod1", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
-    [{"Mod1", "Shift", "q"}] = {awful.tag.setmwfact, 0.618033988769},
+    [{"Mod4", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
+    [{"Mod4", "Shift", "q"}] = {awful.tag.setmwfact, 0.618033988769},
 
     -- Increase or decrease the number of master windows
-    [{"Mod4", "'"}] = {awful.tag.incnmaster, -1},
-    [{"Mod4", "q"}] = {awful.tag.incnmaster, 1},
+    [{"Mod4", "Mod1", "'"}] = {awful.tag.incnmaster, -1},
+    [{"Mod4", "Mod1", "q"}] = {awful.tag.incnmaster, 1},
 
     -- Screen focus
     [{"Mod4", "h"}] = function ()
@@ -252,7 +238,7 @@ rootbindings = {
     end,
 
     -- Restart awesome
-    [{"Mod1", "Mod4", "r"}] = awful.util.restart,
+    [{"Mod4", "Mod1", "r"}] = awful.util.restart,
 }
 
 -- Mouse clicks on wallpaper
@@ -267,7 +253,7 @@ clientbindings = {
     [{"Mod4", "f"}] = {"+fullscreen"},
 
     -- Close window
-    [{"Mod1", "$"}] = {":kill"},
+    [{"Mod4", "$"}] = {":kill"},
 
     -- Redraw client
     [{"Mod4", "/"}] = {":redraw"},
