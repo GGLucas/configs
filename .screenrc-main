@@ -2,13 +2,12 @@
 source .screenrc
 
 # Define new windows
-screen -t sh   0
 screen -t irc  1  weechat-curses
 screen -t rss  2  screen_newsbeuter
 screen -t mpd  3  ncmpc
 screen -t dl   4  rtor
 screen -t mt   5  mutt
 
-# Make these the only irssi instances that notify
+# Make these the only weechat instances that notify
 select 1
 stuff '/python load notify_my.py'
