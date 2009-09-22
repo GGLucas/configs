@@ -84,9 +84,9 @@ settings = {
         fg_urgent = '#ffffff',
 
         -- Border
-        border_width = 2,
-        border_normal = '#333333',
-        border_focus = '#4C7899',
+        border_width = 1,
+        border_normal = '#000000',
+        border_focus = '#aaaaaa',
         border_marked = '#91231c',
 
         -- Font
