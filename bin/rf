@@ -1,6 +1,0 @@
-#Reference
-set environment EF_PROTECT_BELOW 0
-set environment EF_ALLOW_MALLOC_0 1
-set environment LD_PRELOAD /usr/lib/libefence.so.0.0
-
-make clean CFLAGS+='-gdb3 -O0'

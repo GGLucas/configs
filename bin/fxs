@@ -1,2 +1,0 @@
-#!/bin/bash
-DISPLAY="$1" fx "$2"

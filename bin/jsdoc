@@ -1,3 +1,0 @@
-#!/bin/sh
-cd /opt/jsdoc-toolkit
-/opt/java/jre/bin/java -jar jsrun.jar app/run.js -a -d=$1 -t=templates/jsdoc $@

@@ -1,2 +1,0 @@
-#!/bin/bash
-git diff --no-ext-diff -w "$@" | vim -R -

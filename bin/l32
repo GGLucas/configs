@@ -1,14 +1,5 @@
 #!/bin/bash
-echo '#!/bin/bash' > /tmp/l32cmd
-
-if [[ "$@" == "" ]]; then
-echo $SHELL >> /tmp/l32cmd
-else
-echo "$@" >> /tmp/l32cmd
-fi
-
-echo 'rm /tmp/l32cmd' >> /tmp/l32cmd
-chmod +x /tmp/l32cmd
-
 sudo /etc/rc.d/arch32 start
-sudo chroot /opt/arch32 su archlucas --command='/tmp/l32cmd'
+
+[[ $@ ]] && cmd=$@ || cmd=$SHELL
+eval "sudo chroot /opt/arch32 su archlucas --command='$cmd'"
