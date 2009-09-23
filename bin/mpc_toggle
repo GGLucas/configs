@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ $(mpc current) =~ "AnimeNfo" ]];
+then
+    [[ $(mpc current) ]] && mpc stop || mpc play
+else
+    mpc toggle
+fi
