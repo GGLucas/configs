@@ -133,7 +133,7 @@ rootbindings = {
     [{"Mod4", "Shift", "r"}] = {rodentbane.start, mouse.screen, true},
 
     -- Warp pointer to top left of the screen
-    [{"Mod4", "Shift", "$"}] = {mouse.coords, {x = 0, y = 0}},
+    [{"Mod4", "Mod1", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
     -- Tag selection
     [{"Mod4", "w"}] = awful.tag.viewnext,
