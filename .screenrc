@@ -5,8 +5,8 @@ bind L
 bind ^\
 
 # Add toggle bindings for the statusbar
-bind ^f eval "caption splitonly" "hardstatus ignore"
-bind f eval "caption always" "hardstatus alwayslastline"
+bind ^f eval "hardstatus ignore"
+bind f eval "hardstatus alwayslastline"
 
 # Escape sequence
 escape \034\034
@@ -31,7 +31,6 @@ term screen-256color
 bell_msg ""
 
 # Statusline
-caption splitonly
 hardstatus ignore '%{= G}[%{B} %M %d %{g}]%{g}[%= %{= w}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W} %c%{g} ]'
 activity '-'
 
