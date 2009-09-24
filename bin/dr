@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo /etc/rc.d/$1 restart

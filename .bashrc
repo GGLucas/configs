@@ -19,11 +19,30 @@ bind "\\C-t: menu-complete"
 bind "\\C-l: clear-screen"
 
 # Aliases
+# Ls
 alias ls='ls --color=auto -Fh --group-directories-first'
+alias ll='ls -lah'
 alias no='ls'
-alias s='screen -x main -p 0'
+alias nn='ll'
+
+# Abbreviations
+alias p='git push origin master'
+alias pu='git pull origin master'
+
+alias v='vim'
+alias vv='sudo vim'
+
+# Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
+
+# Shortcut functions
+x(){ cd ~; exec xinit $@; }
+
+# Daemon shortcuts
+dr(){ sudo /etc/rc.d/$1 restart; }
+ds(){ sudo /etc/rc.d/$1 start; }
+dt(){ sudo /etc/rc.d/$1 stop; }
 
 # Load autojump
 . /etc/profile.d/autojump.bash
