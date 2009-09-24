@@ -20,8 +20,9 @@ nmap <C-L> <C-w>l
 " Handy shortcut for save
 nmap <silent> e :w<CR>
 
-" To prevent K mispresses right after V
+" To prevent annoying mispresses
 vmap K k
+nmap Q <Nop>
 
 " Return to visual mode after indenting
 vmap < <gv

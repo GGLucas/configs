@@ -18,6 +18,9 @@ bind "\\C-t: menu-complete"
 # Clear screen with ^L
 bind "\\C-l: clear-screen"
 
+# Remove annoying fc map
+bind -m vi -r v
+
 # Aliases
 # Ls
 alias ls='ls --color=auto -Fh --group-directories-first'
