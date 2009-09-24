@@ -24,10 +24,6 @@ noremap <silent> <C-+> :set go+=Bm<CR>
 noremap <silent> <C-=> :set go-=Bm<CR>
 
 " Next/Prev Tab
-noremap gp <C-Tab>
-noremap gn <C-S-Tab>
-map gb gp
-
 noremap w <C-Tab>
 noremap v <C-S-Tab>
 
