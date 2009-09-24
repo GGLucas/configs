@@ -26,6 +26,7 @@ alias no='ls'
 alias na='ll'
 
 # Abbreviations
+alias i='makepkg -fi'
 alias c='git commit -a'
 alias p='git push origin master'
 alias pu='git pull origin master'
