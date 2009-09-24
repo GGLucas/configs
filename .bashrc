@@ -40,6 +40,7 @@ alias vv='sudo vim'
 # Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
+alias vg='viewglob -t off -s windows'
 
 # Shortcut functions
 x(){ cd ~; exec xinit $@; }

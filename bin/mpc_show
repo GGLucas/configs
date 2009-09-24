@@ -1,2 +1,2 @@
 #!/bin/bash
-notify-send 'Now Playing' "$(mpc current | sed -e 's/^.*\!: //' -e 's/\"//')"
+notify-send 'Now Playing' "$(mpc current | sed -e 's/^.*\!: //' -e 's/\"//g')"
