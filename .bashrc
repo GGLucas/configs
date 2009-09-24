@@ -23,9 +23,10 @@ bind "\\C-l: clear-screen"
 alias ls='ls --color=auto -Fh --group-directories-first'
 alias ll='ls -lah'
 alias no='ls'
-alias nn='ll'
+alias na='ll'
 
 # Abbreviations
+alias c='git commit -a'
 alias p='git push origin master'
 alias pu='git pull origin master'
 
