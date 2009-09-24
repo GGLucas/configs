@@ -107,6 +107,9 @@ rootbindings = {
 
     -- Drop-down urxvtc terminal
     [{"Mod4", "a"}] = {magnifconfig.util.dropdown, settings.apps.terminal},
+    
+    -- Pull-left urxvtc terminal
+    [{"Mod4", "Shift", "a"}] = {magnifconfig.util.dropdown, settings.apps.terminal, nil, 0.5, "right", "right"},
 
     -- Open terminal with screen
     -- * Local
