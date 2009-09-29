@@ -299,6 +299,7 @@ autocmd BufReadPost *
 
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
+let g:textwidth = 0
 function! TextwidthToggle()
     if g:textwidth == 0
         let g:textwidth = 78
