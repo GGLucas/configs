@@ -16,6 +16,9 @@ set ds=g
 " Default GUI options
 set go=n
 
+" Use console vim as editor
+set editor=g
+
 " Leader
 let mapleader=","
 

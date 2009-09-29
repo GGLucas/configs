@@ -124,27 +124,6 @@ let g:pydoc_highlight = 0
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
-" Django projects
-source ~/.vim/plugin/django_projects.vim
-let g:django_terminal_program = "urxvtc -e"
-
-call g:DjangoInstall('doremi', '/data/web/doremi/', 'settings', 'manage.py', ['/data/web/doremi', '/data/web'], '')
-call g:DjangoInstall('home', '/data/web/home/', 'settings', 'manage.py', ['/data/web/home', '/data/web'], '')
-
-" ii Settings
-let g:ii_nickname = "GGLucas"
-
-let g:ii_highlight_patterns = ["GGLucas", "Lucas"]
-let g:ii_highlight_command = "notify-send '%(nick)s - %(channel)s' '%(msg)s' &> /dev/null"
-
-let g:ii_num_colors = [1,2,3,5,6,7,9,10,11,12,13,14,15]
-let g:ii_nick_delim = ":: "
-let g:ii_autoalign = 0
-
-let g:ii_show_date = 0
-let g:ii_show_joins = 0
-let g:ii_show_parts = 0
-
 " }}}
 
 " {{{ Vim Settings
@@ -175,8 +154,8 @@ set expandtab
 set laststatus=2
 
 " Text width
-"let g:textwidth=78
-"set textwidth=78
+let g:textwidth=0
+set textwidth=0
 
 " Wrap lines
 set wrap
@@ -227,6 +206,9 @@ set shortmess=atI
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" Use actual block mode for visual block
+set virtualedit=block
+
 " Viminfo
 set viminfo='1000,f1,<500,:500,/500,h
 
@@ -238,6 +220,9 @@ set formatoptions+=w
 
 " Highlight search
 set hls
+
+" Don't fold less than 2 lines
+set foldminlines=2
 
 " Use fancy css for TOhtml
 let html_use_css=1
@@ -277,9 +262,6 @@ autocmd BufEnter *.sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.sass silent filetype indent off
 autocmd BufEnter *.sass silent setlocal ai
 
-" CleverCSS syntax
-autocmd BufEnter *.ccss silent setlocal syn=ccss
-
 " Don't show space errors
 autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
 
@@ -299,7 +281,6 @@ autocmd BufReadPost *
 
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
-let g:textwidth = 0
 function! TextwidthToggle()
     if g:textwidth == 0
         let g:textwidth = 78
@@ -313,5 +294,3 @@ function! TextwidthToggle()
 endfunction
 " }}}
 " }}}
-
-" vim: set fdm=marker:
