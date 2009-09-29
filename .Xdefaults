@@ -6,32 +6,34 @@ Xcursor.theme: Vanilla-DMZ-AA
 Xft*dpi:        99
 Xft*antialias:    true
 
-! URxvt settings
-URxvt.termName: rxvt
-URxvt.scrollBar: false
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-URxvt.scrollTtyKeypress: true
-URxvt.secondaryScroll: true
-URxvt.jumpScroll: true
-URxvt.skipScroll: true
-URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
-URxvt.perl-ext: default,matcher,mark-yank-urls
-URxvt.perl-lib: /home/archlucas/bin/
-URxvt.saveLines: 500
-URxvt.visualBell: false
-URxvt.highlightSelection:  true
-URxvt.borderWidth: 0 
-URxvt.urlLauncher: fxs :0.0
-URxvt.pointerBlank: true
-URxvt.internalBorder: 3 
+! rxvt-unicode settings
+!! rxvt-unicode behaviour
+URxvt*termName: rxvt
+URxvt*scrollBar: false
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*secondaryScroll: true
+URxvt*jumpScroll: true
+URxvt*skipScroll: true
+URxvt*keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt*perl-ext: default,matcher,mark-yank-urls
+URxvt*perl-lib: /home/archlucas/bin/
+URxvt*saveLines: 500
+URxvt*visualBell: false
+URxvt*highlightSelection:  true
+URxvt*borderWidth: 0 
+URxvt*urlLauncher: fxs :0.0
+URxvt*pointerBlank: true
+URxvt*internalBorder: 3 
 
-!! Font
-!URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false
-!URxvt.boldFont: xft:Terminus:style=Bold:size=10:antialias=false:hinting=false
-!URxvt.font: xft:Bitstream Vera Sans Mono-10:hinting=false
-!URxvt.boldFont: xft:Bitstream Vera Sans Mono-10:style=Bold:hinting=false
+!! rxvt-unicode appearance
+URxvt*background: #000000
+URxvt*foreground: #ffffff
+URxvt*cursorColor: #ffffff
+URxvt*cursorBlink: false
 
+!!rxvt-unicode fonts
 URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false,\
             -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
             xft:Code2000:antialias=false
@@ -41,26 +43,24 @@ URxvt.boldFont: xft:Terminus:size=10:style=Bold:antialias=false:hinting=false,\
             -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
             xft:Code2000:antialias=false
 
+! xterm settings
+xterm*background: black
+xterm*foreground: white
 
-!! Window Colours
-URxvt.background: #000000
-URxvt.foreground: #ffffff
-URxvt.cursorColor: #FFFFFF
-URxvt.cursorBlink: false
-
-!! Terminal Colours
-URxvt*color0: #2E3436
-URxvt*color1: #CC0000
-URxvt*color2: #4E9A06
-URxvt*color3: #C4A000
-URxvt*color5: #744E7A
-URxvt*color6: #06989A
-URxvt*color7: #D3D7CF
-URxvt*color8: #555753
-URxvt*color9: #EF2929
-URxvt*color10: #8AE234
-URxvt*color11: #FCE94F
-URxvt*color12: #729FCF
-URxvt*color13: #AD7FA8
-URxvt*color14: #59BCD9
-URxvt*color15: #EEEEEC
+! Terminal color settings
+*color0:  rgb:2E/34/36
+*color1:  rgb:CC/00/00
+*color2:  rgb:4E/9A/06
+*color3:  rgb:C4/A0/00
+*color4:  rgb:00/00/FF
+*color5:  rgb:74/4E/7A
+*color6:  rgb:06/98/9A
+*color7:  rgb:D3/D7/CF
+*color8:  rgb:55/57/53
+*color9:  rgb:EF/29/29
+*color10: rgb:8A/E2/34
+*color11: rgb:FC/E9/4F
+*color12: rgb:72/9F/CF
+*color13: rgb:AD/7F/A8
+*color14: rgb:59/BC/D9
+*color15: rgb:EE/EE/EC
