@@ -31,7 +31,6 @@ alias na='ll'
 # Abbreviations
 alias i='makepkg -fi'
 alias d='git diff'
-alias c='git commit -a'
 alias p='git push origin master'
 alias pu='git pull origin master'
 
@@ -56,6 +55,11 @@ dt(){ sudo /etc/rc.d/$1 stop; }
 
 # Prompt
 PS1="\[\e[1;35m\]\w \[\e[1;37m\]\$ \[\e[0;37m\]"
+
+# Commit git -a or path
+c (){
+    [[ $@ ]] && git commit $a || git commit -a
+}
 
 # Flatten function
 flat (){
