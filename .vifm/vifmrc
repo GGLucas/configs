@@ -105,7 +105,7 @@ COMMAND=move=mv %f %D
 # The command macros %f, %F, %d, %F may be used in the commands.
 # The %a macro is ignored.  To use a % you must put %%.
 
-FILETYPE=Video=mkv,avi=smplayer %f
+FILETYPE=Video=mkv,avi=mplayer %f
 FILETYPE=Video=mp4=xine %f
 FILETYPE=Video=mp4=xine %f
 
