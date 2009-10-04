@@ -10,9 +10,9 @@ lavdopts=threads=6 # Use 6 threads for x264
 
 sub-fuzziness=1 # Load subs containing the filename
 ass=yes # Turn on ass subs
-subfont-autoscale=0 # Don't autoscale subs
-subfont-osd-scale=20 # Use 20pt for osd
-subfont-text-scale=20 # Use 20pt for subs
+subfont-autoscale=1 # Don't autoscale subs
+subfont-osd-scale=2 # Use 2% for osd
+subfont-text-scale=6 # Use 6% for subs
 osdlevel=0 # Start without the osd
 
 # Use vdpau
