@@ -8,6 +8,11 @@ screen -t mpd  3  ncmpc
 screen -t dl   4  rtor
 screen -t mt   5  mutt
 
+# Start at screen no1
+bind c screen 1
+binc ^c screen 1
+bind 0 select 10
+
 # Make these the only weechat instances that notify
 select 1
 stuff '/python load notify_my.py'
