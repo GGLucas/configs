@@ -82,7 +82,6 @@ map <F7> :noh<CR>
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
-hi StatusLineExtendedString background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal;
 
 " Ignore body onclick
