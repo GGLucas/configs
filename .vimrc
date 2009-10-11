@@ -115,7 +115,7 @@ let NERDDefaultNesting = 1
 let NERDShutUp = 1
 
 " NERD Tree
-let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$']
+let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$']
 
 " Pydoc
 let g:pydoc_highlight = 0
