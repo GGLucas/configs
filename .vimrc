@@ -246,7 +246,7 @@ autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
 
 " Read-only pdf through pdftotext
 autocmd BufReadPre *.pdf silent set ro
-autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -csw78
+autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -w78
 
 " Read-only rtf through unrtf
 autocmd BufReadPre *.rtf silent set ro
