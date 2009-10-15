@@ -10,22 +10,32 @@
 let mapleader=","
 
 " {{{ Window/split navigation
-nmap <C-H> <C-w>h
-nmap <C-J> <C-w>j
-nmap <C-K> <C-w>k
-nmap <C-L> <C-w>l
+nmap <Esc>h <C-w>h
+nmap <Esc>j <C-w>j
+nmap <Esc>k <C-w>k
+nmap <Esc>l <C-w>l
+nmap <Esc>n <C-w>W
+nmap <Esc>t <C-w>w
 " }}}
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-nmap <silent> e :w<CR>
+noremap <Leader>e e
+noremap <silent> e :w<CR>
 
 " Meta-o for inserting a blank line
 noremap <Esc>o o<Esc>
 
+" O mappings for not inserting the comment leader
+noremap go o<Esc>S
+noremap gO O<Esc>S
+
 " To prevent annoying mispresses
 vmap K k
 nmap Q <Nop>
+
+" Use ,, to work around , as leader
+noremap ,, ,
 
 " Return to visual mode after indenting
 vmap < <gv
@@ -35,6 +45,10 @@ vmap > >gv
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Search for word under cursor without moving
+noremap <Leader># #*
+noremap <Leader>* *#
+
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
 nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
@@ -42,43 +56,27 @@ nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v>")<CR>
 nmap <C-c>r :call Send_to_Screen(input("send to screen: ")."<C-v>")<CR>
 nmap <C-c>g :call Send_to_Screen(input("send to screen: "))<CR>
 
-" {{{ Call ToHTML
-nmap <silent> <Leader>html :TOhtml<CR>
-            \ :%s/^body { .* }$/body { font-family: monospace;
-            \ color: #ffffff; background-color: #2E3436; }/g<CR>:
-            \ %s/^pre { .* }$/pre { font-family: monospace;
-            \ color: #ffffff; background-color: #2E3436; }/g<CR><F7>
-
-vmap <silent> <Leader>html :TOhtml<CR>
-            \ :%s/^body { .* }$/body { font-family: monospace;
-            \ color: #ffffff; background-color: #2E3436; }/g<CR>:
-            \ %s/^pre { .* }$/pre { font-family: monospace;
-            \ color: #ffffff; background-color: #2E3436; }/g<CR><F7>
-" }}}
 " }}}
 
 " {{{ Spellcheck
-nmap <Leader>hh :set nospell<CR>
-nmap <Leader>he :set spell spelllang=en<CR>
-nmap <Leader>hn :set spell spelllang=nl<CR>
+nmap <Leader>ss :set nospell<CR>
+nmap <Leader>se :set spell spelllang=en<CR>
+nmap <Leader>sn :set spell spelllang=nl<CR>
 " }}}
 
 " {{{ Buffer Navigation
-nmap <silent> gb :bprev<CR>
-nmap <silent> gn :bnext<CR>
-nmap <silent> gl :e .<CR>
-
 noremap <silent> <Esc>c :A<CR>
 noremap <silent> <Esc>g :IncBufSwitch<CR>
+noremap <silent> gl :e .<CR>
 
 noremap <silent> <Esc>w :bnext<CR>
 noremap <silent> <Esc>v :bprev<CR>
 " }}}
 
 " {{{ Opening different plugin windows
-nmap <silent> ;p :NERDTree<CR>
-nmap <silent> ;. :MyBuf<CR>
-nmap <silent> ;; :MyBufDestroy<CR>;p;.
+nmap <silent> <Leader>; :NERDTreeToggle<CR>
+nmap <silent> <Leader>t :TlistToggle<CR>
+nmap <Leader>h :vert bo help 
 " }}}
 
 " {{{ Command line cursor keys
@@ -93,32 +91,43 @@ cnoremap <Esc>c <C-c>:
 " }}}
 
 " {{{ Function key shortcuts
-" F5: Paste toggle
+" F5: Toggle paste mode
 nnoremap <F5> :set paste!<Bar>set paste?<CR>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 
-" F6: Textwidth Toggle
+" F6: Toggle whether to use textwidth or not
 nnoremap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
 
-" F7: Search highlight toggle
+" F7: Turn search highlight off until next search
 nmap <F7> :noh<CR>
 imap <F7> <C-O><F7>
 
 " F8: Toggle list mode
 nmap <F8> :set list!<Bar>set list?<CR>
 imap <F8> <C-O><F8>
+
+" F9: Toggle highlighting long lines
+nmap <F9> :call HighlightLongToggle()<CR>
+imap <F9> <C-O><F9>
 " }}}
 " }}}
 
 " {{{ Plugin Settings
 " NERD Commenter
 let NERDDefaultNesting = 1
-let NERDShutUp = 1
 
 " NERD Tree
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$']
+let NERDTreeSortOrder = ['\/$', '\.[ch]$', '\.py$', '*']
+
+" Supertab
+let g:SuperTabDefaultCompletionType = 'context'
+
+" Taglist
+let Tlist_Use_Right_Window = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Pydoc
 let g:pydoc_highlight = 0
@@ -126,6 +135,14 @@ let g:pydoc_highlight = 0
 " Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
+
+" Buffer tabs in statusline
+let g:buftabs_active_highlight_group = "Visual"
+let g:buftabs_in_statusline = 1
+let g:buftabs_only_basename = 1
+
+" Use fancy css for TOhtml
+let html_use_css = 1
 
 " }}}
 
@@ -170,10 +187,10 @@ set softtabstop=4
 " Number of spaces to use for auto indent
 set shiftwidth=4
 
-" Copy indent from current line when starting a new line.
+" Copy indent from current line when starting a new line
 set autoindent
 
-" Makes the backspace key more powerful.
+" Makes the backspace key more powerful
 set backspace=indent,eol,start
 
 " Shows the match while typing
@@ -190,7 +207,7 @@ set ruler
 " Allow hidden buffers with changes
 set hidden
 
-" Autocd
+" Automatically switch to the directory we're editing in
 set autochdir
 
 " Show matching
@@ -227,10 +244,8 @@ set hls
 " Don't fold less than 2 lines
 set foldminlines=2
 
-" Use fancy css for TOhtml
-let html_use_css=1
-
 " Filetype
+filetype on
 filetype plugin on
 filetype indent on
 
@@ -269,10 +284,8 @@ autocmd BufEnter *.sass silent setlocal ai
 autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
 
 " Highlight long lines
-augroup hiLong
-autocmd BufRead * let w:m1=matchadd('StatusLine', '\%<81v.\%>77v', -1)
-autocmd BufRead * let w:m2=matchadd('IncSearch', '\%>80v.\+', -1)
-augroup END
+autocmd BufRead * let w:longmatch = matchadd('StatusLine', '\%<81v.\%>77v', -1)
+autocmd BufRead * let w:toolongmatch = matchadd('IncSearch', '\%>80v.\+', -1)
 
 " Jump to last known cursor position
 autocmd BufReadPost *
@@ -295,5 +308,20 @@ function! TextwidthToggle()
 
     set textwidth?
 endfunction
+
+function! HighlightLongToggle()
+    if exists('w:longmatch')
+        call matchdelete(w:longmatch)
+        call matchdelete(w:toolongmatch)
+        unlet w:longmatch
+        unlet w:toolongmatch
+        echo "  don't highlight long"
+    else
+        let w:longmatch = matchadd('StatusLine', '\%<81v.\%>77v', -1)
+        let w:toolongmatch = matchadd('IncSearch', '\%>80v.\+', -1)
+        echo "  highlight long"
+    endif
+endfunction
 " }}}
 " }}}
+" vim:fdm=marker

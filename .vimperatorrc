@@ -86,5 +86,3 @@ hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; fo
 
 " Ignore body onclick
 set hinttags="//*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"
-
-" vim:syn=vimperator:
