@@ -44,7 +44,7 @@ alias slide='qiv -usrtm -d 7 -B '
 alias vg='viewglob -t off -s windows'
 
 # Shortcut functions
-x(){ cd ~; exec xinit $@; }
+x(){ cd ~; xinit $@; }
 
 # Daemon shortcuts
 dr(){ sudo /etc/rc.d/$1 restart; }
