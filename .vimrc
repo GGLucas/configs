@@ -20,6 +20,9 @@ nmap <C-L> <C-w>l
 " Handy shortcut for save
 nmap <silent> e :w<CR>
 
+" Meta-o for inserting a blank line
+noremap <Esc>o o<Esc>
+
 " To prevent annoying mispresses
 vmap K k
 nmap Q <Nop>
@@ -65,8 +68,8 @@ nmap <silent> gb :bprev<CR>
 nmap <silent> gn :bnext<CR>
 nmap <silent> gl :e .<CR>
 
-nmap <silent> ,g :FuzzyFinderBuffer<CR>
-nmap <silent> ,f :FuzzyFinderFile<CR>
+noremap <silent> <Esc>c :A<CR>
+noremap <silent> <Esc>g :IncBufSwitch<CR>
 
 noremap <silent> <Esc>w :bnext<CR>
 noremap <silent> <Esc>v :bprev<CR>
