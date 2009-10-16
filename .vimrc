@@ -74,7 +74,7 @@ noremap <silent> <Esc>v :bprev<CR>
 " }}}
 
 " {{{ Opening different plugin windows
-nmap <silent> <Leader>; :NERDTreeToggle<CR>
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
 nmap <silent> <Leader>t :TlistToggle<CR>
 nmap <Leader>h :vert bo help 
 " }}}
