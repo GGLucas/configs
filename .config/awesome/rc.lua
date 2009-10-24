@@ -590,7 +590,16 @@ client.add_signal("focus", function(c)
                 end
             end
 
-            mouse.coords({ x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd})
+            coords = { x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd}
+
+            if coords.x > screen[c.screen].workarea.width then
+                coords.x = screen[c.screen].workarea.width-mouse_padd
+            end
+            if coords.y > screen[c.screen].workarea.height then
+                coords.y = screen[c.screen].workarea.height-mouse_padd
+            end
+
+            mouse.coords(coords)
         end
     end
 end)
