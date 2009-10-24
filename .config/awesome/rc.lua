@@ -478,12 +478,10 @@ naughty.config.spacing = -1
 -- Lower timeout
 naughty.config.presets.normal.timeout = 3
 
--- Wider notifications
-naughty.config.presets.normal.width = 500
-
 -- Colours
 naughty.config.presets.normal.bg = "#444444"
 naughty.config.presets.normal.fg = "#ffffff"
+naughty.config.presets.normal.border_color = "#ffffff"
 
 -- Regular font
 naughty.config.presets.normal.font = "Terminus 10"
@@ -574,7 +572,7 @@ client.add_signal("focus", function(c)
 
         -- Settings
         mouse_padd = 6
-        border_area = 10
+        border_area = 4
 
         -- Check if mouse is not already inside the window
         if  (( m.x < coords.x-border_area or
