@@ -572,7 +572,7 @@ client.add_signal("focus", function(c)
 
         -- Settings
         mouse_padd = 6
-        border_area = 4
+        border_area = 10
 
         -- Check if mouse is not already inside the window
         if  (( m.x < coords.x-border_area or
