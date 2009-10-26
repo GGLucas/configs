@@ -38,13 +38,13 @@ let PLUGIN_INFO =
   <name>Auto focus frame</name>
   <description>Automatically focus to largest frame.</description>
   <description lang="ja">最も大きなフレームに自動的にフォーカスする。</description>
-  <version>1.0.5</version>
+  <version>1.0.9</version>
   <author mail="anekos@snca.net" homepage="http://d.hatena.ne.jp/nokturnalmortum/">anekos</author>
   <license>new BSD License (Please read the source code comments of this plugin)</license>
   <license lang="ja">修正BSDライセンス (ソースコードのコメントを参照してください)</license>
   <updateURL>http://svn.coderepos.org/share/lang/javascript/vimperator-plugins/trunk/auto-focus-frame.js</updateURL>
   <minVersion>2.0</minVersion>
-  <maxVersion>2.1pre</maxVersion>
+  <maxVersion>2.2pre</maxVersion>
   <detail><![CDATA[
     == Usage ==
       Only install.
@@ -52,41 +52,37 @@ let PLUGIN_INFO =
   <detail lang="ja"><![CDATA[
     == Usage ==
       インストールするだけ
+      一番面積の大きいフレームをフォーカスします
   ]]></detail>
 </VimperatorPlugin>;
 // }}}
 
 (function () {
 
-  autocommands.add(
-    'DOMLoad',
-    '.*',
-    function () {
-      if (!(window.content.document instanceof HTMLDocument))
-          return;
-      if (content.frames.length <= 1)
+  function onLoad () {
+    if (!(window.content.document instanceof HTMLDocument) || (content.frames.length <= 1))
+      return;
+
+    let targetFrames = [
+      frame
+      for (frame in util.Array.itervalues(content.frames))
+      if (frame.frameElement instanceof HTMLFrameElement)
+    ];
+
+    let [maxSize, maxFrame] = [-1, null];
+    targetFrames.forEach(function(frame) {
+      if (frame.scrollMaxX <= 0 && frame.scrollMaxY <= 0)
         return;
-      let [maxSize, maxFrame] = [-1, null];
-      for (let frame in util.Array.itervalues(content.frames)) {
-        try {
-          if (!(frame.frameElement instanceof HTMLFrameElement))
-            continue;
-          if (frame.scrollMaxX <= 0 && frame.scrollMaxY <= 0)
-              continue;
-          let size = frame.innerWidth * frame.innerHeight;
-          if (maxSize < size) {
-            maxSize = size;
-            maxFrame = frame;
-          }
-        } catch (e) {
-          liberator.log(e)
-          continue;
-        }
-      }
-      if (maxFrame)
-        maxFrame.focus();
-    }
-  );
+      let size = frame.innerWidth * frame.innerHeight;
+      if (maxSize < size)
+        [maxSize, maxFrame] = [size, frame];
+    });
+    if (maxFrame)
+      maxFrame.focus();
+  }
+
+  tabs.getBrowser().addEventListener("DOMContentLoaded", onLoad, true);
+
 
 })();
 
