@@ -65,12 +65,12 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 " }}}
 
 " {{{ Buffer Navigation
-noremap <silent> <Esc>c :A<CR>
-noremap <silent> <Esc>g :IncBufSwitch<CR>
-noremap <silent> gl :e .<CR>
+nnoremap <silent> <Esc>c :A<CR>
+nnoremap <silent> <Esc>g :IncBufSwitch<CR>
+nnoremap <silent> <Esc>b :e .<CR>
 
-noremap <silent> <Esc>w :bnext<CR>
-noremap <silent> <Esc>v :bprev<CR>
+nnoremap <silent> <Esc>w :bnext<CR>
+nnoremap <silent> <Esc>v :bprev<CR>
 " }}}
 
 " {{{ Opening different plugin windows
