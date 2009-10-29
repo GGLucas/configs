@@ -152,7 +152,7 @@ tabContainer.addEventListener("TabSelect", function (event) {
 /// Options
 options.add(["buftabs", "buftabs"],
         "Control whether to use buftabs in the statusline",
-        "number", "1", 
+        "boolean", 1, 
         {
             setter: function (value)
             {
@@ -165,6 +165,7 @@ options.add(["buftabs", "buftabs"],
                 } else {
                     buftabs.destroyBar();
                     statusline.updateUrl = buftabs._statusline_updateUrl;
+                    statusline.update();
                 }
 
                 return value;
@@ -172,8 +173,8 @@ options.add(["buftabs", "buftabs"],
 
             completer: function (context)
             [
-                ["0", "Don't show buftabs, show the url"],
-                ["1", "Show buftabs"]
+                [0, "Don't show buftabs, show the url"],
+                [1, "Show buftabs"]
             ],
 
             validator: Option.validateCompleter

@@ -39,6 +39,9 @@ noremap <silent> S :source ~/.vimperator/plugin/buftabs.js<CR>
 noremap <silent> <Leader>s :stylish turnall<CR>
 noremap <silent> <Leader>g :gmset!<CR>
 
+" Show/hide the buftabbar
+noremap <silent> <A-u> :set invbuftabs<CR>
+
 " Hint font size
 hi -append Hint font-size: 12px;
 
