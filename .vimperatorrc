@@ -14,7 +14,10 @@ set smartcase
 set ds=g
 
 " Default GUI options
-set go=n
+set go=
+
+" Hide tabbar
+set showtabline=0
 
 " Use console vim as editor
 set editor=g
@@ -74,6 +77,10 @@ set noinsertmode
 
 " F7: Search highlight toggle
 map <F7> :noh<CR>
+
+" Style buffertabs
+style * .buftab,.buftab_selected { padding-left: 5px; padding-right: 5px; }
+style * .buftab_selected { background: #343434; }
 
 " Statusbar styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
