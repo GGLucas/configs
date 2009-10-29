@@ -25,8 +25,8 @@ mpc volume 74 &
 # Run urxvtd, to start terminals faster
 urxvtd &
 
-# Xmodmap keys
-xmodmap $HOME/.Xmodmap &
+# Set keyboard layout and xmodmap
+(setxkbmap -model evdev -layout hdv && xmodmap $HOME/.Xmodmap) &
 
 # WMName for Java
 wmname compiz &
