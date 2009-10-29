@@ -33,15 +33,12 @@ noremap v <C-S-Tab>
 noremap <silent> V :tabmove -1<CR>
 noremap <silent> W :tabmove +1<CR>
 
+noremap <silent> S :source ~/.vimperator/plugin/buftabs.js<CR>
+
 " Stumble
 noremap <silent> <Leader>; :javas stumble()<CR>
 noremap <silent> <Leader>, :javas su_rate(1, false, false, false)<CR>
 noremap <silent> <Leader>. :javas su_rate(0, false, false, false)<CR>
-
-" Noscript
-noremap <silent> <Leader>s :noscript toggleperm<CR>
-noremap <silent> <Leader>S :noscript toggletemp<CR>
-noremap <silent> <Leader>t :noscript popup<CR>
 
 " Hint font size
 hi -append Hint font-size: 12px;
@@ -70,15 +67,16 @@ cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 
 " Hide CmdLine right after a command
+cnoremap <S-CR> <CR>
 cnoremap <CR> <CR>:<Esc>
 
-" Vim editting in textareas
+" Vim editing in textareas
 set noinsertmode
 
 " F7: Search highlight toggle
 map <F7> :noh<CR>
 
-" Statusbas styling
+" Statusbar styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
