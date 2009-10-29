@@ -35,8 +35,9 @@ noremap <silent> W :tabmove +1<CR>
 
 noremap <silent> S :source ~/.vimperator/plugin/buftabs.js<CR>
 
-" Toggle stylish
+" Toggle stylish/greasemonkey
 noremap <silent> <Leader>s :stylish turnall<CR>
+noremap <silent> <Leader>g :gmset!<CR>
 
 " Hint font size
 hi -append Hint font-size: 12px;
