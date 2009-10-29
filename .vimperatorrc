@@ -35,10 +35,8 @@ noremap <silent> W :tabmove +1<CR>
 
 noremap <silent> S :source ~/.vimperator/plugin/buftabs.js<CR>
 
-" Stumble
-noremap <silent> <Leader>; :javas stumble()<CR>
-noremap <silent> <Leader>, :javas su_rate(1, false, false, false)<CR>
-noremap <silent> <Leader>. :javas su_rate(0, false, false, false)<CR>
+" Toggle stylish
+noremap <silent> <Leader>s :stylish turnall<CR>
 
 " Hint font size
 hi -append Hint font-size: 12px;
