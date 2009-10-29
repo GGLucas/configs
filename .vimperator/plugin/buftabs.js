@@ -72,9 +72,12 @@ buftabs = {
             label.setAttribute("value", tabvalue);
             buftabs.appendChild(label);
 
-            label.onclick = function ()
+            label.onclick = function (ev)
             {
-                tabs.select(this.tabpos);
+                if (ev.button == 0)
+                    tabs.select(this.tabpos);
+                else if (ev.button == 1)
+                    tabs.remove(tabs.getTab(this.tabpos), 1, false, 0);
             }
 
             if (tabs.index() == i)
