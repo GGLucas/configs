@@ -68,8 +68,14 @@ buftabs = {
 
             // Create label
             var label = document.createElement("label");
+            label.tabpos = i;
             label.setAttribute("value", tabvalue);
             buftabs.appendChild(label);
+
+            label.onclick = function ()
+            {
+                tabs.select(this.tabpos);
+            }
 
             if (tabs.index() == i)
             {
