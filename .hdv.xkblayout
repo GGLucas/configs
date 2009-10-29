@@ -1,0 +1,64 @@
+//
+// Hacker Dvorak
+// created by Lucas de Vries <lucas@tuple-typed.org>
+// based on programmer dvorak
+//
+
+default
+partial alphanumeric_keys modifier_keys 
+xkb_symbols "basic" {
+    name[Group1] = "Hacker Dvorak";
+
+    // Alphanumeric keys
+    key <TLDE> {[ dollar, asciitilde ]};
+    key <AE01> {[ ampersand, percent ]};
+    key <AE02> {[ bracketleft, 7 ]};
+    key <AE03> {[ braceleft, 5 ]};
+    key <AE04> {[ braceright, 3 ]};
+    key <AE05> {[ parenleft, 1 ]};
+    key <AE06> {[ equal, 9 ]};
+    key <AE07> {[ asterisk, 0 ]};
+    key <AE08> {[ parenright, 2 ]};
+    key <AE09> {[ plus, 4 ]};
+    key <AE10> {[ bracketright, 6]};
+    key <AE11> {[ exclam, 8 ]};
+    key <AE12> {[ numbersign, grave ]};
+
+    key <AD01> {[ semicolon, colon ]};
+    key <AD02> {[ comma, less ]};
+    key <AD03> {[ period, greater ]};
+    key <AD04> {[ p, P ]};
+    key <AD05> {[ y, Y ]};
+    key <AD06> {[ f, F ]};
+    key <AD07> {[ g, G ]};
+    key <AD08> {[ c, C ]};
+    key <AD09> {[ r, R ]};
+    key <AD10> {[ l, L ]};
+    key <AD11> {[ slash, question ]};
+    key <AD12> {[ at, asciicircum ]};
+
+    key <AC01> {[ a, A, ampersand ]};
+    key <AC02> {[ o, O, bracketleft ]};
+    key <AC03> {[ e, E, braceleft ]};
+    key <AC04> {[ u, U, braceright ]};
+    key <AC05> {[ i, I, parenleft ]};
+    key <AC06> {[ d, D, equal ]};
+    key <AC07> {[ h, H, asterisk ]};
+    key <AC08> {[ t, T, parenright ]};
+    key <AC09> {[ n, N, plus ]};
+    key <AC10> {[ s, S, bracketright ]};
+    key <AC11> {[ minus, underscore, exclam ]};
+
+    key <AB01> {[ apostrophe, quotedbl ]};
+    key <AB02> {[ q, Q ]};
+    key <AB03> {[ j, J ]};
+    key <AB04> {[ k, K ]};
+    key <AB05> {[ x, X ]};
+    key <AB06> {[ b, B ]};
+    key <AB07> {[ m, M ]};
+    key <AB08> {[ w, W ]};
+    key <AB09> {[ v, V ]};
+    key <AB10> {[ z, Z ]};
+
+    key <BKSL> {[ backslash, bar ]};
+};
