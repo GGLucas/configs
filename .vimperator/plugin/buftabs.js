@@ -6,7 +6,7 @@ let PLUGIN_INFO =
   <version>1.0</version>
   <author mail="lucas@tuple-typed.org" homepage="http://tuple-typed.org/">GGLucas</author>
   <license>WTFPL version 2 (http://sam.zoy.org/wtfpl/)</license>
-  <minVersion>2.0</minVersion>
+  <minVersion>2.2</minVersion>
   <maxVersion>2.2</maxVersion>
   <detail><![CDATA[
 
@@ -91,6 +91,10 @@ buftabs = {
         // Scroll
         if (selpos[0] < buftabs.scrollLeft || selpos[1] > buftabs.scrollLeft+buftabs.clientWidth)
             buftabs.scrollLeft = selpos[0];
+
+        // Show the entire line if possible
+        if (buftabs.scrollWidth == buftabs.clientWidth)
+            buftabs.scrollLeft = 0;
 
         // Empty url label
         urlWidget.value = "";
