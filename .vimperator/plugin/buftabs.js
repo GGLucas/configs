@@ -126,6 +126,7 @@ buftabs = {
 }
 
 var tabContainer = tabs.getBrowser().mTabContainer;
+buftabs._statusline_updateUrl = statusline.updateUrl;
 
 tabContainer.addEventListener("TabMove", function (event) {
     if (options.get("buftabs").get())
@@ -156,14 +157,10 @@ options.add(["buftabs", "buftabs"],
                     buftabs.createBar();
                     buftabs.updateUrl(null);
 
-                    if (!buftabs._statusline_updateUrl)
-                        buftabs._statusline_updateUrl = statusline.updateUrl;
                     statusline.updateUrl = buftabs.updateUrl;
                 } else {
                     buftabs.destroyBar();
-
-                    if (buftabs._statusline_updateUrl)
-                        statusline.updateUrl = buftabs._statusline_updateUrl;
+                    statusline.updateUrl = buftabs._statusline_updateUrl;
                 }
 
                 return value;
