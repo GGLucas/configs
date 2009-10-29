@@ -1,6 +1,3 @@
-" Show tabline only with more than one tab
-set showtabline=1
-
 " Unfocus textfields
 set focuscontent
 
@@ -16,7 +13,7 @@ set ds=g
 " Default GUI options
 set go=
 
-" Hide tabbar
+" Hide tabline
 set showtabline=0
 
 " Use console vim as editor

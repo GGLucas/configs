@@ -39,7 +39,7 @@ buftabs = {
         var buftabs = document.getElementById("liberator-statusline-buftabs");
         var urlWidget = document.getElementById("liberator-statusline-field-url");
         var maxlength = options.get("buftabs_maxlength").get();
-        var tabvalue;
+        var tabvalue, position=0, selpos;
 
         //// Empty the tabbar
         while (buftabs.lastChild != null)
@@ -69,16 +69,22 @@ buftabs = {
             // Create label
             var label = document.createElement("label");
             label.setAttribute("value", tabvalue);
+            buftabs.appendChild(label);
 
             if (tabs.index() == i)
             {
+                selpos = [position, label.clientWidth+position];
                 label.className = "buftab_selected";
             } else {
                 label.className = "buftab";
             }
 
-            buftabs.appendChild(label);
+            position += label.clientWidth;
         }
+
+        // Scroll
+        if (selpos[0] < buftabs.scrollLeft || selpos[1] > buftabs.scrollLeft+buftabs.clientWidth)
+            buftabs.scrollLeft = selpos[0];
 
         // Empty url label
         urlWidget.value = "";
@@ -97,6 +103,8 @@ buftabs = {
             buftabs = document.createElement("hbox");
             buftabs.setAttribute("id", "liberator-statusline-buftabs");
             buftabs.setAttribute("flex", "1");
+            buftabs.style.overflow = "hidden"
+
             statusline.insertBefore(buftabs, urlWidget);
         }
     },
