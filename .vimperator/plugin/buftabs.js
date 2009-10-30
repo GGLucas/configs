@@ -180,7 +180,7 @@ tabContainer.addEventListener("TabSelect", function (event) {
 tabs.getBrowser().addEventListener("load", function (event) {
     if (options.get("buftabs").get())
         statusline.updateUrl();
-}, true);
+}, false);
 
 /// Options
 options.add(["buftabs", "buftabs"],
