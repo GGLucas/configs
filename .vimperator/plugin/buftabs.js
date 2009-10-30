@@ -3,7 +3,7 @@ let PLUGIN_INFO =
 <VimperatorPlugin>
   <name>Buftabs</name>
   <description>Add buffer tabs to the statusline to save space.</description>
-  <version>1.0</version>
+  <version>1.1</version>
   <author mail="lucas@tuple-typed.org" homepage="http://tuple-typed.org/">Lucas de Vries (GGLucas)</author>
   <license>WTFPL version 2 (http://sam.zoy.org/wtfpl/)</license>
   <minVersion>2.2</minVersion>
@@ -15,13 +15,7 @@ let PLUGIN_INFO =
   you can use the "buftabs" option to toggle it on or off.
 
   == Styling ==
-  You can style the buftabs with:
-
-  :style * .buftab { <CSS> }
-
-  and 
-
-  :style * .buftab_selected { <CSS> }
+  Use the BufTab and BufTabSelected highlight groups to style the buftabs.
 
   == Length ==
   You can set the max length of a title before it is cut off with the buftabs_maxlength
@@ -129,12 +123,13 @@ buftabs = {
 
         label.setAttribute("value", tabvalue);
 
+        // Set the correct highlight group
         if (tabs.index() == label.tabpos)
-        {
-            label.className = "buftab_selected";
-        } else {
-            label.className = "buftab";
-        }
+            label.setAttributeNS(NS.uri, "highlight", "BufTabSelected");
+        else
+            label.setAttributeNS(NS.uri, "highlight", "BufTab");
+
+
     },
 
     // Create the horizontal box for adding the tabs to
@@ -166,6 +161,7 @@ buftabs = {
     }
 }
 
+/// Attach to events in order to update the tabline
 var tabContainer = tabs.getBrowser().mTabContainer;
 buftabs._statusline_updateUrl = statusline.updateUrl;
 
@@ -191,10 +187,16 @@ tabs.getBrowser().addEventListener("load", function (event) {
         statusline.updateUrl();
 }, false);
 
+/// Initialise highlight groups
+highlight.loadCSS(String(<![CDATA[
+    BufTab
+    BufTabSelected   font-weight: bold;
+]]>));
+
 /// Options
-options.add(["buftabs", "buftabs"],
+options.add(["buftabs"],
         "Control whether to use buftabs in the statusline",
-        "boolean", 1, 
+        "boolean", true, 
         {
             setter: function (value)
             {
@@ -215,14 +217,14 @@ options.add(["buftabs", "buftabs"],
 
             completer: function (context)
             [
-                [0, "Don't show buftabs, show the url"],
-                [1, "Show buftabs"]
+                [false, "Don't show buftabs, show the url"],
+                [true, "Show buftabs"]
             ],
 
             validator: Option.validateCompleter
         });
 
-options.add(["buftabs_maxlength", "buftabs_maxlength"],
+options.add(["buftabs_maxlength"],
         "Max length of an entry in the buftabs list",
         "number", "25", 
         {

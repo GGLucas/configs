@@ -82,8 +82,9 @@ set noinsertmode
 map <F7> :noh<CR>
 
 " Style buffertabs
-style * .buftab,.buftab_selected { padding-left: 5px; padding-right: 5px; }
-style * .buftab_selected { background: #343434; }
+source ~/.vimperator/plugin/buftabs.js
+hi BufTab padding-left: 5px; padding-right: 5px;
+hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px;
 
 " Vimperator styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
