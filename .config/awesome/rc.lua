@@ -70,6 +70,48 @@ util = {
         movetoprevtag = function (c)
             awful.client.movetotag(util.tag.getidx(-1), c)
         end,
+
+        warp = function (c)
+            -- Warp mouse
+            local sel = c or client.focus
+
+            if sel then
+                local coords = sel:geometry()
+                local m = mouse.coords()
+
+                -- Settings
+                mouse_padd = 6
+                border_area = 10
+
+                -- Check if mouse is not already inside the window
+                if  (( m.x < coords.x-border_area or
+                       m.y < coords.y-border_area or
+                       m.x > coords.x+coords.width+border_area or
+                       m.y > coords.y+coords.height+border_area
+                    )
+                    or force or (m.x == 0 and m.y == 0))
+                then
+                    if not force then
+                        for k,v in pairs(m.buttons) do
+                            if v then
+                                return
+                            end
+                        end
+                    end
+
+                    coords = { x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd}
+
+                    if coords.x > screen[c.screen].workarea.width then
+                        coords.x = screen[c.screen].workarea.width-mouse_padd
+                    end
+                    if coords.y > screen[c.screen].workarea.height then
+                        coords.y = screen[c.screen].workarea.height-mouse_padd
+                    end
+
+                    mouse.coords(coords)
+                end
+            end
+        end,
     },
 
     banish = function (c, padd)
@@ -221,10 +263,16 @@ bindings = {
             else
                 screen = screen - 1
             end
-                
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then client.focus = c end
+
             mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
         end,
 
         [{"Mod4", "l"}] = function ()
@@ -240,9 +288,15 @@ bindings = {
                 screen = screen + 1
             end
                 
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then client.focus = c end
             mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
         end,
 
         [{"Mod4", "g"}] = function ()
@@ -258,9 +312,15 @@ bindings = {
                 screen = 6
             end
 
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then client.focus = c end
             mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
         end,
 
         -- Toggle between low and high mpd volumes
@@ -562,46 +622,6 @@ client.add_signal("focus", function(c)
 
     -- Set naughty screen
     naughty.config.presets.normal.screen = c.screen
-
-    -- Warp mouse
-    local sel = client.focus
-
-    if sel then
-        local coords = sel:geometry()
-        local m = mouse.coords()
-
-        -- Settings
-        mouse_padd = 6
-        border_area = 10
-
-        -- Check if mouse is not already inside the window
-        if  (( m.x < coords.x-border_area or
-               m.y < coords.y-border_area or
-               m.x > coords.x+coords.width+border_area or
-               m.y > coords.y+coords.height+border_area
-            )
-            or force or (m.x == 0 and m.y == 0))
-        then
-            if not force then
-                for k,v in pairs(m.buttons) do
-                    if v then
-                        return
-                    end
-                end
-            end
-
-            coords = { x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd}
-
-            if coords.x > screen[c.screen].workarea.width then
-                coords.x = screen[c.screen].workarea.width-mouse_padd
-            end
-            if coords.y > screen[c.screen].workarea.height then
-                coords.y = screen[c.screen].workarea.height-mouse_padd
-            end
-
-            mouse.coords(coords)
-        end
-    end
 end)
 
 -- Client unfocus
