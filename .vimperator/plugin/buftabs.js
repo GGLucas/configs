@@ -38,17 +38,35 @@ buftabs = {
         // Get buftabbar
         var btabs = document.getElementById("liberator-statusline-buftabs");
         var urlWidget = document.getElementById("liberator-statusline-field-url");
+        var browsers = tabs.getBrowser().browsers;
         var position=0, selpos;
 
-        //// Empty the tabbar
-        while (btabs.lastChild != null)
+        // Make sure we have an appropriate amount of labels
+        while (btabs.childNodes.length > browsers.length)
+        {
             btabs.removeChild(btabs.lastChild);
-        
+        }
+
+        while (btabs.childNodes.length < browsers.length)
+        {
+            var label = document.createElement("label");
+            btabs.appendChild(label);
+
+            label.onclick = function (ev)
+            {
+                if (ev.button == 0)
+                    tabs.select(this.tabpos);
+                else if (ev.button == 1)
+                    tabs.remove(tabs.getTab(this.tabpos), 1, false, 0);
+            }
+        }
+
         // Create the new tabs
-        for (let [i, browser] in tabs.browsers)
+        for (let i=0; i < browsers.length; i++)
         {
             // Create label
-            var label = document.createElement("label");
+            var browser = browsers[i];
+            var label = btabs.childNodes[i];
 
             // Hook on load
             if (browser.webProgress.isLoadingDocument)
@@ -62,16 +80,7 @@ buftabs = {
 
             // Fill label
             label.tabpos = i;
-            btabs.appendChild(label);
             buftabs.fillLabel(label, browser);
-
-            label.onclick = function (ev)
-            {
-                if (ev.button == 0)
-                    tabs.select(this.tabpos);
-                else if (ev.button == 1)
-                    tabs.remove(tabs.getTab(this.tabpos), 1, false, 0);
-            }
 
             if (tabs.index() == label.tabpos)
             {
