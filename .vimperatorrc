@@ -85,11 +85,11 @@ map <F7> :noh<CR>
 style * .buftab,.buftab_selected { padding-left: 5px; padding-right: 5px; }
 style * .buftab_selected { background: #343434; }
 
-" Statusbar styling
+" Vimperator styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
-hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal;
+hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal; color: white; background: #141414;
 
 " Ignore body onclick
 set hinttags="//*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"
