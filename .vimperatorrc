@@ -1,3 +1,6 @@
+" Load plugins
+loadplugins
+
 " Unfocus textfields
 set focuscontent
 
@@ -82,7 +85,6 @@ set noinsertmode
 map <F7> :noh<CR>
 
 " Style buffertabs
-source ~/.vimperator/plugin/buftabs.js
 hi BufTab padding-left: 5px; padding-right: 5px;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px;
 
