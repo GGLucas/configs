@@ -36,41 +36,34 @@ buftabs = {
     updateUrl: function (url)
     {
         // Get buftabbar
-        var buftabs = document.getElementById("liberator-statusline-buftabs");
+        var btabs = document.getElementById("liberator-statusline-buftabs");
         var urlWidget = document.getElementById("liberator-statusline-field-url");
-        var maxlength = options.get("buftabs_maxlength").get();
-        var tabvalue, position=0, selpos;
+        var position=0, selpos;
 
         //// Empty the tabbar
-        while (buftabs.lastChild != null)
-            buftabs.removeChild(buftabs.lastChild);
+        while (btabs.lastChild != null)
+            btabs.removeChild(btabs.lastChild);
         
         // Create the new tabs
         for (let [i, browser] in tabs.browsers)
         {
-            // Title
-            if (browser.webProgress.isLoadingDocument)
-                tabvalue = "Loading...";
-            else
-                tabvalue = browser.contentTitle || "Untitled";
-
-            // Check length
-            if (tabvalue.length > maxlength)
-                tabvalue = tabvalue.substr(0, maxlength-3)+"...";
-
-            // Bookmark icon
-            if (liberator.has("bookmarks"))
-                if (bookmarks.isBookmarked(browser.contentDocument.location.href))
-                    tabvalue += "\u2764";
-
-            // Brackets and index
-            tabvalue = "["+(i+1)+"-"+tabvalue+"]";
-
             // Create label
             var label = document.createElement("label");
+
+            // Hook on load
+            if (browser.webProgress.isLoadingDocument)
+            {
+                browser._buftabs_label = label;
+                browser.contentDocument.addEventListener("load", function ()
+                {
+                    buftabs.fillLabel(this._buftabs_label, this);
+                }, false);
+            }
+
+            // Fill label
             label.tabpos = i;
-            label.setAttribute("value", tabvalue);
-            buftabs.appendChild(label);
+            btabs.appendChild(label);
+            buftabs.fillLabel(label, browser);
 
             label.onclick = function (ev)
             {
@@ -80,27 +73,59 @@ buftabs = {
                     tabs.remove(tabs.getTab(this.tabpos), 1, false, 0);
             }
 
-            if (tabs.index() == i)
+            if (tabs.index() == label.tabpos)
             {
                 selpos = [position, label.clientWidth+position];
-                label.className = "buftab_selected";
-            } else {
-                label.className = "buftab";
             }
 
             position += label.clientWidth;
         }
 
         // Scroll
-        if (selpos[0] < buftabs.scrollLeft || selpos[1] > buftabs.scrollLeft+buftabs.clientWidth)
-            buftabs.scrollLeft = selpos[0];
+        if (selpos[0] < btabs.scrollLeft || selpos[1] > btabs.scrollLeft+btabs.clientWidth)
+            btabs.scrollLeft = selpos[0];
 
         // Show the entire line if possible
-        if (buftabs.scrollWidth == buftabs.clientWidth)
-            buftabs.scrollLeft = 0;
+        if (btabs.scrollWidth == btabs.clientWidth)
+            btabs.scrollLeft = 0;
 
         // Empty url label
         urlWidget.value = "";
+    },
+
+    // Fill a label with browser content
+    fillLabel: function(label, browser)
+    {
+        var maxlength = options.get("buftabs_maxlength").get();
+        var tabvalue;
+
+        // Get title
+        if (browser.webProgress.isLoadingDocument)
+        {
+            tabvalue = "Loading...";
+        } else {
+            tabvalue = browser.contentTitle || "Untitled";
+        }
+
+        // Check length
+        if (tabvalue.length > maxlength)
+            tabvalue = tabvalue.substr(0, maxlength-3)+"...";
+
+        // Bookmark icon
+        if (bookmarks.isBookmarked(browser.contentDocument.location.href))
+            tabvalue += "\u2764";
+
+        // Brackets and index
+        tabvalue = "["+(label.tabpos+1)+"-"+tabvalue+"]";
+
+        label.setAttribute("value", tabvalue);
+
+        if (tabs.index() == label.tabpos)
+        {
+            label.className = "buftab_selected";
+        } else {
+            label.className = "buftab";
+        }
     },
 
     // Create the horizontal box for adding the tabs to
@@ -151,6 +176,11 @@ tabContainer.addEventListener("TabSelect", function (event) {
     if (options.get("buftabs").get())
         statusline.updateUrl();
 }, false);
+
+tabs.getBrowser().addEventListener("load", function (event) {
+    if (options.get("buftabs").get())
+        statusline.updateUrl();
+}, true);
 
 /// Options
 options.add(["buftabs", "buftabs"],
