@@ -16,10 +16,12 @@ let PLUGIN_INFO =
 
   == Styling ==
   Use the BufTab and BufTabSelected highlight groups to style the buftabs.
+  Make sure you've called the "loadplugins" command before using the highlight
+  groups in your vimperatorrc.
 
   == Length ==
-  You can set the max length of a title before it is cut off with the buftabs_maxlength
-  option. It is set to 25 by default.
+  You can set the max length of a title before it is cut off with the 
+  buftabs_maxlength option. It is set to 25 by default.
 
   ]]></detail>
 </VimperatorPlugin>;
