@@ -37,6 +37,3 @@ highlight article "^(Feed|Title|Author|Link|Date):.*$" cyan black
 highlight article "https?://[^ ]+" red black
 
 notify-program "notify-send"
-
-# Kill lines
-ignore-article "http://www.n-u-l-l.net/?a=rss-view&i=7" "title !~ \"Saki\""

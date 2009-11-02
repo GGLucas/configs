@@ -1,55 +1,104 @@
+## Queries
+####
 "query:Unread Articles:unread = \"yes\""
+####
 
+## Webcomics
+####
+# xkcd
 http://www.xkcd.com/rss.xml
+# Ctrl-alt-del
 http://www.cad-comic.com/rss/rss.xml
+# El Goonish Shive
 http://www.egscomics.com/rss.php
+# El Goonish Shive: Newspaper
 http://www.egscomics.com/egsnp/rss.php
+# Penny Arcade
 http://feeds.penny-arcade.com/pa-mainsite/
+# Digital Unrest
 http://www.rsspect.com/rss/digitalunrest.xml
+# Dueling Analogs
 http://feeds.feedburner.com/DuelingAnalogs
+# Saturday Morning Breakfast Cereal
 http://www.smbc-comics.com/rss.php
+# NerfNOW
 http://nerfnow.com/index.xml
+# ExtraLife
 http://www.myextralife.com/?feed=rss2
+# Order of the Stick
 http://www.giantitp.com/comics/oots.rss
+# Erfworld
 http://www.giantitp.com/comics/erf.rss
+# VGCats
 http://www.vgcats.com/vgcats.rdf.xml
+# Super Effective
 http://www.vgcats.com/super/se.rdf.xml
+# Dilbert
 http://feedproxy.google.com/DilbertDailyStrip
+# Sinfest
 http://www.sinfest.net/rss.php
+# Mistakes of Youth
 http://mistakesofyouth.com/rss.xml
+# Cyanide & Happiness
 http://feedproxy.google.com/Explosm
+# F@B0Y$
 http://fanboys-online.com/rss/main.xml
+# Looking For Group
 http://feeds.feedburner.com/LookingForGroup?format=xml
+# Abstruse Goose
 http://feeds2.feedburner.com/AbstruseGoose
+# Subnormality
 http://www.viruscomix.com/rss.xml
+# MarryMe
 http://marryme.keenspot.com/main/feed/
+# Dresden Codak
 http://feeds2.feedburner.com/rsspect/fJur
+# Oglaf
 http://pipes.yahoo.com/pipes/pipe.run?_id=_j_P8zpm3hGBTmHJHzfpSg&_render=rss
-
-http://dailyvim.blogspot.com/feeds/posts/default
-http://neopythonic.blogspot.com/feeds/posts/default
-http://www.oreillynet.com/pub/feed/30
-http://torvalds-family.blogspot.com/feeds/posts/default
-http://www.gnu.org/rss/whatsnew.rss
-http://blog.mistakesofyouth.com/feed/
-http://technotales.wordpress.com/feed/
-http://feeds.feedburner.com/redditblog?format=xml
-http://blag.xkcd.com/feed/
-http://www.stephenfry.com/blog/?feed=rss2
-http://feeds.feedburner.com/writequit/feed
-http://commandline.org.uk/feeds/full/
-http://syndication.thedailywtf.com/TheDailyWtf
-http://www.qi.com/feeds/news.php
-
-http://newsbeuter.wordpress.com/feed/
-http://vimperator.org/trac/blog?format=rss
-
-http://aliceandkev.wordpress.com/feed/
+# Decorum
 http://www.decorumcomics.com/rss.php
-http://pygowave.p2k-network.org/blog/?feed=rss2
+####
+
+## Blogs
+####
+# Osamuko Mahjong
 http://www.osamuko.com/feed/
-
-http://www.n-u-l-l.net/?a=rss-view&i=7
-
+# Daily Vim
+http://dailyvim.blogspot.com/feeds/posts/default
+# Mistakes of Youth Blog
+http://blog.mistakesofyouth.com/feed/
+# Reddit
+http://feeds.feedburner.com/redditblog?format=xml
+# xkcd Blag
+http://blag.xkcd.com/feed/
+# Writequit
+http://feeds.feedburner.com/writequit/feed
+# Commandline
+http://commandline.org.uk/feeds/full/
+# The Daily WTF
+http://syndication.thedailywtf.com/TheDailyWtf
+# Alice and Kev
+http://aliceandkev.wordpress.com/feed/
+# ShitMyDadSays
 http://twitter.com/statuses/user_timeline/62581962.rss
+####
+
+## Project News
+#####
+# Newsbeuter
+http://newsbeuter.wordpress.com/feed/
+# Vimperator
+http://vimperator.org/trac/blog?format=rss
+# PyGoWave
+http://pygowave.p2k-network.org/blog/?feed=rss2
+# Achron
 http://achrongame.com/achron.rss
+####
+
+## Manga
+####
+# Mahou Shoujo Lyrical Nanoha ViVid
+http://www.mangafox.com/rss/mahou_shoujo_lyrical_nanoha_vivid.xml
+# Mahou Senki Lyrical Nanoha Force
+http://www.mangafox.com/rss/mahou_senki_lyrical_nanoha_force.xml
+####
