@@ -323,6 +323,9 @@ bindings = {
             end
         end,
 
+        -- Toggle Line In mute
+        [{"Mod4", "F10"}] = {awful.util.spawn, "amixer set Line toggle"},
+
         -- Toggle between low and high mpd volumes
         [{"Mod4", "F11"}] = function ()
             if settings._mpd_volume == nil then
