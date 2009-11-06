@@ -42,7 +42,7 @@ local dropdown = {}
 function toggle(prog, vert, horiz, width, height, sticky, screen)
     local vert   = vert   or "top"
     local horiz  = horiz  or "center"
-    local width  = width  or 0.9999
+    local width  = width  or 1
     local height = height or 0.25
     local sticky = sticky or false
     local screen = screen or capi.mouse.screen
@@ -70,8 +70,8 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
             -- Client geometry and placement
             local screengeom = capi.screen[screen].workarea
 
-            if width  < 1 then width  = screengeom.width  * width  end
-            if height < 1 then height = screengeom.height * height end
+            if width  <= 1 then width  = screengeom.width  * width  end
+            if height <= 1 then height = screengeom.height * height end
 
             if     horiz == "left"  then x = screengeom.x
             elseif horiz == "right" then x = screengeom.width - width

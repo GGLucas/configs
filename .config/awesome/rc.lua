@@ -195,7 +195,7 @@ bindings = {
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
         
         -- Pull-left urxvtc terminal
-        [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 0.9999},
+        [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 1},
 
         -- Open terminal with screen
         -- * Local
