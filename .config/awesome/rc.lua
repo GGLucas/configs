@@ -195,7 +195,7 @@ bindings = {
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
         
         -- Pull-left urxvtc terminal
-        [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 0.999},
+        [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 0.9999},
 
         -- Open terminal with screen
         -- * Local
@@ -324,7 +324,10 @@ bindings = {
         end,
 
         -- Toggle Line In mute
-        [{"Mod4", "F10"}] = {awful.util.spawn, "amixer set Line toggle"},
+        [{"Mod4", "F10"}] = function () 
+            awful.util.spawn("amixer set Line 100%")
+            awful.util.spawn("amixer set Line toggle")
+        end,
 
         -- Toggle between low and high mpd volumes
         [{"Mod4", "F11"}] = function ()
