@@ -11,4 +11,7 @@
 	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="true" basedir="smbc_reader">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>
+	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" enabled="true" basedir="xkcd_fan_keyboard_shortc">
+		<Include>http://*xkcd.com/*</Include>
+	</Script>
 </UserScriptConfig>
