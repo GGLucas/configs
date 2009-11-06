@@ -1,3 +1,6 @@
+" Load userstyles
+source ~/.vimperator/styles/styles.js
+
 " Load plugins
 loadplugins
 
@@ -36,10 +39,10 @@ noremap v <C-S-Tab>
 noremap <silent> V :tabmove -1<CR>
 noremap <silent> W :tabmove +1<CR>
 
-noremap <silent> S :source ~/.vimperator/plugin/buftabs.js<CR>
+noremap <silent> S :source ~/.vimperator/styles/styles.js<CR>
 
-" Toggle stylish/greasemonkey
-noremap <silent> <Leader>s :stylish turnall<CR>
+" Toggle userstyles/userscripts
+noremap <silent> <Leader>s :styletoggle<CR>
 noremap <silent> <Leader>g :gmset!<CR>
 
 " Show/hide the buftabbar
@@ -47,9 +50,6 @@ noremap <silent> <A-u> :set invbuftabs<CR>
 
 " Quick buffer switch with the same mapping as in vim
 noremap <A-g> :buffer!<Space>
-
-" Hint font size
-hi -append Hint font-size: 12px;
 
 " Faster scrolling
 noremap <C-e> 3<C-e>
@@ -84,15 +84,15 @@ set noinsertmode
 " F7: Search highlight toggle
 map <F7> :noh<CR>
 
-" Style buffertabs
+" Buftab styling
 hi BufTab padding-left: 5px; padding-right: 5px;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px;
 
-" Vimperator styling
+" Hint font size
+hi -append Hint font-size: 12px;
+
+" Statusbar and commandline styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal; color: white; background: #141414;
-
-" Ignore body onclick
-set hinttags="//*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"
