@@ -1,0 +1,11 @@
+<UserScriptConfig>
+	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" enabled="true" basedir="reddit_keyboard_shortcut">
+		<Include>http://www.reddit.com/*</Include>
+		<Include>http://www.reddit.com/r/*</Include>
+		<Exclude>http://www.reddit.com/*/comments/*</Exclude>
+		<Exclude>http://www.reddit.com/r/*/comments/*</Exclude>
+	</Script>
+	<Script filename="youtube_hd_ultimate.user.js" name="YouTube HD Ultimate" namespace="#aVg" description="The best of the hundreds of YouTube scripts, because we make it. Updated all the time, by me and you! Your favorite YouTube script is better than ever!" enabled="true" basedir="youtube_hd_ultimate">
+		<Include>http://www.youtube.com/watch?*</Include>
+	</Script>
+</UserScriptConfig>
