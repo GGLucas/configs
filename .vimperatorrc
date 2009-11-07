@@ -25,6 +25,9 @@ set showtabline=0
 " Use console vim as editor
 set editor=g
 
+" Vim editing in textareas
+set noinsertmode
+
 " Leader
 let mapleader=","
 
@@ -65,7 +68,7 @@ noremap <silent> <leader>D :removetabsright<CR>
 noremap <silent> <leader>d :removetabsleft<CR>
 
 " Background tab
-noremap <A-t> :tabopen! 
+noremap <A-t> :tabopen!<Space>
 
 " Command line cursor keys
 cnoremap <C-h> <Left>
@@ -78,11 +81,8 @@ cnoremap <C-k> <Up>
 cnoremap <S-CR> <CR>
 cnoremap <CR> <CR>:<Esc>
 
-" Vim editing in textareas
-set noinsertmode
-
 " F7: Search highlight toggle
-map <F7> :noh<CR>
+map <silent> <F7> :noh<CR>
 
 " Buftab styling
 hi BufTab padding-left: 5px; padding-right: 5px;
@@ -96,3 +96,6 @@ hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-s
 hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal; color: white; background: #141414;
+
+" Ignore body onclick
+set hinttags="//*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"
