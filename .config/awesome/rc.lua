@@ -325,7 +325,6 @@ bindings = {
 
         -- Toggle Line In mute
         [{"Mod4", "F10"}] = function () 
-            awful.util.spawn("amixer set Line 100%")
             awful.util.spawn("amixer set Line toggle")
         end,
 
