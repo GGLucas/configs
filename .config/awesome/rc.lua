@@ -403,6 +403,30 @@ bindings = {
                 height = 1050
             })
         end,
+
+        -- Left screenjoin bottom
+        [{"Mod4", "Shift", "+"}] = function ()
+            awful.client.floating.set(client.focus, true)
+
+            client.focus:geometry({
+                x = 0,
+                y = -240,
+                width = 3360,
+                height = 1050
+            })
+        end,
+
+        -- Right screenjoin bottom
+        [{"Mod4", "Shift", "]"}] = function ()
+            awful.client.floating.set(client.focus, true)
+
+            client.focus:geometry({
+                x = -1680,
+                y = -240,
+                width = 3360,
+                height = 1050
+            })
+        end,
     },
 
     root_buttons = awful.util.table.join(
