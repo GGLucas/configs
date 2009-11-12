@@ -48,3 +48,7 @@ border-color: #303030 !important}
 
 .icon{border-color: #999999 !important;}
 .inew{border-color: #0771a6 !important;}
+
+a {
+    text-decoration: none !important;
+}
