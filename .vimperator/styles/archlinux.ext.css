@@ -49,6 +49,24 @@ border-color: #303030 !important}
 .icon{border-color: #999999 !important;}
 .inew{border-color: #0771a6 !important;}
 
+/*
+ * MODIFICATIONS TO ORIGINAL
+ */
+
 a {
     text-decoration: none !important;
+    color: #608baa !important;
 }
+
+#brdheader a {
+    color: white !important;
+}
+
+textarea, input, select {
+    -moz-appearance: none !important;
+    border: 1px solid #343434 !important;
+    color: white !important;
+    background: #141414 !important;
+    padding: 4px !important;
+}
+
