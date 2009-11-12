@@ -252,9 +252,10 @@ bindings = {
 
         -- Screen focus
         [{"Mod4", "h"}] = function ()
+            local capiscreen = screen
             local screen = mouse.screen
 
-            if screen.count() == 2 then
+            if capiscreen.count() == 2 then
                 screen = 1+(screen%2)
             else
                 if screen == 1 then
@@ -280,9 +281,10 @@ bindings = {
         end,
 
         [{"Mod4", "l"}] = function ()
+            local capiscreen = screen
             local screen = mouse.screen
 
-            if screen.count() == 2 then
+            if capiscreen.count() == 2 then
                 screen = 1+(screen%2)
             else
                 if screen == 4 then
