@@ -176,18 +176,18 @@ div.expando-button.video:before
 
 a.author
 {
-color: #ff8b60 !important;
+    color: #ff8b60 !important;
 }
 
 .comment .child
 {
- border-left: 1px dotted #343434 !important;
+    border-left: 1px dotted #343434 !important;
 }
 
 textarea, input
 {
- -moz-appearance: none !important;
- background: #141414 !important;
- color: white !important;
- border: 2px solid #343434 !important;
+    -moz-appearance: none !important;
+    background: #141414 !important;
+    color: white !important;
+    border: 2px solid #343434 !important;
 }

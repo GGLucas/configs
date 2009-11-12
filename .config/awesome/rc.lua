@@ -333,7 +333,6 @@ bindings = {
 
         -- Toggle Line In mute
         [{"Mod4", "F10"}] = function () 
-            awful.util.spawn("amixer set Line 100%")
             awful.util.spawn("amixer set Line toggle")
         end,
 
@@ -408,6 +407,30 @@ bindings = {
             client.focus:geometry({
                 x = -1680,
                 y = 0,
+                width = 3360,
+                height = 1050
+            })
+        end,
+
+        -- Left screenjoin bottom
+        [{"Mod4", "Shift", "+"}] = function ()
+            awful.client.floating.set(client.focus, true)
+
+            client.focus:geometry({
+                x = 0,
+                y = -240,
+                width = 3360,
+                height = 1050
+            })
+        end,
+
+        -- Right screenjoin bottom
+        [{"Mod4", "Shift", "]"}] = function ()
+            awful.client.floating.set(client.focus, true)
+
+            client.focus:geometry({
+                x = -1680,
+                y = -240,
                 width = 3360,
                 height = 1050
             })

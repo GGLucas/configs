@@ -19,11 +19,31 @@ body,#content
     color: #9fbc00 !important;
 }
 
-table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td
+table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td, .mw-search-formheader
 {
-background-color: #242424 !important;
-border-color: #343434 !important;
-color: #e0e0e0 !important;
+    background-color: #242424 !important;
+    border-color: #343434 !important;
+    color: #e0e0e0 !important;
+}
+
+input, textarea
+{
+    background-color: #242424 !important;
+    border: 1px solid #343434 !important;
+    color: #e0e0e0 !important;
+    -moz-appearance: none !important;
+}
+
+.mw-geshi
+{
+    background-color: #242424 !important;
+    border-color: #545454 !important;
+    color: white !important;
+}
+
+.mw-geshi .me1, .mw-geshi .de1, .mw-geshi .br0
+{
+    color: white !important;
 }
 
 .navbox-title, .navbox-th, .navbox-group
