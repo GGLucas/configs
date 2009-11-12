@@ -254,14 +254,18 @@ bindings = {
         [{"Mod4", "h"}] = function ()
             local screen = mouse.screen
 
-            if screen == 1 then
-                screen = 4
-            elseif screen == 5 then
-                screen = 6
-            elseif screen == 6 then
-                screen = 5
+            if screen.count() == 2 then
+                screen = 1+(screen%2)
             else
-                screen = screen - 1
+                if screen == 1 then
+                    screen = 4
+                elseif screen == 5 then
+                    screen = 6
+                elseif screen == 6 then
+                    screen = 5
+                else
+                    screen = screen - 1
+                end
             end
 
             mouse.screen = screen
@@ -278,14 +282,18 @@ bindings = {
         [{"Mod4", "l"}] = function ()
             local screen = mouse.screen
 
-            if screen == 4 then
-                screen = 1
-            elseif screen == 5 then
-                screen = 6
-            elseif screen == 6 then
-                screen = 5
+            if screen.count() == 2 then
+                screen = 1+(screen%2)
             else
-                screen = screen + 1
+                if screen == 4 then
+                    screen = 1
+                elseif screen == 5 then
+                    screen = 6
+                elseif screen == 6 then
+                    screen = 5
+                else
+                    screen = screen + 1
+                end
             end
                 
             mouse.screen = screen
