@@ -71,5 +71,5 @@ xkb_symbols "basic" {
     key <AB09> {[ v, V, therefore ]};
     key <AB10> {[ z, Z, because ]};
 
-    key <BKSL> {[ backslash, bar ]};
+    key <BKSL> {[ backslash, bar, implies ]};
 };
