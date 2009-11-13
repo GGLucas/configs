@@ -20,6 +20,7 @@ nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
 
 # Enable sound
 amixer set Front 100 unmute > /dev/null &
+amixer set Line mute > /dev/null &
 mpc volume 74 &
 
 # Run urxvtd, to start terminals faster

@@ -7,7 +7,6 @@
 var styledir = io.getRuntimeDirectories("styles")[0].path;
 
 /// Add styles
-//// Personal Styles
 // Wikipedia style
 styles.addSheet(false,
     // Name
@@ -38,13 +37,11 @@ styles.addSheet(false,
     io.readFile(styledir+"/reddit.css")
 )
 
-//// External Styles 
-// Archlinux Forums Style: Courtesy Hrwa
 styles.addSheet(false,
     // Name
-    "Archlinux:Dark",
+    "ArchlinuxForums:Minimal",
     // Filter
     "bbs.archlinux.org",
     // File
-    io.readFile(styledir+"/archlinux.ext.css")
+    io.readFile(styledir+"/archlinux.forum.css")
 )
