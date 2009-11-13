@@ -38,6 +38,9 @@ apps = {
     -- Open filemanager
     filemanager = "urxvtc -e vifm /data /data",
 
+    -- Turn off displays
+    displays_off = "sleep 0.2 && xset dpms force off",
+
     -- MPD Control
     -- * Toggle music
     mpd_toggle = "mpc_toggle",
@@ -214,6 +217,9 @@ bindings = {
 
         -- Show MPD currently playing song
         [{"Mod4", "p"}] = {awful.util.spawn_with_shell, apps.mpd_show},
+
+        -- Turns displays off
+        [{"Mod4", "Escape"}] = {awful.util.spawn_with_shell, apps.displays_off},
 
         -- Start rodentbane cursor navigation
         [{"Mod4", "r"}] = rodentbane.start,
