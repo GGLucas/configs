@@ -19,7 +19,7 @@ div.infobar
 {
     background: #242424 !important;
     color: white !important;
-    border: 1px solid #241414 !important;
+    border: 1px solid #1a1a1a !important;
 }
 
 div.content a
@@ -123,6 +123,7 @@ div.entry
 {
     line-height: 1.7 !important;
     color: #e0e0e0 !important;
+    background: none !important;
 }
 
 div.expando-button

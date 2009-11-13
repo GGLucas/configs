@@ -27,7 +27,7 @@ mpc volume 74 &
 urxvtd &
 
 # Set keyboard layout and xmodmap
-(setxkbmap -model evdev -option terminate:ctrl_alt_bksp -layout hdv && xmodmap $HOME/.Xmodmap) &
+(setxkbmap -model evdev -layout hdv && xmodmap $HOME/.Xmodmap) &
 
 # WMName for Java
 wmname compiz &
