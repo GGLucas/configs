@@ -1,8 +1,8 @@
 !Change to number keys
-keycode 10 = 1 ampersand
-keycode 11 = 2 bracketleft
-keycode 12 = 3 braceleft
-keycode 13 = 4 braceright
+keycode 10 = 1 ampersand dead_tilde
+keycode 11 = 2 bracketleft dead_circumflex
+keycode 12 = 3 braceleft dead_grave
+keycode 13 = 4 braceright dead_diaeresis
 keycode 14 = 5 parenleft
 keycode 15 = 6 equal
 keycode 16 = 7 asterisk
