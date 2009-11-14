@@ -43,6 +43,12 @@ alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
 alias vg='viewglob -t off -s windows'
 
+# Tofu organiser shortcuts
+orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
+org(){ tofu org $@; }
+miscn(){ tofu misc next feed="$1"${@#$1} && tofu misc; }
+misc(){ tofu misc $@; }
+
 # Shortcut functions
 x(){ cd ~; xinit $@; }
 
