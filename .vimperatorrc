@@ -69,6 +69,7 @@ noremap <silent> <leader>d :removetabsleft<CR>
 
 " Background tab
 noremap <A-t> :tabopen!<Space>
+noremap <A-w> :winopen<Space>
 
 " Command line cursor keys
 cnoremap <C-h> <Left>
