@@ -3,46 +3,52 @@
  *
  */
 
-/// Add styles
-liberator.userstyles = [
-    [
-        "wikipedia:minimal",
-        "en.wikipedia.org",
-        "wikipedia.css",
-    ],
-
-    [
-        "scroogle:minimal",
-        "https://ssl.scroogle.org/cgi-bin/nbbwssl.cgi",
-        "scroogle.css",
-    ],
-
-    [
-        "reddit:minimal",
-        "reddit.com",
-        "reddit.css",
-    ],
-
-    [
-        "archlinux-forums:minimal",
-        "bbs.archlinux.org",
-        "archlinux.forum.css",
-    ],
-
-    [
-        "tvtorrents:minimal",
-        "tvtorrents.com",
-        "tvtorrents.css",
-    ]
-];
-
-/// Command to load all styles
 var loaduserstyles = function()
 {
+    /// Userstyles
+    var userstyles = [
+        [
+            "wikipedia:minimal",
+            "en.wikipedia.org",
+            "wikipedia.css",
+        ],
+
+        [
+            "scroogle:minimal",
+            "https://ssl.scroogle.org/cgi-bin/nbbwssl.cgi",
+            "scroogle.css",
+        ],
+
+        [
+            "reddit:minimal",
+            "reddit.com",
+            "reddit.css",
+        ],
+
+        [
+            "archlinux-forums:minimal",
+            "bbs.archlinux.org",
+            "archlinux.forum.css",
+        ],
+
+        [
+            "tokyotosho:minimal",
+            "tokyotosho.info",
+            "tokyotosho.css"
+        ],
+
+        [
+            "tvtorrents:minimal",
+            "tvtorrents.com",
+            "tvtorrents.css",
+        ]
+
+    ];
+
     // Get style directory
     var styledir = io.getRuntimeDirectories("styles")[0].path;
 
-    for ([i, [name, filter, file]] in Iterator(liberator.userstyles))
+    for ([i, [name, filter, file]] in Iterator(userstyles))
     {
       // Remove all sheets with this filter
       styles.removeSheet(false, name)
