@@ -32,8 +32,12 @@ a
 
 .desc-bot
 {
+    display: block !important;
     padding-left: 12px !important;
     font-size: 14px !important;
+    overflow: hidden !important;
+    padding-bottom: 6px!important;
+    height: 14px !important;
 }
 
 
