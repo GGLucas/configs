@@ -37,7 +37,7 @@ xkb_symbols "basic" {
 
     key <AD01> {[ semicolon, colon, notequal ]};
     key <AD02> {[ comma, less, lessthanequal ]};
-    key <AD03> {[ period, greater, greaterthanequal ]};
+    key <AD03> {[ period, greater, greaterthanequal, ellipsis ]};
     key <AD04> {[ p, P, logicaland ]};
     key <AD05> {[ y, Y, logicalor ]};
     key <AD06> {[ f, F, elementof ]};
