@@ -1,8 +1,8 @@
-" Load userstyles
-source ~/.vimperator/styles/styles.js
-
 " Load plugins
 loadplugins
+
+" Load userstyles
+source ~/.vimperator/styles/styles.js
 
 " Unfocus textfields
 set focuscontent
@@ -42,10 +42,10 @@ noremap v <C-S-Tab>
 noremap <silent> V :tabmove -1<CR>
 noremap <silent> W :tabmove +1<CR>
 
-noremap <silent> S :source ~/.vimperator/styles/styles.js<CR>
 
 " Toggle userstyles/userscripts
 noremap <silent> <Leader>s :styletoggle<CR>
+noremap <silent> <Leader>S :loaduserstyles<CR>
 noremap <silent> <Leader>g :gmset!<CR>
 
 " Show/hide the buftabbar
