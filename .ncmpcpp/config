@@ -1,8 +1,10 @@
-
 ## Use column mode for listing songs
 playlist_display_mode = "columns"
 browser_display_mode = "columns"
 search_engine_display_mode = "columns"
+
+## Colums to use
+song_columns_list_format = "(7f)[green]{l} (40)[]{t} (25)[cyan]{a} (25)[red]{b}"
 
 ## Use alternative user interface
 user_interface = "alternative"
