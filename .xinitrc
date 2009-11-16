@@ -23,6 +23,9 @@ amixer set Front 100 unmute > /dev/null &
 amixer set Line mute > /dev/null &
 mpc volume 74 &
 
+# Load animenfo if playlist is empty
+([[ $(mpc playlist) ]] || mpc load animenfo) &
+
 # Run urxvtd, to start terminals faster
 urxvtd &
 

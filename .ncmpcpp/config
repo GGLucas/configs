@@ -1,0 +1,16 @@
+
+## Use column mode for listing songs
+playlist_display_mode = "columns"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+
+## Use alternative user interface
+user_interface = "alternative"
+
+## Use autocenter
+autocenter_mode = "yes"
+
+## Scroll cyclically
+cyclic_scrolling = "yes"
+
+
