@@ -450,6 +450,7 @@ bindings = {
     ),
 
     client_buttons = awful.util.table.join(
+        awful.button({}, 1, function (c) client.focus = c; c:raise() end),
         awful.button({"Mod4",}, 1, awful.mouse.client.move),
         awful.button({"Mod4",}, 3, awful.mouse.client.resize)
     ), 
@@ -643,7 +644,7 @@ checkmail:start()
 client.add_signal("manage", function (c, startup)
     -- Enable sloppy focus
     c:add_signal("mouse::enter", function(c)
-        if awful.client.focus.filter(c) then
+        if awful.client.focus.filter(c) and awful.client.floating.get(c) then
             client.focus = c
         end
     end)
