@@ -181,8 +181,15 @@ util = {
 -- {{{ Tags
 tags = {}
 for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, awful.layout.suit.tile)
+    -- Figure out layout to use
+    if s == 3 then
+        layout = awful.layout.suit.tile.left
+    else
+        layout = awful.layout.suit.tile
+    end
+
+    -- Create tags
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, layout)
 end
 
 -- }}}
@@ -247,6 +254,7 @@ bindings = {
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
         [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.tile},
         [{"Mod4", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
+        [{"Mod4", "k"}] = {awful.layout.set, awful.layout.suit.tile.left},
 
         -- Switch between mwfact modes
         [{"Mod4", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
