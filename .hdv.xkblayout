@@ -37,28 +37,28 @@ xkb_symbols "basic" {
 
     key <AD01> {[ semicolon, colon, notequal ]};
     key <AD02> {[ comma, less, lessthanequal ]};
-    key <AD03> {[ period, greater, greaterthanequal, ellipsis ]};
+    key <AD03> {[ period, greater, greaterthanequal ]};
     key <AD04> {[ p, P, logicaland ]};
     key <AD05> {[ y, Y, logicalor ]};
     key <AD06> {[ f, F, elementof ]};
     key <AD07> {[ g, G, notelementof ]};
-    key <AD08> {[ c, C, emptyset ]};
-    key <AD09> {[ r, R, includedin ]};
+    key <AD08> {[ c, C, intersection ]};
+    key <AD09> {[ r, R, union ]};
     key <AD10> {[ l, L, includes ]};
-    key <AD11> {[ slash, question, intersection ]};
-    key <AD12> {[ at, asciicircum, union ]};
+    key <AD11> {[ slash, question, includedin ]};
+    key <AD12> {[ at, asciicircum, emptyset ]};
 
-    key <AC01> {[ a, A, ampersand ]};
-    key <AC02> {[ o, O, bracketleft ]};
-    key <AC03> {[ e, E, braceleft ]};
-    key <AC04> {[ u, U, braceright ]};
-    key <AC05> {[ i, I, parenleft ]};
-    key <AC06> {[ d, D, equal ]};
-    key <AC07> {[ h, H, asterisk ]};
-    key <AC08> {[ t, T, parenright ]};
-    key <AC09> {[ n, N, plus ]};
-    key <AC10> {[ s, S, bracketright ]};
-    key <AC11> {[ minus, underscore, exclam ]};
+    key <AC01> {[ a, A ]};
+    key <AC02> {[ o, O ]};
+    key <AC03> {[ e, E, ellipsis ]};
+    key <AC04> {[ u, U ]};
+    key <AC05> {[ i, I ]};
+    key <AC06> {[ d, D ]};
+    key <AC07> {[ h, H ]};
+    key <AC08> {[ t, T ]};
+    key <AC09> {[ n, N ]};
+    key <AC10> {[ s, S ]};
+    key <AC11> {[ minus, underscore ]};
 
     key <AB01> {[ apostrophe, quotedbl, infinity ]};
     key <AB02> {[ q, Q, approxeq ]};

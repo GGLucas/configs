@@ -38,6 +38,7 @@ wmname compiz &
 # Set keyboard repeat rate
 xset r rate 250 30 &
 
+# Monitor-specific commands
 for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do
     [[ $(xrandr -q | head -n 1 | sed 's/^.*current \([0-9]*\) x.*$/\1/') \
@@ -48,15 +49,13 @@ do
     # Start feh for each display
     DISPLAY=$display feh --bg-scale $BG &
 
-    # Start keynav for each display
-    #(sleep 5; DISPLAY=$display keynav) &
+    # Start a term on every display
+    DISPLAY=$display urxvtc &
 done;
 
 # Start WM
 while true;
 do
-    #stumpwm
     awesome
-    #ratpoison
-    #sleep 100
+    #sleep 25
 done;
