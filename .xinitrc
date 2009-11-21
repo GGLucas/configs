@@ -50,7 +50,7 @@ do
     DISPLAY=$display feh --bg-scale $BG &
 
     # Start a term on every display
-    DISPLAY=$display urxvtc &
+    (sleep 1; DISPLAY=$display urxvtc) &
 done;
 
 # Start WM

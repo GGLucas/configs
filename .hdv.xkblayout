@@ -16,6 +16,10 @@ xkb_symbols "basic" {
     key <RALT>	{   type[Group1]="TWO_LEVEL",
                   [ ISO_Level3_Shift, ISO_Level3_Shift ] };
 
+    // Switch left alt and left super
+    key <LALT> {[ Super_L, Super_L ]};
+    key <LWIN> {[ Alt_L, Alt_L ]};
+
     // Caps as escape
     key <CAPS> {[ Escape ]};
 
@@ -44,7 +48,7 @@ xkb_symbols "basic" {
     key <AD07> {[ g, G, notelementof ]};
     key <AD08> {[ c, C, intersection ]};
     key <AD09> {[ r, R, union ]};
-    key <AD10> {[ l, L, includes ]};
+    key <AD10> {[ l, L, Right, includes ]};
     key <AD11> {[ slash, question, includedin ]};
     key <AD12> {[ at, asciicircum, emptyset ]};
 
@@ -54,7 +58,7 @@ xkb_symbols "basic" {
     key <AC04> {[ u, U ]};
     key <AC05> {[ i, I ]};
     key <AC06> {[ d, D ]};
-    key <AC07> {[ h, H ]};
+    key <AC07> {[ h, H, Left ]};
     key <AC08> {[ t, T ]};
     key <AC09> {[ n, N ]};
     key <AC10> {[ s, S ]};
@@ -62,8 +66,8 @@ xkb_symbols "basic" {
 
     key <AB01> {[ apostrophe, quotedbl, infinity ]};
     key <AB02> {[ q, Q, approxeq ]};
-    key <AB03> {[ j, J, notapproxeq ]};
-    key <AB04> {[ k, K, identical ]};
+    key <AB03> {[ j, J, Down, notapproxeq ]};
+    key <AB04> {[ k, K, Up, identical ]};
     key <AB05> {[ x, X, notidentical ]};
     key <AB06> {[ b, B, stricteq ]};
     key <AB07> {[ m, M, containsas ]};

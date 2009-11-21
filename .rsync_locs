@@ -16,3 +16,5 @@ RSYNC_piwik="--exclude-from=$HOME/.rsync_exclude /data/web/piwik/ glacicle.com:/
 RSYNC_followe25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ glacicle.com:/srv/www/2-followe/followe25"
 
 RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ root@glacicle.com:/srv/www/zorgberaad/followe"
+
+RSYNC_rap25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/rap25/ root@glacicle.com:/srv/www/zorgberaad/rap25"
