@@ -59,8 +59,8 @@ xkb_symbols "basic" {
     key <AC05> {[ i, I, Home, Insert ]};
     key <AC06> {[ d, D ]};
     key <AC07> {[ h, H, Left ]};
-    key <AC08> {[ t, T, Page_Down ]};
-    key <AC09> {[ n, N, Page_Up ]};
+    key <AC08> {[ t, T, Page_Down, Page_Down ]};
+    key <AC09> {[ n, N, Page_Up, Page_Up ]};
     key <AC10> {[ s, S ]};
     key <AC11> {[ minus, underscore ]};
 
