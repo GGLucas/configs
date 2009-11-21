@@ -75,6 +75,13 @@ c (){
     [[ $@ ]] && git commit $@ || git commit -a
 }
 
+# Download package from abs
+absdown (){
+    abs $1/$2
+    cp -R /var/abs/$1/$2 ~/sources/
+    cd ~/sources/$2
+}
+
 # Flatten function
 flat (){
     mkdir ../__flat;
