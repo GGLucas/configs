@@ -52,28 +52,28 @@ xkb_symbols "basic" {
     key <AD11> {[ slash, question, includedin ]};
     key <AD12> {[ at, asciicircum, emptyset ]};
 
-    key <AC01> {[ a, A ]};
+    key <AC01> {[ a, A, End ]};
     key <AC02> {[ o, O ]};
     key <AC03> {[ e, E, ellipsis ]};
     key <AC04> {[ u, U ]};
-    key <AC05> {[ i, I ]};
+    key <AC05> {[ i, I, Home, Insert ]};
     key <AC06> {[ d, D ]};
     key <AC07> {[ h, H, Left ]};
-    key <AC08> {[ t, T ]};
-    key <AC09> {[ n, N ]};
+    key <AC08> {[ t, T, Page_Down ]};
+    key <AC09> {[ n, N, Page_Up ]};
     key <AC10> {[ s, S ]};
     key <AC11> {[ minus, underscore ]};
 
     key <AB01> {[ apostrophe, quotedbl, infinity ]};
-    key <AB02> {[ q, Q, approxeq ]};
-    key <AB03> {[ j, J, Down, notapproxeq ]};
-    key <AB04> {[ k, K, Up, identical ]};
-    key <AB05> {[ x, X, Delete, notidentical ]};
-    key <AB06> {[ b, B, stricteq ]};
-    key <AB07> {[ m, M, containsas ]};
-    key <AB08> {[ w, W, squareroot ]};
-    key <AB09> {[ v, V, therefore ]};
-    key <AB10> {[ z, Z, because ]};
+    key <AB02> {[ q, Q ]};
+    key <AB03> {[ j, J, Down ]};
+    key <AB04> {[ k, K, Up ]};
+    key <AB05> {[ x, X, Delete ]};
+    key <AB06> {[ b, B ]};
+    key <AB07> {[ m, M ]};
+    key <AB08> {[ w, W ]};
+    key <AB09> {[ v, V ]};
+    key <AB10> {[ z, Z ]};
 
     key <BKSL> {[ backslash, bar, implies ]};
 };
