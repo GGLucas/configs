@@ -371,10 +371,10 @@ bindings = {
         [{"Mod4", "F12"}] = function ()
             if settings._numbers then
                 settings._numbers = false
-                awful.util.spawn_with_shell("xmodmap ~/.Xmodmap-nonumbers")
+                awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/nonumbers")
             else 
                 settings._numbers = true
-                awful.util.spawn_with_shell("xmodmap ~/.Xmodmap-numbers")
+                awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
             end
         end,
 
