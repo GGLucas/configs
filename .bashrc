@@ -68,6 +68,8 @@ hdv() {
     setxkbmap -I$HOME/.xkb -model evdev -layout hdv -print | \
         grep -v '^Could' | grep -v '^Use' | \
         xkbcomp -I$HOME/.xkb - :0 &> /dev/null
+
+    xmodmap -e "remove mod4 = Alt_L" &
 }
 
 # Commit git -a or path
