@@ -3,12 +3,6 @@
 # Merge X settings
 xrdb -merge $HOME/.Xresources &
 
-# SCIM
-#export XMODIFIERS=@im=SCIM
-#export GTK_IM_MODULE="scim"
-#export QT_IM_MODULE="scim"
-#scim -d
-
 # Start unclutter
 unclutter -idle 2 -root &
 
