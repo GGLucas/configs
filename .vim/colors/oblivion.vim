@@ -75,6 +75,6 @@ hi Error         ctermfg=15 ctermbg=9
 hi Todo          ctermfg=0 ctermbg=11
 hi String        ctermfg=221
 hi Number        ctermfg=214
-hi Identifier    ctermfg=139
+hi Identifier    ctermfg=70
 hi Braces        ctermfg=139
 hi Cursor        ctermfg=16 ctermbg=231
