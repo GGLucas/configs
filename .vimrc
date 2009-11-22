@@ -150,14 +150,10 @@ let html_use_css = 1
 if $TERM == 'linux'
     " Virtual Console
     colorscheme default
-elseif $TERM == 'rxvt'
+else
     " Oblivion
     set t_Co=256
     colorscheme oblivion
-else
-    " Zenburn
-    set t_Co=256
-    colorscheme zenburn
 endif
   
 " Config
