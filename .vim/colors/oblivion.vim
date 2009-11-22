@@ -77,4 +77,5 @@ hi String        ctermfg=221
 hi Number        ctermfg=214
 hi Identifier    ctermfg=70
 hi Braces        ctermfg=139
+hi BoldBraces    ctermfg=139 cterm=bold
 hi Cursor        ctermfg=16 ctermbg=231

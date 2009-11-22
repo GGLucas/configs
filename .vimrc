@@ -278,6 +278,9 @@ autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.html silent filetype indent off
 autocmd BufEnter *.html silent setlocal ai
 
+" Load sparkup for html
+autocmd FileType html source ~/.vim/scripts/sparkup.vim
+
 " SASS Indent
 autocmd BufEnter *.sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.sass silent filetype indent off
@@ -287,6 +290,7 @@ autocmd BufEnter *.sass silent setlocal ai
 autocmd BufEnter *.py syn keyword Identifier self
 
 " Highlight braces with braces style
+autocmd BufEnter *.html hi link htmlEndTag BoldBraces
 autocmd BufEnter *.js hi link javaScriptBraces Braces
 
 " Highlight long lines
