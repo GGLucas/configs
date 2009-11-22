@@ -1,20 +1,22 @@
 "
-" Based on darkspectrum. (Ran through GuiColorScheme and tweaked)
-" Lucas de Vries <lucas@glacicle.com>
+" Oblivion color scheme (based on darkspectrum)
+" Lucas de Vries <lucas@tuple-typed.org>
 "
 
+" Clear syntax
 hi clear
-
-if version > 580
-    hi clear
-
-    if exists("syntax_on")
-        syntax reset
-    endif
+if exists("syntax_on")
+    syntax reset
 endif
 
+" Dark background
 set background=dark
+
+" Color name
 let g:colors_name="oblivion"
+
+" Set black background in rxvt, otherwise approximate
+hi Normal        ctermbg=0 ctermfg=white
 
 hi SpecialKey    ctermfg=244
 hi NonText       ctermfg=239 ctermbg=16
@@ -63,7 +65,7 @@ hi MatchParen    ctermfg=231 ctermbg=139
 hi Comment       ctermfg=244
 hi Constant      ctermfg=202
 hi Special       ctermfg=224
-hi Identifier    cterm=bold ctermfg=74
+hi Function      cterm=bold ctermfg=74
 hi Statement     cterm=bold ctermfg=15
 hi PreProc       cterm=underline ctermfg=74
 hi Type          ctermfg=112
@@ -73,6 +75,6 @@ hi Error         ctermfg=15 ctermbg=9
 hi Todo          ctermfg=0 ctermbg=11
 hi String        ctermfg=221
 hi Number        ctermfg=214
-hi Function      ctermfg=139
-hi Normal        ctermbg=0 ctermfg=white
+hi Identifier    ctermfg=139
+hi Braces        ctermfg=139
 hi Cursor        ctermfg=16 ctermbg=231

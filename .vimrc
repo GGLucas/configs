@@ -133,7 +133,6 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let g:pydoc_highlight = 0
 
 " Python syntax
-let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
 " Buffer tabs in statusline
@@ -151,10 +150,14 @@ let html_use_css = 1
 if $TERM == 'linux'
     " Virtual Console
     colorscheme default
-else
-    " Regular
+elseif $TERM == 'rxvt'
+    " Oblivion
     set t_Co=256
     colorscheme oblivion
+else
+    " Zenburn
+    set t_Co=256
+    colorscheme zenburn
 endif
   
 " Config
@@ -280,12 +283,15 @@ autocmd BufEnter *.sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufEnter *.sass silent filetype indent off
 autocmd BufEnter *.sass silent setlocal ai
 
-" Don't show space errors
-autocmd BufEnter *.py hi pythonSpaceError ctermbg=black
+" Highlight "self" in python
+autocmd BufEnter *.py syn keyword Identifier self
+
+" Highlight braces with braces style
+autocmd BufEnter *.js hi link javaScriptBraces Braces
 
 " Highlight long lines
-autocmd BufRead * let w:longmatch = matchadd('StatusLine', '\%<81v.\%>77v', -1)
-autocmd BufRead * let w:toolongmatch = matchadd('IncSearch', '\%>80v.\+', -1)
+autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
+autocmd BufRead * let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
 
 " Jump to last known cursor position
 autocmd BufReadPost *
@@ -308,7 +314,9 @@ function! TextwidthToggle()
 
     set textwidth?
 endfunction
+" }}}
 
+" {{{ HighlightLongToggl(): Toggle highlighting of long lines
 function! HighlightLongToggle()
     if exists('w:longmatch')
         call matchdelete(w:longmatch)
@@ -317,8 +325,8 @@ function! HighlightLongToggle()
         unlet w:toolongmatch
         echo "  don't highlight long"
     else
-        let w:longmatch = matchadd('StatusLine', '\%<81v.\%>77v', -1)
-        let w:toolongmatch = matchadd('IncSearch', '\%>80v.\+', -1)
+        let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
+        let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
         echo "  highlight long"
     endif
 endfunction
