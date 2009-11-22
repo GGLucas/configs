@@ -28,7 +28,7 @@ setxkbmap -I$HOME/.xkb -model evdev -layout hdv -print | \
     xkbcomp -I$HOME/.xkb - :0 > /dev/null &
 
 # Fix left alt
-xmodmap -e "remove mod4 = Alt_L" &
+(sleep 1; xmodmap -e "remove mod4 = Alt_L") &
 
 # WMName for Java
 wmname compiz &
