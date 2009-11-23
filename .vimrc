@@ -293,6 +293,9 @@ autocmd BufEnter *.js hi link javaScriptBraces Braces
 autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
 autocmd BufRead * let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
 
+" Highlight dirslash correctly
+hi link treeDirSlash Function
+
 " Jump to last known cursor position
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
