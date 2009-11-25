@@ -36,6 +36,10 @@ dht = auto
 # Use peer exchange
 peer_exchange = yes
 
+# Don't hash check already completed torrents, once during downloads is fine,  
+# or manually if really necessary.
+check_hash = no
+
 # Close torrents on low disk space
 schedule = low_diskspace,5,30,close_low_diskspace=500M
 

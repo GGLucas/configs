@@ -14,4 +14,10 @@
 	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" enabled="true" basedir="xkcd_fan_keyboard_shortc">
 		<Include>http://*xkcd.com/*</Include>
 	</Script>
+	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." enabled="true" basedir="dinosaur_comics_extra_te">
+		<Include>http://qwantz.com/index.php</Include>
+		<Include>http://qwantz.com/index.php?comic=*</Include>
+		<Include>http://www.qwantz.com/index.php</Include>
+		<Include>http://www.qwantz.com/index.php?comic=*</Include>
+	</Script>
 </UserScriptConfig>
