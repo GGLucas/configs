@@ -38,6 +38,8 @@ a
     overflow: hidden !important;
     padding-bottom: 6px!important;
     height: 14px !important;
+
+    border-bottom: 1px solid black !important;
 }
 
 
