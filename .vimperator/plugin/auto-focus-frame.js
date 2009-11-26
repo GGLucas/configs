@@ -81,7 +81,7 @@ let PLUGIN_INFO =
       maxFrame.focus();
   }
 
-  tabs.getBrowser().addEventListener("DOMContentLoaded", onLoad, true);
+  window.getBrowser().addEventListener("DOMContentLoaded", onLoad, true);
 
 
 })();

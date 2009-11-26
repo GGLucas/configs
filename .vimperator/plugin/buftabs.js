@@ -34,7 +34,7 @@ buftabs = {
         // Get buftabbar
         var btabs = document.getElementById("liberator-statusline-buftabs");
         var urlWidget = document.getElementById("liberator-statusline-field-url");
-        var browsers = tabs.getBrowser().browsers;
+        var browsers = window.getBrowser().browsers;
         var position=0, selpos;
 
         // Make sure we have an appropriate amount of labels
@@ -164,7 +164,7 @@ buftabs = {
 }
 
 /// Attach to events in order to update the tabline
-var tabContainer = tabs.getBrowser().mTabContainer;
+var tabContainer = window.getBrowser().mTabContainer;
 buftabs._statusline_updateUrl = statusline.updateUrl;
 
 tabContainer.addEventListener("TabMove", function (event) {
@@ -184,7 +184,7 @@ tabContainer.addEventListener("TabSelect", function (event) {
         statusline.updateUrl();
 }, false);
 
-tabs.getBrowser().addEventListener("load", function (event) {
+window.getBrowser().addEventListener("load", function (event) {
     if (options.get("buftabs").get())
         statusline.updateUrl();
 }, false);

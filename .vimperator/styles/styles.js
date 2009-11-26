@@ -55,7 +55,7 @@ var loaduserstyles = function()
 
       // Add the sheet
       styles.addSheet(false, name, filter, 
-      io.readFile(styledir+"/"+file))
+      File(styledir+"/"+file).read())
     }
 }
 
