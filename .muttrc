@@ -1,18 +1,18 @@
 # Send info
-set from = "lucas@tuple-typed.org"
+set from = "lucas@glacicle.org"
 set realname = "Lucas de Vries"
 
 # Settings for IMAP
-set imap_user = "lucas@tuple-typed.org"
+set imap_user = "lucas@glacicle.org"
 
-set folder = "imaps://tuple-typed.org"
+set folder = "imaps://glacicle.org"
 set spoolfile = "+INBOX"
 set record="+Sent"
 set postponed="+Postponed"
 mailboxes =INBOX
 
 # Settings for SMTP
-set smtp_url = "smtp://lucas@tuple-typed.org@tuple-typed.org:587/"
+set smtp_url = "smtp://lucas@glacicle.org@glacicle.org:587/"
 
 # Statusline
 set status_format="mutt-notify '%u' '%f' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'|"
@@ -84,7 +84,7 @@ set sort = 'threads'
 set sort_aux = 'last-date-received'
 
 # Batch headers
-my_hdr From: lucas@tuple-typed.org (Lucas de Vries)
+my_hdr From: lucas@glacicle.org (Lucas de Vries)
 set edit_headers
 
 # Editor
