@@ -54,6 +54,9 @@ orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
 org(){ tofu org $@; }
 miscn(){ tofu misc next feed="$1"${@#$1} && tofu misc; }
 misc(){ tofu misc $@; }
+projn(){ tofu proj next feed="$1"${@#$1} && tofu proj; }
+proj(){ tofu proj $@; }
+todosync(){ unison ~/.tofu ssh://root@glacicle.org//root/todo; }
 
 # Shortcut functions
 x(){ cd ~; xinit $@; }
