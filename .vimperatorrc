@@ -82,8 +82,9 @@ cnoremap <C-k> <Up>
 cnoremap <S-CR> <CR>
 cnoremap <CR> <CR>:<Esc>
 
-" F7: Search highlight toggle
+" C-l/F7: Search highlight toggle
 map <silent> <F7> :noh<CR>
+map <silent> <C-l> :noh<CR>
 
 " Buftab styling
 hi BufTab padding-left: 5px; padding-right: 5px;

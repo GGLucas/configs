@@ -49,6 +49,9 @@ nnoremap <C-y> 3<C-y>
 noremap <Leader># #*
 noremap <Leader>* *#
 
+" Clear screen and remove highlighting
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
 nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
