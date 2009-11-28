@@ -36,12 +36,12 @@ xkb_symbols "basic" {
     key <AE08> {[ parenright, 2 ]};
     key <AE09> {[ plus, 4 ]};
     key <AE10> {[ bracketright, 6]};
-    key <AE11> {[ exclam, 8 ]};
+    key <AE11> {[ exclam, 8, notsign ]};
     key <AE12> {[ numbersign, grave ]};
 
     key <AD01> {[ semicolon, colon, notequal ]};
-    key <AD02> {[ comma, less, lessthanequal ]};
-    key <AD03> {[ period, greater, greaterthanequal ]};
+    key <AD02> {[ comma, less, lessthanequal, doublelowquotemark ]};
+    key <AD03> {[ period, greater, greaterthanequal, periodcentered ]};
     key <AD04> {[ p, P, logicaland ]};
     key <AD05> {[ y, Y, logicalor ]};
     key <AD06> {[ f, F, elementof ]};
@@ -49,31 +49,31 @@ xkb_symbols "basic" {
     key <AD08> {[ c, C, intersection ]};
     key <AD09> {[ r, R, union ]};
     key <AD10> {[ l, L, Right, includes ]};
-    key <AD11> {[ slash, question, includedin ]};
+    key <AD11> {[ slash, question, question, includedin ]};
     key <AD12> {[ at, asciicircum, emptyset ]};
 
     key <AC01> {[ a, A, End ]};
-    key <AC02> {[ o, O ]};
-    key <AC03> {[ e, E, ellipsis ]};
-    key <AC04> {[ u, U ]};
+    key <AC02> {[ o, O, emdash, endash ]};
+    key <AC03> {[ e, E, ellipsis, Greek_epsilon ]};
+    key <AC04> {[ u, U, hyphen ]};
     key <AC05> {[ i, I, Home, Insert ]};
-    key <AC06> {[ d, D ]};
-    key <AC07> {[ h, H, Left ]};
+    key <AC06> {[ d, D, Greek_DELTA ]};
+    key <AC07> {[ h, H, Left, th ]};
     key <AC08> {[ t, T, Page_Down, Page_Down ]};
     key <AC09> {[ n, N, Page_Up, Page_Up ]};
-    key <AC10> {[ s, S ]};
+    key <AC10> {[ s, S, function, section ]};
     key <AC11> {[ minus, underscore ]};
 
     key <AB01> {[ apostrophe, quotedbl, infinity ]};
-    key <AB02> {[ q, Q ]};
+    key <AB02> {[ q, Q, identical]};
     key <AB03> {[ j, J, Down ]};
     key <AB04> {[ k, K, Up ]};
     key <AB05> {[ x, X, Delete ]};
     key <AB06> {[ b, B ]};
     key <AB07> {[ m, M ]};
     key <AB08> {[ w, W ]};
-    key <AB09> {[ v, V ]};
-    key <AB10> {[ z, Z ]};
+    key <AB09> {[ v, V, squareroot ]};
+    key <AB10> {[ z, Z, heart ]};
 
     key <BKSL> {[ backslash, bar, implies ]};
 };
