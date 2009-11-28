@@ -237,6 +237,12 @@ bindings = {
         -- Warp pointer to top left of the screen
         [{"Mod4", "Mod1", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
+        -- Click somewhere in the top left of the screen
+        [{"Mod4", "x"}] = function ()
+                              mouse.coords({x = 10, y = 10})
+                              awful.util.spawn_with_shell("sleep 0.2; xdotool click 1")
+                          end,
+
         -- Tag selection
         [{"Mod4", "w"}] = awful.tag.viewnext,
         [{"Mod4", "v"}] = awful.tag.viewprev,
