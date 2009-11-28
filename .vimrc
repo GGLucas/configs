@@ -77,7 +77,8 @@ nnoremap <silent> <Esc>v :bprev<CR>
 " }}}
 
 " {{{ Opening different plugin windows
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
+nmap <silent> <Leader>n :call TreeOpenFocus()<CR>
+nmap <silent> <Leader>N :NERDTreeToggle<CR>
 nmap <silent> <Leader>t :TlistOpen<CR>
 nmap <silent> <Leader>T :TlistToggle<CR>
 nmap <Leader>h :vert bo help 
@@ -335,6 +336,17 @@ function! HighlightLongToggle()
         let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
         let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
         echo "  highlight long"
+    endif
+endfunction
+" }}}
+
+" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
+function! TreeOpenFocus()
+    let wnr = bufwinnr("NERD_tree_1")
+    if wnr == -1
+        :NERDTreeToggle
+    else
+        exec wnr."wincmd w"
     endif
 endfunction
 " }}}
