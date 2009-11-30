@@ -29,7 +29,8 @@ for fl in sorted(os.listdir(fdir)):
 
     if fl == fname:
         foundfile = True
-    elif foundfile:
+    
+    if foundfile:
         playlist.append(fl+"\n")
 
 
