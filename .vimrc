@@ -177,6 +177,9 @@ set expandtab
 " Always display statusline
 set laststatus=2
 
+" Statusline information
+set statusline=%=%P\ 
+
 " Text width
 let g:textwidth=0
 set textwidth=0
