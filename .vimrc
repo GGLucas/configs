@@ -275,24 +275,21 @@ autocmd BufReadPre *.rtf silent set ro
 autocmd BufReadPost *.rtf silent %!unrtf --text
 
 " HTML Indent
-autocmd BufEnter *.html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufEnter *.html silent filetype indent off
-autocmd BufEnter *.html silent setlocal ai
+autocmd FileType html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Load sparkup for html
-autocmd FileType html source ~/.vim/scripts/sparkup.vim
+autocmd FileType html,xml source ~/.vim/scripts/sparkup.vim
 
 " SASS Indent
-autocmd BufEnter *.sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufEnter *.sass silent filetype indent off
-autocmd BufEnter *.sass silent setlocal ai
+autocmd FileType sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Highlight "self" in python
-autocmd BufEnter *.py syn keyword Identifier self
+autocmd FileType python syn keyword Identifier self
 
 " Highlight braces with braces style
-autocmd BufEnter *.html hi link htmlEndTag BoldBraces
-autocmd BufEnter *.js hi link javaScriptBraces Braces
+autocmd FileType html hi link htmlEndTag BoldBraces
+autocmd FileType xml hi link xmlEndTag BoldBraces
+autocmd FileType javascript hi link javaScriptBraces Braces
 
 " Highlight long lines
 autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
