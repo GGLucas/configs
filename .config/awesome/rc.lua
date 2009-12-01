@@ -225,9 +225,6 @@ bindings = {
         -- Show MPD currently playing song
         [{"Mod4", "p"}] = {awful.util.spawn_with_shell, apps.mpd_show},
 
-        -- Turns displays off
-        [{"Mod4", "Escape"}] = {awful.util.spawn_with_shell, apps.displays_off},
-
         -- Start rodentbane cursor navigation
         [{"Mod4", "r"}] = rodentbane.start,
 
@@ -352,6 +349,9 @@ bindings = {
                 client.focus = c
             end
         end,
+
+        -- Turns displays off
+        [{"Mod4", "F1"}] = {awful.util.spawn_with_shell, apps.displays_off},
 
         -- Toggle Line In mute
         [{"Mod4", "F10"}] = function () 
