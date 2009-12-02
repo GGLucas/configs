@@ -24,27 +24,27 @@ xkb_symbols "basic" {
     key <CAPS> {[ Escape ]};
 
     // Alphanumeric keys
-    key <TLDE> {[ dollar, asciitilde, dead_tilde ]};
+    key <TLDE> {[ dollar, asciitilde, dead_acute, dead_grave ]};
     key <AE01> {[ ampersand, percent, dead_circumflex ]};
-    key <AE02> {[ bracketleft, 7, dead_grave ]};
-    key <AE03> {[ braceleft, 5, dead_diaeresis ]};
-    key <AE04> {[ braceright, 3, dead_acute ]};
-    key <AE05> {[ parenleft, 1 ]};
-    key <AE06> {[ equal, 9 ]};
+    key <AE02> {[ bracketleft, 7, sevensuperior, sevensubscript ]};
+    key <AE03> {[ braceleft, 5, fivesuperior, fivesubscript ]};
+    key <AE04> {[ braceright, 3, threesuperior, threesubscript ]};
+    key <AE05> {[ parenleft, 1, onesuperior, onesubscript ]};
+    key <AE06> {[ equal, 9, ninesuperior, ninesubscript ]};
 
-    key <AE07> {[ asterisk, 0 ]};
-    key <AE08> {[ parenright, 2 ]};
-    key <AE09> {[ plus, 4 ]};
-    key <AE10> {[ bracketright, 6]};
-    key <AE11> {[ exclam, 8, notsign ]};
-    key <AE12> {[ numbersign, grave ]};
+    key <AE07> {[ asterisk, 0, zerosuperior, zerosubscript ]};
+    key <AE08> {[ parenright, 2, twosuperior, twosubscript ]};
+    key <AE09> {[ plus, 4, foursuperior, foursubscript ]};
+    key <AE10> {[ bracketright, 6, sixsuperior, sixsubscript ]};
+    key <AE11> {[ exclam, 8, eightsuperior, eightsubscript ]};
+    key <AE12> {[ numbersign, grave, dead_diaeresis, dead_circumflex ]};
 
-    key <AD01> {[ semicolon, colon, notequal ]};
+    key <AD01> {[ semicolon, colon, notequal, notsign ]};
     key <AD02> {[ comma, less, lessthanequal, doublelowquotemark ]};
     key <AD03> {[ period, greater, greaterthanequal, periodcentered ]};
-    key <AD04> {[ p, P, logicaland ]};
-    key <AD05> {[ y, Y, logicalor ]};
-    key <AD06> {[ f, F, elementof ]};
+    key <AD04> {[ p, P, logicaland, plusminus ]};
+    key <AD05> {[ y, Y, logicalor, degree ]};
+    key <AD06> {[ f, F, elementof, multiply ]};
     key <AD07> {[ g, G, notelementof ]};
     key <AD08> {[ c, C, intersection ]};
     key <AD09> {[ r, R, union ]};
@@ -75,6 +75,6 @@ xkb_symbols "basic" {
     key <AB09> {[ v, V, squareroot, botrightsqbracket ]};
     key <AB10> {[ z, Z, openstar ]};
 
-    key <SPCE> {[ space, enspace, emspace, nobreakspace ]};
+    key <SPCE> {[ space, space, emspace, nobreakspace ]};
     key <BKSL> {[ backslash, bar, implies ]};
 };
