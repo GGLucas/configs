@@ -45,8 +45,8 @@ xkb_symbols "basic" {
     key <AD04> {[ p, P, logicaland, plusminus ]};
     key <AD05> {[ y, Y, logicalor, degree ]};
     key <AD06> {[ f, F, elementof, multiply ]};
-    key <AD07> {[ g, G, notelementof ]};
-    key <AD08> {[ c, C, intersection ]};
+    key <AD07> {[ g, G, notelementof, guillemotleft ]};
+    key <AD08> {[ c, C, intersection, guillemotright ]};
     key <AD09> {[ r, R, union ]};
     key <AD10> {[ l, L, Right, includes ]};
     key <AD11> {[ slash, question, question, includedin ]};
