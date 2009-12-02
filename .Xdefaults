@@ -35,13 +35,10 @@ URxvt*cursorBlink: false
 
 !!rxvt-unicode fonts
 URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false,\
-            -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
-            xft:Code2000:antialias=false
+            -*-fixed-medium-*-*-*-*-*-100-*-*-*-iso10646-*
 
 URxvt.boldFont: xft:Terminus:size=10:style=Bold:antialias=false:hinting=false,\
-            -misc-fixed-bold-r-normal--15-140-75-75-c-90-iso10646-1,\
-            -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1, \
-            xft:Code2000:antialias=false
+              -*-fixed-bold-*-*-*-*-*-100-*-*-*-iso10646-*
 
 ! xterm settings
 xterm*background: black
