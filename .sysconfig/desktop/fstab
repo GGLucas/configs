@@ -5,13 +5,30 @@
 # Root fs
 LABEL=ArchRoot / ext4 defaults,barrier=0,noatime,nodiratime 0 1
 
-# Mount /usr compressed
+# Mount special entries (/dev/..)
+none                   /dev/pts      devpts    defaults            0      0
+none                   /dev/shm      tmpfs     defaults            0      0
+
+# Mount directories compressed
+## /usr
 /squashed/usr/usr.sfs /squashed/usr/ro squashfs loop,ro 0 0
 usr /usr aufs udba=reval,br:/squashed/usr/rw:/squashed/usr/ro 0 0
 
-# Special (/dev/..)
-none                   /dev/pts      devpts    defaults            0      0
-none                   /dev/shm      tmpfs     defaults            0      0
+## /lib
+/squashed/lib/lib.sfs /squashed/lib/ro squashfs loop,ro 0 0
+lib /lib aufs udba=reval,br:/squashed/lib/rw:/squashed/lib/ro 0 0
+
+## /lib64
+/squashed/lib64/lib64.sfs /squashed/lib64/ro squashfs loop,ro 0 0
+lib64 /lib64 aufs udba=reval,br:/squashed/lib64/rw:/squashed/lib64/ro 0 0
+
+## /bin
+/squashed/bin/bin.sfs /squashed/bin/ro squashfs loop,ro 0 0
+bin /bin aufs udba=reval,br:/squashed/bin/rw:/squashed/bin/ro 0 0
+
+## /sbin
+/squashed/sbin/sbin.sfs /squashed/sbin/ro squashfs loop,ro 0 0
+sbin /sbin aufs udba=reval,br:/squashed/sbin/rw:/squashed/sbin/ro 0 0
 
 # Opticals
 /dev/cdrom /mnt/cdrom   iso9660   ro,user,noauto,unhide   0      0
@@ -23,10 +40,10 @@ UUID=4d0efcc3-5087-4dab-bbea-c217dbcb4607 swap swap defaults 0 1
 # Mount /tmp on tmpfs 
 none /tmp tmpfs defaults,noatime,nodiratime 0 0
 
-# Boot
+# Boot directory
 LABEL=Boot /boot ext4 defaults,noatime,nodiratime 0 1
 
-# Used dirs (home, root, opt)
+# User directories
 LABEL=Home /home ext4 defaults,barrier=0,noatime,nodiratime 0 1
 LABEL=Opt /opt ext4 defaults,barrier=0,noatime,nodiratime 0 1
 
@@ -38,7 +55,7 @@ LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 1
 # Pacman database
 /var/lib/pacman.db /var/lib/pacman ext2 defaults,loop,noatime 0 0
 
-# Union partitions
+# Data union partition
 mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,uid=1000,gid=1000,allow_other 0 0
 
 # iRiver

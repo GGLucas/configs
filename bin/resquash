@@ -1,0 +1,19 @@
+#!/bin/bash
+dir="$1"
+
+if [[ $dir == "" ]]; then
+    echo "Usage: $0 DIR"
+else
+    if [[ -d "/${dir}" ]]; then
+        nice mksquashfs /${dir} /squashed/${dir}/${dir}_tmp.sfs -b 65536 &&\
+        umount -l /${dir} &&\
+        umount -l /squashed/${dir}/ro &&\
+        rm /squashed/${dir}/${dir}.sfs &&\
+        mv /squashed/${dir}/${dir}_tmp.sfs /squashed/${dir}/${dir}.sfs &&\
+        rm -rf /squashed/${dir}/rw/* &&\
+        mount /squashed/${dir}/ro &&\
+        mount /${dir}
+    else
+        echo "Directory /${dir} does not exist..."
+    fi
+fi
