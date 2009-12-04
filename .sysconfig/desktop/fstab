@@ -5,6 +5,10 @@
 # Root fs
 LABEL=ArchRoot / ext4 defaults,barrier=0,noatime,nodiratime 0 1
 
+# Mount /usr compressed
+/squashed/usr/usr.sfs /squashed/usr/ro squashfs loop,ro 0 0
+usr /usr aufs udba=reval,br:/squashed/usr/rw:/squashed/usr/ro 0 0
+
 # Special (/dev/..)
 none                   /dev/pts      devpts    defaults            0      0
 none                   /dev/shm      tmpfs     defaults            0      0
