@@ -12,6 +12,3 @@ user_interface = "alternative"
 ## Use autocenter
 autocenter_mode = "yes"
 
-## Scroll cyclically
-cyclic_scrolling = "yes"
-
