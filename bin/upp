@@ -4,3 +4,5 @@ echo " -- Updating Repositories -- "
 pp -Syu
 echo " -- Updating AUR -- "
 slurpy -c -u
+echo " -- SCM Packages --"
+pp -Qe | ack --color-match=cyan -- "-svn|-git|-hg|-cvs"
