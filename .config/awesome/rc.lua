@@ -360,8 +360,22 @@ bindings = {
         [{"Mod4", "F2"}] = {awful.util.spawn_with_shell, apps.displays_off},
 
         -- Toggle Line In mute
-        [{"Mod4", "F10"}] = function () 
+        [{"Mod4", "F8"}] = function () 
             awful.util.spawn("amixer set Line toggle")
+        end,
+
+        -- Toggle naughty notifications displaying
+        [{"Mod4", "F10"}] = function ()
+            if settings._naughty_notify == nil then
+                settings._naughty_notify = naughty.notify
+                settings._naughty_stub = function(args)end
+            end
+
+            if settings._naughty_notify == naughty.notify then
+                naughty.notify = settings._naughty_stub
+            else 
+                naughty.notify = settings._naughty_notify
+            end
         end,
 
         -- Toggle between low and high mpd volumes
