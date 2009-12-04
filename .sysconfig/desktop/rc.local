@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# /etc/rc.local: Local multi-user startup script.
+#
+
+# Modprobe loop if it exists
+modprobe loop 2> /dev/null
+
+# Map caps to escape
+(echo `dumpkeys |grep -i keymaps`; echo keycode 58 = Escape) |loadkeys 
