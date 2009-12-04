@@ -35,6 +35,9 @@ LABEL=Data-2 /mnt/data-2 ext4 defaults,barrier=0,noatime,nodiratime 0 1
 LABEL=Data-3 /mnt/data-3 ext4 defaults,barrier=0,noatime,nodiratime 0 1
 LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 1
 
+# Pacman database
+/var/lib/pacman.db /var/lib/pacman ext2 defaults,loop,noatime 0 0
+
 # Union partitions
 mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,uid=1000,gid=1000,allow_other 0 0
 
