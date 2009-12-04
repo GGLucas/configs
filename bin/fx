@@ -2,4 +2,4 @@
 # Disable pango
 export MOZ_DISABLE_PANGO=1
 # Run firefox
-/usr/bin/firefox
+/usr/bin/firefox $@
