@@ -17,29 +17,27 @@ else
     if [[ -d "/${dir}" ]]; then
         echo " -- Squashing new image -- "
         echodo nice mksquashfs /${dir} /squashed/${dir}/${dir}_tmp.sfs -b 65536
-        echodo umount -l /${dir}
-        echodo umount -l /squashed/${dir}/ro
+        echodo umount -l -d /${dir}
+        echodo umount -l -d /squashed/${dir}/ro
         echodo rm /squashed/${dir}/${dir}.sfs
         echodo mv /squashed/${dir}/${dir}_tmp.sfs /squashed/${dir}/${dir}.sfs
         echodo rm -rf /squashed/${dir}/rw/*
         echodo mount /squashed/${dir}/ro
         echodo mount /${dir}
 
-        if [[ "$dir" != "usr" ]]; then
-            echo " -- Copying new files to original disk -- "
-            echodo mount "$origdisk" "$origdir"
-            
-            if [[ -d "${origdir}/${dir}" ]]; then
-                echodo cp -Ra "/${dir}" "${origdir}/${dir}_tmp"
-                echodo mkdir "${origdir}/${dir}_old"
-                echodo mv "${origdir}/${dir}/*" "${origdir}/${dir}_old/"
-                echodo mv "${origdir}/${dir}_tmp/*" "${origdir}/${dir}/"
-                echodo rmdir "${origdir}/${dir}_tmp"
-                echodo rm -rf "${origdir}/${dir}_old"
-            fi
-
-            echodo umount "${origdir}"
+        echo " -- Copying new files to original disk -- "
+        echodo mount "$origdisk" "$origdir"
+        
+        if [[ -d "${origdir}/${dir}" ]]; then
+            echodo cp -Ra "/${dir}" "${origdir}/${dir}_tmp"
+            echodo mkdir "${origdir}/${dir}_old"
+            echodo mv "${origdir}/${dir}/*" "${origdir}/${dir}_old/"
+            echodo mv "${origdir}/${dir}_tmp/*" "${origdir}/${dir}/"
+            echodo rmdir "${origdir}/${dir}_tmp"
+            echodo rm -rf "${origdir}/${dir}_old"
         fi
+
+        echodo umount -l -d "${origdir}"
     else
         echo "Directory /${dir} does not exist..."
     fi
