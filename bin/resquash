@@ -1,18 +1,45 @@
 #!/bin/bash
 dir="$1"
+origdir="/squashed/_orig"
+origdisk="/dev/sdb3"
+
+echodo()
+{
+    fail=0
+    echo "> Running: $@"
+    eval $@ || fail=1
+    [[ "$fail" == "1" ]] && echo ">> FAILED. Exiting." && exit 1
+}
 
 if [[ $dir == "" ]]; then
     echo "Usage: $0 DIR"
 else
     if [[ -d "/${dir}" ]]; then
-        nice mksquashfs /${dir} /squashed/${dir}/${dir}_tmp.sfs -b 65536 &&\
-        umount -l /${dir} &&\
-        umount -l /squashed/${dir}/ro &&\
-        rm /squashed/${dir}/${dir}.sfs &&\
-        mv /squashed/${dir}/${dir}_tmp.sfs /squashed/${dir}/${dir}.sfs &&\
-        rm -rf /squashed/${dir}/rw/* &&\
-        mount /squashed/${dir}/ro &&\
-        mount /${dir}
+        echo " -- Squashing new image -- "
+        echodo nice mksquashfs /${dir} /squashed/${dir}/${dir}_tmp.sfs -b 65536
+        echodo umount -l /${dir}
+        echodo umount -l /squashed/${dir}/ro
+        echodo rm /squashed/${dir}/${dir}.sfs
+        echodo mv /squashed/${dir}/${dir}_tmp.sfs /squashed/${dir}/${dir}.sfs
+        echodo rm -rf /squashed/${dir}/rw/*
+        echodo mount /squashed/${dir}/ro
+        echodo mount /${dir}
+
+        if [[ "$dir" != "usr" ]]; then
+            echo " -- Copying new files to original disk -- "
+            echodo mount "$origdisk" "$origdir"
+            
+            if [[ -d "${origdir}/${dir}" ]]; then
+                echodo cp -Ra "/${dir}" "${origdir}/${dir}_tmp"
+                echodo mkdir "${origdir}/${dir}_old"
+                echodo mv "${origdir}/${dir}/*" "${origdir}/${dir}_old/"
+                echodo mv "${origdir}/${dir}_tmp/*" "${origdir}/${dir}/"
+                echodo rmdir "${origdir}/${dir}_tmp"
+                echodo rm -rf "${origdir}/${dir}_old"
+            fi
+
+            echodo umount "${origdir}"
+        fi
     else
         echo "Directory /${dir} does not exist..."
     fi
