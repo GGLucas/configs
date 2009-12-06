@@ -8,3 +8,9 @@ modprobe loop 2> /dev/null
 
 # Map caps to escape
 (echo `dumpkeys |grep -i keymaps`; echo keycode 58 = Escape) |loadkeys 
+
+# Create all loop nodes
+for ((i=8;i<64;i++)); do
+    [ -e /dev/loop$i ] || mknod -m 0600 /dev/loop$i b 7 $i
+done
+

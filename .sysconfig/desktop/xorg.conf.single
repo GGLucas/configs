@@ -1,0 +1,39 @@
+Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0" 0 0 # Main left
+EndSection
+
+Section "ServerFlags"
+    # Don't use screensaver, turn
+    # screens off after 15 minutes
+    Option         "BlankTime" "0"
+    Option         "StandbyTime" "0"
+    Option         "SuspendTime" "0"
+    Option         "OffTime" "15"
+EndSection
+
+# {{{ Monitors
+Section "Monitor"
+    Identifier     "Monitor0"
+    Option         "DPI" "99x98"
+EndSection
+# }}}
+
+# {{{ Cards
+Section "Device"
+    Identifier     "nVidia0.0"
+    Driver         "nvidia"
+    BusID          "PCI:2:0:0"
+    Screen         0
+EndSection
+# }}}
+
+# {{{ Screens
+Section "Screen"
+    # Main Left
+    Identifier     "Screen0"
+    Device         "nVidia0.0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+EndSection
+# }}}

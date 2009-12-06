@@ -41,16 +41,16 @@ UUID=4d0efcc3-5087-4dab-bbea-c217dbcb4607 swap swap defaults 0 1
 none /tmp tmpfs defaults,noatime,nodiratime 0 0
 
 # Boot directory
-LABEL=Boot /boot ext4 defaults,noatime,nodiratime 0 1
+LABEL=Boot /boot ext4 defaults,noatime,nodiratime 0 0 
 
 # User directories
-LABEL=Home /home ext4 defaults,barrier=0,noatime,nodiratime 0 1
-LABEL=Opt /opt ext4 defaults,barrier=0,noatime,nodiratime 0 1
+LABEL=Home /home ext4 defaults,barrier=0,noatime,nodiratime 0 0
+LABEL=Opt /opt ext4 defaults,barrier=0,noatime,nodiratime 0 0
 
 # Data partitions
-LABEL=Data-2 /mnt/data-2 ext4 defaults,barrier=0,noatime,nodiratime 0 1
-LABEL=Data-3 /mnt/data-3 ext4 defaults,barrier=0,noatime,nodiratime 0 1
-LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 1
+LABEL=Data-2 /mnt/data-2 ext4 defaults,barrier=0,noatime,nodiratime 0 0
+LABEL=Data-3 /mnt/data-3 ext4 defaults,barrier=0,noatime,nodiratime 0 0
+LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 0
 
 # Pacman database
 /var/lib/pacman.db /var/lib/pacman ext2 defaults,loop,noatime 0 0

@@ -21,7 +21,7 @@ else
         echodo umount -l -d /squashed/${dir}/ro
         echodo rm /squashed/${dir}/${dir}.sfs
         echodo mv /squashed/${dir}/${dir}_tmp.sfs /squashed/${dir}/${dir}.sfs
-        echodo rm -rf /squashed/${dir}/rw/*
+        echodo rm -rf "/squashed/${dir}/rw/*"
         echodo mount /squashed/${dir}/ro
         echodo mount /${dir}
 

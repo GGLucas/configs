@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# /etc/rc.local.shutdown: Local shutdown script.
+#
+
+echo ">> Unmounting squashed directories"
+umount -d -l /lib
+umount -d -l /squashed/lib/ro
+
+umount -d -l /lib64
+umount -d -l /squashed/lib64/ro
+
+umount -d -l /bin
+umount -d -l /squashed/bin/ro
+
+umount -d -l /sbin
+umount -d -l /squashed/sbin/ro
+
+umount -d -l /usr
+umount -d -l /squashed/usr/ro
+
+sleep 2
