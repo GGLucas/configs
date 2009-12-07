@@ -5,4 +5,4 @@ stty start undef
 stty eof undef
 stty intr undef
 stty kill undef
-exec rtorrent
+exec nice rtorrent
