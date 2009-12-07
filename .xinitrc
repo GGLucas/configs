@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Start SCIM
+scim -d &
+
 # Merge X settings
 xrdb -merge $HOME/.Xresources &
 

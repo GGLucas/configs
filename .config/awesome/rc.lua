@@ -178,6 +178,11 @@ util = {
             promptbox.screen = nil
         end)
     end,
+
+    -- Spawn an application with scim enabled
+    spawn_with_scim = function(app)
+        awful.util.spawn_with_shell("XMODIFIERS='@im=SCIM' GTK_IM_MODULE=scim QT_IM_MODULE=scim "..app)
+    end
 }
 -- }}}
 
@@ -204,6 +209,9 @@ bindings = {
         -- Open terminal
         [{"Mod4", ";"}] = {awful.util.spawn, apps.terminal},
 
+        -- Open terminal with scim
+        [{"Mod4", "Mod1", ";"}] = {util.spawn_with_scim, apps.terminal},
+
         -- Drop-down urxvtc terminal
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
         
@@ -213,6 +221,8 @@ bindings = {
         -- Open terminal with screen
         -- * Local
         [{"Mod4", "b"}] = {awful.util.spawn, apps.screen},
+        -- * Local with scim
+        [{"Mod4", "Mod1", "b"}] = {util.spawn_with_scim, apps.screen},
         -- * Server
         [{"Mod4", "Shift", "b"}] = {awful.util.spawn, apps.screen_server},
 
