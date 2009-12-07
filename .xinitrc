@@ -54,6 +54,6 @@ done;
 # Start WM
 while true;
 do
-    awesome
+    awesome &> ~/.awesome.log
     #sleep 25
 done;
