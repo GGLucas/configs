@@ -2,6 +2,7 @@
 [default]
 quiet=no # Display all info
 fs=yes # Start in fullscreen
+ontop=yes # Put mplayer on top of everything
 mouseinput=no # Disable the mouse
 volume=100 # Start at full volume
 cache=9999 # Use a large cache
