@@ -5,9 +5,7 @@
 "     autocmd FileType html source ~/.vim/scripts/sparkup.vim
 "
 map <C-e> <Esc>:.!sparkup<Cr>:call SparkupNext()<Cr>
-imap <C-e> <Esc>:.!sparkup<Cr>:call SparkupNext()<Cr>
 map <C-n> <Esc>:call SparkupNext()<Cr>
-imap <C-n> <Esc>:call SparkupNext()<Cr>
 function! SparkupNext()
     " 1: empty tag, 2: empty attribute, 3: empty line
     let n = search('><\/\|\(""\)\|^\s*$', 'Wp')
