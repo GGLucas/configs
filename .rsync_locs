@@ -18,3 +18,5 @@ RSYNC_followe25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/
 RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ root@glacicle.com:/srv/www/zorgberaad/followe"
 
 RSYNC_rap25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/rap25/ root@glacicle.com:/srv/www/zorgberaad/rap25"
+
+RSYNC_zorgberaadmh="--delete --exclude-from=$HOME/.rsync_exclude /data/web/zorgberaad/website/_site/ root@glacicle.com:/srv/www/zorgberaad/website"
