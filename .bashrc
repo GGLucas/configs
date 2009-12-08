@@ -68,9 +68,9 @@ dt(){ sudo /etc/rc.d/$1 stop; }
 
 # Load/reload keymap function
 hdv() {
-    setxkbmap -I$HOME/.xkb -model evdev -layout hdv -print | \
+    setxkbmap -I$HOME/.xkb -layout hdv -print | \
         grep -v '^Could' | grep -v '^Use' | \
-        xkbcomp -I$HOME/.xkb - :0 &> /dev/null
+        xkbcomp -I$HOME/.xkb - $DISPLAY &> /dev/null
 
     xmodmap -e "remove mod4 = Alt_L" &
 }
