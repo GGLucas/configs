@@ -279,19 +279,16 @@ autocmd BufReadPre *.rtf silent set ro
 autocmd BufReadPost *.rtf silent %!unrtf --text
 
 " HTML Indent
-autocmd FileType html silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xhtml,html,xml,sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Load sparkup for html
-autocmd FileType html,xml source ~/.vim/scripts/sparkup.vim
-
-" SASS Indent
-autocmd FileType sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xhtml,html,xml source ~/.vim/scripts/sparkup.vim
 
 " Highlight "self" in python
 autocmd FileType python syn keyword Identifier self
 
 " Highlight braces with braces style
-autocmd FileType html hi link htmlEndTag BoldBraces
+autocmd FileType xhtml,html hi link htmlEndTag BoldBraces
 autocmd FileType xml hi link xmlEndTag BoldBraces
 autocmd FileType javascript hi link javaScriptBraces Braces
 
