@@ -7,3 +7,6 @@ config_*.py
 *.conf.php
 settings.py
 django.wsgi
+fcgi_start
+fcgi.sock
+fcgi.pid
