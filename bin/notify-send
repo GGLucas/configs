@@ -1,0 +1,13 @@
+#!/bin/bash
+
+escape() {
+    t=$@
+    t=${t/\\/\\\\}
+    t=${t/\"/\\\"}
+    echo $t
+}
+
+title=$(escape $1)
+text=$(escape $2)
+
+echo "naughty.notify { title=\"$title\", text=\"$text\" }" >> /tmp/awesome-remote

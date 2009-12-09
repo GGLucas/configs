@@ -659,28 +659,39 @@ mailnotify_text = widget({ type = "textbox" })
 mailnotify.widgets = {mailnotify_text, 
     layout = awful.widget.layout.horizontal.leftright}
 
--- Add hook to check mail
-checkmail = timer { timeout = 3 }
-checkmail:add_signal("timeout", function()
-    local file = io.open('/tmp/mail-temp')
+function mailnotify_set(num)
+    if num ~= 0 then
+        mailnotify_text.text = "-*- Unread Mail: -["..num.."]- -*-"
+        mailnotify.screen = client.focus.screen
+    else
+        mailnotify.screen = nil
+    end
+end
+
+-- {{{ Listen to remote code over tempfile
+remotefile = timer { timeout = 1 }
+remotefile:add_signal("timeout", function()
+    local file = io.open('/tmp/awesome-remote')
+    local exe = {}
 
     if file then
-        local number = file:read()
-        file:close()
+        -- Read all code
+        for line in file:lines() do
+            table.insert(exe, line)
+        end
 
-        if number ~= "0" then
-            mailnotify_text.text = "-*- Unread Mail: -["..number.."]- -*-"
-            mailnotify.screen = client.focus.screen
-            return
+        -- Close and delete file
+        file:close()
+        os.remove('/tmp/awesome-remote')
+
+        -- Execute code
+        for i, code in ipairs(exe) do
+            loadstring(code)()
         end
     end
-
-    mailnotify.screen = nil
 end)
 
-checkmail:start()
-
-
+remotefile:start()
 -- }}}
 
 -- {{{ Signals
@@ -710,8 +721,9 @@ client.add_signal("focus", function(c)
     -- Set border color
     c.border_color = beautiful.border_focus
 
-    -- Set naughty screen
+    -- Update screen focus
     naughty.config.presets.normal.screen = c.screen
+    if mailnotify.screen then mailnotify.screen = c.screen end
 end)
 
 -- Client unfocus
