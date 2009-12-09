@@ -7,7 +7,14 @@ escape() {
     echo $t
 }
 
-title=$(escape $1)
-text=$(escape $2)
+if [[ $2 ]]
+then
+    title=$(escape $1)
+    text=$(escape $2)
+else
+    title="Notification"
+    text=$(escape $1)
+fi
+
 
 echo "naughty.notify { title=\"$title\", text=\"$text\" }" >> /tmp/awesome-remote

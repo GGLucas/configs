@@ -1,2 +1,0 @@
-#!/bin/bash
-TERM=screen exec newsbeuter

@@ -3,7 +3,7 @@ source .screenrc
 
 # Define new windows
 screen -t irc  1  weechat-temp
-screen -t rss  2  screen_newsbeuter
+screen -t rss  2  newsbeuter
 screen -t mpd  3  ncmpcpp
 screen -t dl   4  rtor
 screen -t mt   5  mutt
