@@ -3,20 +3,15 @@ RSYNC_glasys_system="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glas
 RSYNC_glasys_global="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/global/ glacicle.com:/srv/www/0-glasys/global"
 RSYNC_glaciergaming="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys5/sites/glaciergaming.co.uk/ http@glacicle.com:/srv/www/1-glaciergaming/glaciergaming.co.uk"
 RSYNC_backups="--exclude-from=$HOME/.rsync_exclude archlucas@aegisgame.com:/srv/backup/ /data/.backups/server"
-
 RSYNC_doremi="--exclude-from=$HOME/.rsync_exclude /data/web/doremi/ mikeanim@doremi-fansubs.com:/home/mikeanim/django_projects/doremi"
-
 RSYNC_oglasys_global="--delete --exclude-from=$HOME/.rsync_exclude /data/web/Glasys/global/ glacicle.com:/srv/www/2-flowz/0-glasys/global"
 RSYNC_flowz_bloemrijk="--exclude-from=$HOME/.rsync_exclude /data/web/Glasys/sites/bloemrijk.info/ glacicle.com:/srv/www/2-flowz/bloemrijk.info"
-
 RSYNC_cos="--exclude-from=$HOME/.rsync_exclude /data/web/CoS/ glacicle.com:/srv/www/1-curseofsteel/curseofsteel.com"
 RSYNC_home="--delete --exclude-from=$HOME/.rsync_exclude /data/web/home/ glacicle.com:/srv/www/1-tuple-typed/home"
 RSYNC_welzijne25="--exclude-from=$HOME/.rsync_exclude /data/web/welzijne25/ glacicle.com:/srv/www/1-glacicle/welzijne25"
 RSYNC_piwik="--exclude-from=$HOME/.rsync_exclude /data/web/piwik/ glacicle.com:/srv/www/1-glacicle/piwik"
 RSYNC_followe25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ glacicle.com:/srv/www/2-followe/followe25"
-
 RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ root@glacicle.com:/srv/www/zorgberaad/followe"
-
 RSYNC_rap25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/rap25/ root@glacicle.com:/srv/www/zorgberaad/rap25"
-
-RSYNC_zorgberaadmh="--delete --exclude-from=$HOME/.rsync_exclude /data/web/zorgberaad/website/_site/ root@glacicle.com:/srv/www/zorgberaad/website"
+RSYNC_zorgberaadmh="--delete --exclude-from=$HOME/.rsync_exclude /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
+RSYNC_heresy="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/ root@glacicle.org:/srv/www/heresy/x86_64"
