@@ -15,3 +15,5 @@ RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ r
 RSYNC_rap25="--delete --exclude-from=$HOME/.rsync_exclude /data/web/rap25/ root@glacicle.com:/srv/www/zorgberaad/rap25"
 RSYNC_zorgberaadmh="--delete --exclude-from=$HOME/.rsync_exclude /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
 RSYNC_heresy="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/ root@glacicle.org:/srv/www/heresy/x86_64"
+RSYNC_heresy_off="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/ heresy@hereticlinux.org:/www/heresy/repo/x86_64"
+RSYNC_followe_old="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe_old/ root@glacicle.org:/srv/www/zorgberaad/followe_old"
