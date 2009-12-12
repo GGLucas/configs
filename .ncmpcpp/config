@@ -9,6 +9,9 @@ song_columns_list_format = "(7f)[green]{l} (44)[]{t} (25)[cyan]{a} (25)[red]{b}"
 ## Use alternative user interface
 user_interface = "alternative"
 
+## Don't display header line
+header_visibility = "no"
+
 ## Use autocenter
 autocenter_mode = "yes"
 
