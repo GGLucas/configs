@@ -31,9 +31,7 @@ apps = {
 
     -- Open a terminal with screen
     -- * Local
-    screen = "urxvtc -e screen -x main -p 4",
-    -- * Server
-    screen_server = "urxvtc -e ssh -t root@tuple-typed.org screen -x main -p 0",
+    tmux = "urxvtc -e tmux -2 attach-session -t dl",
 
     -- Open filemanager
     filemanager = "urxvtc -e vifm /data /data",
@@ -220,11 +218,9 @@ bindings = {
 
         -- Open terminal with screen
         -- * Local
-        [{"Mod4", "b"}] = {awful.util.spawn, apps.screen},
+        [{"Mod4", "b"}] = {awful.util.spawn, apps.tmux},
         -- * Local with scim
-        [{"Mod4", "Mod1", "b"}] = {util.spawn_with_scim, apps.screen},
-        -- * Server
-        [{"Mod4", "Shift", "b"}] = {awful.util.spawn, apps.screen_server},
+        [{"Mod4", "Mod1", "b"}] = {util.spawn_with_scim, apps.tmux},
 
         -- Toggle music
         [{"Mod4", "."}] = {awful.util.spawn, apps.mpd_toggle},
