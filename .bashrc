@@ -58,6 +58,22 @@ projn(){ tofu proj next feed="$1"${@#$1} && tofu proj; }
 proj(){ tofu proj $@; }
 todosync(){ unison ~/.tofu ssh://root@glacicle.org//root/todo; }
 
+# Weekly schedule shortcuts
+## Display daily schedule
+day() {
+    [[ "$1" == "" ]] && day=$(date +%a) || day=$1;
+    shift
+    tofu ${day,,} $@;
+}
+
+## Add new item
+dayn(){
+    day="${1,,}"
+    feed="$2"
+    shift 2
+    tofu $day next feed="$feed" $@ && tofu $day;
+}
+
 # Shortcut functions
 x(){ cd ~; xinit $@; }
 
