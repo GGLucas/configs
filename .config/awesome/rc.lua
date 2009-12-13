@@ -663,6 +663,7 @@ function mailnotify_set(num)
         mailnotify.screen = nil
     end
 end
+-- }}}
 
 -- {{{ Listen to remote code over tempfile
 remotefile = timer { timeout = 1 }
