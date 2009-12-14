@@ -7,8 +7,17 @@ export BROWSER='fx'
 export HISTCONTROL="ignoreboth"
 export HISTFILESIZE=500000
 
-# Prompt
-export PS1="\[\e[1;35m\]\w \[\e[1;37m\]\$ \[\e[0;37m\]"
+# Set prompt
+prompt_command(){
+    rts=$?
+    dir="\[\e[1;35m\]\w"
+    [[ $UID -eq 0 ]] && marker='#' || marker='$'
+    [[ $rts -eq 0 ]] && colormarker="\[\e[1;37m\]$marker" \
+                 || colormarker="\[\e[1;31m\]$marker"
+
+    PS1="${dir} ${colormarker}\[\e[0;37m\] "
+}
+PROMPT_COMMAND=prompt_command
 
 # Options
 shopt -s autocd cdspell
