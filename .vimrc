@@ -282,7 +282,10 @@ autocmd BufReadPost *.rtf silent %!unrtf --text
 autocmd FileType xhtml,html,xml,sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Load sparkup for html
-autocmd FileType xhtml,html,xml source ~/.vim/scripts/sparkup.vim
+autocmd FileType xhtml,html,xml silent source ~/.vim/scripts/sparkup.vim
+
+" Set correct folding
+autocmd FileType c silent setlocal fdm=syntax fdn=1
 
 " Highlight "self" in python
 autocmd FileType python syn keyword Identifier self
