@@ -114,6 +114,18 @@ squashall(){
 # Weekly schedule shortcuts
 ## Display daily schedule
 day(){
+    week=$(date +%V)
+    flags="";
+    [[ $((week%2)) -eq 0 ]] && flags="$flags\e[1;32m2" || flags="$flags\e[1;31m-";
+    [[ $((week%3)) -eq 0 ]] && flags="$flags\e[1;32m3" || flags="$flags\e[1;31m-";
+    [[ $((week%4)) -eq 0 ]] && flags="$flags\e[1;32m4" || flags="$flags\e[1;31m-";
+
+    echo -e "\e[0;36m#############"
+    echo -e "#  \e[1;35mWeek \e[1;34m$week\e[0;36m  #"
+    echo -e "#    $flags\e[0;36m    #"
+    echo -e "#############\e[0;37m"
+
+    # Schedule
     [[ "$1" == "" ]] && day=$(date +%a) || day=$1;
     shift
     tofu ${day,,} $@;
