@@ -36,12 +36,10 @@ URxvt*cursorBlink: false
 !!rxvt-unicode fonts
 URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false,\
             [codeset=JISX0208]xft:Kochi Gothic:antialias=false,\
-            -*-fixed-medium-*-*-*-*-*-100-*-*-*-iso10646-*,\
             xft:Code 2000:antialias=false
 
 URxvt.boldFont: xft:Terminus:size=10:style=Bold:antialias=false:hinting=false,\
                 [codeset=JISX0208]xft:Kochi Gothic:antialias=false,\
-                -*-fixed-bold-*-*-*-*-*-100-*-*-*-iso10646-*,\
                 xft:Code 2000:antialias=false:style=Bold
 
 ! xterm settings
