@@ -77,7 +77,8 @@ dt(){ sudo /etc/rc.d/$1 stop; }
 
 # Load/reload keymap function
 hdv() {
-    setxkbmap -I$HOME/.xkb -layout hdv -print | \
+    setxkbmap -I$HOME/.xkb -layout hdv -print \
+        -option "terminate:ctrl_alt_bksp" | \
         grep -v '^Could' | grep -v '^Use' | \
         xkbcomp -I$HOME/.xkb - $DISPLAY &> /dev/null
 

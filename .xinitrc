@@ -27,7 +27,8 @@ mpc volume 74 &
 urxvtd &
 
 # Set keyboard layout
-setxkbmap -I$HOME/.xkb -layout hdv -print | \
+setxkbmap -I$HOME/.xkb -layout hdv -print \
+    -option "terminate:ctrl_alt_bksp" | \
     xkbcomp -I$HOME/.xkb - :0 > /dev/null &
 
 # Fix left alt
