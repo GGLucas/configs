@@ -126,6 +126,10 @@ div.entry
     background: none !important;
 }
 
+.message.new {
+    background-color: #141414 !important;
+}
+
 div.expando-button
 {
     background: none !important;
