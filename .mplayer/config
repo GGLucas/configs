@@ -1,6 +1,5 @@
 # Default options for mplayer
 [default]
-quiet=no # Display all info
 fs=yes # Start in fullscreen
 ontop=yes # Put mplayer on top of everything
 mouseinput=no # Disable the mouse
