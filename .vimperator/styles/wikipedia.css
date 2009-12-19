@@ -34,7 +34,7 @@ input, textarea
     -moz-appearance: none !important;
 }
 
-.mw-geshi,code,pre
+.mw-geshi,code,pre,.toccolours
 {
     background-color: #242424 !important;
     border-color: #545454 !important;
