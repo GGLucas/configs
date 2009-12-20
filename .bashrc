@@ -36,6 +36,10 @@ PROMPT_COMMAND="setprompt &> /dev/null"
 shopt -s autocd cdspell
 shopt -s dirspell extglob
 shopt -s cmdhist nocaseglob
+shopt -s histappend 
+
+# Remove annoying fc map
+bind -m vi -r v
 
 # Walk through completions with ^T
 bind "\\C-t: menu-complete"
@@ -43,13 +47,19 @@ bind "\\C-t: menu-complete"
 # Clear screen with ^L
 bind "\\C-l: clear-screen"
 
-# Remove annoying fc map
-bind -m vi -r v
+# Add pager pipe with <A-w>
+bind '"\ew":" | $PAGER"'
+
+# Background & ignore with <A-b>
+bind '"\eb":" &> /dev/null &\C-m"'
 
 # Load autojump
 if [[ -f /etc/profile.d/autojump.bash ]]; then
     . /etc/profile.d/autojump.bash
 fi
+
+# Complete only directories on cd
+complete -d cd
 
 # Aliases
 # Ls
