@@ -64,6 +64,7 @@ alias a='git add'
 alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
+alias pg='$PAGER'
 
 alias v='vim'
 alias vv='sudo vim'
