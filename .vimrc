@@ -139,6 +139,7 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let g:pydoc_highlight = 0
 
 " Python syntax
+let python_highlight_all = 1
 let python_highlight_space_errors = 0
 
 " Buffer tabs in statusline
