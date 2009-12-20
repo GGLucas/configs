@@ -8,16 +8,29 @@ export HISTCONTROL="ignoreboth"
 export HISTFILESIZE=500000
 
 # Set prompt
-prompt_command(){
+setprompt(){
+    # Capture last return code
     rts=$?
-    dir="\[\e[1;35m\]\w"
+
+    # Path color indicates host
+    case "$HOSTNAME" in
+        "GGLucas") dircol="\[\e[1;35m\]"; ;; # Other
+        "misuzu") dircol="\[\e[1;32m\]"; ;; # Laptop
+        "glacicle.com") dircol="\[\e[1;31m\]"; ;; # Server
+        *) dircol="\[\e[1;37m\]"; ;; # Other
+    esac
+
+    # Marker char indicates root or user
     [[ $UID -eq 0 ]] && marker='#' || marker='$'
+
+    # Marker color indicates successful execution
     [[ $rts -eq 0 ]] && colormarker="\[\e[1;37m\]$marker" \
                  || colormarker="\[\e[1;31m\]$marker"
 
-    PS1="${dir} ${colormarker}\[\e[0;37m\] "
+    # Set PS1
+    PS1="${dircol}\w ${colormarker}\[\e[0;37m\] "
 }
-PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND=setprompt
 
 # Options
 shopt -s autocd cdspell
