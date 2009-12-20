@@ -30,7 +30,7 @@ setprompt(){
     # Set PS1
     PS1="${dircol}\w ${colormarker}\[\e[0;37m\] "
 }
-PROMPT_COMMAND=setprompt
+PROMPT_COMMAND="setprompt &> /dev/null"
 
 # Options
 shopt -s autocd cdspell
@@ -47,7 +47,9 @@ bind "\\C-l: clear-screen"
 bind -m vi -r v
 
 # Load autojump
-. /etc/profile.d/autojump.bash
+if [[ -f /etc/profile.d/autojump.bash ]]; then
+    . /etc/profile.d/autojump.bash
+fi
 
 # Aliases
 # Ls
@@ -69,7 +71,6 @@ alias vv='sudo vim'
 # Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
-alias vg='viewglob -t off -s windows'
 
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
@@ -87,16 +88,6 @@ x(){ cd ~; xinit $@; }
 dr(){ sudo /etc/rc.d/$1 restart; }
 ds(){ sudo /etc/rc.d/$1 start; }
 dt(){ sudo /etc/rc.d/$1 stop; }
-
-# Load/reload keymap function
-hdv() {
-    setxkbmap -I$HOME/.xkb -layout hdv -print \
-        -option "terminate:ctrl_alt_bksp" | \
-        grep -v '^Could' | grep -v '^Use' | \
-        xkbcomp -I$HOME/.xkb - $DISPLAY &> /dev/null
-
-    xmodmap -e "remove mod4 = Alt_L" &
-}
 
 # Commit git -a or path
 c (){
