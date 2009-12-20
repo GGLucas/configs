@@ -17,7 +17,3 @@ set completion-ignore-case on
 
 # Symlinked directories behave like directories
 set mark-symlinked-directories on
-
-## Macros
-# Pager macro
-"\ew":" | $PAGER"
