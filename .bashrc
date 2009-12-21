@@ -32,11 +32,14 @@ setprompt(){
 }
 PROMPT_COMMAND="setprompt &> /dev/null"
 
-# Options
-shopt -s autocd cdspell
-shopt -s dirspell extglob
+# Check for current bash version
+if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
+    shopt -s autocd cdspell dirspell
+fi
+
+# General options
 shopt -s cmdhist nocaseglob
-shopt -s histappend 
+shopt -s histappend extglob
 
 # Remove annoying fc map
 bind -m vi -r v
