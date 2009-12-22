@@ -1,2 +1,7 @@
 #!/bin/bash
-exec sudo pacman-color $@
+if [[ -f /usr/bin/pacman-color ]];
+then
+    exec sudo pacman-color $*
+else 
+    exec sudo pacman $*
+fi;
