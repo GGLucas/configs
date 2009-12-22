@@ -10,25 +10,41 @@ export HISTFILESIZE=500000
 # Set prompt
 setprompt(){
     # Capture last return code
-    rts=$?
+    local rts=$?
+
+    # Get path with tilde for home
+    if [[ "$PWD" == "$HOME" ]]; then
+        local dir="~"
+    elif [[ "${PWD:0:${#HOME}}" == "$HOME" ]]; then
+        local dir="~${PWD:${#HOME}}"
+    else
+        local dir=$PWD
+    fi
+
+    # Truncate path if it's long
+    local maxlength=16
+    if [[ ${#dir} -gt $maxlength ]]; then
+        local offset=$((${#dir}-$maxlength))
+        dir="+${dir:$offset:$maxlength}"
+    fi
 
     # Path color indicates host
     case "$HOSTNAME" in
-        "GGLucas") dircol="\[\e[1;35m\]"; ;; # Other
-        "misuzu") dircol="\[\e[1;32m\]"; ;; # Laptop
-        "glacicle.com") dircol="\[\e[1;31m\]"; ;; # Server
-        *) dircol="\[\e[1;37m\]"; ;; # Other
+        "GGLucas") local dircol="\[\e[1;35m\]"; ;; # Other
+        "misuzu") local dircol="\[\e[1;32m\]"; ;; # Laptop
+        "glacicle.com") local dircol="\[\e[1;31m\]"; ;; # Server
+        *) local dircol="\[\e[1;37m\]"; ;; # Other
     esac
 
     # Marker char indicates root or user
-    [[ $UID -eq 0 ]] && marker='#' || marker='$'
+    [[ $UID -eq 0 ]] && local marker='#' || local marker='$'
 
     # Marker color indicates successful execution
-    [[ $rts -eq 0 ]] && colormarker="\[\e[1;37m\]$marker" \
-                 || colormarker="\[\e[1;31m\]$marker"
+    [[ $rts -eq 0 ]] && local colormarker="\[\e[1;37m\]$marker" \
+                     || local colormarker="\[\e[1;31m\]$marker"
 
     # Set PS1
-    PS1="${dircol}\w ${colormarker}\[\e[0;37m\] "
+    PS1="${dircol}${dir} ${colormarker}\[\e[0;37m\] "
 }
 PROMPT_COMMAND="setprompt &> /dev/null"
 
