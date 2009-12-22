@@ -91,7 +91,7 @@ hi BufTab padding-left: 5px; padding-right: 5px;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px;
 
 " Hint font size
-hi -append Hint font-size: 12px;
+hi -append Hint font-size: 12px !important;
 
 " Statusbar and commandline styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
