@@ -22,10 +22,9 @@ setprompt(){
     fi
 
     # Truncate path if it's long
-    local maxlength=16
-    if [[ ${#dir} -gt $maxlength ]]; then
-        local offset=$((${#dir}-$maxlength))
-        dir="+${dir:$offset:$maxlength}"
+    if [[ ${#dir} -gt 19 ]]; then
+        local offset=$((${#dir}-18))
+        dir="+${dir:$offset:18}"
     fi
 
     # Path color indicates host
