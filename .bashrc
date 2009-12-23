@@ -94,6 +94,7 @@ alias p='git push origin master'
 alias pu='git pull origin master'
 alias pg='$PAGER'
 
+alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
 
