@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Escape problematic characters
 escape() {
     t=$@
     t=${t/\\/\\\\}
@@ -7,6 +8,7 @@ escape() {
     echo $t
 }
 
+# Use a default title
 if [[ $2 ]]
 then
     title=$(escape $1)
@@ -16,5 +18,15 @@ else
     text=$(escape $1)
 fi
 
+# Default colors
+bg='nil'
+fg='nil'
 
-echo "naughty.notify { title=\"$title\", text=\"$text\" }" >> /tmp/awesome-remote
+# Use different colors for different things
+if [[ "$title" == "newsbeuter" ]]; then
+    # Newsbeuter
+    bg='"#547045"'
+    fg='"#ffffff"'
+fi
+
+echo "naughty.notify { title=\"$title\", text=\"$text\", bg=$bg, fg=$fg }" >> /tmp/awesome-remote
