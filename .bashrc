@@ -118,6 +118,10 @@ dr(){ for d in $@; do sudo /etc/rc.d/$d restart; done; }
 ds(){ for d in $@; do sudo /etc/rc.d/$d start; done; }
 dt(){ for d in $@; do sudo /etc/rc.d/$d stop; done; }
 
+# Local server start and stop
+sstart(){ ds httpd mysqld; }
+sstop(){ dt httpd mysqld; }
+
 # Commit git -a or path
 c (){
     [[ $@ ]] && git commit $@ || git commit -a
