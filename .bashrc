@@ -114,9 +114,9 @@ todosync(){ unison ~/.tofu ssh://root@glacicle.org//root/todo; }
 x(){ cd ~; xinit $@; }
 
 # Daemon shortcuts
-dr(){ sudo /etc/rc.d/$1 restart; }
-ds(){ sudo /etc/rc.d/$1 start; }
-dt(){ sudo /etc/rc.d/$1 stop; }
+dr(){ for d in $@; do sudo /etc/rc.d/$d restart; done; }
+ds(){ for d in $@; do sudo /etc/rc.d/$d start; done; }
+dt(){ for d in $@; do sudo /etc/rc.d/$d stop; done; }
 
 # Commit git -a or path
 c (){
