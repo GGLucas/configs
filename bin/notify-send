@@ -3,8 +3,9 @@
 # Escape problematic characters
 escape() {
     t=$@
-    t=${t/\\/\\\\}
-    t=${t/\"/\\\"}
+    t=${t//\\/\\\\}
+    t=${t//\"/\\\"}
+    t=${t//\\\\n/\\n}
     echo $t
 }
 

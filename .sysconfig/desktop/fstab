@@ -56,7 +56,10 @@ LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 0
 /var/lib/pacman.db /var/lib/pacman ext2 defaults,loop,noatime 0 0
 
 # Data union partition
-mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,allow_other 0 0
+#### mhddfs union:
+#mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,allow_other 0 0
+#### aufs union
+data /data aufs br:/mnt/data-4=rw:/mnt/data-3=rw:/mnt/data-2=rw,create=mfs 0 0
 
 # iRiver
 /dev/disk/by-id/usb-iriver_S10-0:0 /mnt/iriver auto rw,user,noauto 0 0
