@@ -18,5 +18,5 @@ color_scheme=0
 delay=15
 left_meters=AllCPUs CPU 
 left_meter_modes=1 1 
-right_meters=Memory Swap LoadAverage 
-right_meter_modes=1 1 2 
+right_meters=Memory LoadAverage 
+right_meter_modes=1 2 

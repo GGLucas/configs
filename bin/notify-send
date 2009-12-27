@@ -6,17 +6,17 @@ escape() {
     t=${t//\\/\\\\}
     t=${t//\"/\\\"}
     t=${t//\\\\n/\\n}
-    echo $t
+    echo "$t"
 }
 
 # Use a default title
 if [[ $2 ]]
 then
-    title=$(escape $1)
-    text=$(escape $2)
+    title=$(escape "$1")
+    text=$(escape "$2")
 else
     title="Notification"
-    text=$(escape $1)
+    text=$(escape "$1")
 fi
 
 # Default colors
