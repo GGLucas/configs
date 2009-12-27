@@ -3,6 +3,12 @@
 # /etc/rc.local.shutdown: Local shutdown script.
 #
 
+echo ">> Syncing filesystem"
+sync
+
+echo ">> Unmounting union mount"
+umount -l /data
+
 echo ">> Unmounting squashed directories"
 umount -l /lib
 umount -l /squashed/lib/ro
