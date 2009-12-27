@@ -239,7 +239,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set virtualedit=block
 
 " Viminfo
-set viminfo='1000,f1,<500,:500,/500,h
+set viminfo='100,f1,<50,:50,/50,h
 
 " Global match by default
 set gdefault
