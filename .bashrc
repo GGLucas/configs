@@ -49,7 +49,8 @@ PROMPT_COMMAND="setprompt &> /dev/null"
 
 # Check for current bash version
 if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
-    shopt -s autocd cdspell dirspell
+    shopt -s autocd cdspell
+    shopt -s dirspell globstar
 fi
 
 # General options

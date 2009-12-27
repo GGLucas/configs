@@ -63,6 +63,9 @@ noremap j 2j
 noremap k 2k
 noremap l 2l
 
+noremap J 6j
+noremap K 6k
+
 " Remove tabs
 noremap <silent> <leader>D :removetabsright<CR>
 noremap <silent> <leader>d :removetabsleft<CR>
