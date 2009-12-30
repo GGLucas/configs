@@ -60,17 +60,20 @@ shopt -s histappend extglob
 # Remove annoying fc map
 bind -m vi -r v
 
-# Walk through completions with ^T
-bind "\\C-t: menu-complete"
+## Bindings in interactive shells
+case "$-" in *i*)
+    # Walk through completions with ^T
+    bind "\\C-t: menu-complete"
 
-# Clear screen with ^L
-bind "\\C-l: clear-screen"
+    # Clear screen with ^L
+    bind "\\C-l: clear-screen"
 
-# Add pager pipe with <A-w>
-bind '"\ew":" | $PAGER"'
+    # Add pager pipe with <A-w>
+    bind '"\ew":" | $PAGER"'
 
-# Background & ignore with <A-b>
-bind '"\eb":" &> /dev/null &\C-m"'
+    # Background & ignore with <A-b>
+    bind '"\eb":" &> /dev/null &\C-m"'
+;; esac;
 
 # Load autojump
 if [[ -f /etc/profile.d/autojump.bash ]]; then
@@ -110,7 +113,7 @@ miscn(){ tofu misc next feed="$1"${@#$1} && tofu misc; }
 misc(){ tofu misc $@; }
 projn(){ tofu proj next feed="$1"${@#$1} && tofu proj; }
 proj(){ tofu proj $@; }
-todosync(){ unison ~/.tofu ssh://root@glacicle.org//root/todo; }
+todosync(){ unison -batch ~/.tofu ssh://root@glacicle.org//root/todo; }
 
 # Shortcut functions
 x(){ cd ~; xinit $@; }
