@@ -57,11 +57,11 @@ fi
 shopt -s cmdhist nocaseglob
 shopt -s histappend extglob
 
-# Remove annoying fc map
-bind -m vi -r v
-
 ## Bindings in interactive shells
 case "$-" in *i*)
+    # Remove annoying fc map
+    bind -m vi -r v
+
     # Walk through completions with ^T
     bind "\\C-t: menu-complete"
 
