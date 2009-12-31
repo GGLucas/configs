@@ -83,7 +83,6 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
-BOOKMARKS=p=/data/projects=foiled/
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action
@@ -106,9 +105,9 @@ COMMAND=move=mv %f %D
 # The command macros %f, %F, %d, %F may be used in the commands.
 # The %a macro is ignored.  To use a % you must put %%.
 
-FILETYPE=Video=mkv,avi=mplayer %f
-FILETYPE=Video=mp4=xine %f
-FILETYPE=Video=mp4=xine %f
+FILETYPE=Video=mkv,avi,mp4=mplayer %f
+FILETYPE=Comicbook=cbr=comical %f &>/dev/null&
+FILETYPE=PDF=pdf=zathura %f &>/dev/null&
 
 # For automated FUSE mounts, you must register an extension with FILETYPE=..
 # in the following format:
