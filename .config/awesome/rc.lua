@@ -42,6 +42,9 @@ apps = {
     -- Turn off displays
     displays_off = "sleep 0.2 && xset dpms force off",
 
+    -- Shutdown system
+    shutdown = "sudo halt",
+
     -- MPD Control
     -- * Toggle music
     mpd_toggle = "mpc_toggle",
@@ -409,6 +412,9 @@ bindings = {
                 awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
             end
         end,
+
+        -- Shutdown machine
+        [{"Mod4", "Shift", "Pause"}] = {awful.util.spawn, apps.shutdown},
 
         -- Restart awesome
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,
