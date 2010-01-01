@@ -106,7 +106,7 @@ COMMAND=move=mv %f %D
 # The %a macro is ignored.  To use a % you must put %%.
 
 FILETYPE=Video=mkv,avi,mp4=mplayer %f
-FILETYPE=Comicbook=cbr=comical %f &>/dev/null&
+FILETYPE=Comicbook=cbr,cbz=comical %f &>/dev/null&
 FILETYPE=PDF=pdf=zathura %f &>/dev/null&
 
 # For automated FUSE mounts, you must register an extension with FILETYPE=..
