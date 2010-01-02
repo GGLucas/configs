@@ -263,6 +263,13 @@ bindings = {
         -- Toggle fadelist display
         [{"Mod4", "\\"}] = {fadelist, 0},
 
+        -- Toggle fadelist display on all screens
+        [{"Mod4", "Shift", "\\"}] = function ()
+            for s=1, screen.count() do
+                fadelist(0, s)
+            end
+        end,
+
         -- Screen focus
         [{"Mod4", "h"}] = function ()
             local capiscreen = screen
