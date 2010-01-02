@@ -17,6 +17,10 @@ theme.border_normal = '#000000'
 theme.border_focus = '#aaaaaa'
 theme.border_marked = '#91231c'
 
+-- Taglist squares
+theme.taglist_squares_sel = '~/.config/awesome/squarefw.png'
+theme.taglist_squares_unsel = '~/.config/awesome/squarew.png'
+
 -- Font
 theme.font = "Terminus 10"
 

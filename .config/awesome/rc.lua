@@ -13,6 +13,9 @@ require("beautiful")
 -- Teardrop: Dropdown terminal
 require("teardrop")
 
+-- Fadelist: Pop-up taglist
+require("fadelist")
+
 -- Naughty: Notification library
 require("naughty")
 
@@ -76,48 +79,6 @@ util = {
 
         movetoprevtag = function (c)
             awful.client.movetotag(util.tag.getidx(-1), c)
-        end,
-
-        warp = function (c)
-            -- Warp mouse
-            local sel = c or client.focus
-
-            if sel then
-                local coords = sel:geometry()
-                local m = mouse.coords()
-
-                -- Settings
-                mouse_padd = 6
-                border_area = 10
-
-                -- Check if mouse is not already inside the window
-                if  (( m.x < coords.x-border_area or
-                       m.y < coords.y-border_area or
-                       m.x > coords.x+coords.width+border_area or
-                       m.y > coords.y+coords.height+border_area
-                    )
-                    or force or (m.x == 0 and m.y == 0))
-                then
-                    if not force then
-                        for k,v in pairs(m.buttons) do
-                            if v then
-                                return
-                            end
-                        end
-                    end
-
-                    coords = { x=coords.x+coords.width-mouse_padd, y=coords.y+coords.height-mouse_padd}
-
-                    if coords.x > screen[c.screen].workarea.width then
-                        coords.x = screen[c.screen].workarea.width-mouse_padd
-                    end
-                    if coords.y > screen[c.screen].workarea.height then
-                        coords.y = screen[c.screen].workarea.height-mouse_padd
-                    end
-
-                    mouse.coords(coords)
-                end
-            end
         end,
     },
 
@@ -183,7 +144,15 @@ util = {
     -- Spawn an application with scim enabled
     spawn_with_scim = function(app)
         awful.util.spawn_with_shell("XMODIFIERS='@im=SCIM' GTK_IM_MODULE=scim QT_IM_MODULE=scim "..app)
-    end
+    end,
+
+    -- Show fadelist only when enabled
+    fadelist = function (...)
+        if settings._popup_allowed 
+        or settings._popup_allowed == nil then
+            fadelist(...)
+        end
+    end,
 }
 -- }}}
 
@@ -198,7 +167,7 @@ for s = 1, screen.count() do
     end
 
     -- Create tags
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, layout)
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8 }, s, layout)
 end
 
 -- }}}
@@ -256,6 +225,18 @@ bindings = {
         [{"Mod4", "w"}] = awful.tag.viewnext,
         [{"Mod4", "v"}] = awful.tag.viewprev,
 
+        ---- Tag selection on all monitors
+        [{"Mod4", "Mod1", "w"}] = function () for s=1, screen.count() do
+                                              awful.tag.viewnext(screen[s]) end end,
+        [{"Mod4", "Mod1", "v"}] = function () for s=1, screen.count() do
+                                              awful.tag.viewprev(screen[s]) end end,
+
+        -- Tag selection on bottom 4 monitors
+        [{"Mod4", "Mod1", "Shift", "w"}] = function () for s=1, 4 do
+                                           awful.tag.viewnext(screen[s]) end end,
+        [{"Mod4", "Mod1", "Shift", "v"}] = function () for s=1, 4 do
+                                           awful.tag.viewprev(screen[s]) end end,
+
         -- Window focus
         [{"Mod4", "t"}] = function () awful.client.focus.byidx(1) 
                               if client.focus then client.focus:raise() end
@@ -278,6 +259,9 @@ bindings = {
         -- Increase or decrease the number of master windows
         [{"Mod4", "Mod1", "'"}] = {awful.tag.incnmaster, -1},
         [{"Mod4", "Mod1", "q"}] = {awful.tag.incnmaster, 1},
+
+        -- Toggle fadelist display
+        [{"Mod4", "\\"}] = {fadelist, 0},
 
         -- Screen focus
         [{"Mod4", "h"}] = function ()
@@ -376,14 +360,17 @@ bindings = {
         -- Toggle naughty notifications displaying
         [{"Mod4", "F10"}] = function ()
             if settings._naughty_notify == nil then
+                settings._popup_allowed = true
                 settings._naughty_notify = naughty.notify
                 settings._naughty_stub = function(args)end
             end
 
             if settings._naughty_notify == naughty.notify then
                 naughty.notify = settings._naughty_stub
+                settings._popup_allowed = false
             else 
                 naughty.notify = settings._naughty_notify
+                settings._popup_allowed = true
             end
         end,
 
@@ -501,6 +488,45 @@ bindings = {
         awful.button({"Mod4",}, 3, awful.mouse.client.resize)
     ), 
 }
+
+---- {{{ Set up number bindings
+for i=1, #tags[1]  do
+    -- Switch to tag number
+    bindings.root[{"Mod4", "#"..i+9}] = function()
+        awful.tag.viewonly(tags[mouse.screen][i])
+    end
+
+    -- Toggle tag display
+    bindings.root[{"Mod4", "Control", "#"..i+9}] = function()
+        awful.tag.viewtoggle(tags[client.focus.screen][i])
+    end
+
+    -- Move client to tag number
+    bindings.client[{"Mod4", "Shift", "#"..i+9}] = function()
+        awful.client.movetotag(tags[client.focus.screen][i])
+    end
+
+    -- Toggle client on tag number
+    bindings.client[{"Mod4", "Control", "Shift", "#"..i+9}] = function(c)
+        awful.client.toggletag(tags[client.focus.screen][i])
+        client.focus = c
+    end
+
+    -- Switch all screens to tag number
+    bindings.root[{"Mod4", "Mod1", "#"..i+9}] = function()
+        for s=1, screen.count() do
+            awful.tag.viewonly(tags[s][i])
+        end
+    end
+
+    -- Switch bottom 4 screens to tag number
+    bindings.root[{"Mod4", "Mod1", "Shift", "#"..i+9}] = function()
+        for s=1, 4 do
+            awful.tag.viewonly(tags[s][i])
+        end
+    end
+end
+---- }}}
 
 ---- {{{ Set up keybindings - Code
     -- Root binding table
