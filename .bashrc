@@ -106,6 +106,23 @@ alias vv='sudo vim'
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
 
+## Map function for bash.
+# Courtesy downdiagonal on reddit.
+# http://www.reddit.com/r/linux/comments/akt3j
+map(){
+    local command
+    if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
+        echo "Invalid syntax." >&2; return 1 
+    fi
+    until [[ $1 =~ : ]]; do
+        command="$command $1"; shift
+    done
+    command="$command ${1%:}"; shift
+    for i in "$@"; do
+        eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+    done
+}
+
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
 org(){ tofu org $@; }

@@ -5,7 +5,7 @@
   <option name="DefaultContrast" value="-1"/>
   <option name="DefaultSaturation" value="-1"/>
   <option name="DefaultHue" value="-1"/>
-  <option name="Norm" value="NTSC"/>
+  <option name="Norm" value="PAL"/>
   <option name="PrevChannel" value="1"/>
   <option name="Channel" value="2"/>
   <option name="FramerateMode" value="0"/>
@@ -14,9 +14,9 @@
   <option name="AudioBoost" value="-1"/>
   <option name="AlwaysOnTop" value="0"/>
   <option name="QuietScreenshots" value="0"/>
-  <option name="UnmuteVolume" value="14649"/>
-  <option name="Muted" value="0"/>
-  <option name="V4LInput" value="1"/>
+  <option name="UnmuteVolume" value="6682"/>
+  <option name="Muted" value="1"/>
+  <option name="V4LInput" value="0"/>
   <option name="AudioMode" value="stereo"/>
   <option name="PalDKMode" value="0"/>
   <option name="WideScreen" value="1"/>
@@ -25,4 +25,6 @@
   <option name="DeinterlaceMethod" value="AdaptiveAdvanced"/>
   <option name="FullscreenPosition" value="centre"/>
   <option name="FullScreen" value="1"/>
+  <option name="NTSCCableMode" value="IRC"/>
+  <option name="Frequencies" value="custom"/>
 </tvtime>
