@@ -110,18 +110,24 @@ alias slide='qiv -usrtm -d 7 -B '
 # Courtesy downdiagonal on reddit.
 # http://www.reddit.com/r/linux/comments/akt3j
 map(){
-    local command
+    local command i rep
     if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
-        echo "Invalid syntax." >&2; return 1 
+        echo "Invalid syntax." >&2; return 1
     fi
     until [[ $1 =~ : ]]; do
         command="$command $1"; shift
     done
     command="$command ${1%:}"; shift
     for i in "$@"; do
-        eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+        if [[ $command =~ \{\} ]];then
+            rep="${command//\{\}/\"$i\"}"
+            eval "${rep//\\/\\\\}"
+        else
+            eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+        fi
     done
 }
+
 
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
