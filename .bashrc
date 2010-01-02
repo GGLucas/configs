@@ -106,29 +106,6 @@ alias vv='sudo vim'
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
 
-## Map function for bash.
-# Courtesy downdiagonal on reddit.
-# http://www.reddit.com/r/linux/comments/akt3j
-map(){
-    local command i rep
-    if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
-        echo "Invalid syntax." >&2; return 1
-    fi
-    until [[ $1 =~ : ]]; do
-        command="$command $1"; shift
-    done
-    command="$command ${1%:}"; shift
-    for i in "$@"; do
-        if [[ $command =~ \{\} ]];then
-            rep="${command//\{\}/\"$i\"}"
-            eval "${rep//\\/\\\\}"
-        else
-            eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
-        fi
-    done
-}
-
-
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
 org(){ tofu org $@; }
@@ -203,4 +180,26 @@ dayn(){
     feed="$2"
     shift 2
     tofu $day next feed="$feed" $@ && tofu $day;
+}
+
+## Map function for bash.
+# Courtesy downdiagonal on reddit.
+# http://www.reddit.com/r/linux/comments/akt3j
+map(){
+    local command i rep
+    if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
+        echo "Invalid syntax." >&2; return 1
+    fi
+    until [[ $1 =~ : ]]; do
+        command="$command $1"; shift
+    done
+    command="$command ${1%:}"; shift
+    for i in "$@"; do
+        if [[ $command =~ \{\} ]]; then
+            rep="${command//\{\}/\"$i\"}"
+            eval "${rep//\\/\\\\}"
+        else
+            eval "${command//\\/\\\\} \"${i//\\/\\\\}\""
+        fi
+    done
 }
