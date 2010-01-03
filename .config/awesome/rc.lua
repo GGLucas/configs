@@ -146,6 +146,22 @@ util = {
         awful.util.spawn_with_shell("XMODIFIERS='@im=SCIM' GTK_IM_MODULE=scim QT_IM_MODULE=scim "..app)
     end,
 
+    -- Spawn on all screens
+    spawn_all = function(app)
+        for s=1, screen.count() do
+            mouse.screen = s
+            awful.util.spawn(app)
+        end
+    end,
+
+    -- Spawn on bottom screens
+    spawn_bottom = function(app)
+        for s=1, 4 do
+            mouse.screen = s
+            awful.util.spawn(app)
+        end
+    end,
+
     -- Show fadelist only when enabled
     fadelist = function (...)
         if settings._popup_allowed 
@@ -181,6 +197,12 @@ bindings = {
 
         -- Open terminal with scim
         [{"Mod4", "Mod1", ";"}] = {util.spawn_with_scim, apps.terminal},
+
+        -- Open terminal on all screens
+        [{"Mod4", "Shift", ";"}] = {util.spawn_all, apps.terminal},
+
+        -- Open terminal on bottom 4 screens
+        [{"Mod4", "Mod1", "Shift", ";"}] = {util.spawn_bottom, apps.terminal},
 
         -- Drop-down urxvtc terminal
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},

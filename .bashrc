@@ -105,6 +105,7 @@ alias vv='sudo vim'
 # Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
+alias prf='export WINEPREFIX=$(pwd)'
 
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
