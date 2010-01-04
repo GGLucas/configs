@@ -69,10 +69,16 @@ case "$-" in *i*)
     bind "\\C-l: clear-screen"
 
     # Add pager pipe with <A-w>
-    bind '"\ew":" | $PAGER"'
+    bind '"\ew":" | $PAGER \C-m"'
 
     # Background & ignore with <A-b>
     bind '"\eb":" &> /dev/null &\C-m"'
+
+    # Search
+    bind '"\ea":" | ack "'
+
+    # Clear
+    bind '"\el":"clear \C-m"'
 ;; esac;
 
 # Load autojump
@@ -106,6 +112,9 @@ alias vv='sudo vim'
 alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
 alias prf='export WINEPREFIX=$(pwd)'
+
+# Fallback to grep if ack is not found
+[[ ! -x ~/bin/ack ]] && alias ack="grep"
 
 # Tofu organiser shortcuts
 orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
