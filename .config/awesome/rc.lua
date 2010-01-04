@@ -196,10 +196,10 @@ bindings = {
         [{"Mod4", ";"}] = {awful.util.spawn, apps.terminal},
 
         -- Open terminal with scim
-        [{"Mod4", "Mod1", ";"}] = {util.spawn_with_scim, apps.terminal},
+        [{"Mod4", "Shift", ";"}] = {util.spawn_with_scim, apps.terminal},
 
         -- Open terminal on all screens
-        [{"Mod4", "Shift", ";"}] = {util.spawn_all, apps.terminal},
+        [{"Mod4", "Mod1", ";"}] = {util.spawn_all, apps.terminal},
 
         -- Open terminal on bottom 4 screens
         [{"Mod4", "Mod1", "Shift", ";"}] = {util.spawn_bottom, apps.terminal},
@@ -214,7 +214,7 @@ bindings = {
         -- * Local
         [{"Mod4", "b"}] = {awful.util.spawn, apps.tmux},
         -- * Local with scim
-        [{"Mod4", "Mod1", "b"}] = {util.spawn_with_scim, apps.tmux},
+        [{"Mod4", "Shift", "b"}] = {util.spawn_with_scim, apps.tmux},
 
         -- Toggle music
         [{"Mod4", "."}] = {awful.util.spawn, apps.mpd_toggle},

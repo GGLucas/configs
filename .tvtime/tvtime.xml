@@ -5,18 +5,18 @@
   <option name="DefaultContrast" value="-1"/>
   <option name="DefaultSaturation" value="-1"/>
   <option name="DefaultHue" value="-1"/>
-  <option name="Norm" value="PAL"/>
-  <option name="PrevChannel" value="1"/>
-  <option name="Channel" value="2"/>
+  <option name="Norm" value="PAL-60"/>
+  <option name="PrevChannel" value="0"/>
+  <option name="Channel" value="0"/>
   <option name="FramerateMode" value="0"/>
   <option name="OverScan" value="4.0"/>
   <option name="CheckForSignal" value="1"/>
   <option name="AudioBoost" value="-1"/>
   <option name="AlwaysOnTop" value="0"/>
   <option name="QuietScreenshots" value="0"/>
-  <option name="UnmuteVolume" value="6682"/>
-  <option name="Muted" value="1"/>
-  <option name="V4LInput" value="0"/>
+  <option name="UnmuteVolume" value="18761"/>
+  <option name="Muted" value="0"/>
+  <option name="V4LInput" value="1"/>
   <option name="AudioMode" value="stereo"/>
   <option name="PalDKMode" value="0"/>
   <option name="WideScreen" value="1"/>
