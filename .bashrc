@@ -103,10 +103,12 @@ alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
 alias pg='$PAGER'
-
 alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
+
+alias ani='anigrate'
+alias w='ani watch:'
 
 # Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'
@@ -136,6 +138,14 @@ dt(){ for d in $@; do sudo /etc/rc.d/$d stop; done; }
 # Local server start and stop
 sstart(){ ds httpd mysqld; }
 sstop(){ dt httpd mysqld; }
+
+# Wrapper for tvtime
+tvtime(){
+    sudo modprobe -a saa7134_alsa saa7134
+    while [[ ! -e /dev/video0 ]]; do sleep 0.5; done;
+    sudo /usr/bin/tvtime
+    sudo modprobe -r saa7134_alsa
+}
 
 # Commit git -a or path
 c (){

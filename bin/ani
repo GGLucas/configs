@@ -1,2 +1,1 @@
-#!/bin/bash
-ani_dbpath=/home/archlucas/.anigrate_anime.db python /data/projects/anigrate/ani $@
+/data/projects/app/anigrate/anigrate

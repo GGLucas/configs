@@ -128,9 +128,6 @@ let NERDDefaultNesting = 1
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$']
 let NERDTreeSortOrder = ['\/$', '\.[ch]$', '\.py$', '*']
 
-" Supertab
-let g:SuperTabDefaultCompletionType = 'context'
-
 " Taglist
 let Tlist_Use_Right_Window = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
