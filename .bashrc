@@ -109,6 +109,7 @@ alias vv='sudo vim'
 
 alias ani='anigrate'
 alias w='ani watch:'
+alias lo='ani log:'
 
 # Shortcuts
 alias aur='slurpy -c -t ~/sources/ -f'

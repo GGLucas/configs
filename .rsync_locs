@@ -10,6 +10,10 @@ RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ r
 ## Old followe system
 RSYNC_followe_old="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe_old/ root@glacicle.org:/srv/www/zorgberaad/followe_old"
 
+## Project website directories
+RSYNC_projects="--delete --exclude-from=$HOME/.rsync_exclude /data/web/projects/ root@glacicle.org:/srv/www/projects"
+
 ### Others
 # Heresy repository for x86_64
-RSYNC_heresy="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/ heresy@hereticlinux.org:/www/heresy/repo/x86_64"
+RSYNC_heresy_core="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
+RSYNC_heresy_extra="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/extra/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/extra/x86_64"
