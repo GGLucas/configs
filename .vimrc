@@ -70,7 +70,8 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 
 " {{{ Buffer Navigation
 nnoremap <silent> <Esc>c :A<CR>
-nnoremap <silent> <Esc>g :IncBufSwitch<CR>
+nnoremap <silent> <Esc>g :FufBuffer<CR>
+nnoremap <silent> <Esc>f :FufTag<CR>
 nnoremap <silent> <Esc>b :e .<CR>
 
 nnoremap <silent> <Esc>w :bnext<CR>
@@ -82,6 +83,8 @@ nmap <silent> <Leader>n :call TreeOpenFocus()<CR>
 nmap <silent> <Leader>N :NERDTreeToggle<CR>
 nmap <silent> <Leader>t :TlistOpen<CR>
 nmap <silent> <Leader>T :TlistToggle<CR>
+nmap <silent> <Leader>s :SessionList<CR>
+nmap <silent> <Leader>S :SessionSave<CR>
 nmap <Leader>h :vert bo help 
 " }}}
 
@@ -146,6 +149,9 @@ let g:buftabs_only_basename = 1
 
 " Use fancy css for TOhtml
 let html_use_css = 1
+
+" Fuzzy finder
+let g:fuf_previewHeight = 0
 
 " }}}
 
@@ -236,7 +242,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set virtualedit=block
 
 " Viminfo
-set viminfo='100,f1,<50,:50,/50,h
+set viminfo='100,f1,<50,:50,/50,h,!
 
 " Global match by default
 set gdefault
