@@ -53,6 +53,9 @@ noremap <Leader>* *#
 nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
 nnoremap <silent> <C-l> :nohl<CR>
 
+" Prompt for a filetype to set
+nmap <silent> <Esc>z :call PromptFT()<CR>
+
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
 nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
@@ -358,6 +361,13 @@ function! TreeOpenFocus()
     else
         exec wnr."wincmd w"
     endif
+endfunction
+" }}}
+
+" {{{ PromptFT(): Prompt for a new filetype to set
+function! PromptFT()
+    let ft=input("Filetype: ")
+    exec "setlocal ft=".ft
 endfunction
 " }}}
 " }}}
