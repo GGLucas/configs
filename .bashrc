@@ -107,12 +107,10 @@ alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
 
-alias ani='anigrate'
 alias w='ani watch:'
 alias lo='ani log:'
 
 # Shortcuts
-alias aur='slurpy -c -t ~/sources/ -f'
 alias slide='qiv -usrtm -d 7 -B '
 alias prf='export WINEPREFIX=$(pwd)'
 
@@ -154,10 +152,15 @@ c (){
 }
 
 # Download package from abs
-absdown (){
+absd (){
     abs $1/$2
     cp -R /var/abs/$1/$2 ~/sources/
     cd ~/sources/$2
+}
+
+aurd (){
+    slurpy -c -t ~/sources/ -f $1
+    cd ~/sources/$1
 }
 
 # Flatten function
