@@ -300,7 +300,7 @@ autocmd FileType xml hi link xmlEndTag BoldBraces
 autocmd FileType javascript hi link javaScriptBraces Braces
 
 " Set markdown syntax
-autocmd BufNewFile,BufRead *.{md,mld,mark,markdown} set ft=markdown
+autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
 
 " Highlight long lines
 autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
