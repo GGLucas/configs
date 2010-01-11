@@ -85,7 +85,9 @@ nmap <silent> <Leader>t :TlistOpen<CR>
 nmap <silent> <Leader>T :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
+
 nmap <Leader>h :vert bo help 
+nmap <silent> <Leader>j :source ~/.vim/scripts/sparkup.vim<CR>
 " }}}
 
 " {{{ Command line cursor keys
