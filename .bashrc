@@ -159,7 +159,7 @@ absd (){
 }
 
 aurd (){
-    slurpy -c -t ~/sources/ -f $1
+    slurpy -c -t ~/sources/ -f -d $*
     cd ~/sources/$1
 }
 
