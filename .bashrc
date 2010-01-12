@@ -54,7 +54,7 @@ if [[ ${BASH_VERSINFO[0]} -ge 4 ]]; then
 fi
 
 # General options
-shopt -s cmdhist
+shopt -s cmdhist nocaseglob
 shopt -s histappend extglob
 
 ## Bindings in interactive shells

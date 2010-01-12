@@ -12,8 +12,5 @@ set match-hidden-files off
 # Show list without pressing tab twice
 set show-all-if-ambiguous on
 
-# Ignore case in completion
-set completion-ignore-case on
-
 # Symlinked directories behave like directories
 set mark-symlinked-directories on
