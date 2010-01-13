@@ -54,7 +54,7 @@ nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
 nnoremap <silent> <C-l> :nohl<CR>
 
 " Prompt for a filetype to set
-nmap <silent> <Esc>z :call PromptFT()<CR>
+nmap <silent> <Esc>@ :call PromptFT()<CR>
 
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
