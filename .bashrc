@@ -106,9 +106,10 @@ alias pg='$PAGER'
 alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
-
 alias w='ani watch:'
 alias lo='ani log:'
+alias an='ani list: +w =anime'
+alias tn='ani list: +w =tv'
 
 # Shortcuts
 alias slide='qiv -usrtm -d 7 -B '
