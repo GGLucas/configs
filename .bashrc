@@ -109,7 +109,9 @@ alias vv='sudo vim'
 alias w='ani watch:'
 alias lo='ani log:'
 alias an='ani list: +w =anime'
+alias anh='ani hist: +w =anime'
 alias tn='ani list: +w =tv'
+alias tnh='ani hist: +w =tv'
 
 # Shortcuts
 alias slide='qiv -usrtm -d 7 -B '
