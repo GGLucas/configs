@@ -36,7 +36,7 @@ div.entryi
 div.md
 {
     max-width:1400px !important;
-    background: #141414 !important;
+    /*background: #141414 !important;*/
     color: #e0e0e0 !important;
     border-color: #9fbc00 !important;
 }
@@ -115,8 +115,8 @@ div.entry
 {
     padding-bottom: 15px !important;
     padding-left: 5px !important;
-    border-bottom: 1px solid #343434 !important;
     color: white !important;
+    border-bottom: 1px solid #343434;
 }
 
 .usertext-body, .usertext-body blockquote
@@ -198,10 +198,9 @@ a.author
 
 .comment .child
 {
-    border-left: 1px dotted #343434 !important;
 }
 
-textarea, input
+textarea, input, button
 {
     -moz-appearance: none !important;
     background: #141414 !important;
@@ -223,3 +222,42 @@ a.author[href="http://www.reddit.com/user/GGLucas"]
 {
     color: #7060cc !important;
 }
+
+
+/* Comment boxes */
+div.comment, div.message {
+    margin: 0px 5px 5px 0px !important;
+    border-left: 2px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+div.comment {
+    padding-top: 5px !important;
+}
+
+div.comment div.entry {
+    border-bottom: none !important;
+}
+
+div.comment div.comment,
+div.comment div.comment div.comment div.comment,
+div.comment div.comment div.comment div.comment div.comment div.comment,
+div.comment div.comment div.comment div.comment div.comment div.comment div.comment div.comment,
+div.message div.message,
+div.message div.message div.message div.message,
+div.message div.message div.message div.message div.message div.message,
+div.message div.message div.message div.message div.message div.message div.message div.message {
+	background-color: #0f0f0f !important;
+}
+
+div.comment div.comment div.comment,
+div.comment div.comment div.comment div.comment div.comment,
+div.comment div.comment div.comment div.comment div.comment div.comment div.comment,
+div.comment div.comment div.comment div.comment div.comment div.comment div.comment div.comment div.comment,
+div.message div.message div.message,
+div.message div.message div.message div.message div.message,
+div.message div.message div.message div.message div.message div.message div.message,
+div.message div.message div.message div.message div.message div.message div.message div.message div.message {
+	background-color: #121212 !important;
+}
+
