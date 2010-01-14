@@ -22,6 +22,9 @@ require("naughty")
 -- Rodentbane: Utilities for controlling the cursor
 require("rodentbane")
 
+-- Quickmarks: Rapid client focus jumping by hotkey
+require("quickmarks")
+
 -- {{{ Configuration
 -- Beautiful colors
 beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
@@ -39,6 +42,12 @@ apps = {
     -- Open filemanager
     filemanager = "urxvtc -e vifm /data /data",
 
+    -- Open htop
+    htop = "urxvtc -e htop",
+
+    -- Open webbrowser
+    browser = "fx",
+
     -- Suspend activity
     system_suspend = "system_suspend",
 
@@ -53,6 +62,13 @@ apps = {
     mpd_toggle = "mpc_toggle",
     -- * Show currently playing
     mpd_show = "mpc_show",
+
+    -- Different tmux windows
+    irc = "urxvtc -e tmux -2 attach-session -t irc",
+    mail = "urxvtc -e tmux -2 attach-session -t mt",
+    rtorrent = "urxvtc -e tmux -2 attach-session -t dl",
+    newsbeuter = "urxvtc -e tmux -2 attach-session -t rss",
+    ncmpcpp = "urxvtc -e tmux -2 attach-session -t mpd",
 }
 -- }}}
 
@@ -139,6 +155,15 @@ util = {
         function ()
             promptbox.screen = nil
         end)
+    end,
+
+    -- Spawn with a wait at the end
+    spawn_wait = function (app, wait)
+        awful.util.spawn_with_shell(app)
+
+        if wait then
+            os.execute("sleep "..wait)
+        end
     end,
 
     -- Spawn an application with scim enabled
@@ -268,6 +293,24 @@ bindings = {
                               if client.focus then client.focus:raise() end
                           end,
 
+        -- Quickmarks
+        [{"Mod4", "-"}] = quickmarks.ifocus,
+        [{"Mod4", "Shift", "-"}] = quickmarks.iset,
+
+        -- Easy quickmark access with Mod4+Alt_r+Homerow
+        [{"Mod4", "Mod5", "a"}] = {quickmarks.focus, "a"},
+        [{"Mod4", "Mod5", "o"}] = {quickmarks.focus, "o"},
+        [{"Mod4", "Mod5", "e"}] = {quickmarks.focus, "e"},
+        [{"Mod4", "Mod5", "u"}] = {quickmarks.focus, "u"},
+        [{"Mod4", "Mod5", "i"}] = {quickmarks.focus, "i"},
+        [{"Mod4", "Mod5", "d"}] = {quickmarks.focus, "d"},
+        [{"Mod4", "Mod5", "h"}] = {quickmarks.focus, "h"},
+        [{"Mod4", "Mod5", "t"}] = {quickmarks.focus, "t"},
+        [{"Mod4", "Mod5", "n"}] = {quickmarks.focus, "n"},
+        [{"Mod4", "Mod5", "s"}] = {quickmarks.focus, "s"},
+        [{"Mod4", "Mod5", "w"}] = {quickmarks.focus, "w"},
+        [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
+
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
         [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.tile},
@@ -286,7 +329,7 @@ bindings = {
         [{"Mod4", "\\"}] = {fadelist, 0},
 
         -- Toggle fadelist display on all screens
-        [{"Mod4", "Shift", "\\"}] = function ()
+        [{"Mod4", "Mod1", "\\"}] = function ()
             for s=1, screen.count() do
                 fadelist(0, s)
             end
@@ -427,6 +470,81 @@ bindings = {
                 settings._numbers = true
                 awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
             end
+        end,
+
+        -- Start a set of common clients with quickmarks
+        [{"Mod4", "Shift", "KP_Subtract"}] = function ()
+            -- Top left
+            mouse.screen = 5
+            util.spawn_wait(apps.irc)
+
+            -- Top right
+            mouse.screen = 6
+            util.spawn_wait(apps.irc)
+
+            -- Main right
+            mouse.screen = 2
+            util.spawn_wait(apps.terminal)
+            util.spawn_wait(apps.terminal)
+            util.spawn_wait(apps.filemanager)
+
+            -- Outer right
+            mouse.screen = 3
+            util.spawn_wait(apps.mail)
+            util.spawn_wait(apps.terminal)
+            util.spawn_wait(apps.htop)
+
+            -- Outer left
+            mouse.screen = 4
+            util.spawn_wait(apps.rtorrent, "0.5")
+            util.spawn_wait(apps.newsbeuter)
+            util.spawn_wait(apps.ncmpcpp)
+
+            -- Main left
+            mouse.screen = 1
+            util.spawn_wait(apps.browser)
+
+            -- Assign quickmarks
+            local marktimer = timer { timeout = 1 }
+            marktimer:add_signal("timeout", function()
+                --- Set correct geometry on irc windows
+                clients = awful.client.visible(5)
+                awful.client.floating.set(clients[1], true)
+                clients[1]:geometry({ x = 0, y = 0,
+                    width = 3360, height = 1050 })
+
+                clients = awful.client.visible(6)
+                awful.client.floating.set(clients[1], true)
+                clients[1]:geometry({ x = -1680, y = 0,
+                    width = 3360, height = 1050 })
+
+                -- Quickmarks
+                -- 2: Main terms
+                quickmarks.set(awful.client.visible(2)[1], "h")
+                quickmarks.set(awful.client.visible(2)[2], "w")
+                quickmarks.set(awful.client.visible(2)[3], "v")
+                -- 3: Monitors+mail
+                quickmarks.set(awful.client.visible(3)[1], "t")
+                quickmarks.set(awful.client.visible(3)[2], "n")
+                quickmarks.set(awful.client.visible(3)[3], "s")
+                -- 4: Torrent+rss+mpd
+                quickmarks.set(awful.client.visible(4)[1], "a")
+                quickmarks.set(awful.client.visible(4)[2], "o")
+                quickmarks.set(awful.client.visible(4)[3], "e")
+
+                -- Stop timer
+                marktimer:stop()
+            end)
+            marktimer:start()
+
+            -- Firefox starts so slowly we need to wait longer
+            local fxtimer = timer { timeout = 20 }
+            fxtimer:add_signal("timeout", function()
+                quickmarks.set(awful.client.visible(1)[1], "u")
+                fxtimer:stop()
+            end)
+            fxtimer:start()
+
         end,
 
         -- Shutdown machine

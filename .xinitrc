@@ -45,9 +45,6 @@ do
 
     # Start feh for each display
     DISPLAY=$display feh --bg-scale $BG &
-
-    # Start a term on every display
-    (sleep 1; DISPLAY=$display urxvtc) &
 done;
 
 # Start WM
