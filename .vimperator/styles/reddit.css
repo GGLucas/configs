@@ -171,9 +171,14 @@ div.expando-button.video:before
     display: none !important;
 }
 
-.arrow.up, .arrow.upmod, .arrow.down, .arrow.downmod
+.arrow.up, .arrow.down
 {
     background:none!important;
+}
+
+.arrow.upmod, .arrow.downmod
+{
+    opacity: 0.5 !important;
 }
 
 .nohavemail img
@@ -202,4 +207,19 @@ textarea, input
     background: #141414 !important;
     color: white !important;
     border: 2px solid #343434 !important;
+}
+
+a.author.submitter
+{
+    color: #bb4040 !important;
+}
+
+a.author.moderator
+{
+    color: #40bb40 !important;
+}
+
+a.author[href="http://www.reddit.com/user/GGLucas"]
+{
+    color: #7060cc !important;
 }
