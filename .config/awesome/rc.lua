@@ -476,32 +476,38 @@ bindings = {
         [{"Mod4", "Shift", "KP_Subtract"}] = function ()
             -- Top left
             mouse.screen = 5
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.irc)
 
             -- Top right
             mouse.screen = 6
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.irc)
 
             -- Main right
             mouse.screen = 2
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.terminal)
             util.spawn_wait(apps.terminal)
             util.spawn_wait(apps.filemanager)
 
             -- Outer right
             mouse.screen = 3
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.mail)
             util.spawn_wait(apps.terminal)
             util.spawn_wait(apps.htop)
 
             -- Outer left
             mouse.screen = 4
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.rtorrent, "0.5")
             util.spawn_wait(apps.newsbeuter)
             util.spawn_wait(apps.ncmpcpp)
 
             -- Main left
             mouse.screen = 1
+            awful.client.visible(mouse.screen)[1]:kill()
             util.spawn_wait(apps.browser)
 
             -- Assign quickmarks

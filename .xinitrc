@@ -43,8 +43,11 @@ do
     && BG=~/pictures/end_2048.png \
     || BG=~/pictures/end_1680.png
 
-    # Start feh for each display
+    # Set wallpaper
     DISPLAY=$display feh --bg-scale $BG &
+
+    # Start a term
+    (sleep 1 ; DISPLAY=$display urxvtc) &
 done;
 
 # Start WM
