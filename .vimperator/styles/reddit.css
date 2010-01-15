@@ -36,9 +36,13 @@ div.entryi
 div.md
 {
     max-width:1400px !important;
-    /*background: #141414 !important;*/
     color: #e0e0e0 !important;
     border-color: #9fbc00 !important;
+}
+
+div#siteTable div.md
+{
+    background: #141414 !important;
 }
 
 div.md a:visited
