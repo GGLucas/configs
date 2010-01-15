@@ -7,6 +7,9 @@ require("awful")
 require("awful.rules")
 require("awful.autofocus")
 
+-- Eminent: Effortless wmii-style dynamic tagging
+require("eminent")
+
 -- Beautiful: Theming capabilities
 require("beautiful")
 
@@ -525,6 +528,9 @@ bindings = {
                     width = 3360, height = 1050 })
 
                 -- Quickmarks
+                -- 1: irc
+                quickmarks.set(awful.client.visible(5)[1], "i")
+                quickmarks.set(awful.client.visible(6)[1], "d")
                 -- 2: Main terms
                 quickmarks.set(awful.client.visible(2)[1], "h")
                 quickmarks.set(awful.client.visible(2)[2], "w")

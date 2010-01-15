@@ -36,12 +36,7 @@ module("fadelist")
 local wiboxes = {}
 local data = {}
 
-local function show(sc)
-    -- Show
-    wiboxes[sc].ontop = true
-    wiboxes[sc].screen = sc
-    data[sc].visible = true
-
+local function update(sc)
     -- Calculate geometry
     local margin = beautiful.fadelist_margin or 4
     local width = 0
@@ -65,6 +60,16 @@ local function show(sc)
         x = capi.screen[sc].workarea.width/2-width/2,
         y = 0,
     })
+end
+
+local function show(sc)
+    -- Show
+    wiboxes[sc].ontop = true
+    wiboxes[sc].screen = sc
+    data[sc].visible = true
+
+    -- Update
+    update(sc)
 end
 
 local function hide(sc)
@@ -94,6 +99,23 @@ function display(time, s)
 
             layout=awful.widget.layout.horizontal.leftright
         }
+
+        local uc = function () update(sc) end
+        capi.client.add_signal("focus", uc)
+        capi.client.add_signal("unfocus", uc)
+        awful.tag.attached_add_signal(sc, "property::selected", uc)
+        awful.tag.attached_add_signal(sc, "property::icon", uc)
+        awful.tag.attached_add_signal(sc, "property::hide", uc)
+        awful.tag.attached_add_signal(sc, "property::name", uc)
+        capi.screen[sc]:add_signal("tag::attach", uc)
+        capi.screen[sc]:add_signal("tag::detach", uc)
+        capi.client.add_signal("new", function(c)
+            c:add_signal("property::urgent", uc)
+            c:add_signal("property::screen", uc)
+            c:add_signal("tagged", uc)
+            c:add_signal("untagged", uc)
+        end)
+        capi.client.add_signal("unmanage", uc)
     end
 
     if time == 0 then
