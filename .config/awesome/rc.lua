@@ -197,6 +197,39 @@ util = {
             fadelist(...)
         end
     end,
+
+    -- Quickmarks in default desktop layout
+    defquickmarks = function ()
+        --- Set correct geometry on irc windows
+        clients = awful.client.visible(5)
+        awful.client.floating.set(clients[1], true)
+        clients[1]:geometry({ x = 0, y = 0,
+            width = 3360, height = 1050 })
+
+        clients = awful.client.visible(6)
+        awful.client.floating.set(clients[1], true)
+        clients[1]:geometry({ x = -1680, y = 0,
+            width = 3360, height = 1050 })
+
+        -- Quickmarks
+        -- 1: Firefox
+        quickmarks.set(awful.client.visible(1)[1], "u")
+        -- 2: Main terms
+        quickmarks.set(awful.client.visible(2)[1], "h")
+        quickmarks.set(awful.client.visible(2)[2], "w")
+        quickmarks.set(awful.client.visible(2)[3], "v")
+        -- 3: Monitors+mail
+        quickmarks.set(awful.client.visible(3)[1], "t")
+        quickmarks.set(awful.client.visible(3)[2], "n")
+        quickmarks.set(awful.client.visible(3)[3], "s")
+        -- 4: Torrent+rss+mpd
+        quickmarks.set(awful.client.visible(4)[1], "a")
+        quickmarks.set(awful.client.visible(4)[2], "o")
+        quickmarks.set(awful.client.visible(4)[3], "e")
+        -- 5/6: irc
+        quickmarks.set(awful.client.visible(5)[1], "i")
+        quickmarks.set(awful.client.visible(6)[1], "d")
+    end
 }
 -- }}}
 
@@ -516,33 +549,8 @@ bindings = {
             -- Assign quickmarks
             local marktimer = timer { timeout = 1 }
             marktimer:add_signal("timeout", function()
-                --- Set correct geometry on irc windows
-                clients = awful.client.visible(5)
-                awful.client.floating.set(clients[1], true)
-                clients[1]:geometry({ x = 0, y = 0,
-                    width = 3360, height = 1050 })
-
-                clients = awful.client.visible(6)
-                awful.client.floating.set(clients[1], true)
-                clients[1]:geometry({ x = -1680, y = 0,
-                    width = 3360, height = 1050 })
-
-                -- Quickmarks
-                -- 1: irc
-                quickmarks.set(awful.client.visible(5)[1], "i")
-                quickmarks.set(awful.client.visible(6)[1], "d")
-                -- 2: Main terms
-                quickmarks.set(awful.client.visible(2)[1], "h")
-                quickmarks.set(awful.client.visible(2)[2], "w")
-                quickmarks.set(awful.client.visible(2)[3], "v")
-                -- 3: Monitors+mail
-                quickmarks.set(awful.client.visible(3)[1], "t")
-                quickmarks.set(awful.client.visible(3)[2], "n")
-                quickmarks.set(awful.client.visible(3)[3], "s")
-                -- 4: Torrent+rss+mpd
-                quickmarks.set(awful.client.visible(4)[1], "a")
-                quickmarks.set(awful.client.visible(4)[2], "o")
-                quickmarks.set(awful.client.visible(4)[3], "e")
+                -- Set quickmarks
+                util.defquickmarks()
 
                 -- Stop timer
                 marktimer:stop()
@@ -552,12 +560,18 @@ bindings = {
             -- Firefox starts so slowly we need to wait longer
             local fxtimer = timer { timeout = 20 }
             fxtimer:add_signal("timeout", function()
+                -- Set firefox quickmark again
                 quickmarks.set(awful.client.visible(1)[1], "u")
+
+                -- Stop timer
                 fxtimer:stop()
             end)
             fxtimer:start()
 
         end,
+
+        -- Set quickmarks
+        [{"Mod4", "Shift", "KP_Multiply"}] = util.defquickmarks,
 
         -- Shutdown machine
         [{"Mod4", "Shift", "Pause"}] = {awful.util.spawn, apps.shutdown},

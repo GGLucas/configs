@@ -72,7 +72,7 @@ function focus(key)
     end
 
     -- Check if we already have the client focussed
-    if capi.client.focus == client then
+    if capi.client.focus == client and lastclient then
         -- Focus last focused client
         focusclient(lastclient)
     else
