@@ -32,6 +32,9 @@ require("quickmarks")
 -- Beautiful colors
 beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
 
+-- Amount of lower row screens
+lower_screens = 4
+
 -- Applications
 apps = {
     -- Terminal to use
@@ -79,6 +82,7 @@ apps = {
 dropdown = {}
 settings = {}
 util = {
+    -- {{{ Tag based
     tag = {
         getidx = function (i, sc)
             local tags = screen[sc or mouse.screen]:tags()
@@ -89,8 +93,23 @@ util = {
                 end
             end
         end,
-    },
 
+        resetwfact = function ()
+            tag = awful.tag.selected()
+            clients = tag:clients()
+            num = #clients-awful.tag.getnmaster(tag)
+            fact = 1/num
+
+            for i,c in ipairs(clients) do
+                if c ~= awful.client.getmaster(c.screen) then
+                    awful.client.setwfact(fact, c)
+                end
+            end
+        end,
+    },
+    -- }}}
+
+    -- {{{ Client based
     client = {
         movetonexttag = function (c)
             awful.client.movetotag(util.tag.getidx(1), c)
@@ -99,8 +118,130 @@ util = {
         movetoprevtag = function (c)
             awful.client.movetotag(util.tag.getidx(-1), c)
         end,
-    },
 
+        focusraise_idx = function (idx)
+            awful.client.focus.byidx(idx)
+            if client.focus then client.focus:raise() end
+        end,
+
+        setfloatgeom = function (x, y, width, height)
+            awful.client.floating.set(client.focus, true)
+
+            client.focus:geometry({
+                x = x,
+                y = y,
+                width = width,
+                height = height
+            })
+        end,
+    },
+    -- }}}
+
+    -- {{{ Screen based
+    screen = {
+        -- Run a function on all screens
+        do_all = function (func)
+            for s=1, screen.count() do
+                func(screen[s])
+            end
+        end,
+
+        -- Run a function on all lower screens
+        do_lower = function (func)
+            for s=1, lower_screens do
+                func(screen[s])
+            end
+        end,
+
+
+        -- Focus previous screen
+        focusprev = function ()
+            local capiscreen = screen
+            local screen = mouse.screen
+
+            if capiscreen.count() == 2 then
+                screen = 1+(screen%2)
+            else
+                if screen == 1 then
+                    screen = 4
+                elseif screen == 5 then
+                    screen = 6
+                elseif screen == 6 then
+                    screen = 5
+                else
+                    screen = screen - 1
+                end
+            end
+
+            mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
+        end,
+
+        -- Focus next screen
+        focusnext = function ()
+            local capiscreen = screen
+            local screen = mouse.screen
+
+            if capiscreen.count() == 2 then
+                screen = 1+(screen%2)
+            else
+                if screen == 4 then
+                    screen = 1
+                elseif screen == 5 then
+                    screen = 6
+                elseif screen == 6 then
+                    screen = 5
+                else
+                    screen = screen + 1
+                end
+            end
+                
+            mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
+        end,
+
+        -- Focus screen in row up
+        focusnextrow = function ()
+            local screen = mouse.screen
+
+            if screen == 5 then
+                screen = 1
+            elseif screen == 6 then
+                screen = 2
+            elseif screen == 1 or screen == 4 then
+                screen = 5
+            elseif screen == 2 or screen == 3 then
+                screen = 6
+            end
+
+            mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
+        end,
+    },
+    -- }}}
+
+    -- {{{ Cursor based
     banish = function (c, padd)
         if padd == nil then padd = 6 end
         local client = c or client.focus
@@ -108,7 +249,9 @@ util = {
 
         mouse.coords({ x=coords.x+coords.width-padd, y=coords.y+coords.height-padd})
     end,
+    -- }}}
 
+    -- {{{ Prompts / wiboxes
     prompt = function(text, callback, width, height, margin)
         -- Get current screen
         local sc = mouse.screen
@@ -160,6 +303,17 @@ util = {
         end)
     end,
 
+    -- Show fadelist only when enabled
+    fadelist = function (...)
+        if settings._popup_allowed 
+        or settings._popup_allowed == nil then
+            fadelist(...)
+        end
+    end,
+
+    -- }}}
+
+    -- {{{ Spawn based
     -- Spawn with a wait at the end
     spawn_wait = function (app, wait)
         awful.util.spawn_with_shell(app)
@@ -184,20 +338,14 @@ util = {
 
     -- Spawn on bottom screens
     spawn_bottom = function(app)
-        for s=1, 4 do
+        for s=1, lower_screens do
             mouse.screen = s
             awful.util.spawn(app)
         end
     end,
+    -- }}}
 
-    -- Show fadelist only when enabled
-    fadelist = function (...)
-        if settings._popup_allowed 
-        or settings._popup_allowed == nil then
-            fadelist(...)
-        end
-    end,
-
+    -- {{{ Quickmarks based
     -- Send a list of commands to weechat
     weechat_send = function (commands)
         cmds = ""
@@ -285,7 +433,115 @@ util = {
         -- 5/6: irc
         quickmarks.set(awful.client.visible(5)[1], "i")
         quickmarks.set(awful.client.visible(6)[1], "d")
-    end
+    end,
+    -- }}}
+
+    -- {{{ Clients to launch at startup
+    startup = function ()
+        -- Top left
+        mouse.screen = 5
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.irc)
+
+        -- Top right
+        mouse.screen = 6
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.irc)
+
+        -- Main right
+        mouse.screen = 2
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.terminal)
+        util.spawn_wait(apps.terminal)
+        util.spawn_wait(apps.filemanager)
+
+        -- Outer right
+        mouse.screen = 3
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.mail)
+        util.spawn_wait(apps.terminal)
+        util.spawn_wait(apps.htop)
+
+        -- Outer left
+        mouse.screen = 4
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.rtorrent, "0.5")
+        util.spawn_wait(apps.newsbeuter)
+        util.spawn_wait(apps.ncmpcpp)
+
+        -- Main left
+        mouse.screen = 1
+        awful.client.visible(mouse.screen)[1]:kill()
+        util.spawn_wait(apps.browser)
+
+        -- Assign quickmarks
+        local marktimer = timer { timeout = 1 }
+        marktimer:add_signal("timeout", function()
+            -- Set quickmarks
+            util.defquickmarks()
+
+            -- Stop timer
+            marktimer:stop()
+        end)
+        marktimer:start()
+
+        -- Firefox starts so slowly we need to wait longer
+        local fxtimer = timer { timeout = 20 }
+        fxtimer:add_signal("timeout", function()
+            -- Set firefox quickmark again
+            quickmarks.set(awful.client.visible(1)[1], "u")
+
+            -- Stop timer
+            fxtimer:stop()
+        end)
+        fxtimer:start()
+    end,
+    -- }}}
+
+    -- {{{ Other functionality
+    -- Toggle notifications displaying
+    notify_toggle = function ()
+        if settings._naughty_notify == nil then
+            settings._popup_allowed = true
+            settings._naughty_notify = naughty.notify
+            settings._naughty_stub = function(args)end
+        end
+
+        if settings._naughty_notify == naughty.notify then
+            naughty.notify = settings._naughty_stub
+            settings._popup_allowed = false
+        else 
+            naughty.notify = settings._naughty_notify
+            settings._popup_allowed = true
+        end
+    end,
+
+    -- Toglge mpd volume between high and low
+    mdp_togglevolume_high_low =  function ()
+        if settings._mpd_volume == nil then
+            settings._mpd_volume = 74
+        end
+
+        if settings._mpd_volume == 74 then
+            awful.util.spawn_with_shell("mpc volume 30")
+            settings._mpd_volume = 30
+        elseif settings._mpd_volume == 30 then
+            awful.util.spawn_with_shell("mpc volume 74")
+            settings._mpd_volume = 74
+        end
+    end,
+
+    -- Toggle between number or symbol row keymap
+    toggle_numbers = function ()
+        if settings._numbers then
+            settings._numbers = false
+            awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/nonumbers")
+        else 
+            settings._numbers = true
+            awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
+        end
+    end,
+    -- }}}
 }
 -- }}}
 
@@ -354,36 +610,21 @@ bindings = {
         -- Warp pointer to top left of the screen
         [{"Mod4", "Mod1", "$"}] = {mouse.coords, {x = 0, y = 0}},
 
-        -- Click somewhere in the top left of the screen
-        [{"Mod4", "x"}] = function ()
-                              mouse.coords({x = 10, y = 10})
-                              awful.util.spawn_with_shell("sleep 0.2; xdotool click 1")
-                          end,
-
         -- Tag selection
         [{"Mod4", "w"}] = awful.tag.viewnext,
         [{"Mod4", "v"}] = awful.tag.viewprev,
 
         ---- Tag selection on all monitors
-        [{"Mod4", "Mod1", "w"}] = function () for s=1, screen.count() do
-                                              awful.tag.viewnext(screen[s]) end end,
-        [{"Mod4", "Mod1", "v"}] = function () for s=1, screen.count() do
-                                              awful.tag.viewprev(screen[s]) end end,
+        [{"Mod4", "Mod1", "w"}] = {util.screen.do_all, awful.tag.viewnext},
+        [{"Mod4", "Mod1", "v"}] = {util.screen.do_all, awful.tag.viewprev},
 
         -- Tag selection on bottom 4 monitors
-        [{"Mod4", "Mod1", "Shift", "w"}] = function () for s=1, 4 do
-                                           awful.tag.viewnext(screen[s]) end end,
-        [{"Mod4", "Mod1", "Shift", "v"}] = function () for s=1, 4 do
-                                           awful.tag.viewprev(screen[s]) end end,
+        [{"Mod4", "Mod1", "Shift", "w"}] = {util.screen.do_lower, awful.tag.viewnext},
+        [{"Mod4", "Mod1", "Shift", "v"}] = {util.screen.do_lower, awful.tag.viewprev},
 
         -- Window focus
-        [{"Mod4", "t"}] = function () awful.client.focus.byidx(1) 
-                              if client.focus then client.focus:raise() end
-                          end,
-
-        [{"Mod4", "n"}] = function () awful.client.focus.byidx(-1) 
-                              if client.focus then client.focus:raise() end
-                          end,
+        [{"Mod4", "t"}] = {util.client.focusraise_idx, 1},
+        [{"Mod4", "n"}] = {util.client.focusraise_idx, -1},
 
         -- Quickmarks
         [{"Mod4", "-"}] = quickmarks.ifocus,
@@ -404,15 +645,15 @@ bindings = {
         [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
 
         -- Irc quickmarks that focus a particular weechat window
-        [{"Mod4", "Mod5", "Shift", "."}] = {util.weechat_window, 1},
-        [{"Mod4", "Mod5", "Shift", "p"}] = {util.weechat_window, 2},
-        [{"Mod4", "Mod5", "Shift", "g"}] = {util.weechat_window, 5},
-        [{"Mod4", "Mod5", "Shift", "c"}] = {util.weechat_window, 6},
+        [{"Mod4", "Mod5", "Shift", ","}] = {util.weechat_window, 1},
+        [{"Mod4", "Mod5", "Shift", "."}] = {util.weechat_window, 2},
+        [{"Mod4", "Mod5", "Shift", "c"}] = {util.weechat_window, 5},
+        [{"Mod4", "Mod5", "Shift", "r"}] = {util.weechat_window, 6},
 
-        [{"Mod4", "Mod5", "Shift", "e"}] = {util.weechat_window, 3},
-        [{"Mod4", "Mod5", "Shift", "u"}] = {util.weechat_window, 4},
-        [{"Mod4", "Mod5", "Shift", "h"}] = {util.weechat_window, 7},
-        [{"Mod4", "Mod5", "Shift", "t"}] = {util.weechat_window, 8},
+        [{"Mod4", "Mod5", "Shift", "o"}] = {util.weechat_window, 3},
+        [{"Mod4", "Mod5", "Shift", "e"}] = {util.weechat_window, 4},
+        [{"Mod4", "Mod5", "Shift", "t"}] = {util.weechat_window, 7},
+        [{"Mod4", "Mod5", "Shift", "n"}] = {util.weechat_window, 8},
 
         -- Quickmark "^^" is a shortcut for "globally last focussed client."
         [{"Mod4", "Mod5", "-"}] = {quickmarks.focus, "^^"},
@@ -436,18 +677,7 @@ bindings = {
         [{"Mod4", "Shift", "l"}] = {awful.client.incwfact, 0.05},
 
         -- Reset wfact
-        [{"Mod4", "Control", "h"}] = function ()
-            tag = awful.tag.selected()
-            clients = tag:clients()
-            num = #clients-awful.tag.getnmaster(tag)
-            fact = 1/num
-
-            for i,c in ipairs(clients) do
-                if c ~= awful.client.getmaster(c.screen) then
-                    awful.client.setwfact(fact, c)
-                end
-            end
-        end,
+        [{"Mod4", "Control", "h"}] = util.tag.resetwfact,
 
         -- Increase or decrease the number of master windows
         [{"Mod4", "Mod1", "'"}] = {awful.tag.incnmaster, -1},
@@ -457,94 +687,12 @@ bindings = {
         [{"Mod4", "\\"}] = {fadelist, 0},
 
         -- Toggle fadelist display on all screens
-        [{"Mod4", "Mod1", "\\"}] = function ()
-            for s=1, screen.count() do
-                fadelist(0, s)
-            end
-        end,
+        [{"Mod4", "Mod1", "\\"}] = {util.screen.do_all, function (s) fadelist(0,s.index) end},
 
         -- Screen focus
-        [{"Mod4", "h"}] = function ()
-            local capiscreen = screen
-            local screen = mouse.screen
-
-            if capiscreen.count() == 2 then
-                screen = 1+(screen%2)
-            else
-                if screen == 1 then
-                    screen = 4
-                elseif screen == 5 then
-                    screen = 6
-                elseif screen == 6 then
-                    screen = 5
-                else
-                    screen = screen - 1
-                end
-            end
-
-            mouse.screen = screen
-
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
-        end,
-
-        [{"Mod4", "l"}] = function ()
-            local capiscreen = screen
-            local screen = mouse.screen
-
-            if capiscreen.count() == 2 then
-                screen = 1+(screen%2)
-            else
-                if screen == 4 then
-                    screen = 1
-                elseif screen == 5 then
-                    screen = 6
-                elseif screen == 6 then
-                    screen = 5
-                else
-                    screen = screen + 1
-                end
-            end
-                
-            mouse.screen = screen
-
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
-        end,
-
-        [{"Mod4", "g"}] = function ()
-            local screen = mouse.screen
-
-            if screen == 5 then
-                screen = 1
-            elseif screen == 6 then
-                screen = 2
-            elseif screen == 1 or screen == 4 then
-                screen = 5
-            elseif screen == 2 or screen == 3 then
-                screen = 6
-            end
-
-            mouse.screen = screen
-
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
-        end,
+        [{"Mod4", "h"}] = util.screen.focusprev,
+        [{"Mod4", "l"}] = util.screen.focusnext,
+        [{"Mod4", "g"}] = util.screen.focusnextrow,
 
         -- Suspend all activity
         [{"Mod4", "F1"}] = {awful.util.spawn_with_shell, apps.system_suspend},
@@ -553,114 +701,19 @@ bindings = {
         [{"Mod4", "F2"}] = {awful.util.spawn_with_shell, apps.displays_off},
 
         -- Toggle Line In mute
-        [{"Mod4", "F8"}] = function () 
-            awful.util.spawn("amixer set Line toggle")
-        end,
+        [{"Mod4", "F8"}] = {awful.util.spawn, "amixer set Line toggle"},
 
-        -- Toggle naughty notifications displaying
-        [{"Mod4", "F10"}] = function ()
-            if settings._naughty_notify == nil then
-                settings._popup_allowed = true
-                settings._naughty_notify = naughty.notify
-                settings._naughty_stub = function(args)end
-            end
-
-            if settings._naughty_notify == naughty.notify then
-                naughty.notify = settings._naughty_stub
-                settings._popup_allowed = false
-            else 
-                naughty.notify = settings._naughty_notify
-                settings._popup_allowed = true
-            end
-        end,
+        -- Toggle notifications displaying
+        [{"Mod4", "F10"}] = util.notify_toggle,
 
         -- Toggle between low and high mpd volumes
-        [{"Mod4", "F11"}] = function ()
-            if settings._mpd_volume == nil then
-                settings._mpd_volume = 74
-            end
-
-            if settings._mpd_volume == 74 then
-                awful.util.spawn_with_shell("mpc volume 30")
-                settings._mpd_volume = 30
-            elseif settings._mpd_volume == 30 then
-                awful.util.spawn_with_shell("mpc volume 74")
-                settings._mpd_volume = 74
-            end
-        end,
+        [{"Mod4", "F11"}] = util.mpd_togglevolume_high_low,
 
         -- Toggle between numbers and special characters by default on number row
-        [{"Mod4", "F12"}] = function ()
-            if settings._numbers then
-                settings._numbers = false
-                awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/nonumbers")
-            else 
-                settings._numbers = true
-                awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
-            end
-        end,
+        [{"Mod4", "F12"}] = util.toggle_numbers,
 
         -- Start a set of common clients with quickmarks
-        [{"Mod4", "Shift", "KP_Subtract"}] = function ()
-            -- Top left
-            mouse.screen = 5
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.irc)
-
-            -- Top right
-            mouse.screen = 6
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.irc)
-
-            -- Main right
-            mouse.screen = 2
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.terminal)
-            util.spawn_wait(apps.terminal)
-            util.spawn_wait(apps.filemanager)
-
-            -- Outer right
-            mouse.screen = 3
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.mail)
-            util.spawn_wait(apps.terminal)
-            util.spawn_wait(apps.htop)
-
-            -- Outer left
-            mouse.screen = 4
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.rtorrent, "0.5")
-            util.spawn_wait(apps.newsbeuter)
-            util.spawn_wait(apps.ncmpcpp)
-
-            -- Main left
-            mouse.screen = 1
-            awful.client.visible(mouse.screen)[1]:kill()
-            util.spawn_wait(apps.browser)
-
-            -- Assign quickmarks
-            local marktimer = timer { timeout = 1 }
-            marktimer:add_signal("timeout", function()
-                -- Set quickmarks
-                util.defquickmarks()
-
-                -- Stop timer
-                marktimer:stop()
-            end)
-            marktimer:start()
-
-            -- Firefox starts so slowly we need to wait longer
-            local fxtimer = timer { timeout = 20 }
-            fxtimer:add_signal("timeout", function()
-                -- Set firefox quickmark again
-                quickmarks.set(awful.client.visible(1)[1], "u")
-
-                -- Stop timer
-                fxtimer:stop()
-            end)
-            fxtimer:start()
-
-        end,
+        [{"Mod4", "Shift", "KP_Subtract"}] = util.startup,
 
         -- Set quickmarks
         [{"Mod4", "Shift", "KP_Multiply"}] = util.defquickmarks,
@@ -672,7 +725,6 @@ bindings = {
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,
     },
 
-    -- Keybindings with a client
     client = {
         -- Toggle fullscreen
         [{"Mod4", "f"}] = {"+fullscreen"},
@@ -694,53 +746,9 @@ bindings = {
         [{"Mod4", "Shift", "w"}] = util.client.movetonexttag,
         [{"Mod4", "Shift", "v"}] = util.client.movetoprevtag,
 
-        -- Left screenjoin
-        [{"Mod4", "+"}] = function ()
-            awful.client.floating.set(client.focus, true)
-
-            client.focus:geometry({
-                x = 0,
-                y = 0,
-                width = 3360,
-                height = 1050
-            })
-        end,
-
-        -- Right screenjoin
-        [{"Mod4", "]"}] = function ()
-            awful.client.floating.set(client.focus, true)
-
-            client.focus:geometry({
-                x = -1680,
-                y = 0,
-                width = 3360,
-                height = 1050
-            })
-        end,
-
-        -- Left screenjoin bottom
-        [{"Mod4", "Shift", "+"}] = function ()
-            awful.client.floating.set(client.focus, true)
-
-            client.focus:geometry({
-                x = 0,
-                y = -240,
-                width = 3360,
-                height = 1050
-            })
-        end,
-
-        -- Right screenjoin bottom
-        [{"Mod4", "Shift", "]"}] = function ()
-            awful.client.floating.set(client.focus, true)
-
-            client.focus:geometry({
-                x = -1680,
-                y = -240,
-                width = 3360,
-                height = 1050
-            })
-        end,
+        -- Geometry for screenjoins
+        [{"Mod4", "+"}] = {util.client.setfloatgeom, 0, 0, 3360, 1050},
+        [{"Mod4", "]"}] = {util.client.setfloatgeom, -1680, 0, 3360, 1050},
     },
 
     root_buttons = awful.util.table.join(
