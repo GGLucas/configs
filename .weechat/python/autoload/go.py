@@ -242,7 +242,26 @@ def command_run_input(data, buffer, command):
         # switch to selected buffer (if any)
         go_end(buffer)
         if len(buffers) > 0:
-            weechat.command(buffer, "/buffer " + str(buffers[buffers_pos]["number"]))
+            currentbuffer = buffers[buffers_pos]["number"]
+
+            # check for a window opened with this buffer
+            windows = weechat.infolist_get("window", "", "")
+            win = True
+            foundwin = False
+
+            while win:
+                win = weechat.infolist_next(windows)
+                if weechat.buffer_get_integer(weechat.infolist_pointer(windows, "buffer"), "number") == currentbuffer:
+                    foundwin = True
+                    break
+
+            weechat.infolist_free(windows)
+
+            if foundwin:
+                weechat.command(buffer, "/window b" + str(buffers[buffers_pos]["number"]))
+            else:
+                weechat.command(buffer, "/buffer " + str(buffers[buffers_pos]["number"]))
+
         return weechat.WEECHAT_RC_OK_EAT
     return weechat.WEECHAT_RC_OK
 
