@@ -347,6 +347,9 @@ bindings = {
         [{"Mod4", "Mod5", "w"}] = {quickmarks.focus, "w"},
         [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
 
+        -- Quickmark "^^" is a shortcut for "globally last focussed client."
+        [{"Mod4", "Mod5", "-"}] = {quickmarks.focus, "^^"},
+
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
         [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.tile},
@@ -356,6 +359,28 @@ bindings = {
         -- Switch between mwfact modes
         [{"Mod4", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
         [{"Mod4", "Shift", "q"}] = {awful.tag.setmwfact, 0.618033988769},
+
+        -- Increase or decrease mwfact
+        [{"Mod4", "Mod1", "Shift", "h"}] = {awful.tag.incmwfact, -0.05},
+        [{"Mod4", "Mod1", "Shift", "l"}] = {awful.tag.incmwfact, 0.05},
+
+        -- Increase or decrease wfact
+        [{"Mod4", "Shift", "h"}] = {awful.client.incwfact, -0.05},
+        [{"Mod4", "Shift", "l"}] = {awful.client.incwfact, 0.05},
+
+        -- Reset wfact
+        [{"Mod4", "Control", "h"}] = function ()
+            tag = awful.tag.selected()
+            clients = tag:clients()
+            num = #clients-awful.tag.getnmaster(tag)
+            fact = 1/num
+
+            for i,c in ipairs(clients) do
+                if c ~= awful.client.getmaster(c.screen) then
+                    awful.client.setwfact(fact, c)
+                end
+            end
+        end,
 
         -- Increase or decrease the number of master windows
         [{"Mod4", "Mod1", "'"}] = {awful.tag.incnmaster, -1},
@@ -899,22 +924,14 @@ remotefile:start()
 -- {{{ Signals
 -- Client manage
 client.add_signal("manage", function (c, startup)
-    -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
-        if awful.client.focus.filter(c) and awful.client.floating.get(c) then
-            client.focus = c
-        end
+    -- Floating windows are always above the rest
+    c:add_signal("property::floating", function (c)
+        c.above = awful.client.property.get(c, "floating") and true or false
     end)
 
     if not startup then
         -- Set the windows at the slave,
         awful.client.setslave(c)
-
-        -- Put windows in a smart way, only if they does not set an initial position.
-        if not c.size_hints.user_position and not c.size_hints.program_position then
-            awful.placement.no_overlap(c)
-            awful.placement.no_offscreen(c)
-        end
     end
 end)
 

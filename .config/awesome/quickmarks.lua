@@ -65,7 +65,11 @@ end
 
 function focus(key)
     -- Get client
-    client = marks[key]
+    if key == "^^" then
+        client = lastclient
+    else
+        client = marks[key]
+    end
 
     if not client then
         return 1
