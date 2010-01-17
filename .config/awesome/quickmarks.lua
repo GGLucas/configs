@@ -43,6 +43,8 @@ local capi = {
 module("quickmarks")
 
 local marks = {}
+local currentclient = nil
+local lastclient = nil
 
 local function focusclient(client)
     -- Focus screen
@@ -69,8 +71,14 @@ function focus(key)
         return 1
     end
 
-    -- Focus
-    focusclient(client)
+    -- Check if we already have the client focussed
+    if capi.client.focus == client then
+        -- Focus last focused client
+        focusclient(lastclient)
+    else
+        -- Focus found client
+        focusclient(client)
+    end
 end
 
 
@@ -143,3 +151,20 @@ function ifocus()
         return false
     end)
 end
+
+
+-- Keep track of globally previously focused
+capi.client.add_signal("focus", function (c)
+    lastclient = currentclient
+    currentclient = c
+end)
+
+capi.client.add_signal("unmanage", function (c)
+    if lastclient == c then
+        lastclient = nil
+    end
+
+    if currentclient == c then
+        lastclient = nil
+    end
+end)
