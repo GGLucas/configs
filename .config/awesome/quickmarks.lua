@@ -12,6 +12,9 @@
 -- quickmarks.set(client, key)
 ---- Set quickmark for <key> to <client>.
 --
+-- quickmarks.get(key)
+---- Get client with quickmark set to <key>.
+--
 -- quickmarks.iset([client])
 ---- Wait for the next keypress, then bind a quickmark for that
 ---- key to either the currently focused client or the client
@@ -57,10 +60,14 @@ local function focusclient(client)
     capi.client.focus = client
 end
 
-
 function set(client, key)
     -- Set client
     marks[key] = client
+end
+
+function get(key)
+    -- Get client
+    return marks[key]
 end
 
 function focus(key)
@@ -68,7 +75,7 @@ function focus(key)
     if key == "^^" then
         client = lastclient
     else
-        client = marks[key]
+        client = get(key)
     end
 
     if not client then

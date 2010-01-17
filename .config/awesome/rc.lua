@@ -198,6 +198,62 @@ util = {
         end
     end,
 
+    -- Send a list of commands to weechat
+    weechat_send = function (commands)
+        cmds = ""
+
+        for i,cm in ipairs(commands) do
+            cmds = cmds.."*"..cm.."\\n"
+        end
+
+        awful.util.spawn_with_shell("echo -e '"..cmds.."' > ~/.weechat/*fifo*")
+    end,
+
+    -- Focus a particular weechat window
+    weechat_window = function(num)
+        if num < 5 then
+            -- Focus window
+            if quickmarks.get("i") ~= client.focus then
+                quickmarks.focus("i")
+            end
+
+            -- Go to an established position
+            cmd = {"/window left", "/window left", "/window left", "/window left", "/window down"}
+
+            -- Select window
+            if num == 1 then
+                table.insert(cmd, "/window up")
+            elseif num == 2 then
+                table.insert(cmd, "/window up")
+                table.insert(cmd, "/window right")
+            elseif num == 4 then
+                table.insert(cmd, "/window right")
+            end
+
+            util.weechat_send(cmd)
+        else
+            -- Focus window
+            if quickmarks.get("d") ~= client.focus then
+                quickmarks.focus("d")
+            end
+
+            -- Go to an established position
+            cmd = {"/window right", "/window right", "/window right", "/window right", "/window down"}
+
+            -- Select window
+            if num == 5 then
+                table.insert(cmd, "/window up")
+                table.insert(cmd, "/window left")
+            elseif num == 6 then
+                table.insert(cmd, "/window up")
+            elseif num == 7 then
+                table.insert(cmd, "/window left")
+            end
+
+            util.weechat_send(cmd)
+        end
+    end,
+
     -- Quickmarks in default desktop layout
     defquickmarks = function ()
         --- Set correct geometry on irc windows
@@ -346,6 +402,17 @@ bindings = {
         [{"Mod4", "Mod5", "s"}] = {quickmarks.focus, "s"},
         [{"Mod4", "Mod5", "w"}] = {quickmarks.focus, "w"},
         [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
+
+        -- Irc quickmarks that focus a particular weechat window
+        [{"Mod4", "Mod5", "Shift", "."}] = {util.weechat_window, 1},
+        [{"Mod4", "Mod5", "Shift", "p"}] = {util.weechat_window, 2},
+        [{"Mod4", "Mod5", "Shift", "g"}] = {util.weechat_window, 5},
+        [{"Mod4", "Mod5", "Shift", "c"}] = {util.weechat_window, 6},
+
+        [{"Mod4", "Mod5", "Shift", "e"}] = {util.weechat_window, 3},
+        [{"Mod4", "Mod5", "Shift", "u"}] = {util.weechat_window, 4},
+        [{"Mod4", "Mod5", "Shift", "h"}] = {util.weechat_window, 7},
+        [{"Mod4", "Mod5", "Shift", "t"}] = {util.weechat_window, 8},
 
         -- Quickmark "^^" is a shortcut for "globally last focussed client."
         [{"Mod4", "Mod5", "-"}] = {quickmarks.focus, "^^"},
