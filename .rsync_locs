@@ -16,4 +16,4 @@ RSYNC_projects="--delete --exclude-from=$HOME/.rsync_exclude /data/web/projects/
 ### Others
 # Heresy repository for x86_64
 RSYNC_heresy_core="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
-RSYNC_heresy_extra="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/extra/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/extra/x86_64"
+RSYNC_heresy_cake="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/cake/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/cake/x86_64"

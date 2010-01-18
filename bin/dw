@@ -9,6 +9,6 @@ rmdir /data/others/dw
 else
 
 echo "Mounting"
-mkdir /data/others/dw && sudo truecrypt -t /mnt/data-3/virtual/crypt.img /data/others/dw
+mkdir /data/others/dw && sudo truecrypt -t -m=nokernelcrypto /mnt/data-3/virtual/crypt.img /data/others/dw
 
 fi
