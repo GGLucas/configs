@@ -1,13 +1,13 @@
 theme = {}
 
 -- Background
-theme.bg_normal = "#22222222"
+theme.bg_normal = "#222222"
 theme.bg_focus = "#285577"
-theme.bg_sbfocus = '#11335565'
 theme.bg_urgent = '#A10000'
 
 -- Foreground
 theme.fg_normal = '#999999'
+theme.fg_prompt = '#ffffff'
 theme.fg_focus = '#ffffff'
 theme.fg_urgent = '#ffffff'
 

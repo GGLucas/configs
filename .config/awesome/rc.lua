@@ -66,8 +66,6 @@ apps = {
     -- MPD Control
     -- * Toggle music
     mpd_toggle = "mpc_toggle",
-    -- * Show currently playing
-    mpd_show = "mpc_show",
 
     -- Different tmux windows
     irc = "urxvtc -e tmux -2 attach-session -t irc",
@@ -258,10 +256,10 @@ util = {
 
         -- Create wibox
         local promptbox = wibox({
-            fg = beautiful.fg_normal,
-            bg = beautiful.bg_normal,
-            border_width = beautiful.border_width,
-            border_color = beautiful.border_focus,
+            fg = beautiful.fg_prompt or beautiful.fg_normal,
+            bg = beautiful.bg_prompt or beautiful.bg_normal,
+            border_width = beautiful.border_width_prompt or beautiful.border_width,
+            border_color = beautiful.border_focus_prompt or beautiful.border_focus,
         })
 
         -- Create textbox to type in
@@ -274,9 +272,9 @@ util = {
 
         -- Default geometry
         promptgeom = {
-            width = width or 400+margin*2,
+            width = width or 800+margin*2,
             height = height or 20+margin*2,
-            x = screen[sc].workarea.width-(width or (400+margin*2)),
+            x = screen[sc].workarea.width/2-(width or (800+margin*2))/2,
             y = 0,
         }
 
@@ -498,6 +496,16 @@ util = {
     end,
     -- }}}
 
+    -- {{{ Notification base
+    notify_mpd = function ()
+        fd = io.popen("mpc_show")
+        info = fd:read()
+        fd:close()
+
+        naughty.notify {title="Now Playing", text=info, timeout=5}
+    end,
+    -- }}}
+
     -- {{{ Other functionality
     -- Toggle notifications displaying
     notify_toggle = function ()
@@ -599,7 +607,7 @@ bindings = {
         [{"Mod4", "e"}] = {awful.util.spawn, apps.filemanager},
 
         -- Show MPD currently playing song
-        [{"Mod4", "p"}] = {awful.util.spawn_with_shell, apps.mpd_show},
+        [{"Mod4", "p"}] = util.notify_mpd,
 
         -- Start rodentbane cursor navigation
         [{"Mod4", "r"}] = rodentbane.start,
