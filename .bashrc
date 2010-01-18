@@ -97,6 +97,7 @@ alias no='ls'
 alias na='ll'
 
 # Abbreviations
+alias prf='export WINEPREFIX=$(pwd)'
 alias i='makepkg -fi'
 alias a='git add'
 alias d='git diff'
@@ -106,43 +107,44 @@ alias pg='$PAGER'
 alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
-alias w='ani watch:'
-alias lo='ani log:'
-alias an='ani list: +w =anime'
-alias anh='ani hist: +w =anime'
-alias tn='ani list: +w =tv'
-alias tnh='ani hist: +w =tv'
 
 # Shortcuts
-alias slide='qiv -usrtm -d 7 -B '
-alias prf='export WINEPREFIX=$(pwd)'
+slide() { qiv -usrtm -d 7 -B $1 & }
+
+# Watch list shortcuts
+w()   { ani watch: $@; }
+lo()  { ani log: $@; }
+an()  { ani list: +w =anime; }
+anh() { ani hist: +w =anime; }
+tn()  { ani list: +w =tv; }
+tnh() { ani hist: +w =tv; }
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
 
 # Tofu organiser shortcuts
-orgn(){ tofu org next feed="$1"${@#$1} && tofu org; }
-org(){ tofu org $@; }
-miscn(){ tofu misc next feed="$1"${@#$1} && tofu misc; }
-misc(){ tofu misc $@; }
-projn(){ tofu proj next feed="$1"${@#$1} && tofu proj; }
-proj(){ tofu proj $@; }
-todosync(){ unison -batch ~/.tofu ssh://root@glacicle.org//root/todo; }
+orgn()     { tofu org next feed="$1"${@#$1} && tofu org; }
+org()      { tofu org $@; }
+miscn()    { tofu misc next feed="$1"${@#$1} && tofu misc; }
+misc()     { tofu misc $@; }
+projn()    { tofu proj next feed="$1"${@#$1} && tofu proj; }
+proj()     { tofu proj $@; }
+todosync() { unison -batch ~/.tofu ssh://root@glacicle.org//root/todo; }
 
 # Shortcut functions
 x(){ cd ~; xinit $@; }
 
 # Daemon shortcuts
-dr(){ for d in $@; do sudo /etc/rc.d/$d restart; done; }
-ds(){ for d in $@; do sudo /etc/rc.d/$d start; done; }
-dt(){ for d in $@; do sudo /etc/rc.d/$d stop; done; }
+dr() { for d in $@; do sudo /etc/rc.d/$d restart; done; }
+ds() { for d in $@; do sudo /etc/rc.d/$d start; done; }
+dt() { for d in $@; do sudo /etc/rc.d/$d stop; done; }
 
 # Local server start and stop
-sstart(){ ds httpd mysqld; }
-sstop(){ dt httpd mysqld; }
+sstart() { ds httpd mysqld; }
+sstop()  { dt httpd mysqld; }
 
 # Wrapper for tvtime
-tvtime(){
+tvtime() {
     sudo modprobe -a saa7134_alsa saa7134
     while [[ ! -e /dev/video0 ]]; do sleep 0.5; done;
     sudo /usr/bin/tvtime
@@ -150,31 +152,31 @@ tvtime(){
 }
 
 # Commit git -a or path
-c (){
+c() {
     [[ $@ ]] && git commit $@ || git commit -a
 }
 
 # Download package from abs
-absd (){
+absd() {
     abs $1/$2
     cp -R /var/abs/$1/$2 ~/sources/
     cd ~/sources/$2
 }
 
-aurd (){
+aurd() {
     slurpy -c -t ~/sources/ -f -d $*
     cd ~/sources/$1
 }
 
 # Flatten function
-flat (){
+flat() {
     mkdir ../__flat;
     find . -print0 | xargs -0 -i'{}' cp '{}' ../__flat;
     mv ../__flat/* . && rmdir ../__flat
 }
 
 # Resquash everything but usr
-squashall(){
+squashall() {
     sudo resquash lib
     sudo resquash lib64
     sudo resquash bin
@@ -183,7 +185,7 @@ squashall(){
 
 # Weekly schedule shortcuts
 ## Display daily schedule
-day(){
+day() {
     week=$(date +%V)
     flags="";
     [[ $((week%2)) -eq 0 ]] && flags="$flags\e[1;32m2" || flags="$flags\e[1;31m-";
@@ -202,7 +204,7 @@ day(){
 }
 
 ## Add new item
-dayn(){
+dayn() {
     day="${1,,}"
     feed="$2"
     shift 2
@@ -212,7 +214,7 @@ dayn(){
 ## Map function for bash.
 # Courtesy downdiagonal on reddit.
 # http://www.reddit.com/r/linux/comments/akt3j
-map(){
+map() {
     local command i rep
     if [ $# -lt 2 ] || [[ ! "$@" =~ :[[:space:]] ]];then
         echo "Invalid syntax." >&2; return 1

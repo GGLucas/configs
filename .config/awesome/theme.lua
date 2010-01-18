@@ -1,7 +1,7 @@
 theme = {}
 
 -- Background
-theme.bg_normal = "#222222"
+theme.bg_normal = "#444444"
 theme.bg_focus = "#285577"
 theme.bg_urgent = '#A10000'
 

@@ -28,6 +28,9 @@ require("rodentbane")
 -- Quickmarks: Rapid client focus jumping by hotkey
 require("quickmarks")
 
+-- Advprompt: A more advanced prompt that can display output
+require("advprompt")
+
 -- {{{ Configuration
 -- Beautiful colors
 beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
@@ -74,6 +77,10 @@ apps = {
     newsbeuter = "urxvtc -e tmux -2 attach-session -t rss",
     ncmpcpp = "urxvtc -e tmux -2 attach-session -t mpd",
 }
+
+-- Advprompt
+advprompt.term = apps.terminal.." -e /bin/bash -c \"source .bashrc; %s; bash\""
+advprompt.shell = "/bin/bash -c \"source .bashrc; %s\""
 -- }}}
 
 -- {{{ Utility functions
@@ -250,64 +257,6 @@ util = {
     -- }}}
 
     -- {{{ Prompts / wiboxes
-    prompt = function(text, callback, width, height, margin)
-        -- Get current screen
-        local sc = mouse.screen
-
-        -- Create wibox
-        local promptbox = wibox({
-            fg = beautiful.fg_prompt or beautiful.fg_normal,
-            bg = beautiful.bg_prompt or beautiful.bg_normal,
-            border_width = beautiful.border_width_prompt or beautiful.border_width,
-            border_color = beautiful.border_focus_prompt or beautiful.border_focus,
-        })
-
-        -- Create textbox to type in
-        local textbox = widget({
-            type = "textbox",
-        })
-
-        -- Set margin
-        margin = margin or 4
-
-        -- Default geometry
-        promptgeom = {
-            width = width or 800+margin*2,
-            height = height or 20+margin*2,
-            x = screen[sc].workarea.width/2-(width or (800+margin*2))/2,
-            y = 0,
-        }
-
-        awful.widget.layout.margins[textbox] = {
-            right = margin, left = margin, 
-        }
-
-        -- Show promptbox
-        promptbox.ontop = true
-        promptbox.widgets = {textbox,
-        layout = awful.widget.layout.horizontal.leftright}
-        promptbox:geometry(promptgeom)
-        promptbox.screen = sc
-
-        -- Run prompt
-        awful.prompt.run({
-            prompt = text,
-        }, textbox, callback,
-        awful.completion.bash,
-        awful.util.getdir("cache").."/history",
-        50,
-        function ()
-            promptbox.screen = nil
-        end)
-    end,
-
-    -- Show fadelist only when enabled
-    fadelist = function (...)
-        if settings._popup_allowed 
-        or settings._popup_allowed == nil then
-            fadelist(...)
-        end
-    end,
 
     -- }}}
 
@@ -496,7 +445,7 @@ util = {
     end,
     -- }}}
 
-    -- {{{ Notification base
+    -- {{{ Notification based
     notify_mpd = function ()
         fd = io.popen("mpc_show")
         info = fd:read()
@@ -521,6 +470,14 @@ util = {
         else 
             naughty.notify = settings._naughty_notify
             settings._popup_allowed = true
+        end
+    end,
+
+    -- Show fadelist only when enabled
+    fadelist = function (...)
+        if settings._popup_allowed 
+        or settings._popup_allowed == nil then
+            fadelist(...)
         end
     end,
 
@@ -587,7 +544,7 @@ bindings = {
 
         -- Drop-down urxvtc terminal
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
-        
+
         -- Pull-left urxvtc terminal
         [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 1},
 
@@ -601,7 +558,10 @@ bindings = {
         [{"Mod4", "."}] = {awful.util.spawn, apps.mpd_toggle},
 
         -- Open spawn prompt
-        [{"Mod4", ","}] = {util.prompt, "Run: ", awful.util.spawn},
+        [{"Mod4", ","}] = {advprompt},
+
+        -- Close all output notifications
+        [{"Mod4", "Shift", ","}] = advprompt.closeall,
 
         -- Open file manager
         [{"Mod4", "e"}] = {awful.util.spawn, apps.filemanager},
