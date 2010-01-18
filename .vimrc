@@ -183,6 +183,7 @@ set nocursorline
 
 " Characters to use in list mode
 set listchars=tab:▸\ ,trail:·
+set list
 
 " Enter spaces when tab is pressed:
 set expandtab
