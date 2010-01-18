@@ -173,7 +173,7 @@ else
     set t_Co=256
     colorscheme oblivion
 endif
-  
+
 " Config
 " Use UTF-8 encoding
 set encoding=utf-8
@@ -182,7 +182,7 @@ set encoding=utf-8
 set nocursorline
 
 " Characters to use in list mode
-set listchars=eol:$,tab:>-,trail:·
+set listchars=tab:▸\ ,trail:·
 
 " Enter spaces when tab is pressed:
 set expandtab
