@@ -9,27 +9,6 @@ LABEL=ArchRoot / ext4 defaults,barrier=0,noatime,nodiratime 0 0
 none                   /dev/pts      devpts    defaults            0      0
 none                   /dev/shm      tmpfs     defaults            0      0
 
-# Mount directories compressed
-## /usr
-/squashed/usr/usr.sfs /squashed/usr/ro squashfs loop,ro 0 0
-usr /usr aufs udba=reval,br:/squashed/usr/rw:/squashed/usr/ro 0 0
-
-## /lib
-/squashed/lib/lib.sfs /squashed/lib/ro squashfs loop,ro 0 0
-lib /lib aufs udba=reval,br:/squashed/lib/rw:/squashed/lib/ro 0 0
-
-## /lib64
-/squashed/lib64/lib64.sfs /squashed/lib64/ro squashfs loop,ro 0 0
-lib64 /lib64 aufs udba=reval,br:/squashed/lib64/rw:/squashed/lib64/ro 0 0
-
-## /bin
-/squashed/bin/bin.sfs /squashed/bin/ro squashfs loop,ro 0 0
-bin /bin aufs udba=reval,br:/squashed/bin/rw:/squashed/bin/ro 0 0
-
-## /sbin
-/squashed/sbin/sbin.sfs /squashed/sbin/ro squashfs loop,ro 0 0
-sbin /sbin aufs udba=reval,br:/squashed/sbin/rw:/squashed/sbin/ro 0 0
-
 # Opticals
 /dev/dvd /mnt/dvd   udf   ro,user,noauto,unhide   0      0
 
@@ -53,9 +32,16 @@ LABEL=Data-4 /mnt/data-4 ext4 defaults,barrier=0,noatime,nodiratime 0 0
 
 # Data union partition
 #### mhddfs union:
-mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,allow_other 0 0
+#mhddfs#/mnt/data-4,/mnt/data-3,/mnt/data-2 /data fuse defaults,noatime,allow_other 0 0
+
 #### aufs union
 #data /data aufs br:/mnt/data-4=rw:/mnt/data-3=rw:/mnt/data-2=rw,create=mfs 0 0
 
+#### unionfs-fuse union
+/usr/sbin/unionfs#/mnt/data-4=RW:/mnt/data-3=RW:/mnt/data-2=RW /data fuse noatime,user 0 0
+
 # iRiver
 /dev/disk/by-id/usb-iriver_S10-0:0 /mnt/iriver auto rw,user,noauto 0 0
+
+# UsbData
+/dev/disk/by-label/USBData /mnt/data-usb auto rw,user,noauto 0 0
