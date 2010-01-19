@@ -298,7 +298,11 @@ util = {
         cmds = ""
 
         for i,cm in ipairs(commands) do
-            cmds = cmds.."*"..cm.."\\n"
+            if i > 1 then
+                cmds = cmds.."\\n"
+            end
+
+            cmds = cmds.."*"..cm
         end
 
         awful.util.spawn_with_shell("echo -e '"..cmds.."' > ~/.weechat/*fifo*")
