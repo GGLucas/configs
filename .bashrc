@@ -77,6 +77,9 @@ case "$-" in *i*)
     # Search
     bind '"\ea":" | ack "'
 
+    # Display status
+    bind '"\ez":"; ns\C-m"'
+
     # Clear
     bind '"\el":"clear \C-m"'
 ;; esac;
@@ -143,6 +146,15 @@ dt() { for d in $@; do sudo /etc/rc.d/$d stop; done; }
 sstart() { ds httpd mysqld; }
 sstop()  { dt httpd mysqld; }
 
+# Notify command exit status
+ns() {
+    cmd=$(history 1 | head -n 1 | sed "s|^[^\s]* ||" | sed "s|; ns.*$||")
+    status=$?
+
+    [[ $? == 0 ]] && notify-send --always "$cmd" "Successfully finished." \
+                  || notify-send --critical "$cmd" "Returned with error code $?"
+}
+
 # Wrapper for tvtime
 tvtime() {
     sudo modprobe -a saa7134_alsa saa7134
@@ -163,6 +175,7 @@ absd() {
     cd ~/sources/$2
 }
 
+# Download package from our
 aurd() {
     slurpy -c -t ~/sources/ -f -d $*
     cd ~/sources/$1

@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [[ "$1" == "--critical" ]]; then
+    shift
+    critical="y"
+fi
+
+if [[ "$1" == "--always" ]]; then
+    shift
+    always="y"
+fi
+
 # Escape problematic characters
 escape() {
     t=$@
@@ -19,15 +29,22 @@ else
     text=$(escape "$1")
 fi
 
-# Default colors
-bg='nil'
-fg='nil'
+
+cmd="naughty.notify { title=\"$title\", text=\"$text\", screen=mouse.screen"
 
 # Use different colors for different things
 if [[ "$title" == "newsbeuter" ]]; then
-    # Newsbeuter
-    bg='"#547045"'
-    fg='"#ffffff"'
+    cmd="$cmd, bg='#547045', fg='#ffffff'"
 fi
 
-echo "naughty.notify { title=\"$title\", text=\"$text\", bg=$bg, fg=$fg }" >> /tmp/awesome-remote
+# Other arguments
+if [[ "$always" == "y" ]]; then
+    cmd="$cmd, timeout=0"
+fi
+
+if [[ "$critical" == "y" ]]; then
+    cmd="$cmd, preset=naughty.config.presets.critical"
+fi
+
+# Send argument
+echo "$cmd }" >> /tmp/awesome-remote

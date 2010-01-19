@@ -45,8 +45,7 @@ local function run(cmd)
         data = pipe:read("*all"):gsub("[^m]*m", "")
         pipe:close()
 
-        notif = naughty.notify { title = cmd, text = data, timeout = 0 }
-        table.insert(notifications, notif)
+        naughty.notify { title = cmd, text = data, timeout = 0 }
     elseif char == ":" then
         cmd = cmd:sub(2)
         loadstring(cmd)()
@@ -112,12 +111,6 @@ local function prompt(width, height, margin)
     function ()
         promptbox.screen = nil
     end)
-end
-
-function closeall()
-    for i, notif in ipairs(notifications) do
-        naughty.destroy(notif)
-    end
 end
 
 setmetatable(_M, { __call = function(_, ...) return prompt(...) end })

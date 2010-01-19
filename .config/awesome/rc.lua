@@ -446,12 +446,24 @@ util = {
     -- }}}
 
     -- {{{ Notification based
+    -- Notify mpd status
     notify_mpd = function ()
         fd = io.popen("mpc_show")
         info = fd:read()
         fd:close()
 
         naughty.notify {title="Now Playing", text=info, timeout=5}
+    end,
+
+    -- Clear all notifications
+    notify_clear = function ()
+        for s = 1, screen.count() do
+            for p,pos in pairs(naughty.notifications[s]) do
+                for i,notification in pairs(naughty.notifications[s][p]) do
+                    naughty.destroy(notification)
+                end
+            end
+        end
     end,
     -- }}}
 
@@ -561,7 +573,7 @@ bindings = {
         [{"Mod4", ","}] = {advprompt},
 
         -- Close all output notifications
-        [{"Mod4", "Shift", ","}] = advprompt.closeall,
+        [{"Mod4", "Shift", ","}] = util.notify_clear,
 
         -- Open file manager
         [{"Mod4", "e"}] = {awful.util.spawn, apps.filemanager},
@@ -897,10 +909,14 @@ naughty.config.spacing = -1
 -- Lower timeout
 naughty.config.presets.normal.timeout = 3
 
--- Colours
+-- Normal colours
 naughty.config.presets.normal.bg = "#444444"
 naughty.config.presets.normal.fg = "#ffffff"
 naughty.config.presets.normal.border_color = "#ffffff"
+-- Critical colours
+naughty.config.presets.critical.bg = "#ee2222"
+naughty.config.presets.critical.fg = "#ffffff"
+naughty.config.presets.critical.border_color = "#ff6666"
 
 -- Regular font
 naughty.config.presets.normal.font = "Terminus 10"
@@ -984,7 +1000,6 @@ client.add_signal("focus", function(c)
     c.border_color = beautiful.border_focus
 
     -- Update screen focus
-    naughty.config.presets.normal.screen = c.screen
     if mailnotify.screen then mailnotify.screen = c.screen end
 end)
 
