@@ -29,7 +29,7 @@ local io = { popen = io.popen }
 -- Advprompt: A more advanced prompt that can display output
 module("advprompt")
 
-shell = (os.getenv("SHELL") or "/bin/sh").." -c \"%s\""
+shell = (os.getenv("SHELL") or "/bin/sh").." -c \"exec %s\""
 term = "xterm -e \"%s\""
 
 local notifications = {}

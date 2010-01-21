@@ -80,7 +80,7 @@ apps = {
 
 -- Advprompt
 advprompt.term = apps.terminal.." -e /bin/bash -c \"source .bashrc; %s; bash\""
-advprompt.shell = "/bin/bash -c \"source .bashrc; %s\""
+advprompt.shell = "/bin/bash -c \"source .bashrc; exec %s\""
 -- }}}
 
 -- {{{ Utility functions
@@ -423,7 +423,7 @@ util = {
         -- Main left
         mouse.screen = 1
         awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.browser)
+        awful.util.spawn(apps.browser)
 
         -- Assign quickmarks
         local marktimer = timer { timeout = 1 }
