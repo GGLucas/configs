@@ -456,7 +456,7 @@ util = {
         info = fd:read()
         fd:close()
 
-        naughty.notify {title="Now Playing", text=info, timeout=5}
+        naughty.notify {title="Now Playing", text=info, timeout=5, screen=mouse.screen}
     end,
 
     -- Clear all notifications

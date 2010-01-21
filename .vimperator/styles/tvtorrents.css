@@ -57,8 +57,7 @@ td[colspan="3"] a
 
 *
 {
-   font-family:terminus!important;
-   font-size: 14px !important;
+   font-size: 13px !important;
 }
 
 #chatInput.tinput 
@@ -111,7 +110,6 @@ td[colspan="3"] a
    background-color:#242424 !important;
    padding: 4px!important;
    font-size: 15px!important;
-   font-family:verdana!important;
    color: #9fbc00!important;
 }
 
@@ -119,7 +117,6 @@ td[colspan="3"] a
 {
    background:none!important;
    font-size:11px!important;
-   font-family:verdana!important;
    padding:5px!important;
    margin-bottom:2px!important;
 }

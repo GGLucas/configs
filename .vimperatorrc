@@ -125,4 +125,4 @@ hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 
 " Ignore body onclick
-set hinttags="//*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[name()!='BODY' and @onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"
+set hinttags="//input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select"

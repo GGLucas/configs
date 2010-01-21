@@ -1,19 +1,24 @@
 #!/bin/zsh
 
+### Common options
+del="--delete"
+exc="--exclude-from=$HOME/.rsync_exclude"
+
+### Glacicle
+## Project website directories
+RSYNC_projects="$del $exc /data/web/projects/ root@glacicle.org:/srv/www/projects"
+
 ### Zorgberaad
 ## Zorgberaadmh.nl website
-RSYNC_zorgberaadmh="--delete --exclude-from=$HOME/.rsync_exclude /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
+RSYNC_zorgberaadmh="$del $exc /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
 
 ## New followe system
-RSYNC_followe="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe/ root@glacicle.com:/srv/www/zorgberaad/followe"
+RSYNC_followe="$del $exc /data/web/followe/ root@glacicle.com:/srv/www/zorgberaad/followe"
 
 ## Old followe system
-RSYNC_followe_old="--delete --exclude-from=$HOME/.rsync_exclude /data/web/followe_old/ root@glacicle.org:/srv/www/zorgberaad/followe_old"
+RSYNC_followe_old="$del $exc /data/web/followe_old/ root@glacicle.org:/srv/www/zorgberaad/followe_old"
 
-## Project website directories
-RSYNC_projects="--delete --exclude-from=$HOME/.rsync_exclude /data/web/projects/ root@glacicle.org:/srv/www/projects"
-
-### Others
-# Heresy repository for x86_64
-RSYNC_heresy_core="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
-RSYNC_heresy_cake="--delete --exclude-from=$HOME/.rsync_exclude /data/others/heresy_build/pkg/pkg/cake/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/cake/x86_64"
+### Heresy
+RSYNC_heresy_core="$del $exc /data/others/heresy_build/pkg/pkg/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
+RSYNC_heresy_cake="$del $exc /data/others/heresy_build/pkg/pkg/cake/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/cake/x86_64"
+RSYNC_heresy_dev="$exc /data/projects/contrib/heresy-devcheck/ heresy@hereticlinux.org:/www/heresy/dev"
