@@ -52,8 +52,11 @@ local function run(cmd)
     elseif char == "," then
         cmd = cmd:sub(2)
         awful.util.spawn(term:format(cmd))
-    else
+    elseif char == "." then
+        cmd = cmd:sub(2)
         awful.util.spawn(shell:format(cmd))
+    else
+        awful.util.spawn(cmd)
     end
 end
 

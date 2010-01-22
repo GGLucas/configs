@@ -74,6 +74,12 @@ noremap <silent> <leader>d :removetabsleft<CR>
 noremap <A-t> :tabopen!<Space>
 noremap <A-w> :winopen<Space>
 
+" Video control keys
+noremap <silent> <leader>p :stplay<CR>
+noremap <silent> <leader>P :stpause<CR>
+noremap <silent> <leader>l :stlarge<CR>
+
+
 " Command line cursor keys
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
@@ -100,8 +106,9 @@ hi HintActive none: none;
 
 " Statusbar and commandline styling
 hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
-hi StatusLineBroken background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
-hi StatusLineSecure background: #141414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
+hi StatusLineBroken background: #1a1414; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
+hi StatusLineExtended background: #141a14; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
+hi StatusLineSecure background: #14141a; color: #9FBC00; font-family: terminus; font-size: 10pt; font-weight: normal;
 
 hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; font-weight: normal; color: white; background: #141414;
 hi Normal background: #141414; color: white;
@@ -123,3 +130,36 @@ hi CompMsg              font-style: italic; margin-left: 16px;
 hi CompResult           width: 45%; overflow: hidden;font-size: 10pt; font-family: monospace; font-weight: normal;
 hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
+
+" Youtube settings on load
+au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args["url"])
+js <<EOF
+loadYoutube = function (url)
+{
+    let browsers = window.getBrowser().browsers;
+
+    for (let i=0; i < browsers.length; i++)
+    {
+        let browser = browsers[i];
+        let doc = browser.contentDocument;
+        if (!url || browser.contentDocument.location.href == url)
+        {
+            let player = doc.getElementById("movie_player");
+            if (player)
+            {
+                let base = doc.getElementById("baseDiv");
+                player = player.wrappedJSObject;
+
+                // Wide mode by default
+                base.className = (base.className || "")+" watch-wide-mode"
+
+                // Try the highest quality
+                player.setPlaybackQuality("hd720");
+
+                // Don't start playing
+                player.pauseVideo();
+            }
+        }
+    }
+}
+EOF

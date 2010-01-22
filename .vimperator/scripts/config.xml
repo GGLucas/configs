@@ -5,9 +5,6 @@
 		<Exclude>http://www.reddit.com/*/comments/*</Exclude>
 		<Exclude>http://www.reddit.com/r/*/comments/*</Exclude>
 	</Script>
-	<Script filename="youtube_hd_ultimate.user.js" name="YouTube HD Ultimate" namespace="#aVg" description="The best of the hundreds of YouTube scripts, because we make it. Updated all the time, by me and you! Your favorite YouTube script is better than ever!" enabled="true" basedir="youtube_hd_ultimate">
-		<Include>http://www.youtube.com/watch?*</Include>
-	</Script>
 	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="true" basedir="smbc_reader">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>
