@@ -132,34 +132,29 @@ hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 
 " Youtube settings on load
-au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args["url"])
+au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args.tab)
 js <<EOF
-loadYoutube = function (url)
+loadYoutube = function (tab)
 {
-    let browsers = window.getBrowser().browsers;
+    let doc = tabs.getTab(tab-1).linkedBrowser.contentDocument;
+    let player = doc.getElementById("movie_player");
+    let base = doc.getElementById("baseDiv");
 
-    for (let i=0; i < browsers.length; i++)
+    if (base)
     {
-        let browser = browsers[i];
-        let doc = browser.contentDocument;
-        if (!url || browser.contentDocument.location.href == url)
-        {
-            let player = doc.getElementById("movie_player");
-            if (player)
-            {
-                let base = doc.getElementById("baseDiv");
-                player = player.wrappedJSObject;
+        // Wide mode by default
+        base.className = (base.className || "")+" watch-wide-mode"
+    }
 
-                // Wide mode by default
-                base.className = (base.className || "")+" watch-wide-mode"
+    if (player)
+    {
+        player = player.wrappedJSObject;
 
-                // Try the highest quality
-                player.setPlaybackQuality("hd720");
+        // Try the highest quality
+        player.setPlaybackQuality("hd720");
 
-                // Don't start playing
-                player.pauseVideo();
-            }
-        }
+        // Don't start playing
+        player.pauseVideo();
     }
 }
 EOF
