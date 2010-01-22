@@ -82,6 +82,7 @@ old_input = None
 # matching buffers
 buffers = []
 buffers_pos = 0
+buffers_match_window = False
 
 if weechat.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, SCRIPT_LICENSE,
                     SCRIPT_DESC, "go_unload_script", ""):
@@ -136,10 +137,11 @@ def go_end(buffer):
 
 def go_cmd(data, buffer, args):
     """ Command "/go": just hook what we need """
-    global hooks
+    global hooks, buffers_match_window
     if "modifier" in hooks:
         go_end(buffer)
     else:
+        buffers_match_window = (args == "-window")
         go_start(buffer)
     return weechat.WEECHAT_RC_OK
 
@@ -245,19 +247,20 @@ def command_run_input(data, buffer, command):
             currentbuffer = buffers[buffers_pos]["number"]
 
             # check for a window opened with this buffer
-            windows = weechat.infolist_get("window", "", "")
-            win = True
-            foundwin = False
+            if buffers_match_window:
+                windows = weechat.infolist_get("window", "", "")
+                win = True
+                foundwin = False
 
-            while win:
-                win = weechat.infolist_next(windows)
-                if weechat.buffer_get_integer(weechat.infolist_pointer(windows, "buffer"), "number") == currentbuffer:
-                    foundwin = True
-                    break
+                while win:
+                    win = weechat.infolist_next(windows)
+                    if weechat.buffer_get_integer(weechat.infolist_pointer(windows, "buffer"), "number") == currentbuffer:
+                        foundwin = True
+                        break
 
-            weechat.infolist_free(windows)
+                weechat.infolist_free(windows)
 
-            if foundwin:
+            if buffers_match_window and foundwin:
                 weechat.command(buffer, "/window b" + str(buffers[buffers_pos]["number"]))
             else:
                 weechat.command(buffer, "/buffer " + str(buffers[buffers_pos]["number"]))
