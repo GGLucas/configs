@@ -78,7 +78,7 @@ noremap <A-w> :winopen<Space>
 noremap <silent> <leader>p :stplay<CR>
 noremap <silent> <leader>P :stpause<CR>
 noremap <silent> <leader>l :stlarge<CR>
-
+noremap <silent> <leader>m :stmute<CR>
 
 " Command line cursor keys
 cnoremap <C-h> <Left>

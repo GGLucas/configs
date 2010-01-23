@@ -45,6 +45,12 @@ div#siteTable div.md
     background: #141414 !important;
 }
 
+.message.new > .entry
+{
+    background: #141414 !important;
+    border: 0 !important;
+}
+
 div.md a:visited
 {
     color:white !important;
