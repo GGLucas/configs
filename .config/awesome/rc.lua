@@ -589,7 +589,7 @@ bindings = {
         [{"Mod4", "r"}] = rodentbane.start,
 
         -- Start rodentbane cursor navigation in recall mode
-        [{"Mod4", "Shift", "r"}] = {rodentbane.start, mouse.screen, true},
+        [{"Mod4", "Shift", "r"}] = {rodentbane.start, false, true},
 
         -- Warp pointer to top left of the screen
         [{"Mod4", "Mod1", "$"}] = {mouse.coords, {x = 0, y = 0}},

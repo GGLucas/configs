@@ -17,6 +17,9 @@ theme.border_normal = '#000000'
 theme.border_focus = '#aaaaaa'
 theme.border_marked = '#91231c'
 
+-- Rodentbane
+theme.rodentbane_bg = '#285577'
+
 -- Taglist squares
 theme.taglist_squares_sel = '~/.config/awesome/squarefw.png'
 theme.taglist_squares_unsel = '~/.config/awesome/squarew.png'

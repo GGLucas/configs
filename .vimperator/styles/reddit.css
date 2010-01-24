@@ -233,6 +233,16 @@ a.author[href="http://www.reddit.com/user/GGLucas"]
     color: #7060cc !important;
 }
 
+.nsfw-stamp
+{
+    background: #341414 !important;
+    border-color: #541414 !important;
+}
+
+.nsfw-stamp acronym
+{
+    color: white !important;
+}
 
 /* Comment boxes */
 div.comment, div.message {
