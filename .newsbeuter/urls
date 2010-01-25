@@ -127,3 +127,8 @@ http://www.mangafox.com/rss/mahou_shoujo_lyrical_nanoha_vivid.xml
 # Mahou Senki Lyrical Nanoha Force
 http://www.mangafox.com/rss/mahou_senki_lyrical_nanoha_force.xml
 ####
+
+## Queries
+####
+"query:Read Articles:unread = \"no\""
+####
