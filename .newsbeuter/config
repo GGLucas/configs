@@ -37,5 +37,5 @@ highlight article "^(Feed|Title|Author|Link|Date):.*$" cyan black
 highlight article "https?://[^ ]+" red black
 
 # Notification
-notify-program "notify-newsbeuter"
-notify-format "%n new articles, %f unread feeds"
+#notify-program "notify-newsbeuter"
+#notify-format "%n new articles, %f unread feeds"
