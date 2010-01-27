@@ -117,6 +117,7 @@ slide() { qiv -usrtm -d 7 -B $1 & }
 # Watch list shortcuts
 w()   { ani watch: $@; }
 lo()  { ani log: $@; }
+wh()  { ani hist: +w; }
 an()  { ani list: +w =anime; }
 anh() { ani hist: +w =anime; }
 tn()  { ani list: +w =tv; }
