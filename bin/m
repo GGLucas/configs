@@ -1,9 +1,19 @@
 #!/bin/bash
 # Mount all dm-crypt partitions with 1 passphrase
-
 # Arguments
 cmd="$1"
 group="$2"
+
+## Prompt for mount
+if [[ "$cmd" == "prompt" ]]; then
+    read -n 1 -p "Mount group ${group}? [Y/n] " mnt
+    if [[ "$mnt" == "n" ]]; then
+        exit 0
+    fi
+fi
+
+# Prompt for passphrase
+[[ "$cmd" != "umount" ]] && read -s -p "Enter LUKS passphrase: " pass && echo
 
 # Open function
 open(){
@@ -33,29 +43,15 @@ if [[ "$group" == "dw" ]]; then
         sudo cryptsetup luksClose dw
         sudo losetup -d /dev/loop7
     else
-        read -s -p "Enter LUKS passphrase: " pass && echo
         sudo losetup /dev/loop7 /data/others/virtual/crypt.img
         echo $pass | sudo cryptsetup luksOpen /dev/loop7 dw
         sudo mount -o noatime,nodiratime -t btrfs /dev/mapper/dw /data/others/dw
     fi
 elif [[ "$group" == "home" ]]; then
     # Open home directory
-    [[ "$cmd" != "umount" ]] && read -s -p "Enter LUKS passphrase: " pass && echo
     open "home" "/dev/disk/by-uuid/4901c9da-a010-4022-aff5-0640388134cd"
 else
     # Open all encrypted data partitions
-    ## Prompt for mount
-    if [[ "$cmd" == "prompt" ]]; then
-        read -n 1 -p "Mount data directories? [Y/n] " mnt
-        if [[ "$mnt" == "n" ]]; then
-            exit 0
-        fi
-    fi
-
-    # Prompt for passphrase
-    [[ "$cmd" != "umount" ]] && read -s -p "Enter LUKS passphrase: " pass && echo
-
-    # Mount all
     open "data-5" "/dev/disk/by-uuid/58487ea5-ac11-4497-aba7-d0ce47822cc8"
     open "data-4" "/dev/disk/by-uuid/4339c665-c667-4f12-a632-c4912c8b37ea"
 fi
