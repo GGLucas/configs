@@ -1,0 +1,50 @@
+#!/bin/bash
+# Mount all dm-crypt partitions with 1 passphrase
+
+# Arguments
+cmd="$1"
+group="$2"
+
+# Ask for passphrase
+[[ "$cmd" != "umount" ]] && read -s -p "Enter LUKS passphrase: " pass && echo
+
+# Open function
+open(){
+    if [[ "$cmd" = "umount" ]]; then
+        if test -e /dev/mapper/$1; then
+            echo ".. Locking $1"
+            sudo umount -l /dev/mapper/$1
+            sudo cryptsetup luksClose $1
+        else
+            echo ">> $1 is not mounted"
+        fi
+    else
+        if ! test -e /dev/mapper/$1; then
+            echo ".. Unlocking $1"
+            echo $pass | sudo cryptsetup luksOpen $2 $1 && sudo mount /dev/mapper/$1
+        else
+            echo ">> $1 is already mounted"
+        fi
+    fi
+}
+
+# Check the group of partitions to open
+if [[ "$group" == "dw" ]]; then
+    # Open specially encrypted loopback folder
+    if [[ "$cmd" == "umount" ]]; then
+        sudo umount -l /dev/mapper/dw
+        sudo cryptsetup luksClose dw
+        sudo losetup -d /dev/loop7
+    else
+        sudo losetup /dev/loop7 /data/others/virtual/crypt.img
+        echo $pass | sudo cryptsetup luksOpen /dev/loop7 dw
+        sudo mount -o noatime,nodiratime -t btrfs /dev/mapper/dw /data/others/dw
+    fi
+else
+    # Open all encrypted data partitions
+    open "data-5" "/dev/disk/by-uuid/58487ea5-ac11-4497-aba7-d0ce47822cc8"
+    open "data-4" "/dev/disk/by-uuid/4339c665-c667-4f12-a632-c4912c8b37ea"
+fi
+
+# Reset vars
+pass="" ; cmd=""

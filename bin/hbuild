@@ -1,0 +1,25 @@
+#!/bin/bash
+## Build a package for heresy
+# Arguments
+repo="$1" ; shift
+pkg="$1" ; shift
+
+# Constants
+#PKGDIR=/data/projects/heresy/packages
+#REPODIR=/data/projects/heresy/repo
+PKGDIR=/mnt/data-4/projects/heresy/packages
+REPODIR=/mnt/data-4/projects/heresy/repo
+CONFIG=/etc/makepkg.heresy.conf
+
+# Start building
+cp -rv ${PKGDIR}/${repo}/${pkg} /tmp || exit 1
+cd /tmp/${pkg}
+nice makepkg --config ${CONFIG} $@ || exit 1
+
+# Put it in the right repo
+cd ${REPODIR}
+rm ${repo}/x86_64/${pkg}-*.pkg.tar.gz
+mv ${pkg}-*.pkg.tar.gz ${repo}/x86_64 || exit 1
+cd ${repo}/x86_64 || exit 1
+repo-add ${repo}.db.tar.gz ${pkg}-*.pkg.tar.gz || exit 1
+rm ${repo}.db.tar.gz.old
