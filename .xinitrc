@@ -38,13 +38,8 @@ xset r rate 250 30 &
 # Monitor-specific commands
 for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do
-    [[ $(xrandr -q | head -n 1 | sed 's/^.*current \([0-9]*\) x.*$/\1/') \
-        -eq "2048" ]] \
-    && BG=~/pictures/end_2048.png \
-    || BG=~/pictures/end_1680.png
-
     # Set wallpaper
-    DISPLAY=$display feh --bg-scale $BG &
+    DISPLAY=$display wallrandom &
 
     # Start a term
     (sleep 1 ; DISPLAY=$display urxvtc) &

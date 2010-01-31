@@ -80,6 +80,9 @@ noremap <silent> <leader>P :stpause<CR>
 noremap <silent> <leader>l :stlarge<CR>
 noremap <silent> <leader>m :stmute<CR>
 
+" Readability
+noremap <silent> <leader>r :o readability<CR>
+
 " Command line cursor keys
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>

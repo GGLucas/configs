@@ -19,6 +19,5 @@ RSYNC_followe="$del $exc /data/web/followe/ root@glacicle.com:/srv/www/zorgberaa
 RSYNC_followe_old="$del $exc /data/web/followe_old/ root@glacicle.org:/srv/www/zorgberaad/followe_old"
 
 ### Heresy
-RSYNC_heresy_core="$del $exc /data/others/heresy_build/pkg/pkg/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
-RSYNC_heresy_cake="$del $exc /data/others/heresy_build/pkg/pkg/cake/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/cake/x86_64"
-RSYNC_heresy_dev="$exc /data/projects/contrib/heresy-devcheck/ heresy@hereticlinux.org:/www/heresy/dev"
+RSYNC_heresy_core="$del $exc /data/projects/heresy/repo/core/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/core/x86_64"
+RSYNC_heresy_cake="$del $exc /data/projects/heresy/repo/cake/x86_64/ heresy@hereticlinux.org:/www/heresy/repo/cake/x86_64"
