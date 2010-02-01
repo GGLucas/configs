@@ -6,10 +6,11 @@ group="$2"
 
 ## Prompt for mount
 if [[ "$cmd" == "prompt" ]]; then
-    read -n 1 -p "Mount group ${group}? [Y/n] " mnt
+    read -n 1 -p "Mount group \"${group}\"? [Y/n] " mnt
     if [[ "$mnt" == "n" ]]; then
         exit 0
     fi
+    echo
 fi
 
 # Prompt for passphrase
@@ -54,6 +55,9 @@ else
     # Open all encrypted data partitions
     open "data-5" "/dev/disk/by-uuid/58487ea5-ac11-4497-aba7-d0ce47822cc8"
     open "data-4" "/dev/disk/by-uuid/4339c665-c667-4f12-a632-c4912c8b37ea"
+    open "data-3" "/dev/disk/by-uuid/9030861f-7167-4d7e-85d7-27f4e135984d"
+
+    sudo mount /data
 fi
 
 # Reset vars

@@ -80,7 +80,11 @@ case "$-" in *i*)
     # Display status
     bind '"\ez":"; ns\C-m"'
 
+    # Reset
+    bind '"\er":"reset ; clear \C-m"'
+
     # Clear
+    bind '"\ec":"cd ; clear \C-m"'
     bind '"\el":"clear \C-m"'
 ;; esac;
 
@@ -119,9 +123,9 @@ w()   { ani watch: $@; }
 lo()  { ani log: $@; }
 wh()  { ani hist: +w; }
 an()  { ani list: +w =anime; }
-anh() { ani hist: +w =anime; }
+anh() { ani hist: =anime; }
 tn()  { ani list: +w =tv; }
-tnh() { ani hist: +w =tv; }
+tnh() { ani hist: =tv; }
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
@@ -172,14 +176,14 @@ c() {
 # Download package from abs
 absd() {
     abs $1/$2
-    cp -R /var/abs/$1/$2 ~/sources/
-    cd ~/sources/$2
+    cp -R /var/abs/$1/$2 /mnt/data-5/others/packages/abs
+    cd /mnt/data-5/others/packages/abs/$2
 }
 
 # Download package from our
 aurd() {
-    slurpy -c -t ~/sources/ -f -d $*
-    cd ~/sources/$1
+    slurpy -c -t /mnt/data-5/others/packages/aur -f -d $*
+    cd /mnt/data-5/others/packages/aur/$1
 }
 
 # Flatten function
