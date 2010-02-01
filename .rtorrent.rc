@@ -55,4 +55,4 @@ ratio.upload.set=100M
 system.method.set = group.seeding.ratio.command, d.close=
 
 # Watch directory for new torrents
-schedule = watch_directory,5,5,load=/home/archlucas/torrents/*.torrent
+schedule = watch_directory,5,5,load=/home/archlucas/.torrents/*.torrent
