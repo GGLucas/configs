@@ -1,2 +1,2 @@
 #!/bin/bash
-DISPLAY=$1 fx $2
+DISPLAY=$1 fx "$2"

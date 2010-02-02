@@ -75,7 +75,7 @@ case "$-" in *i*)
     bind '"\eb":" &> /dev/null &\C-m"'
 
     # Search
-    bind '"\ea":" | ack "'
+    bind '"\e\\":" | ack "'
 
     # Display status
     bind '"\ez":"; ns\C-m"'
