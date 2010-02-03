@@ -3,6 +3,11 @@
 "query:Unread Articles:unread = \"yes\""
 ####
 
+## News
+###
+# Phoronix
+http://feeds.feedburner.com/Phoronix
+
 ## Webcomics
 ####
 # xkcd
