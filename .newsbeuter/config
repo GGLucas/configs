@@ -5,8 +5,14 @@ reload-threads 5
 refresh-on-startup yes
 text-width 78
 always-display-description true
+show-keymap-hint no
 browser "fxs :0.0 %u"
 save-path "~/Articles"
+
+# Titles
+feedlist-title-format "  Feeds: %u unread, %t total %?T? - tag '%T'&"
+articlelist-title-format "  %T: %u unread, %t total"
+itemview-title-format "  %T"
 
 # Keybindings
 bind-key j down

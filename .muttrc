@@ -15,10 +15,16 @@ mailboxes =INBOX
 set smtp_url = "smtp://lucas@glacicle.org@glacicle.org:587/"
 
 # Statusline
-set status_format="mutt-notify '%u' '%f' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'|"
+set status_format="mutt-notify '%u' '%f' '-%r- %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]   %>  (%P)'|"
+
+# Don't display help
+set help="no"
+
+# Use tildes on empty lines
+set tilde="yes"
 
 # Index format
-set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E in thread ?"
+set index_format="%{%b %d}  %Z  %-25.25F  (%?l?%4l&%4c?)  %s%?E?%> %e/%E ?"
 
 # Update imap more often
 set imap_idle = yes
@@ -79,6 +85,10 @@ set pager_index_lines=15
 # Show only plain text
 alternative_order text/plain text/html text
 
+# Convert html to text
+set implicit_autoview
+auto_view text/html application/x-pgp-message
+
 # Set default sort
 set sort = 'threads'
 set sort_aux = 'last-date-received'
@@ -118,7 +128,7 @@ color message brightcyan black
 color search brightgreen black
 color signature red black
 color status brightyellow blue
-color tilde blue black
+color tilde brightwhite black
 color tree red black
 color signature brightred black
 color underline yellow black

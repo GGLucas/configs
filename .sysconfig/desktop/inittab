@@ -1,0 +1,32 @@
+#
+# /etc/inittab
+# ------------
+# Main configuration for sysvinit.
+#
+
+# Runlevels:
+#   0    Halt
+#   1(S) Single-user
+#   2    Not used
+#   3    Multi-user
+#   4    Not used
+#   5    X11
+#   6    Reboot
+
+# Boot to console
+id:3:initdefault:
+
+# Call the respective functions in init.conf
+sys::sysinit:/etc/init.conf sysinit
+hlt:06:wait:/etc/init.conf syshalt 
+i3:35:wait:/etc/init.conf sysinit3
+i5:5:wait:/etc/init.conf sysinit5
+
+# Single user mode
+su:S:wait:/sbin/sulogin -p
+
+# Shut system down on ctrl+alt+del in console
+ca::ctrlaltdel:/sbin/shutdown -t3 -r now
+
+# Start the first virtual console
+c1:2345:respawn:/sbin/mingetty --autologin archlucas tty1 linux
