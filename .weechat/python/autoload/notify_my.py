@@ -24,4 +24,4 @@ if __name__ == "__main__":
                         SCRIPT_LICENSE, SCRIPT_DESC, "nt_unload", ""):
 
         weechat.hook_signal("weechat_highlight", "nt_highlight", "")
-        weechat.hook_signal("weechat_pv", "nt_highlight", "")
+        #weechat.hook_signal("weechat_pv", "nt_highlight", "")

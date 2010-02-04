@@ -228,6 +228,7 @@ b:match_tail	matchit.txt	/*b:match_tail*
 b:match_wholeBR	matchit.txt	/*b:match_wholeBR*
 b:match_word	matchit.txt	/*b:match_word*
 b:match_words	matchit.txt	/*b:match_words*
+bisect.txt	bisect.txt	/*bisect.txt*
 cs	surround.txt	/*cs*
 ds	surround.txt	/*ds*
 fuf	fuf.txt	/*fuf*

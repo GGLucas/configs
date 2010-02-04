@@ -76,6 +76,7 @@ apps = {
     rtorrent = "urxvtc -e tmux -2 attach-session -t dl",
     newsbeuter = "urxvtc -e tmux -2 attach-session -t rss",
     ncmpcpp = "urxvtc -e tmux -2 attach-session -t mpd",
+    cortex = "urxvtc -e tmux -2 attach-session -t rd",
 }
 
 -- Advprompt
@@ -410,15 +411,15 @@ util = {
         mouse.screen = 3
         awful.client.visible(mouse.screen)[1]:kill()
         util.spawn_wait(apps.mail)
-        util.spawn_wait(apps.terminal)
+        util.spawn_wait(apps.ncmpcpp)
         util.spawn_wait(apps.htop)
 
         -- Outer left
         mouse.screen = 4
         awful.client.visible(mouse.screen)[1]:kill()
         util.spawn_wait(apps.rtorrent, "0.5")
+        util.spawn_wait(apps.cortex)
         util.spawn_wait(apps.newsbeuter)
-        util.spawn_wait(apps.ncmpcpp)
 
         -- Main left
         mouse.screen = 1
