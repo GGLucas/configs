@@ -57,7 +57,7 @@ else
     open "data-4" "/dev/disk/by-uuid/4339c665-c667-4f12-a632-c4912c8b37ea"
     open "data-3" "/dev/disk/by-uuid/9030861f-7167-4d7e-85d7-27f4e135984d"
 
-    sudo mount /data
+    #sudo mount /data
 fi
 
 # Reset vars

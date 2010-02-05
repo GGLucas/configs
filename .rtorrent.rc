@@ -30,7 +30,7 @@ check_hash = yes
 use_udp_trackers = yes
 
 # Always try using encryption
-encryption = allow_incoming,try_outgoing,enable_retry
+encryption = allow_incoming,require,require_RC4
 
 # Use DHT when needed
 dht_port = 6881
