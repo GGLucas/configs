@@ -628,6 +628,8 @@ bindings = {
         [{"Mod4", "Mod5", "s"}] = {quickmarks.focus, "s"},
         [{"Mod4", "Mod5", "w"}] = {quickmarks.focus, "w"},
         [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
+        [{"Mod4", "Mod5", "j"}] = {quickmarks.focus, "j"},
+        [{"Mod4", "Mod5", "k"}] = {quickmarks.focus, "k"},
 
         -- Irc quickmarks that focus a particular weechat window
         [{"Mod4", "Mod5", "Shift", ","}] = {util.weechat_window, 1},
