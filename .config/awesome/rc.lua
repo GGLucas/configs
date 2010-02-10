@@ -338,16 +338,18 @@ util = {
             end
 
             -- Go to an established position
-            cmd = {"/window right", "/window right", "/window right", "/window right", "/window down"}
+            cmd = {"/window right", "/window right", "/window right", "/window right", "/window up", "/window up"}
 
             -- Select window
             if num == 5 then
-                table.insert(cmd, "/window up")
                 table.insert(cmd, "/window left")
-            elseif num == 6 then
+            elseif num == 8 then
+                table.insert(cmd, "/window down")
+                table.insert(cmd, "/window right")
                 table.insert(cmd, "/window up")
             elseif num == 7 then
                 table.insert(cmd, "/window left")
+                table.insert(cmd, "/window down")
             end
 
             util.weechat_send(cmd)
