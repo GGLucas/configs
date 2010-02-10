@@ -107,6 +107,14 @@ cnoremap <Esc>k <Up>
 cnoremap <Esc>c <C-c>:
 " }}}
 
+" {{{ Bisect keys
+nmap ↓ <Plug>BisectDown
+nmap ↑ <Plug>BisectUp
+nmap ← <Plug>BisectLeft
+nmap → <Plug>BisectRight
+nmap § <Plug>StopBisect
+" }}}
+
 " {{{ Function key shortcuts
 " F5: Toggle paste mode
 nnoremap <F5> :set paste!<Bar>set paste?<CR>
