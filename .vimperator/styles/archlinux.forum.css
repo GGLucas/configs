@@ -4,11 +4,15 @@
  */
 
 #brdheader .box, #punredirect.pun{
-background-image: url(http://stashbox.org/485258/2.png) !important;
+    display: none !important;
+}
+
+.tc2, .tcr {
+    display: none !important;
 }
 
 body{
-background: url(http://stashbox.org/485257/1.png)repeat-x top left #141414 !important;}
+background: #141414 !important;}
 
 td.tcl, td.tcr, #idx1>.box, #idx2>.box, #idx3>.box, #idx4>.box,
 #brdstats.block>.box, #brdfooter.block>.box, #vf.blocktable>.box, .box>form,
