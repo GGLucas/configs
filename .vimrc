@@ -299,8 +299,8 @@ autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" -
 autocmd BufReadPre *.rtf silent set ro
 autocmd BufReadPost *.rtf silent %!unrtf --text
 
-" HTML Indent
-autocmd FileType xhtml,html,xml,sass silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+" Files to indent with two spaces
+autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Load sparkup for html
 autocmd FileType xhtml,html,xml,markdown silent source ~/.vim/scripts/sparkup.vim
@@ -310,6 +310,9 @@ autocmd FileType c silent setlocal fdm=syntax fdn=1
 
 " Highlight "self" in python
 autocmd FileType python syn keyword Identifier self
+
+" Highlight section as comment in TeX
+autocmd FileType tex,plaintex hi link TexZone Comment
 
 " Highlight braces with braces style
 autocmd FileType xhtml,html hi link htmlEndTag BoldBraces
