@@ -11,6 +11,38 @@
     display: none !important;
 }
 
+.postleft {
+    width: 100% !important;
+}
+
+.postleft dd {
+    display: none !important;
+}
+
+.postleft dd.usertitle {
+    display: block !important;
+    width: 100% !important;
+}
+
+.postleft dd.postavatar {
+    display: block !important;
+    float: right !important;
+}
+
+.postleft dd.postavatar img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.postfootleft {
+    display: none !important;
+}
+
+.postright, .postfootright {
+    border-left: 0 !important;
+}
+
 body{
 background: #141414 !important;}
 
