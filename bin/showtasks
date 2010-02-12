@@ -1,0 +1,11 @@
+#!/bin/bash
+. ~/.bashrc
+echo -e "\e[1;32m"
+date
+echo -e "\e[0;37m"
+day
+
+echo -e "\n\e[1;31m-- Urgent Tasks--\e[0;37m"
+org pr=hot
+proj pr=hot
+misc pr=hot

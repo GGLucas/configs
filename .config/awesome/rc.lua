@@ -57,6 +57,9 @@ apps = {
     -- Open webbrowser
     browser = "fx",
 
+    -- Open shell with tasks listed first
+    tasks = "urxvtc -e bash --rcfile ~/bin/showtasks",
+
     -- Suspend activity
     system_suspend = "system_suspend",
 
@@ -406,7 +409,7 @@ util = {
         mouse.screen = 2
         awful.client.visible(mouse.screen)[1]:kill()
         util.spawn_wait(apps.terminal)
-        util.spawn_wait(apps.terminal)
+        util.spawn_wait(apps.tasks)
         util.spawn_wait(apps.filemanager)
 
         -- Outer right
