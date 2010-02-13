@@ -165,6 +165,7 @@ tvtime() {
     sudo modprobe -a saa7134_alsa saa7134
     while [[ ! -e /dev/video0 ]]; do sleep 0.5; done;
     sudo /usr/bin/tvtime
+    cp ~/.tvtime/tvtime.xml.orig ~/.tvtime/tvtime.xml
     sudo modprobe -r saa7134_alsa
 }
 
