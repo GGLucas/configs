@@ -206,6 +206,9 @@ set statusline=%=%P\
 let g:textwidth=0
 set textwidth=0
 
+" Show command while typing
+set showcmd
+
 " Wrap lines
 set wrap
 
