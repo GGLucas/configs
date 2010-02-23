@@ -75,6 +75,6 @@ xkb_symbols "basic" {
     key <AB09> {[ v, V, squareroot, botrightsqbracket ]};
     key <AB10> {[ z, Z, openstar, enopensquarebullet ]};
 
-    key <SPCE> {[ space, space, emspace, nobreakspace ]};
+    key <SPCE> {[ space, space, BackSpace, nobreakspace ]};
     key <BKSL> {[ backslash, bar, implies ]};
 };

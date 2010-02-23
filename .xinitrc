@@ -39,7 +39,8 @@ xset r rate 250 30 &
 for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do
     # Set wallpaper
-    DISPLAY=$display wallrandom &
+    #DISPLAY=$display wallrandom &
+    DISPLAY=$display xsetroot -gray &
 
     # Start a term
     (sleep 1 ; DISPLAY=$display urxvtc) &

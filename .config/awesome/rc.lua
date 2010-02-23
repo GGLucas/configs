@@ -704,6 +704,10 @@ bindings = {
         -- Toggle between numbers and special characters by default on number row
         [{"Mod4", "F12"}] = util.toggle_numbers,
 
+        -- Switch keymap
+        [{"Mod4", "KP_Add"}] = {awful.util.spawn_with_shell, "setxkbmap us && xmodmap ~/.xkb/xmm/caps_escape"},
+        [{"Mod4", "KP_Enter"}] = {awful.util.spawn_with_shell, "hdv"},
+
         -- Start a set of common clients with quickmarks
         [{"Mod4", "Shift", "KP_Subtract"}] = util.startup,
 
