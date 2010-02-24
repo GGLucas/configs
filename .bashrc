@@ -205,7 +205,7 @@ squashall() {
 # Weekly schedule shortcuts
 ## Display daily schedule
 day() {
-    week=$(date +%V)
+    week=$(date +%-V)
     flags="";
     [[ $((week%2)) -eq 0 ]] && flags="$flags\e[1;32m2" || flags="$flags\e[1;31m-";
     [[ $((week%3)) -eq 0 ]] && flags="$flags\e[1;32m3" || flags="$flags\e[1;31m-";
