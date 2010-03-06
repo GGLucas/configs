@@ -49,10 +49,11 @@ HISTORY_LENGTH=15
 # Sort by Mode = 4
 # Sort by Owner ID = 5
 # Sort by Owner Name = 6
-# Sort by Size = 7
-# Sort by Time Accessed =8
-# Sort by Time Changed =9
-# Sort by Time Modified =10
+# Sort by Size (Ascending) = 7
+# Sort by Size (Descending) = 8
+# Sort by Time Accessed =9
+# Sort by Time Changed =10
+# Sort by Time Modified =11
 # This can be set with the :sort command in vifm.
 
 LEFT_WINDOW_SORT_TYPE=1
@@ -83,6 +84,7 @@ RUN_EXECUTABLE=0
 # BOOKMARKS=mark=/full/directory/path=filename
 
 BOOKMARKS=H=/home/archlucas=../
+BOOKMARKS=d=/data=../
 BOOKMARKS=z=/home/archlucas=../
 
 # COMMAND=command_name=action
