@@ -73,12 +73,14 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 
 " {{{ Buffer Navigation
 nnoremap <silent> <Esc>c :A<CR>
-nnoremap <silent> <Esc>g :FufBuffer<CR>
-nnoremap <silent> <Esc>f :FufTag<CR>
 nnoremap <silent> <Esc>b :e .<CR>
 
 nnoremap <silent> <Esc>w :bnext<CR>
 nnoremap <silent> <Esc>v :bprev<CR>
+
+nnoremap <silent> <Esc>g :BufferExplorer<CR>
+nnoremap <silent> <Esc>f :FilesystemExplorer<CR>
+nnoremap <silent> <Esc>F :FilesystemExplorerFromHere<CR>
 " }}}
 
 " {{{ Opening different plugin windows
@@ -166,8 +168,8 @@ let g:buftabs_only_basename = 1
 " Use fancy css for TOhtml
 let html_use_css = 1
 
-" Fuzzy finder
-let g:fuf_previewHeight = 0
+" Lusty Explorer
+let g:LustyJugglerSuppressRubyWarning = 1
 
 " }}}
 
