@@ -504,7 +504,7 @@ util = {
     end,
 
     -- Toglge mpd volume between high and low
-    mdp_togglevolume_high_low =  function ()
+    mpd_togglevolume_high_low =  function ()
         if settings._mpd_volume == nil then
             settings._mpd_volume = 74
         end
