@@ -126,6 +126,7 @@ set pastetoggle=<F5>
 " F6: Toggle whether to use textwidth or not
 nnoremap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
+nmap <Leader>tw <F6>
 
 " F7: Turn search highlight off until next search
 nmap <F7> :noh<CR>
@@ -138,6 +139,7 @@ imap <F8> <C-O><F8>
 " F9: Toggle highlighting long lines
 nmap <F9> :call HighlightLongToggle()<CR>
 imap <F9> <C-O><F9>
+nmap <Leader>hl <F9>
 " }}}
 " }}}
 
