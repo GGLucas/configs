@@ -35,6 +35,9 @@ let mapleader=","
 noremap <silent> <C-+> :set go+=Bm<CR>
 noremap <silent> <C-=> :set go-=Bm<CR>
 
+" Passthrough mode shortcut
+noremap c <C-z>
+
 " Next/Prev Tab
 noremap w <C-Tab>
 noremap v <C-S-Tab>

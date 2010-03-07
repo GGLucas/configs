@@ -182,7 +182,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 let b:delimitMate_expand_space = "\<Space>\<Space>\<Left>"
 let b:delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
 let b:delimitMate_apostrophes = ""
-let b:delemitMate_quotes = "\""
+let b:delimitMate_quotes = "\""
 
 " }}}
 
