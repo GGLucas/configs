@@ -88,9 +88,6 @@ noremap <silent> <leader>P :stpause<CR>
 noremap <silent> <leader>l :stlarge<CR>
 noremap <silent> <leader>m :stmute<CR>
 
-" Readability
-noremap <silent> <leader>r :o readability<CR>
-
 " Command line cursor keys
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
@@ -184,6 +181,36 @@ source ~/.vimperator/qmarks
 
 " Bookmarks
 source ~/.vimperator/bookmarks
+" }}}
+
+" {{{ Readability
+noremap <silent> <leader>r :js readability()<CR>
+js <<EOF
+readability = function()
+{
+    let doc = content.document;
+    _readability_vars=doc.createElement('SCRIPT')
+    _readability_vars.type='text/javascript'
+    _readability_vars.innerHTML = "readStyle='style-apertura'; readSize='size-medium'; readMargin='margin-narrow'"
+    doc.getElementsByTagName('head')[0].appendChild(_readability_vars)
+    _readability_script=doc.createElement('SCRIPT')
+    _readability_script.type='text/javascript'
+    _readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random())
+    doc.getElementsByTagName('head')[0].appendChild(_readability_script)
+    _readability_css=doc.createElement('LINK')
+    _readability_css.rel='stylesheet'
+    _readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css'
+    _readability_css.type='text/css'
+    doc.getElementsByTagName('head')[0].appendChild(_readability_css)
+    _readability_print_css=doc.createElement('LINK')
+    _readability_print_css.rel='stylesheet'
+    _readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css'
+    _readability_print_css.media='print'
+    _readability_print_css.type='text/css'
+    doc.getElementsByTagName('head')[0].appendChild(_readability_print_css)
+}
+EOF
+
 " }}}
 
 " vim: fdm=marker :
