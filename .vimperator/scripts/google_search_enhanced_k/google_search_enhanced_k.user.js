@@ -88,6 +88,7 @@ function key_event( e ) {
       if (next) location.href=next.href
       break;
     case 111: // 'o' key
+    case 116: // 't' key
         unsafeWindow.open(unsafeWindow.sc.c[unsafeWindow.sc.a].m.href,"_blank");
       break;
     case 102: // 'f' key
