@@ -63,7 +63,7 @@ li.g
 
 /* Wikipedia */
 
-table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td, .mw-search-formheader
+table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td, .mw-search-formheader, .thumbcaption
 {
     background-color: #242424 !important;
     border-color: #343434 !important;
