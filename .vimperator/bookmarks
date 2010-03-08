@@ -1,0 +1,76 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Search Engines
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" General Purpose
+"" Google
+bma -k=g http://google.com/search?q=%s&num=100
+"" Google: Feeling Lucky
+bma -k=gg http://google.com/search?btnI=1&q=%s
+"" YubNub
+bma -k=y http://yubnub.org/parser/parse?command=%s
+
+""" Websites
+"" Youtube
+bma -k=yt http://www.youtube.com/results?search_query=%s
+"" BoardGameGeek
+bma -k=bgg http://www.boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=%s
+"" ArchLinux AUR
+bma -k=aur http://aur.archlinux.org/packages.php?O=0&L=0&C=0&K=%s&SeB=nd&PP=25
+"" Wine Appdb
+bma -k=appdb http://www.winehq.org/search?cx=partner-pub-0971840239976722%3Aw9sqbcsxtyf&cof=FORID%3A10&ie=UTF-8&q=%s
+"" BakaBT
+bma -k=baka http://www.bakabt.com/browse.php?q=%s
+"" BaconBits
+bma -k=bb http://baconbits.org/torrents.php?searchstr=%s
+"" AnimeBytes
+bma -k=ab http://animebyt.es/torrents.php?searchstr=%s
+"" BtJunkie
+bma -k=btj http://btjunkie.org/search?q=%s
+"" Danbooru
+bma -k=db http://danbooru.donmai.us/post?tags=%s
+"" MyAnimeList
+bma -k=mal http://myanimelist.net/anime.php?q=%s
+
+""" Wikis
+"" Wikipedia
+bma -k=wk http://en.wikipedia.org/w/index.php?search=%s
+"" Dutch Wikipedia
+bma -k=nlwk http://nl.wikipedia.org/w/index.php?search=%s
+"" TVTropes
+bma -k=trope http://www.google.com/cse?cx=partner-pub-6610802604051523%3A2szln92pqym&ie=ISO-8859-1&q=%s
+"" ArchLinux Wiki
+bma -k=aw http://wiki.archlinux.org/index.php?search=%s
+
+""" Other
+"" Dictionary
+bma -k=dict http://dictionary.reference.com/browse/%s
+"" Japanese Dictionary
+bma -k=jp http://www.nihongodict.com/?s=%s
+"" Urban Dictionary
+bma -k=udict http://www.urbandictionary.com/define.php?term=%s
+"" Thesaurus
+bma -k=thes http://thesaurus.reference.com/the?q=%s
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Websites
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bma -k=bboard http://blackboard.tudelft.nl/webapps/portal/frameset.jsp
+bma -k=sched http://srv571.tudelft.net/scientia/sws/nl/swstud/default.aspx
+bma -k=vimp http://code.google.com/p/vimperator-labs/
+bma -k=router http://192.168.1.1
+bma -k=nipponsei https://nipponsei.minglong.org
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Storage
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bma http://www.darthsanddroids.net/episodes/0162.html
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Readability
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bma -k=readability javascript:(function(){readStyle='style-terminal';readSize='size-medium';readMargin='margin-narrow';_readability_script=document.createElement('SCRIPT');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(_readability_script);_readability_css=document.createElement('LINK');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_css);_readability_print_css=document.createElement('LINK');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();
+
+" vim: ft=vimperator :

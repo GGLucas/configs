@@ -142,8 +142,8 @@ imap <F9> <C-O><F9>
 nmap <Leader>hl <F9>
 
 " Turn autoclose on/off
-noremap <silent> <Leader>an :let b:delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
-noremap <silent> <Leader>ar :let b:delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
+noremap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
+noremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 
 " }}}
 " }}}
@@ -179,10 +179,10 @@ let html_use_css = 1
 let g:LustyJugglerSuppressRubyWarning = 1
 
 " delemitMate
-let b:delimitMate_expand_space = "\<Space>\<Space>\<Left>"
-let b:delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
-let b:delimitMate_apostrophes = ""
-let b:delimitMate_quotes = "\""
+let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
+let delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
+let delimitMate_apostrophes = ""
+let delimitMate_quotes = "\""
 
 " }}}
 

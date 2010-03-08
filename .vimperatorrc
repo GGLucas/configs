@@ -4,6 +4,8 @@ loadplugins
 " Load userstyles
 source ~/.vimperator/styles/styles.js
 
+" {{{ Configuration
+
 " Unfocus textfields
 set focuscontent
 
@@ -14,7 +16,7 @@ set incsearch
 set smartcase
 
 " Default search
-set ds=g
+set ds=gg
 
 " Default GUI options
 set go=
@@ -31,6 +33,9 @@ set noinsertmode
 " Leader
 let mapleader=","
 
+" }}}
+
+" {{{ Mappings
 " Show/hide toolbars
 noremap <silent> <C-+> :set go+=Bm<CR>
 noremap <silent> <C-=> :set go-=Bm<CR>
@@ -101,6 +106,10 @@ cnoremap <CR> <CR>:<Esc>
 map <silent> <F7> :noh<CR>
 map <silent> <C-l> :noh<CR>
 
+" }}}
+
+" {{{ Styling
+
 " Buftab styling
 hi BufTab padding-left: 5px; padding-right: 5px;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px;
@@ -120,7 +129,7 @@ hi CmdLine height: 0px; padding: 0px; font-family: terminus; font-size: 10pt; fo
 hi Normal background: #141414; color: white;
 hi Question background: #141414; color: white;
 
-" Completion from zenburn
+" Completion colors from zenburn
 hi CompDesc             color: #d0d0d0; width: 50%;font-size: 10pt;
 hi CompGroup:not(:first-of-type)    margin-top: .5em;
 hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: .5ex;
@@ -137,7 +146,9 @@ hi CompResult           width: 45%; overflow: hidden;font-size: 10pt; font-famil
 hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 
-" Youtube settings on load
+" }}}
+
+" {{{ Youtube settings on load
 au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args.tab)
 js <<EOF
 loadYoutube = function (tab)
@@ -164,3 +175,15 @@ loadYoutube = function (tab)
     }
 }
 EOF
+" }}}
+
+" {{{ Quickmarks / Bookmarks
+" Quickmarks
+delqm!
+source ~/.vimperator/qmarks
+
+" Bookmarks
+source ~/.vimperator/bookmarks
+" }}}
+
+" vim: fdm=marker :
