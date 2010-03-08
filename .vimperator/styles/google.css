@@ -1,0 +1,141 @@
+#gbar, #guser,
+#tsf, #prs,
+.mbEnd, .clr, .gbh, .csb
+{
+    display: none !important;
+}
+
+body,
+#resultStats,
+#wikibox
+{
+    background: #141414 !important;
+    color: #e0e0e0 !important;
+}
+
+#wikibox
+{
+    border-left: 2px solid #343434 !important;
+}
+
+*
+{
+    font-family: "bitstream vera sans" !important;
+}
+
+#nav td
+{
+    min-width: 20px !important;
+}
+
+#resultStats, #ssb
+{
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+a
+{
+    color: #608BCC !important;
+    text-decoration: none !important;
+}
+
+cite
+{
+    color: #888 !important;
+}
+
+li.g
+{
+    margin-top: 30px !important;
+}
+
+.osl a
+{
+    color: #CC608B !important;
+}
+
+.gl a
+{
+    color: #8BCC60 !important;
+}
+
+
+/* Wikipedia */
+
+table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td, .mw-search-formheader
+{
+    background-color: #242424 !important;
+    border-color: #343434 !important;
+    color: #e0e0e0 !important;
+}
+
+input, textarea
+{
+    background-color: #242424 !important;
+    border: 1px solid #343434 !important;
+    color: #e0e0e0 !important;
+    -moz-appearance: none !important;
+}
+
+.mw-geshi,code,pre,.toccolours
+{
+    background-color: #242424 !important;
+    border-color: #545454 !important;
+    color: white !important;
+}
+
+.mw-geshi .me1, .mw-geshi .de1, .mw-geshi .br0
+{
+    color: white !important;
+}
+
+.navbox-title, .navbox-th, .navbox-group
+{
+ background: #444444 !important;
+}
+
+.navbox td
+{
+border-color: black !important;
+}
+
+.vertical-navbox td, .navbox-list
+{
+ background: #333333 !important;
+}
+
+#wikibox a
+{
+ color: #608BCC !important;
+}
+
+#siteNotice,
+#siteSub,
+#footer,
+#editpage-copywarn2,
+#editpage-specialchars,
+#pt-logout,
+#f-copyright,
+#f-lastmod,
+#editpage-copywarn,
+#fundraising,
+#coordinates,
+.portlet,
+.editsection,
+.usermessage,
+#protected-icon,
+#panel, #head, #page-base, #head-base
+{
+    display:none !important;
+}
+
+#column-content, #wikibox
+{
+    margin: 0 0 0 0 !important;
+}
+
+#wikibox h1, #wikibox h2, #wikibox h3, #wikibox h4 
+{
+    color: #9fbc00 !important;
+}

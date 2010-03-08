@@ -180,7 +180,7 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 " delemitMate
 let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
-let delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
+let delimitMate_expand_cr = "\<CR>\<CR>\<BS>\<Up>\<Tab>"
 let delimitMate_apostrophes = ""
 let delimitMate_quotes = "\""
 

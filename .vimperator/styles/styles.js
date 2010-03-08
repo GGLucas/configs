@@ -43,11 +43,16 @@ var loaduserstyles = function()
             "tvtorrents.css",
         ],
 
-
         [
             "ixquick:minimal",
             "ixquick.com",
             "ixquick.css",
+        ],
+
+        [
+            "google:minimal",
+            "google.com",
+            "google.css",
         ],
 
     ];

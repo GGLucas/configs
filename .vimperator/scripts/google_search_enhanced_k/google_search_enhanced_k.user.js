@@ -1,7 +1,5 @@
 // ==UserScript==
 // @name           Google Search Enhanced Keyboard Navigation
-// @site           http://userscripts.org/scripts/show/43131
-// @namespace      http://userscripts.org/users/82018
 // @description    Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages.
 // @match		   http://www.google.com/search?*
 // @date           Fri Dec 18 19:43:51 HST 2009
@@ -35,6 +33,8 @@ var doc_items = "/html/body/div[@id='cnt']/table/tbody/tr/td/table"
 var nav_items = "/html/body/div[@id='cnt']/*/table[@id='nav']/tbody/tr"
 var prev_item = nav_items + "/td[1]/a"
 var next_item = nav_items + "/td[last()]/a"
+
+var press = null;
 
 // Force loading of Google Shortcuts JS functions
 function addJavaScript( js, onload ) {
@@ -89,7 +89,20 @@ function key_event( e ) {
       break;
     case 111: // 'o' key
         unsafeWindow.open(unsafeWindow.sc.c[unsafeWindow.sc.a].m.href,"_blank");
-        return false;
+      break;
+    case 102: // 'f' key
+        unsafeWindow.location.replace("#i="+unsafeWindow.sc.a);unsafeWindow.location=unsafeWindow.sc.c[unsafeWindow.sc.a].m.href
+      break;
+    case 103: // 'g' key
+        while (unsafeWindow.sc.a > 0)
+            unsafeWindow.sc.o(-1);
+      break;
+    case 71: // 'G' key
+        while (unsafeWindow.sc.a < unsafeWindow.sc.c.length-1)
+            unsafeWindow.sc.o(1);
+      break;
+    default:
+      press(e)
       break;
    }
 }
@@ -110,9 +123,22 @@ function add_doc() {
 
 function shortcut_onload() {
    // set new keypress handler
+   press = unsafeWindow.document.onkeypress;
+   unsafeWindow.document.onkeydown = "";
+   unsafeWindow.document.onkeyup = "";
+   unsafeWindow.document.onkeypress = "";
    document.addEventListener( 'keypress', key_event, false );
    // update page text
    add_doc();
+   // swap out chevron image
+   imgs = document.getElementsByTagName('img');
+   for (i=0; i < imgs.length; i++)
+   {
+      if(imgs[i].src == "http://www.google.com/images/chevron.gif") {
+          imgs[i].src = "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Edit-redo.svg/16px-Edit-redo.svg.png"
+        imgs[i].style.left = "5px"
+    }
+   }
 }
 
 // shift search results to the right
