@@ -339,6 +339,7 @@ autocmd FileType javascript hi link javaScriptBraces Braces
 
 " Set markdown syntax
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
+autocmd BufNewFile,BufRead *.tex set ft=tex
 
 " Highlight long lines
 autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
