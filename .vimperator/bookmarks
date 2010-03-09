@@ -18,6 +18,8 @@ bma -k=bgg http://www.boardgamegeek.com/geeksearch.php?action=search&objecttype=
 bma -k=aur http://aur.archlinux.org/packages.php?O=0&L=0&C=0&K=%s&SeB=nd&PP=25
 "" Wine Appdb
 bma -k=appdb http://www.winehq.org/search?cx=partner-pub-0971840239976722%3Aw9sqbcsxtyf&cof=FORID%3A10&ie=UTF-8&q=%s
+"" The Pirate Bay
+bma -k=tpb http://thepiratebay.org/search/%s
 "" BakaBT
 bma -k=baka http://www.bakabt.com/browse.php?q=%s
 "" BaconBits
