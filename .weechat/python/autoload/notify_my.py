@@ -19,9 +19,16 @@ def nt_highlight(*args):
 
     return True
 
+def nt_highlight_pv(*args):
+    msg = args[2].split("PRIVMSG ", 1)[1].replace("&", "&amp;").replace("'","`")
+    subj, summ = msg.split(" :", 1)
+
+    os.system("notify-send '{0}' '{1}' &> /dev/null".format(subj, summ))
+    return True
+
 if __name__ == "__main__":
     if weechat.register(SCRIPT_NAME, SCRIPT_AUTHOR, SCRIPT_VERSION, 
                         SCRIPT_LICENSE, SCRIPT_DESC, "nt_unload", ""):
 
         weechat.hook_signal("weechat_highlight", "nt_highlight", "")
-        #weechat.hook_signal("weechat_pv", "nt_highlight", "")
+        weechat.hook_signal("irc_pv", "nt_highlight_pv", "")
