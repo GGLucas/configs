@@ -51,7 +51,7 @@ var loaduserstyles = function()
 
         [
             "google:minimal",
-            "google.com",
+            "http://www.google.com/search*",
             "google.css",
         ],
 
