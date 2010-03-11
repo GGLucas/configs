@@ -17,3 +17,6 @@ autocenter_mode = "yes"
 
 ## Progressbar look
 progressbar_look = "━┫"
+
+## Set music dir for tag editor
+mpd_music_dir = "/data/music"

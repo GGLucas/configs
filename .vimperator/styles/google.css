@@ -1,23 +1,67 @@
-/* Wikipedia minimal style */
+#gbar, #guser,
+#tsf, #prs,
+.mbEnd, .clr, .gbh, .csb
+{
+    display: none !important;
+}
 
-body,#content
+body,
+#resultStats,
+#wikibox
 {
     background: #141414 !important;
     color: #e0e0e0 !important;
-    border-color: #141414 !important;
 }
 
-#content
+#wikibox
 {
-    border: none;
-    -moz-border-radius: 0px !important;
-    height: 100%;
+    border-left: 2px solid #343434 !important;
 }
 
-#content h1, #content h2, #content h3, #content h4 
+*
 {
-    color: #9fbc00 !important;
+    font-family: "bitstream vera sans" !important;
 }
+
+#nav td
+{
+    min-width: 20px !important;
+}
+
+#resultStats, #ssb
+{
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+a
+{
+    color: #608BCC !important;
+    text-decoration: none !important;
+}
+
+cite
+{
+    color: #888 !important;
+}
+
+li.g
+{
+    margin-top: 30px !important;
+}
+
+.osl a
+{
+    color: #CC608B !important;
+}
+
+.gl a
+{
+    color: #8BCC60 !important;
+}
+
+
+/* Wikipedia */
 
 table, .tright, .thumbinner, table.gallery td, .thumb, .infobox, #catlinks, #filetoc, th, .infobox td, table td, .mw-search-formheader, .thumbcaption
 {
@@ -61,7 +105,7 @@ border-color: black !important;
  background: #333333 !important;
 }
 
-#content a
+#wikibox a
 {
  color: #608BCC !important;
 }
@@ -86,7 +130,12 @@ border-color: black !important;
     display:none !important;
 }
 
-#column-content, #content
+#column-content, #wikibox
 {
     margin: 0 0 0 0 !important;
+}
+
+#wikibox h1, #wikibox h2, #wikibox h3, #wikibox h4 
+{
+    color: #9fbc00 !important;
 }

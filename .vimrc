@@ -294,7 +294,7 @@ set foldminlines=2
 " Filetype
 filetype on
 filetype plugin on
-filetype indent on
+filetype indent off
 
 " Syntax highlighting
 syntax on
