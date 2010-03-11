@@ -143,6 +143,11 @@ util = {
                 height = height
             })
         end,
+
+        togglemax = function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c.maximized_vertical = not c.maximized_vertical
+        end,
     },
     -- }}}
 
@@ -539,7 +544,7 @@ for s = 1, screen.count() do
     if s == 3 then
         layout = awful.layout.suit.tile.left
     else
-        layout = awful.layout.suit.tile
+        layout = awful.layout.suit.spiral.dwindle
     end
 
     -- Create tags
@@ -652,7 +657,7 @@ bindings = {
 
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
-        [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.tile},
+        [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.spiral.dwindle},
         [{"Mod4", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
         [{"Mod4", "k"}] = {awful.layout.set, awful.layout.suit.tile.left},
 
@@ -730,6 +735,9 @@ bindings = {
 
         -- Redraw client
         [{"Mod4", "/"}] = {":redraw"},
+
+        -- Redraw client
+        [{"Mod4", "m"}] = util.client.togglemax,
 
         -- Window swapping
         [{"Mod4", "Shift", "t"}] = {awful.client.swap.byidx, 1},
