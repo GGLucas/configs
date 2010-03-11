@@ -20,8 +20,10 @@ def nt_highlight(*args):
     return True
 
 def nt_highlight_pv(*args):
-    msg = args[2].split("PRIVMSG ", 1)[1].replace("&", "&amp;").replace("'","`")
-    subj, summ = msg.split(" :", 1)
+    msg = args[2].replace("&", "&amp;").replace("'","`").split("!", 1)
+
+    subj = msg[0][1:]
+    summ = msg[1].split(" :",1)[1]
 
     os.system("notify-send '{0}' '{1}' &> /dev/null".format(subj, summ))
     return True
