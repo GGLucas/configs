@@ -91,7 +91,6 @@ nmap <silent> <Leader>T :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
 
-nmap <silent> <Leader>j :source ~/.vim/scripts/sparkup.vim<CR>
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
 
@@ -146,6 +145,12 @@ noremap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload
 noremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 
 " }}}
+
+" {{{ Plugin binds
+inoremap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
+nnoremap <C-t> <Esc>:norm <C-y>n
+" }}}
+
 " }}}
 
 " {{{ Plugin Settings
@@ -183,6 +188,10 @@ let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
 let delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
 let delimitMate_apostrophes = ""
 let delimitMate_quotes = "\""
+
+" ZenCoding
+let g:user_zen_settings = { 'indentation': '  ', }
+let g:user_zen_leader_key = '<C-t>'
 
 " }}}
 
@@ -319,9 +328,6 @@ autocmd BufReadPost *.rtf silent %!unrtf --text
 
 " Files to indent with two spaces
 autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-" Load sparkup for html
-autocmd FileType xhtml,html,xml,markdown silent source ~/.vim/scripts/sparkup.vim
 
 " Set correct folding
 autocmd FileType c silent setlocal fdm=syntax fdn=1
