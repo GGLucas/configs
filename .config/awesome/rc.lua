@@ -167,6 +167,18 @@ util = {
             end
         end,
 
+        -- Focus numbered screen
+        focus = function (screen)
+            mouse.screen = screen
+
+            local c = awful.client.focus.history.get(screen, 0)
+            if c then
+                mouse.coords({ x = c:geometry().x+6,
+                               y = c:geometry().y+4
+                            })
+                client.focus = c
+            end
+        end,
 
         -- Focus previous screen
         focusprev = function ()
@@ -654,6 +666,14 @@ bindings = {
 
         -- Quickmark "^^" is a shortcut for "globally last focussed client."
         [{"Mod4", "Mod5", "-"}] = {quickmarks.focus, "^^"},
+
+        -- Number "Quickmarks" to focus a particular screen
+        [{"Mod4", "Mod5", "#10"}] = {util.screen.focus, 4},
+        [{"Mod4", "Mod5", "#11"}] = {util.screen.focus, 1},
+        [{"Mod4", "Mod5", "#12"}] = {util.screen.focus, 2},
+        [{"Mod4", "Mod5", "#13"}] = {util.screen.focus, 3},
+        [{"Mod4", "Mod5", "#20"}] = {util.screen.focus, 5},
+        [{"Mod4", "Mod5", "#21"}] = {util.screen.focus, 6},
 
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
