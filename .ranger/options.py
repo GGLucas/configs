@@ -5,6 +5,5 @@ show_cursor = False
 
 sort = "basename"
 
-sort_custom = {
-    "/data/anime": "mtime",
-}
+autosave_bookmarks = False
+flushinput = False
