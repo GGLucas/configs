@@ -49,7 +49,7 @@ apps = {
     tmux = "urxvtc -e tmux -2 attach-session -t dl",
 
     -- Open filemanager
-    filemanager = "urxvtc -e vifm /data /data",
+    filemanager = "urxvtc -e ranger /data",
 
     -- Open htop
     htop = "urxvtc -e htop",
@@ -80,6 +80,7 @@ apps = {
     newsbeuter = "urxvtc -e tmux -2 attach-session -t rss",
     ncmpcpp = "urxvtc -e tmux -2 attach-session -t mpd",
     cortex = "urxvtc -e tmux -2 attach-session -t rd",
+    ranger = "urxvtc -e tmux -2 attach-session -t rn",
 }
 
 -- Advprompt
@@ -427,7 +428,7 @@ util = {
         awful.client.visible(mouse.screen)[1]:kill()
         util.spawn_wait(apps.terminal)
         util.spawn_wait(apps.tasks)
-        util.spawn_wait(apps.filemanager)
+        util.spawn_wait(apps.ranger)
 
         -- Outer right
         mouse.screen = 3
