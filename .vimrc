@@ -41,6 +41,10 @@ noremap ,, ,
 vmap < <gv
 vmap > >gv
 
+" Quit all easily
+nmap ZVQ :qa<CR>
+nmap ZVZ :wqa<CR>
+
 " Faster scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -334,6 +338,7 @@ autocmd FileType c silent setlocal fdm=syntax fdn=1
 
 " Highlight "self" in python
 autocmd FileType python syn keyword Identifier self
+autocmd FileType python syn keyword Type True False None
 
 " Highlight section as comment in TeX
 autocmd FileType tex,plaintex hi link TexZone Comment

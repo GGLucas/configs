@@ -15,7 +15,6 @@ set background=dark
 " Color name
 let g:colors_name="oblivion"
 
-" Set black background in rxvt, otherwise approximate
 hi Normal        ctermbg=0 ctermfg=white
 
 hi SpecialKey    ctermfg=244
@@ -36,7 +35,7 @@ hi VertSplit     cterm=reverse ctermfg=lightgray ctermbg=black
 
 hi Title         ctermfg=202
 hi Visual        ctermfg=231 ctermbg=59
-hi VisualNOS     cterm=bold,underline
+hi VisualNOS     cterm=bold
 hi WarningMsg    ctermfg=202
 hi WildMenu      ctermfg=0 ctermbg=11
 hi Folded        ctermfg=221 ctermbg=239
@@ -60,16 +59,16 @@ hi TabLineSel    cterm=bold ctermfg=231
 hi TabLineFill   ctermfg=239 ctermbg=16
 
 hi CursorColumn  ctermbg=16
-hi CursorLine    cterm=underline ctermbg=16
+hi CursorLine    ctermbg=16 cterm=NONE
 hi MatchParen    ctermfg=231 ctermbg=139
 hi Comment       ctermfg=244
 hi Constant      ctermfg=202
-hi Special       ctermfg=224
-hi Function      cterm=bold ctermfg=74
-hi Statement     cterm=bold ctermfg=15
-hi PreProc       cterm=underline ctermfg=74
+hi Special       ctermfg=208
+hi Function      ctermfg=74 cterm=bold
+hi Statement     ctermfg=15 cterm=bold
+hi PreProc       ctermfg=blue cterm=bold
 hi Type          ctermfg=112
-hi Underlined    cterm=underline ctermfg=81
+hi Underlined    ctermfg=81 cterm=underline
 hi Ignore        ctermfg=0
 hi Error         ctermfg=15 ctermbg=9
 hi Todo          ctermfg=0 ctermbg=11
