@@ -174,21 +174,30 @@ c() {
     [[ $@ ]] && git commit $@ || git commit -a
 }
 
+# Root where packages are stored
+PACKAGE_ROOT=/mnt/data-5/others/packages
+
 # Download package from abs
 absd() {
     abs $1/$2
-    cp -R /var/abs/$1/$2 /mnt/data-5/others/packages/abs
-    cd /mnt/data-5/others/packages/abs/$2
+    cp -R /var/abs/$1/$2 $PACKAGE_ROOT/abs
+    cd $PACKAGE_ROOT/abs/$2
 }
 
-# Download package from our
+# Download package from aur
 aurd() {
-    cd /mnt/data-5/others/packages/aur
-    wget http://aur.archlinux.org/packages/$1/$1.tar.gz || exit 1
-    tar xvf $1.tar.gz || exit 1
-    rm $1.tar.gz
-    cd $1
+    cd $PACKAGE_ROOT/aur
+    if wget http://aur.archlinux.org/packages/$1/$1.tar.gz; then
+        tar xvf $1.tar.gz || return 1
+        rm $1.tar.gz
+        cd $1
+    else
+        cd -
+    fi
 }
+
+# Go to a package directory
+ga() { cd $PACKAGE_ROOT/$1/$2; }
 
 # Flatten function
 flat() {
