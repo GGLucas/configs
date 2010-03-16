@@ -183,8 +183,11 @@ absd() {
 
 # Download package from our
 aurd() {
-    slurpy -c -t /mnt/data-5/others/packages/aur -f -d $*
-    cd /mnt/data-5/others/packages/aur/$1
+    cd /mnt/data-5/others/packages/aur
+    wget http://aur.archlinux.org/packages/$1/$1.tar.gz || exit 1
+    tar xvf $1.tar.gz || exit 1
+    rm $1.tar.gz
+    cd $1
 }
 
 # Flatten function
