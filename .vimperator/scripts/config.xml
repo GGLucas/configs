@@ -18,6 +18,9 @@
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
 	</Script>
 	<Script filename="google_search_enhanced_k.user.js" name="Google Search Enhanced Keyboard Navigation" namespace="http://userscripts.org/users/82018" description="Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages." enabled="true" basedir="google_search_enhanced_k">
-		<Include>*</Include>
+		<Include>http://*google.com/search*</Include>
+	</Script>
+	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" description="Dukgo fix" enabled="true" basedir="dukgo_fix_shortcuts" namespace="dukgo">
+		<Include>http://duckduckgo.com/*</Include>
 	</Script>
 </UserScriptConfig>

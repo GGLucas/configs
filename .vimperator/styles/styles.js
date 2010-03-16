@@ -55,6 +55,12 @@ var loaduserstyles = function()
             "google.css",
         ],
 
+        [
+            "dukgo:dark",
+            "duckduckgo.com",
+            "dukgo.css",
+        ],
+
     ];
 
     // Get style directory
