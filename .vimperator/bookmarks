@@ -7,7 +7,9 @@ bma -k=g http://google.com/search?q=%s&num=100
 "" Google: Feeling Lucky
 bma -k=gg http://google.com/search?btnI=1&q=%s
 "" Duck Duck Go
-bma -k=duk http://duckduckgo.com/?q=%s&v=
+bma -k=duk http://duckduckgo.com/?q=%s&v=r
+bma -k=dukall http://duckduckgo.com/?q=%s&v=
+bma -k=dukshop http://duckduckgo.com/?q=%s&v=s
 "" YubNub
 bma -k=y http://yubnub.org/parser/parse?command=%s
 
