@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Make sure mpd is turned off
-([[ $(mpc current) =~ "AnimeNfo" ]] && mpc stop || mpc pause)&>/dev/null&
+if [[ "$1" -eq "1" ]]; then
+    ([[ $(mpc current) =~ "AnimeNfo" ]] && mpc stop || mpc pause)&>/dev/null&
+fi;
 
 # Turn off all displays
 (sleep 0.2 && xset dpms force off)&

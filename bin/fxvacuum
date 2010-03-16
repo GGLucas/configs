@@ -1,2 +1,2 @@
 #!/bin/bash
-find /data/others/fxprofile/ \( -name "*.sqlite" \) -exec sqlite3 {} "VACUUM" \;
+find ~/fxprofile/ \( -name "*.sqlite" \) -exec sqlite3 {} "VACUUM" \;

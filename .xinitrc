@@ -38,8 +38,7 @@ xset r rate 250 30 &
 # Monitor-specific commands
 for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do
-    # Set wallpaper
-    #DISPLAY=$display wallrandom &
+    # Set background color to gray
     DISPLAY=$display xsetroot -gray &
 
     # Start a term

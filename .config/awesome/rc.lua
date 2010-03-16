@@ -61,10 +61,10 @@ apps = {
     tasks = "urxvtc -e bash --rcfile ~/bin/showtasks",
 
     -- Suspend activity
-    system_suspend = "system_suspend",
+    system_suspend = "system_suspend 1",
 
     -- Turn off displays
-    displays_off = "sleep 0.2 && xset dpms force off",
+    displays_off = "system_suspend 0",
 
     -- Shutdown system
     shutdown = "sudo halt",
