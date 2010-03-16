@@ -186,13 +186,13 @@ absd() {
 
 # Download package from aur
 aurd() {
-    cd $PACKAGE_ROOT/aur
-    if wget http://aur.archlinux.org/packages/$1/$1.tar.gz; then
+    if wget http://aur.archlinux.org/packages/$1/$1.tar.gz \
+             -O $PACKAGE_ROOT/aur/$1.tar.gz;
+    then
+        cd $PACKAGE_ROOT/aur
         tar xvf $1.tar.gz || return 1
         rm $1.tar.gz
         cd $1
-    else
-        cd -
     fi
 }
 
