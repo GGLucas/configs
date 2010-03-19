@@ -1,6 +1,6 @@
 from ranger.api.options import *
 
-colorscheme = colorschemes.oblivion
+colorscheme = "oblivion"
 show_cursor = False
 
 sort = "basename"
