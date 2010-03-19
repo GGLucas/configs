@@ -471,6 +471,17 @@ util = {
             awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
         end
     end,
+
+    -- Toggle weechat away
+    weechat_away = function ()
+        if settings._away then
+            settings._away = false
+            util.weechat_send({"/away -all"})
+        else 
+            settings._away = true
+            util.weechat_send({"/away -all away"})
+        end
+    end,
     -- }}}
 }
 -- }}}
@@ -657,6 +668,9 @@ bindings = {
 
         -- Set quickmarks
         [{"Mod4", "Return"}] = util.defquickmarks,
+
+        -- Toggle away on weechat
+        [{"Mod4", "F3"}] = util.weechat_away,
 
         -- Restart awesome
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,
