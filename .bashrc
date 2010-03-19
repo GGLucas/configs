@@ -114,6 +114,8 @@ alias pg='$PAGER'
 alias r='rolldice'
 alias v='vim'
 alias vv='sudo vim'
+alias t='todo'
+alias td='todo --database ~/.todo.daily'
 
 # Shortcuts
 slide() { qiv -usrtm -d 7 -B $1 & }
@@ -129,15 +131,6 @@ tnh() { ani hist: =tv; }
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
-
-# Tofu organiser shortcuts
-orgn()     { tofu org next feed="$1"${@#$1} && tofu org; }
-org()      { tofu org $@; }
-miscn()    { tofu misc next feed="$1"${@#$1} && tofu misc; }
-misc()     { tofu misc $@; }
-projn()    { tofu proj next feed="$1"${@#$1} && tofu proj; }
-proj()     { tofu proj $@; }
-todosync() { unison -batch ~/.tofu ssh://root@glacicle.org//root/todo; }
 
 # Shortcut functions
 x(){ cd ~; xinit $@; }
@@ -204,42 +197,6 @@ flat() {
     mkdir ../__flat;
     find . -print0 | xargs -0 -i'{}' cp '{}' ../__flat;
     mv ../__flat/* . && rmdir ../__flat
-}
-
-# Resquash everything but usr
-squashall() {
-    sudo resquash lib
-    sudo resquash lib64
-    sudo resquash bin
-    sudo resquash sbin
-}
-
-# Weekly schedule shortcuts
-## Display daily schedule
-day() {
-    week=$(date +%-V)
-    flags="";
-    [[ $((week%2)) -eq 0 ]] && flags="$flags\e[1;32m2" || flags="$flags\e[1;31m-";
-    [[ $((week%3)) -eq 0 ]] && flags="$flags\e[1;32m3" || flags="$flags\e[1;31m-";
-    [[ $((week%4)) -eq 0 ]] && flags="$flags\e[1;32m4" || flags="$flags\e[1;31m-";
-
-    echo -e "\e[0;36m#############"
-    echo -e "#  \e[1;35mWeek \e[1;34m$week\e[0;36m  #"
-    echo -e "#    $flags\e[0;36m    #"
-    echo -e "#############\e[0;37m"
-
-    # Schedule
-    [[ "$1" == "" ]] && day=$(date +%a) || day=$1;
-    shift
-    tofu ${day,,} $@;
-}
-
-## Add new item
-dayn() {
-    day="${1,,}"
-    feed="$2"
-    shift 2
-    tofu $day next feed="$feed" $@ && tofu $day;
 }
 
 ## Map function for bash.
