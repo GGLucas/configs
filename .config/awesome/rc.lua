@@ -39,26 +39,25 @@ beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
 lower_screens = 4
 
 -- Applications
+terminal = "urxvtc"
+terminal_full = "/usr/bin/urxvtc"
+
 apps = {
     -- Terminal to use
-    terminal = "urxvtc",
-    terminal_full = "/usr/bin/urxvtc",
+    terminal = terminal,
+    terminal_full = terminal_full,
 
-    -- Open a terminal with screen
-    -- * Local
-    tmux = "urxvtc -e tmux -2 attach-session -t dl",
+    -- Open a terminal with tmux
+    tmux = terminal.." -e tmux -2 attach -t ranger",
 
     -- Open filemanager
-    filemanager = "urxvtc -e ranger /data",
+    filemanager = terminal.." -e ranger /data",
 
     -- Open htop
-    htop = "urxvtc -e htop",
+    htop = terminal.." -e htop",
 
     -- Open webbrowser
     browser = "fx",
-
-    -- Open shell with tasks listed first
-    tasks = "urxvtc -e bash --rcfile ~/bin/showtasks",
 
     -- Suspend activity
     system_suspend = "system_suspend 1",
@@ -69,18 +68,11 @@ apps = {
     -- Shutdown system
     shutdown = "sudo halt",
 
-    -- MPD Control
-    -- * Toggle music
+    -- Toggle music
     mpd_toggle = "mpc_toggle",
 
-    -- Different tmux windows
-    irc = "urxvtc -e tmux -2 attach-session -t irc",
-    mail = "urxvtc -e tmux -2 attach-session -t mt",
-    rtorrent = "urxvtc -e tmux -2 attach-session -t dl",
-    newsbeuter = "urxvtc -e tmux -2 attach-session -t rss",
-    ncmpcpp = "urxvtc -e tmux -2 attach-session -t mpd",
-    cortex = "urxvtc -e tmux -2 attach-session -t rd",
-    ranger = "urxvtc -e tmux -2 attach-session -t rn",
+    -- Start all applications
+    startapps = "startapps",
 }
 
 -- Advprompt
@@ -283,20 +275,6 @@ util = {
     -- }}}
 
     -- {{{ Spawn based
-    -- Spawn with a wait at the end
-    spawn_wait = function (app, wait)
-        awful.util.spawn_with_shell(app)
-
-        if wait then
-            os.execute("sleep "..wait)
-        end
-    end,
-
-    -- Spawn an application with scim enabled
-    spawn_with_scim = function(app)
-        awful.util.spawn_with_shell("XMODIFIERS='@im=SCIM' GTK_IM_MODULE=scim QT_IM_MODULE=scim "..app)
-    end,
-
     -- Spawn on all screens
     spawn_all = function(app)
         for s=1, screen.count() do
@@ -305,8 +283,8 @@ util = {
         end
     end,
 
-    -- Spawn on bottom screens
-    spawn_bottom = function(app)
+    -- Spawn on lower screens
+    spawn_lower = function(app)
         for s=1, lower_screens do
             mouse.screen = s
             awful.util.spawn(app)
@@ -413,63 +391,10 @@ util = {
 
     -- {{{ Clients to launch at startup
     startup = function ()
-        -- Top left
-        mouse.screen = 5
-        awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.irc)
-
-        -- Top right
-        mouse.screen = 6
-        awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.irc)
-
-        -- Main right
-        mouse.screen = 2
-        awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.terminal)
-        util.spawn_wait(apps.tasks)
-        util.spawn_wait(apps.ranger)
-
-        -- Outer right
-        mouse.screen = 3
-        awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.mail)
-        util.spawn_wait(apps.ncmpcpp)
-        util.spawn_wait(apps.htop)
-
-        -- Outer left
-        mouse.screen = 4
-        awful.client.visible(mouse.screen)[1]:kill()
-        util.spawn_wait(apps.rtorrent, "0.5")
-        util.spawn_wait(apps.cortex)
-        util.spawn_wait(apps.newsbeuter)
-
-        -- Main left
-        mouse.screen = 1
-        awful.client.visible(mouse.screen)[1]:kill()
-        awful.util.spawn(apps.browser)
-
-        -- Assign quickmarks
-        local marktimer = timer { timeout = 1 }
-        marktimer:add_signal("timeout", function()
-            -- Set quickmarks
-            util.defquickmarks()
-
-            -- Stop timer
-            marktimer:stop()
-        end)
-        marktimer:start()
-
-        -- Firefox starts so slowly we need to wait longer
-        local fxtimer = timer { timeout = 20 }
-        fxtimer:add_signal("timeout", function()
-            -- Set firefox quickmark again
-            quickmarks.set(awful.client.visible(1)[1], "u")
-
-            -- Stop timer
-            fxtimer:stop()
-        end)
-        fxtimer:start()
+        awful.util.spawn_with_shell(apps.startapps)
+        for s=1, screen.count() do
+            awful.client.visible(s)[1]:kill()
+        end
     end,
     -- }}}
 
@@ -569,42 +494,66 @@ end
 -- {{{ Keybindings
 -- Global keybindings
 bindings = {
-    root = {
+    -- {{{ Spawn applications
+    spawn = {
         -- Open terminal
-        [{"Mod4", ";"}] = {awful.util.spawn, apps.terminal},
+        [{"Mod4", ";"}] = apps.terminal,
 
-        -- Open terminal with scim
-        [{"Mod4", "Shift", ";"}] = {util.spawn_with_scim, apps.terminal},
+        -- Open terminal with tmux
+        [{"Mod4", "b"}] = apps.tmux,
 
-        -- Open terminal on all screens
-        [{"Mod4", "Mod1", ";"}] = {util.spawn_all, apps.terminal},
+        -- Open file manager
+        [{"Mod4", "e"}] = apps.filemanager,
+    },
+    -- }}}
 
-        -- Open terminal on bottom 4 screens
-        [{"Mod4", "Mod1", "Shift", ";"}] = {util.spawn_bottom, apps.terminal},
+    -- {{{ Commands to run
+    cmd = {
+        -- Toggle music
+        [{"Mod4", "."}] = apps.mpd_toggle,
 
+        -- Shutdown machine
+        [{"Mod4", "Shift", "Pause"}] = apps.shutdown,
+
+        -- Switch keymap
+        [{"Mod4", "KP_Add"}] = "setxkbmap us && xmodmap ~/.xkb/xmm/caps_escape",
+        [{"Mod4", "KP_Enter"}] = "hdv",
+
+        -- Suspend all activity
+        [{"Mod4", "F1"}] = apps.system_suspend,
+
+        -- Turns displays off
+        [{"Mod4", "F2"}] = apps.displays_off,
+
+        -- Toggle Line In mute
+        [{"Mod4", "F8"}] = "amixer set Line toggle",
+    },
+    -- }}}
+
+    -- {{{ Functions to run on screens
+    screen = {
+        -- Tag selection
+        [{"Mod4", "w"}] = awful.tag.viewnext,
+        [{"Mod4", "v"}] = awful.tag.viewprev,
+
+        -- Toggle fadelist display
+        [{"Mod4", "\\"}] = function(s) fadelist(0, s and s.index or nil) end,
+    },
+    -- }}}
+
+    -- {{{ Misc functions
+    root = {
         -- Drop-down urxvtc terminal
         [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
 
         -- Pull-left urxvtc terminal
         [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 1},
 
-        -- Open terminal with screen
-        -- * Local
-        [{"Mod4", "b"}] = {awful.util.spawn, apps.tmux},
-        -- * Local with scim
-        [{"Mod4", "Shift", "b"}] = {util.spawn_with_scim, apps.tmux},
-
-        -- Toggle music
-        [{"Mod4", "."}] = {awful.util.spawn, apps.mpd_toggle},
-
         -- Open spawn prompt
         [{"Mod4", ","}] = {advprompt},
 
         -- Close all output notifications
         [{"Mod4", "Shift", ","}] = util.notify_clear,
-
-        -- Open file manager
-        [{"Mod4", "e"}] = {awful.util.spawn, apps.filemanager},
 
         -- Show MPD currently playing song
         [{"Mod4", "p"}] = util.notify_mpd,
@@ -617,18 +566,6 @@ bindings = {
 
         -- Warp pointer to top left of the screen
         [{"Mod4", "Mod1", "$"}] = {mouse.coords, {x = 0, y = 0}},
-
-        -- Tag selection
-        [{"Mod4", "w"}] = awful.tag.viewnext,
-        [{"Mod4", "v"}] = awful.tag.viewprev,
-
-        ---- Tag selection on all monitors
-        [{"Mod4", "Mod1", "w"}] = {util.screen.do_all, awful.tag.viewnext},
-        [{"Mod4", "Mod1", "v"}] = {util.screen.do_all, awful.tag.viewprev},
-
-        -- Tag selection on bottom 4 monitors
-        [{"Mod4", "Mod1", "Shift", "w"}] = {util.screen.do_lower, awful.tag.viewnext},
-        [{"Mod4", "Mod1", "Shift", "v"}] = {util.screen.do_lower, awful.tag.viewprev},
 
         -- Window focus
         [{"Mod4", "t"}] = {util.client.focusraise_idx, 1},
@@ -701,25 +638,10 @@ bindings = {
         [{"Mod4", "Mod1", "'"}] = {awful.tag.incnmaster, -1},
         [{"Mod4", "Mod1", "q"}] = {awful.tag.incnmaster, 1},
 
-        -- Toggle fadelist display
-        [{"Mod4", "\\"}] = {fadelist, 0},
-
-        -- Toggle fadelist display on all screens
-        [{"Mod4", "Mod1", "\\"}] = {util.screen.do_all, function (s) fadelist(0,s.index) end},
-
         -- Screen focus
         [{"Mod4", "h"}] = util.screen.focusprev,
         [{"Mod4", "l"}] = util.screen.focusnext,
         [{"Mod4", "g"}] = util.screen.focusnextrow,
-
-        -- Suspend all activity
-        [{"Mod4", "F1"}] = {awful.util.spawn_with_shell, apps.system_suspend},
-
-        -- Turns displays off
-        [{"Mod4", "F2"}] = {awful.util.spawn_with_shell, apps.displays_off},
-
-        -- Toggle Line In mute
-        [{"Mod4", "F8"}] = {awful.util.spawn, "amixer set Line toggle"},
 
         -- Toggle notifications displaying
         [{"Mod4", "F10"}] = util.notify_toggle,
@@ -730,23 +652,18 @@ bindings = {
         -- Toggle between numbers and special characters by default on number row
         [{"Mod4", "F12"}] = util.toggle_numbers,
 
-        -- Switch keymap
-        [{"Mod4", "KP_Add"}] = {awful.util.spawn_with_shell, "setxkbmap us && xmodmap ~/.xkb/xmm/caps_escape"},
-        [{"Mod4", "KP_Enter"}] = {awful.util.spawn_with_shell, "hdv"},
-
         -- Start a set of common clients with quickmarks
-        [{"Mod4", "Shift", "KP_Subtract"}] = util.startup,
+        [{"Mod4", "BackSpace"}] = util.startup,
 
         -- Set quickmarks
-        [{"Mod4", "Shift", "KP_Multiply"}] = util.defquickmarks,
-
-        -- Shutdown machine
-        [{"Mod4", "Shift", "Pause"}] = {awful.util.spawn, apps.shutdown},
+        [{"Mod4", "Return"}] = util.defquickmarks,
 
         -- Restart awesome
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,
     },
+    -- }}}
 
+    -- {{{ Client bindings
     client = {
         -- Toggle fullscreen
         [{"Mod4", "f"}] = {"+fullscreen"},
@@ -775,6 +692,7 @@ bindings = {
         [{"Mod4", "+"}] = {util.client.setfloatgeom, 0, 0, 3360, 1050},
         [{"Mod4", "]"}] = {util.client.setfloatgeom, -1680, 0, 3360, 1050},
     },
+    -- }}}
 
     root_buttons = awful.util.table.join(
         awful.button({}, 3, function () awful.util.spawn(apps.terminal) end)
@@ -827,6 +745,46 @@ end
 ---- }}}
 
 ---- {{{ Set up keybindings - Code
+    --- Add specific bindings into root bindings array
+    -- Spawn applications
+    for keys, cmd in pairs(bindings.spawn) do
+        -- Get keys for all displays
+        keys_all = awful.util.table.clone(keys)
+        table.insert(keys_all, 1, "Mod1")
+
+        -- Get keys for bottom displays
+        keys_bottom = awful.util.table.clone(keys_all)
+        table.insert(keys_bottom, 1, "Shift")
+
+        -- Add bindings
+        bindings.root[keys] = {awful.util.spawn, cmd}
+        bindings.root[keys_all] = {util.spawn_all, cmd}
+        bindings.root[keys_bottom] = {util.spawn_lower, cmd}
+    end
+
+    -- Run commands
+    for keys, cmd in pairs(bindings.cmd) do
+        -- Add bindings
+        bindings.root[keys] = {awful.util.spawn_with_shell, cmd}
+    end
+
+    -- Run a function on a screen
+    for keys, cmd in pairs(bindings.screen) do
+        -- Get keys for all displays
+        keys_all = awful.util.table.clone(keys)
+        table.insert(keys_all, 1, "Mod1")
+
+        -- Get keys for bottom displays
+        keys_bottom = awful.util.table.clone(keys_all)
+        table.insert(keys_bottom, 1, "Shift")
+
+        -- Add bindings
+        bindings.root[keys] = cmd
+        bindings.root[keys_all] = {util.screen.do_all, cmd}
+        bindings.root[keys_bottom] = {util.screen.do_lower, cmd}
+    end
+
+    --- Setup root bindings
     -- Root binding table
     local rbinds = {}
 
@@ -860,6 +818,7 @@ end
     -- Bind
     root.keys(awful.util.table.join(unpack(rbinds)))
 
+    --- Setup client bindings
     -- Client binding table
     local clientbinds = {}
 
@@ -915,7 +874,7 @@ end
     end
 
     clientbinds = awful.util.table.join(unpack(clientbinds))
-    
+
     -- Root buttons
     root.buttons(bindings.root_buttons)
 ---- }}}
