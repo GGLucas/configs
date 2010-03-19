@@ -117,8 +117,14 @@ alias vv='sudo vim'
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
 
-# Shortcuts
+# Fallback to grep if ack is not found
+[[ ! -x ~/bin/ack ]] && alias ack="grep"
+
+# Shortcut functions
 slide() { qiv -usrtm -d 7 -B $1 & }
+x(){ cd ~; xinit $@; }
+tm() { tmux -2 attach -t $1; }
+tmn() { tmux -2 respawn -t $1; }
 
 # Watch list shortcuts
 w()   { ani watch: $@; }
@@ -128,12 +134,6 @@ an()  { ani list: +w =anime; }
 anh() { ani hist: =anime; }
 tn()  { ani list: +w =tv; }
 tnh() { ani hist: =tv; }
-
-# Fallback to grep if ack is not found
-[[ ! -x ~/bin/ack ]] && alias ack="grep"
-
-# Shortcut functions
-x(){ cd ~; xinit $@; }
 
 # Daemon shortcuts
 dr() { for d in $@; do sudo /etc/rc.d/$d restart; done; }
