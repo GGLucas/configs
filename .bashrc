@@ -124,7 +124,7 @@ alias td='todo --database ~/.todo.daily'
 slide() { qiv -usrtm -d 7 -B $1 & }
 x(){ cd ~; xinit $@; }
 tm() { tmux -2 attach -t $1; }
-tmn() { tmux -2 respawn -t $1; }
+tmn() { tmux -2 new -s $1 $1; }
 
 # Watch list shortcuts
 w()   { ani watch: $@; }
