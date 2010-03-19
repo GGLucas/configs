@@ -189,6 +189,14 @@ aurd() {
     fi
 }
 
+# Make a git package, then show the log
+gi() { 
+    gitdir=$1; shift
+    from=$(git --git-dir=src/$gitdir/.git rev-parse HEAD)
+    makepkg -fi $@
+    git --git-dir=src/$gitdir/.git log --stat $from..HEAD
+}
+
 # Go to a package directory
 ga() { cd $PACKAGE_ROOT/$1/$2; }
 
