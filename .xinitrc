@@ -30,7 +30,7 @@ urxvtd &
 hdv &
 
 # WMName for Java
-wmname compiz &
+wmname LG3D &
 
 # Set keyboard repeat rate
 xset r rate 250 30 &
