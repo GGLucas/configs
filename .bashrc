@@ -164,7 +164,11 @@ tvtime() {
 
 # Commit git -a or path
 c() {
-    [[ $@ ]] && git commit $@ || git commit -a
+    if [[ "$1" == "-i" ]]; then
+        shift; git commit --interactive $@
+    else
+        test -n "$@" && git commit $@ || git commit -a
+    fi;
 }
 
 # Root where packages are stored
