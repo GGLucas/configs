@@ -66,6 +66,7 @@ bma -k=sched http://srv571.tudelft.net/scientia/sws/nl/swstud/default.aspx
 bma -k=vimp http://code.google.com/p/vimperator-labs/
 bma -k=router http://192.168.1.1
 bma -k=nipponsei https://nipponsei.minglong.org
+bma -k=localhost http://localhost
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
