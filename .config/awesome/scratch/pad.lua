@@ -50,7 +50,7 @@ end
 function set(c, width, height, sticky, screen)
     width  = width  or 0.50
     height = height or 0.50
-    sticky = sticky or false
+    sticky = sticky or true
     screen = screen or capi.mouse.screen
 
     local function setscratch(c)

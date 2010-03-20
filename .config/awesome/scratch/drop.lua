@@ -45,7 +45,7 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
     horiz  = horiz  or "center"
     width  = width  or 1
     height = height or 0.25
-    sticky = sticky or false
+    sticky = sticky or true
     screen = screen or capi.mouse.screen
 
     if not dropdown[prog] then
