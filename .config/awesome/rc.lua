@@ -123,7 +123,9 @@ util = {
 
         focusraise_idx = function (idx)
             awful.client.focus.byidx(idx)
-            if client.focus then client.focus:raise() end
+            if client.focus and awful.client.property.get(client.focus, "floating") then
+                client.focus:raise()
+            end
         end,
 
         setfloatgeom = function (x, y, width, height)
