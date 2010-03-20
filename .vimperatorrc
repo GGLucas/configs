@@ -16,7 +16,7 @@ set incsearch
 set smartcase
 
 " Default search
-set ds=duk
+set ds=k
 
 " Default GUI options
 set go=
