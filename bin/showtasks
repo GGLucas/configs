@@ -19,3 +19,5 @@ echo -e "#############\e[0;37m"
 echo -e "\e[0;37m"
 todo --database ~/.todo.daily $day
 echo
+todo --database ~/.todo.daily 8
+echo
