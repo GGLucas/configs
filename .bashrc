@@ -165,9 +165,10 @@ tvtime() {
 # Commit git -a or path
 c() {
     if [[ "$1" == "-i" ]]; then
+        echo I
         shift; git commit --interactive $@
     else
-        test -n "$@" && git commit $@ || git commit -a
+        [[ -n "$@" ]] && git commit $@ || git commit -a
     fi;
 }
 
