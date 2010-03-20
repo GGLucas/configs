@@ -13,8 +13,8 @@ require("eminent")
 -- Beautiful: Theming capabilities
 require("beautiful")
 
--- Teardrop: Dropdown terminal
-require("teardrop")
+-- Scratch: Dropdown and scratchpad manager
+require("scratch")
 
 -- Fadelist: Pop-up taglist
 require("fadelist")
@@ -549,16 +549,19 @@ bindings = {
 
         -- Toggle fadelist display
         [{"Mod4", "\\"}] = function(s) fadelist(0, s and s.index or nil) end,
+
+        -- Toggle scratchpad
+        [{"Mod4", "s"}] = scratch.pad.toggle,
     },
     -- }}}
 
     -- {{{ Misc functions
     root = {
         -- Drop-down urxvtc terminal
-        [{"Mod4", "a"}] = {teardrop.toggle, apps.terminal},
+        [{"Mod4", "a"}] = {scratch.drop, apps.terminal},
 
         -- Pull-left urxvtc terminal
-        [{"Mod4", "Shift", "a"}] = {teardrop.toggle, apps.terminal_full, "top", "right", 0.5, 1},
+        [{"Mod4", "Shift", "a"}] = {scratch.drop, apps.terminal_full, "top", "right", 0.5, 1},
 
         -- Open spawn prompt
         [{"Mod4", ","}] = {advprompt},
@@ -679,6 +682,9 @@ bindings = {
 
     -- {{{ Client bindings
     client = {
+        -- Set scratchpad
+        [{"Mod4", "Shift", "s"}] = scratch.pad.set,
+
         -- Toggle fullscreen
         [{"Mod4", "f"}] = {"+fullscreen"},
 
