@@ -168,7 +168,11 @@ c() {
         echo I
         shift; git commit --interactive $@
     else
-        [[ -n "$@" ]] && git commit $@ || git commit -a
+        if [[ -n "$@" ]]; then
+            git commit $@
+        else
+            git commit -a
+        fi;
     fi;
 }
 
