@@ -56,6 +56,8 @@ bma -k=jp http://www.nihongodict.com/?s=%s
 bma -k=udict http://www.urbandictionary.com/define.php?term=%s
 "" Thesaurus
 bma -k=thes http://thesaurus.reference.com/the?q=%s
+"" Validator
+bma -k=valid http://validator.w3.org/check?uri=%s
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
