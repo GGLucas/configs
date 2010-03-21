@@ -1,8 +1,8 @@
 " 
 " Lucas de Vries' .vimrc
 " Nick: GGLucas
-" Mail: lucas@glacicle.com
-" Website: lucas.glacicle.com
+" Mail: lucas@glacicle.org
+" Website: lucas.glacicle.org
 "
 
 " {{{ Key Mappings

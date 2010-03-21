@@ -8,6 +8,9 @@ exc="--exclude-from=$HOME/.rsync_exclude"
 ## Project website directories
 RSYNC_projects="$del $exc /data/web/projects/ root@glacicle.org:/srv/www/projects"
 
+## IN2805 project
+RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.org:/srv/git/api/in2805-b.git"
+
 ### Zorgberaad
 ## Zorgberaadmh.nl website
 RSYNC_zorgberaadmh="$del $exc /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
