@@ -82,23 +82,24 @@ nnoremap <silent> <Esc>b :e .<CR>
 nnoremap <silent> <Esc>w :bnext<CR>
 nnoremap <silent> <Esc>v :bprev<CR>
 
-nnoremap <silent> <Leader>g :BufferExplorer<CR>
-nnoremap <silent> <Leader>f :FilesystemExplorer<CR>
-nnoremap <silent> <Leader>F :FilesystemExplorerFromHere<CR>
+nnoremap <silent> <Leader>n :BufferExplorer<CR>
+nnoremap <silent> <Leader>g :FilesystemExplorer<CR>
+nnoremap <silent> <Leader>g :FilesystemExplorerFromHere<CR>
 " }}}
 
 " {{{ Opening different plugin windows
-nmap <silent> <Leader>n :call TreeOpenFocus()<CR>
-nmap <silent> <Leader>N :NERDTreeToggle<CR>
-nmap <silent> <Leader>t :TlistOpen<CR>
-nmap <silent> <Leader>T :TlistToggle<CR>
+nmap <silent> <Leader>h :call TreeOpenFocus()<CR>
+nmap <silent> <Leader>H :NERDTreeToggle<CR>
+nmap <silent> <Leader>l :TlistOpen<CR>
+nmap <silent> <Leader>L :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
 
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
 
-nmap <Leader>h :vert bo help 
+nmap <Leader>p :vert bo help 
+
 " }}}
 
 " {{{ Command line cursor keys
@@ -268,7 +269,7 @@ set ruler
 set hidden
 
 " Automatically switch to the directory we're editing in
-set autochdir
+"set autochdir
 
 " Show matching
 set showmatch
@@ -297,6 +298,9 @@ set gdefault
 
 " Format (gq) options
 set formatoptions+=w
+
+" File patterns to ignore in completions
+set wildignore=*.o,*.pyc,.git,.svn
 
 " Highlight search
 set hls
