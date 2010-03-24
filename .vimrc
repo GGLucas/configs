@@ -189,7 +189,7 @@ let html_use_css = 1
 let g:LustyJugglerSuppressRubyWarning = 1
 
 " Command-T
-let g:CommandTMaxHeight = 5
+let g:CommandTMaxHeight = 10
 
 " delemitMate
 let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
