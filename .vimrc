@@ -188,6 +188,9 @@ let html_use_css = 1
 " Lusty Explorer
 let g:LustyJugglerSuppressRubyWarning = 1
 
+" Command-T
+let g:CommandTMaxHeight = 5
+
 " delemitMate
 let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
 let delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"

@@ -25,6 +25,8 @@ module CommandT
   class Controller
     def initialize
       @prompt = Prompt.new
+      @max_height = get_number('g:CommandTMaxHeight')
+      @max_height = @max_height.nil? ? 0 : @max_height.to_i
       @scanner = CommandT::Base.new nil,
         :max_files              => get_number('g:CommandTMaxFiles'),
         :max_depth              => get_number('g:CommandTMaxDepth'),
@@ -201,9 +203,9 @@ module CommandT
     end
 
     # Returns the desired maximum number of matches, based on available
-    # vertical space.
+    # vertical space and the max_height option.
     def match_limit
-      limit = VIM::Screen.lines - 5
+      limit = [VIM::Screen.lines - 5, @max_height].min
       limit < 0 ? 1 : limit
     end
 
