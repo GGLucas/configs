@@ -94,6 +94,7 @@ nmap <silent> <Leader>l :TlistOpen<CR>
 nmap <silent> <Leader>L :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
+nmap <silent> <Leader>y :YRShow<CR>
 
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
@@ -190,6 +191,10 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 " Command-T
 let g:CommandTMaxHeight = 10
+
+" Yankring
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 10
 
 " delemitMate
 let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
