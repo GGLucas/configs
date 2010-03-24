@@ -108,8 +108,11 @@ alias prf='export WINEPREFIX=$(pwd)'
 alias i='makepkg -fi'
 alias a='git add'
 alias d='git diff'
-alias p='git push origin master'
-alias pu='git pull origin master'
+alias pn='git push'
+alias p='git push origin'
+alias pm='git push origin master'
+alias pun='git pull'
+alias pum='git pull origin master'
 alias pg='$PAGER'
 alias r='rolldice'
 alias v='vim'
@@ -129,6 +132,7 @@ tmn() { tmux -2 new -s $1 $1; }
 # Watch list shortcuts
 w()   { ani watch: $@; }
 lo()  { ani log: $@; }
+li()  { ani list: $@; }
 wh()  { ani hist: +w; }
 an()  { ani list: +w =anime; }
 anh() { ani hist: =anime; }
