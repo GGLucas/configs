@@ -195,6 +195,7 @@ let g:CommandTMaxHeight = 10
 " Yankring
 let g:yankring_min_element_length = 2
 let g:yankring_window_height = 10
+let g:yankring_history_file = '.yankring'
 
 " delemitMate
 let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
