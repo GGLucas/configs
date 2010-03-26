@@ -82,9 +82,9 @@ nnoremap <silent> <Esc>b :e .<CR>
 nnoremap <silent> <Esc>w :bnext<CR>
 nnoremap <silent> <Esc>v :bprev<CR>
 
-nnoremap <silent> <Leader>n :BufferExplorer<CR>
-nnoremap <silent> <Leader>g :FilesystemExplorer<CR>
-nnoremap <silent> <Leader>g :FilesystemExplorerFromHere<CR>
+nnoremap <silent> <Leader>n :LustyBufferExplorer<CR>
+nnoremap <silent> <Leader>G :LustyFilesystemExplorer<CR>
+nnoremap <silent> <Leader>g :LustyFilesystemExplorerFromHere<CR>
 " }}}
 
 " {{{ Opening different plugin windows
