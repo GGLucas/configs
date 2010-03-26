@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Spawn rssdler in the background
+rssdler -o &>/dev/null &
+
 # Start SCIM
 #scim -d &
 

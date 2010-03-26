@@ -56,3 +56,7 @@ system.method.set = group.seeding.ratio.command, d.close=
 
 # Watch directory for new torrents
 schedule = watch_directory,5,5,load=/home/archlucas/.torrents/*.torrent
+
+# Try importing watch directories file
+try_import = /home/archlucas/.torrents/directories.rc
+
