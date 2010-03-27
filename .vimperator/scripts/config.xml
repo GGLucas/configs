@@ -20,7 +20,10 @@
 	<Script filename="google_search_enhanced_k.user.js" name="Google Search Enhanced Keyboard Navigation" namespace="http://userscripts.org/users/82018" description="Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages." enabled="true" basedir="google_search_enhanced_k">
 		<Include>http://*google.com/search*</Include>
 	</Script>
-	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" description="Dukgo fix" enabled="true" basedir="dukgo_fix_shortcuts" namespace="dukgo">
+	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" namespace="dukgo" description="Dukgo fix" enabled="true" basedir="dukgo_fix_shortcuts">
 		<Include>http://duckduckgo.com/*</Include>
+	</Script>
+	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" enabled="true" basedir="mangafox3_fit_image">
+		<Include>http://www.mangafox.com/*</Include>
 	</Script>
 </UserScriptConfig>
