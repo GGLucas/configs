@@ -281,6 +281,7 @@ command-t-history	command-t.txt	/*command-t-history*
 command-t-installation	command-t.txt	/*command-t-installation*
 command-t-license	command-t.txt	/*command-t-license*
 command-t-mappings	command-t.txt	/*command-t-mappings*
+command-t-match-window-at-top	command-t.txt	/*command-t-match-window-at-top*
 command-t-max-depth	command-t.txt	/*command-t-max-depth*
 command-t-max-files	command-t.txt	/*command-t-max-files*
 command-t-max-height	command-t.txt	/*command-t-max-height*
