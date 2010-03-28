@@ -373,6 +373,8 @@ util = {
         -- Quickmarks
         -- 1: Firefox
         quickmarks.set(awful.client.visible(1)[1], "u")
+        quickmarks.set(awful.client.visible(1)[1], "j")
+        quickmarks.set(awful.client.visible(1)[2], "k")
         -- 2: Main terms
         quickmarks.set(awful.client.visible(2)[1], "h")
         quickmarks.set(awful.client.visible(2)[2], "w")
