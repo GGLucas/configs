@@ -157,6 +157,11 @@ inoremap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
 nnoremap <C-t> <Esc>:norm <C-y>n
 " }}}
 
+" {{{ Extra motions
+nmap <silent> <Leader>diw di,w
+nmap <silent> <Leader>ciw ci,w
+" }}}
+
 " }}}
 
 " {{{ Plugin Settings
