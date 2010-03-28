@@ -266,7 +266,7 @@ endfunction "}}}1
 function! s:NoAutoClose() "{{{1
 	" inoremap <buffer> ) <C-R>=<SID>SkipDelim('\)')<CR>
 	for delim in s:right_delims + s:quotes
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
 	endfor
 endfunction "}}}1
 
@@ -275,26 +275,26 @@ function! s:AutoClose() "{{{1
 	" inoremap <buffer> ( ()<Left>
 	let s:i = 0
 	while s:i < len(s:matchpairs)
-		exec 'inoremap <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
+		exec 'inoremap <silent> <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
 		let s:i += 1
 	endwhile
 
 	" Add matching quote and jump to the midle, or exit if inside a pair of matching quotes:
 	" inoremap <buffer> " <C-R>=<SID>QuoteDelim("\"")<CR>
 	for delim in s:quotes
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
 	endfor
 
 	" Exit from inside the matching pair:
 	" inoremap <buffer> ) <C-R>=<SID>ClosePair(')')<CR>
 	for delim in s:right_delims
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>ClosePair("\' . delim . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>ClosePair("\' . delim . '")<CR>'
 	endfor
 
 	" Try to fix the use of apostrophes:
 	" inoremap <buffer> n't n't
 	for map in s:apostrophes
-		exec "inoremap <buffer> " . map . " " . map
+		exec "inoremap <silent> <buffer> " . map . " " . map
 	endfor
 
 endfunction "}}}1
@@ -363,16 +363,16 @@ endfunction "}}}1
 
 function! s:ExtraMappings() "{{{1
 	" If pair is empty, delete both delimiters:
-	inoremap <buffer> <expr> <BS> <SID>WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
+	inoremap <silent> <buffer> <expr> <BS> <SID>WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
 
 	" Expand return if inside an empty pair:
 	if exists("b:delimitMate_expand_cr") || exists("g:delimitMate_expand_cr")
-		inoremap <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
+		inoremap <silent> <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
 	endif
 
 	" Expand space if inside an empty pair:
 	if exists("b:delimitMate_expand_space") || exists("g:delimitMate_expand_space")
-		inoremap <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
+		inoremap <silent> <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
 	endif
 endfunction "}}}1
 
