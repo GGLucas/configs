@@ -7,3 +7,4 @@ sort = "basename"
 
 autosave_bookmarks = False
 flushinput = False
+case_insensitive = True
