@@ -10,6 +10,14 @@ class CustomApplications(DefaultApps):
         c.flags += 'd'
         return tup('comix', *c)
 
+    def app_mplayer(self, c):
+        if c.mode is 2:
+            args = "mplayer -channels 2".split()
+            args.extend(c)
+            return tup(*args)
+        else:
+            return DefaultApps.app_mplayer(self, c)
+
     def app_default(self, c):
         f = c.file
 
