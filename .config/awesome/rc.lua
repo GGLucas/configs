@@ -634,8 +634,9 @@ bindings = {
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},
         [{"Mod4", "q"}] = {awful.layout.set, awful.layout.suit.spiral.dwindle},
-        [{"Mod4", "j"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
+        [{"Mod4", "j"}] = {awful.layout.set, awful.layout.suit.tile},
         [{"Mod4", "k"}] = {awful.layout.set, awful.layout.suit.tile.left},
+        [{"Mod4", "x"}] = {awful.layout.set, awful.layout.suit.tile.bottom},
 
         -- Switch between mwfact modes
         [{"Mod4", "Shift", "'"}] = {awful.tag.setmwfact, 0.5},
