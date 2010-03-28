@@ -61,6 +61,12 @@ var loaduserstyles = function()
             "dukgo.css",
         ],
 
+        [
+            "youtube:dark-minimal",
+            "youtube.com",
+            "youtube.css",
+        ],
+
     ];
 
     // Get style directory

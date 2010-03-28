@@ -1,0 +1,78 @@
+body
+{
+    background: #141414 !important;
+    color: #e0e0e0 !important;
+    padding-top: 3em !important;
+}
+
+#watch-this-vid-info,
+#masthead-container,
+#watch-longform-buttons,
+#subscribeDiv,
+#watch-channel-icon,
+#watch-url-embed-wrapper,
+#footer,
+#watch-channel-videos-panel,
+#search-option-expander,
+#search-duplicates-message,
+.yt-uix-expander-head,
+.ratingVS
+{
+    display: none !important;
+}
+
+.yt-uix-pager, .yt-uix-button
+{
+    border-color: #343434 !important;
+    background: #1a1a1a !important;
+    color: #e0e0e0 !important;
+}
+
+#watch-channel-vids-div, #watch-video-details, .watch-video-added,
+#watch-video-details-inner, #watch-channel-vids-top
+{
+    background: #141414 !important;
+    color: #e0e0e0 !important;
+    border: 0 !important;
+}
+
+#watch-other-vids
+{
+    width: 100% !important;
+}
+
+a
+{
+    color: #608BCC !important;
+    text-decoration: none !important;
+}
+
+#watch-related-discoverbox, .watch-discoverbox
+{
+    overflow: visible !important;
+    height: none !important;
+    border: 0 !important;
+    padding-top: 40em !important;
+}
+
+.watch-discoverbox-body
+{
+    background: none !important;
+    border: none !important;
+}
+
+.watch-ppv-vid
+{
+    background: #242424 !important;
+}
+
+.name
+{
+    color: white !important;
+}
+
+h1
+{
+    padding-bottom: 1em !important;
+    padding-left: 1em !important;
+}
