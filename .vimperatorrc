@@ -107,7 +107,11 @@ map <silent> <C-l> :noh<CR>
 
 " {{{ Feed keys
 autocmd LocationChange .* :fmapc
-autocmd LocationChange duckduckgo.com :fmap! j k o
+autocmd LocationChange duckduckgo.com :fmap! j k o f
+autocmd LocationChange google.com/search :fmap! j k o
+
+noremap <Leader>n :open<Space>
+noremap <Leader>t :buffer!<Space>
 " }}}
 
 " {{{ Styling
