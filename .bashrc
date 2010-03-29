@@ -31,7 +31,7 @@ setprompt(){
     case "$HOSTNAME" in
         "ayu") local dircol="\[\e[1;35m\]"; ;; # Desktop
         "misuzu") local dircol="\[\e[1;32m\]"; ;; # Laptop
-        "glacicle.com") local dircol="\[\e[1;31m\]"; ;; # Server
+        "glacicle.org") local dircol="\[\e[1;31m\]"; ;; # Server
         *) local dircol="\[\e[1;37m\]"; ;; # Other
     esac
 
