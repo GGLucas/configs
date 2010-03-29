@@ -120,6 +120,10 @@ alias v='vim'
 alias vv='sudo vim'
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
+alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
