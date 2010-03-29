@@ -105,6 +105,11 @@ map <silent> <C-l> :noh<CR>
 
 " }}}
 
+" {{{ Feed keys
+autocmd LocationChange .* :fmapc
+autocmd LocationChange duckduckgo.com :fmap! j k o
+" }}}
+
 " {{{ Styling
 
 " Buftab styling
