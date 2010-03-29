@@ -147,12 +147,22 @@ function! s:Init() "{{{1
 	endif " }}}
 
 	if !exists("b:delimitMate_apostrophes") && !exists("g:delimitMate_apostrophes") " {{{
-		let s:apostrophes = split("n't:'s:'re:'m:'d:'ll:'ve:s'",':')
+		"let s:apostrophes = split("n't:'s:'re:'m:'d:'ll:'ve:s'",':')
+		let s:apostrophes = []
 
 	elseif exists("b:delimitMate_apostrophes")
 		let s:apostrophes = split(b:delimitMate_apostrophes)
 	else
 		let s:apostrophes = split(g:delimitMate_apostrophes)
+	endif " }}}
+
+	if !exists("b:delimitMate_tab2exit") && !exists("g:delimitMate_tab2exit") " {{{
+		let s:tab2exit = 1
+
+	elseif exists("b:delimitMate_tab2exit")
+		let s:tab2exit = split(b:delimitMate_tab2exit)
+	else
+		let s:tab2exit = split(g:delimitMate_tab2exit)
 	endif " }}}
 
 	let s:matchpairs = split(s:matchpairs_temp, ',')
@@ -170,7 +180,7 @@ function! s:Init() "{{{1
 	call s:ExtraMappings()
 	let b:loaded_delimitMate = 1
 
-endfunction "}}}1
+endfunction "}}}1 Init()
 
 function! s:ValidMatchpairs(str) "{{{1
 	if a:str !~ '^.:.\(,.:.\)*$'
@@ -182,6 +192,23 @@ function! s:ValidMatchpairs(str) "{{{1
 		endif
 	endfor
 	return 1
+endfunction "}}}1
+
+function! DelimitMate_ShouldJump() "{{{1
+	let char = getline('.')[col('.') - 1]
+	for pair in s:matchpairs
+		if  char == split( pair, ':' )[1]
+			" Same character on the rigth, jump over it.
+			return 1
+		endif
+	endfor
+	for quote in s:quotes
+		if char == quote
+			" Same character on the rigth, jump over it.
+			return 1
+		endif
+	endfor
+	return 0
 endfunction "}}}1
 
 function! s:IsEmptyPair(str) "{{{1
@@ -227,11 +254,17 @@ function! s:QuoteDelim(char) "{{{1
 	let line = getline('.')
 	let col = col('.')
 	if line[col - 2] == "\\"
-		" Seems like a escaped character, insert a single quotation mark.
+		" Seems like a escaped character, insert one quotation mark.
 		return a:char
 	elseif line[col - 1] == a:char
 		" Get out of the string.
 		return "\<Right>"
+	elseif line[col - 2] == a:char && line[col - 1 ] != a:char
+		" Seems like we have an unbalanced quote, insert one quotation mark.
+		return a:char."\<Left>"
+	elseif a:char == "'" && line[col -2 ] =~ '[a-zA-Z0-9]'
+		" Seems like we follow a word, insert an apostrophe.
+		return a:char
 	else
 		" Insert a pair and jump to the middle.
 		return a:char.a:char."\<Left>"
@@ -266,7 +299,7 @@ endfunction "}}}1
 function! s:NoAutoClose() "{{{1
 	" inoremap <buffer> ) <C-R>=<SID>SkipDelim('\)')<CR>
 	for delim in s:right_delims + s:quotes
-		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
+		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
 	endfor
 endfunction "}}}1
 
@@ -275,26 +308,26 @@ function! s:AutoClose() "{{{1
 	" inoremap <buffer> ( ()<Left>
 	let s:i = 0
 	while s:i < len(s:matchpairs)
-		exec 'inoremap <silent> <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
+		exec 'inoremap <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
 		let s:i += 1
 	endwhile
 
 	" Add matching quote and jump to the midle, or exit if inside a pair of matching quotes:
 	" inoremap <buffer> " <C-R>=<SID>QuoteDelim("\"")<CR>
 	for delim in s:quotes
-		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
+		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
 	endfor
 
 	" Exit from inside the matching pair:
 	" inoremap <buffer> ) <C-R>=<SID>ClosePair(')')<CR>
 	for delim in s:right_delims
-		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>ClosePair("\' . delim . '")<CR>'
+		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>ClosePair("\' . delim . '")<CR>'
 	endfor
 
-	" Try to fix the use of apostrophes:
+	" Try to fix the use of apostrophes (de-activated by default):
 	" inoremap <buffer> n't n't
 	for map in s:apostrophes
-		exec "inoremap <silent> <buffer> " . map . " " . map
+		exec "inoremap <buffer> " . map . " " . map
 	endfor
 
 endfunction "}}}1
@@ -363,16 +396,24 @@ endfunction "}}}1
 
 function! s:ExtraMappings() "{{{1
 	" If pair is empty, delete both delimiters:
-	inoremap <silent> <buffer> <expr> <BS> <SID>WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
+	inoremap <buffer> <expr> <BS> <SID>WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
+
+	" If pair is empty, delete closing delimiter:
+	inoremap <buffer> <expr> <S-BS> <SID>WithinEmptyPair() ? "\<Del>" : "\<S-BS>"
 
 	" Expand return if inside an empty pair:
 	if exists("b:delimitMate_expand_cr") || exists("g:delimitMate_expand_cr")
-		inoremap <silent> <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
+		inoremap <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
 	endif
 
 	" Expand space if inside an empty pair:
 	if exists("b:delimitMate_expand_space") || exists("g:delimitMate_expand_space")
-		inoremap <silent> <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
+		inoremap <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
+	endif
+
+	" Jump out ot any empty pair:
+	if s:tab2exit
+		inoremap <buffer> <expr> <S-Tab> DelimitMate_ShouldJump() ? "\<Right>" : "\<S-Tab>"
 	endif
 endfunction "}}}1
 

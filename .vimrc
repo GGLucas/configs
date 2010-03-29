@@ -95,6 +95,7 @@ nmap <silent> <Leader>L :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
 nmap <silent> <Leader>y :YRShow<CR>
+nmap <silent> <Leader>T :CommandTFlush<CR>
 
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
@@ -203,13 +204,11 @@ let g:yankring_window_height = 10
 let g:yankring_history_file = '.yankring'
 
 " delemitMate
-let delimitMate_expand_space = "\<Space>\<Space>\<Left>"
-let delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
-let delimitMate_apostrophes = ""
-let delimitMate_quotes = "\""
+let g:delimitMate_expand_space = "\<Space>\<Space>\<Left>"
+let g:delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
 
 " ZenCoding
-let g:user_zen_settings = { 'indentation': '  ', }
+let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
 
 " }}}
@@ -429,8 +428,10 @@ endfunction
 
 " {{{ PromptFT(): Prompt for a new filetype to set
 function! PromptFT()
-    let ft=input("Filetype: ")
-    exec "setlocal ft=".ft
+    let ft = input("Filetype: ")
+    if ft != ""
+        exec "setlocal ft=".ft
+    end
 endfunction
 " }}}
 " }}}
