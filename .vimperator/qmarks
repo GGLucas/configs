@@ -5,6 +5,7 @@ qma r http://www.reddit.com/
 qma t http://www.tokyotosho.info/?cat=1
 "" TvTorrents
 qma n http://tvtorrents.com/loggedin/my/new_fav_torrents.do
+qma N http://tvtorrents.com/loggedin/shared.do
 
 """ Forums
 "" Arch Linux Forums
