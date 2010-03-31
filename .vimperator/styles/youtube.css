@@ -69,7 +69,7 @@ a, span.title
     text-decoration: none !important;
 }
 
-#watch-related
+#watch-related,#watch-related-discoverbox
 {
     overflow: visible !important;
     height: none !important;
