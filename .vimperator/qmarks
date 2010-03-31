@@ -4,7 +4,7 @@ qma r http://www.reddit.com/
 "" Tokyo Toshokan
 qma t http://www.tokyotosho.info/?cat=1
 "" TvTorrents
-qma n http://tvtorrents.com/loggedin/shared.do
+qma n http://tvtorrents.com/loggedin/my/new_fav_torrents.do
 
 """ Forums
 "" Arch Linux Forums
