@@ -110,9 +110,6 @@ cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
 cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
-"cnoremap <Esc>j <Down>
-"cnoremap <Esc>k <Up>
-"cnoremap <Esc>c <C-c>:
 " }}}
 
 " {{{ Bisect keys
@@ -159,6 +156,7 @@ nnoremap <C-t> :norm <C-y>n
 
 nnoremap <Leader>gC :GitCommit -a<CR>
 nnoremap <Leader>gt :GitAdd<Space>
+nnoremap <Leader>gb :GitBlame<CR>
 nnoremap <Leader>gP :GitPull<CR>
 nnoremap <Leader>gr :GitPush<CR>
 " }}}
