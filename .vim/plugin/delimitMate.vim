@@ -334,7 +334,7 @@ endfunction "}}}1
 function! s:NoAutoClose() "{{{
 	" inoremap <buffer> ) <C-R>=<SID>SkipDelim('\)')<CR>
 	for delim in s:right_delims + s:quotes
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>SkipDelim("' . escape(delim,'"') . '")<CR>'
 	endfor
 endfunction "}}}
 
@@ -343,27 +343,27 @@ function! s:AutoClose() "{{{
 	" inoremap <buffer> ( ()<Left>
 	let s:i = 0
 	while s:i < len(s:matchpairs)
-		"exec 'inoremap <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
-		exec 'inoremap <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . '<C-R>=<SID>JumpIn("' . s:right_delims[s:i] . '")<CR>'
+		"exec 'inoremap <silent> <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . s:right_delims[s:i] . '<Left>'
+		exec 'inoremap <silent> <buffer> ' . s:left_delims[s:i] . ' ' . s:left_delims[s:i] . '<C-R>=<SID>JumpIn("' . s:right_delims[s:i] . '")<CR>'
 		let s:i += 1
 	endwhile
 
 	" Add matching quote and jump to the midle, or exit if inside a pair of matching quotes:
 	" inoremap <buffer> " <C-R>=<SID>QuoteDelim("\"")<CR>
 	for delim in s:quotes
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>QuoteDelim("\' . delim . '")<CR>'
 	endfor
 
 	" Exit from inside the matching pair:
 	" inoremap <buffer> ) <C-R>=<SID>ClosePair(')')<CR>
 	for delim in s:right_delims
-		exec 'inoremap <buffer> ' . delim . ' <C-R>=<SID>JumpOut("\' . delim . '")<CR>'
+		exec 'inoremap <silent> <buffer> ' . delim . ' <C-R>=<SID>JumpOut("\' . delim . '")<CR>'
 	endfor
 
 	" Try to fix the use of apostrophes (de-activated by default):
 	" inoremap <buffer> n't n't
 	for map in s:apostrophes
-		exec "inoremap <buffer> " . map . " " . map
+		exec "inoremap <silent> <buffer> " . map . " " . map
 	endfor
 
 endfunction "}}}
@@ -432,24 +432,24 @@ endfunction "}}}1
 
 function! s:ExtraMappings() "{{{1
 	" If pair is empty, delete both delimiters:
-	inoremap <buffer> <expr> <BS> DelimitMate_WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
+	inoremap <silent> <buffer> <expr> <BS> DelimitMate_WithinEmptyPair() ? "\<Right>\<BS>\<BS>" : "\<BS>"
 
 	" If pair is empty, delete closing delimiter:
-	inoremap <buffer> <expr> <S-BS> DelimitMate_WithinEmptyPair() ? "\<Del>" : "\<S-BS>"
+	inoremap <silent> <buffer> <expr> <S-BS> DelimitMate_WithinEmptyPair() ? "\<Del>" : "\<S-BS>"
 
 	" Expand return if inside an empty pair:
 	if s:expand_cr != 0
-		inoremap <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
+		inoremap <silent> <buffer> <CR> <C-R>=<SID>ExpandReturn()<CR>
 	endif
 
 	" Expand space if inside an empty pair:
 	if s:expand_space != 0
-		inoremap <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
+		inoremap <silent> <buffer> <Space> <C-R>=<SID>ExpandSpace()<CR>
 	endif
 
 	" Jump out ot any empty pair:
 	if s:tab2exit
-		inoremap <buffer> <expr> <S-Tab> DelimitMate_ShouldJump() ? "\<Right>" : "\<S-Tab>"
+		inoremap <silent> <buffer> <expr> <S-Tab> DelimitMate_ShouldJump() ? "\<Right>" : "\<S-Tab>"
 	endif
 endfunction "}}}1
 

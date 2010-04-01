@@ -20,22 +20,22 @@ nmap <Esc>t <C-w>w
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-noremap <Leader>e e
-noremap <silent> e :w<CR>
+nnoremap <Leader>e e
+nnoremap <silent> e :w<CR>
 
 " Meta-o for inserting a blank line
-noremap <Esc>o o<Esc>
+nnoremap <Esc>o o<Esc>
 
 " O mappings for not inserting the comment leader
-noremap go o<Esc>S
-noremap gO O<Esc>S
+nnoremap go o<Esc>S
+nnoremap gO O<Esc>S
 
 " To prevent annoying mispresses
 vmap K k
 nmap Q <Nop>
 
 " Use ,, to work around , as leader
-noremap ,, ,
+nnoremap ,, ,
 
 " Return to visual mode after indenting
 vmap < <gv
@@ -50,8 +50,8 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Search for word under cursor without moving
-noremap <Leader># #*
-noremap <Leader>* *#
+nnoremap <Leader># #*
+nnoremap <Leader>* *#
 
 " Clear screen and remove highlighting
 nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
@@ -84,7 +84,7 @@ nnoremap <silent> <Esc>v :bprev<CR>
 
 nnoremap <silent> <Leader>n :LustyBufferExplorer<CR>
 nnoremap <silent> <Leader>G :LustyFilesystemExplorer<CR>
-nnoremap <silent> <Leader>g :LustyFilesystemExplorerFromHere<CR>
+nnoremap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
 " }}}
 
 " {{{ Opening different plugin windows
@@ -110,9 +110,9 @@ cnoremap <C-L> <Right>
 cnoremap <C-X> <Delete>
 cnoremap <C-J> <Down>
 cnoremap <C-K> <Up>
-cnoremap <Esc>j <Down>
-cnoremap <Esc>k <Up>
-cnoremap <Esc>c <C-c>:
+"cnoremap <Esc>j <Down>
+"cnoremap <Esc>k <Up>
+"cnoremap <Esc>c <C-c>:
 " }}}
 
 " {{{ Bisect keys
@@ -132,7 +132,7 @@ set pastetoggle=<F5>
 " F6: Toggle whether to use textwidth or not
 nnoremap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
-nmap <Leader>tw <F6>
+nmap <Leader>ctw <F6>
 
 " F7: Turn search highlight off until next search
 nmap <F7> :noh<CR>
@@ -145,11 +145,11 @@ imap <F8> <C-O><F8>
 " F9: Toggle highlighting long lines
 nmap <F9> :call HighlightLongToggle()<CR>
 imap <F9> <C-O><F9>
-nmap <Leader>hl <F9>
+nmap <Leader>chl <F9>
 
 " Turn autoclose on/off
-noremap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
-noremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
+nnoremap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
+nnoremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 
 " }}}
 
@@ -159,6 +159,8 @@ nnoremap <C-t> :norm <C-y>n
 
 nnoremap <Leader>gC :GitCommit -a<CR>
 nnoremap <Leader>gt :GitAdd<Space>
+nnoremap <Leader>gP :GitPull<CR>
+nnoremap <Leader>gr :GitPush<CR>
 " }}}
 
 " {{{ Extra motions
@@ -219,12 +221,12 @@ let g:user_zen_leader_key = '<C-t>'
 " {{{ Vim Settings
 " Color Schemes
 if $TERM == 'linux'
-    " Virtual Console
-    colorscheme default
+" Virtual Console
+colorscheme default
 else
-    " Oblivion
-    set t_Co=256
-    colorscheme oblivion
+" Oblivion
+set t_Co=256
+colorscheme oblivion
 endif
 
 " Config
@@ -385,60 +387,60 @@ hi link treeDirSlash Function
 
 " Jump to last known cursor position
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\   exe "normal! g`\"" |
+\ endif
 
 " }}}
 
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
 function! TextwidthToggle()
-    if g:textwidth == 0
-        let g:textwidth = 78
-        set textwidth=78
-    else
-        let g:textwidth = 0
-        set textwidth=0
-    endif
+if g:textwidth == 0
+    let g:textwidth = 78
+    set textwidth=78
+else
+    let g:textwidth = 0
+    set textwidth=0
+endif
 
-    set textwidth?
+set textwidth?
 endfunction
 " }}}
 
 " {{{ HighlightLongToggl(): Toggle highlighting of long lines
 function! HighlightLongToggle()
-    if exists('w:longmatch')
-        call matchdelete(w:longmatch)
-        call matchdelete(w:toolongmatch)
-        unlet w:longmatch
-        unlet w:toolongmatch
-        echo "  don't highlight long"
-    else
-        let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
-        let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
-        echo "  highlight long"
-    endif
+if exists('w:longmatch')
+    call matchdelete(w:longmatch)
+    call matchdelete(w:toolongmatch)
+    unlet w:longmatch
+    unlet w:toolongmatch
+    echo "  don't highlight long"
+else
+    let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
+    let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
+    echo "  highlight long"
+endif
 endfunction
 " }}}
 
 " {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
-    let wnr = bufwinnr("NERD_tree_1")
-    if wnr == -1
-        :NERDTreeToggle
-    else
-        exec wnr."wincmd w"
-    endif
+let wnr = bufwinnr("NERD_tree_1")
+if wnr == -1
+    :NERDTreeToggle
+else
+    exec wnr."wincmd w"
+endif
 endfunction
 " }}}
 
 " {{{ PromptFT(): Prompt for a new filetype to set
 function! PromptFT()
-    let ft = input("Filetype: ")
-    if ft != ""
-        exec "setlocal ft=".ft
-    end
+let ft = input("Filetype: ", &ft)
+if ft != ""
+    exec "setlocal ft=".ft
+end
 endfunction
 " }}}
 " }}}
