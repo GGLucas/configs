@@ -204,8 +204,8 @@ let g:yankring_window_height = 10
 let g:yankring_history_file = '.yankring'
 
 " delemitMate
-let g:delimitMate_expand_space = "\<Space>\<Space>\<Left>"
-let g:delimitMate_expand_cr = "\<CR>\<CR>\<Up>\<Tab>"
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
 
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
