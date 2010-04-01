@@ -19,7 +19,8 @@ body
 #watch-panel,
 .yt-uix-expander-head,
 .ratingVS,
-#watch-panel
+#watch-panel,
+#guided-help-alert
 {
     display: none !important;
 }
