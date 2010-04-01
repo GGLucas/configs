@@ -1,7 +1,3 @@
-" Author:  motemen <motemen@gmail.com>
-" License: The MIT License
-" URL:     http://github.com/motemen/git-vim/
-
 if !exists('g:git_command_edit')
     let g:git_command_edit = 'new'
 endif
@@ -22,16 +18,14 @@ if !exists('g:git_highlight_blame')
     let g:git_highlight_blame = 0
 endif
 
-if !exists('g:git_no_map_default') || !g:git_no_map_default
-    nnoremap <Leader>gd :GitDiff<Enter>
-    nnoremap <Leader>gD :GitDiff --cached<Enter>
-    nnoremap <Leader>gs :GitStatus<Enter>
-    nnoremap <Leader>gl :GitLog<Enter>
-    nnoremap <Leader>ga :GitAdd<Enter>
-    nnoremap <Leader>gA :GitAdd <cfile><Enter>
-    nnoremap <Leader>gc :GitCommit<Enter>
-    nnoremap <Leader>gp :GitPullRebase<Enter>
-endif
+nnoremap <Leader>gd :GitDiff<Enter>
+nnoremap <Leader>gD :GitDiff --cached<Enter>
+nnoremap <Leader>gs :GitStatus<Enter>
+nnoremap <Leader>gl :GitLog<Enter>
+nnoremap <Leader>ga :GitAdd<Enter>
+nnoremap <Leader>gA :GitAdd <cfile><Enter>
+nnoremap <Leader>gc :GitCommit<Enter>
+nnoremap <Leader>gp :GitPullRebase<Enter>
 
 " Ensure b:git_dir exists.
 function! s:GetGitDir()
@@ -49,13 +43,9 @@ endfunction
 function! GitBranch()
     let git_dir = <SID>GetGitDir()
 
-    if strlen(git_dir) && filereadable(git_dir . '/HEAD')
-        let lines = readfile(git_dir . '/HEAD')
-        if !len(lines)
-            return ''
-        else
-            return matchstr(lines[0], 'refs/heads/\zs.\+$')
-        endif
+    if strlen(git_dir) && filereadable(git_dir . 'HEAD')
+        let lines = readfile(git_dir . 'HEAD')
+        return len(lines) ? matchstr(lines[0], '[^/]*$') : ''
     else
         return ''
     endif
@@ -107,7 +97,7 @@ endfunction
 function! GitStatus()
     let git_output = s:SystemGit('status')
     call <SID>OpenGitBuffer(git_output)
-    setlocal filetype=gitcommit
+    setlocal filetype=git
     nnoremap <buffer> <Enter> :GitAdd <cfile><Enter>:call <SID>RefreshGitStatus()<Enter>
     nnoremap <buffer> -       :silent !git reset HEAD -- =expand('<cfile>')<Enter><Enter>:call <SID>RefreshGitStatus()<Enter>
 endfunction
@@ -120,7 +110,11 @@ endfunction
 
 " Show Log.
 function! GitLog(args)
-    let git_output = s:SystemGit('log ' . a:args . ' -- ' . s:Expand('%'))
+    if a:args == '' 
+        let git_output = s:SystemGit('log ' . a:args . ' -- ' . s:Expand('%'))
+    else
+        let git_output = s:SystemGit('log ' . a:args)
+    end
     call <SID>OpenGitBuffer(git_output)
     setlocal filetype=git
 endfunction
@@ -148,14 +142,17 @@ function! GitCommit(args)
     let git_output = s:SystemGit('commit ' . args)
     let $EDITOR = editor_save
 
+    " signoff already handled, so don't pass through -s/--signoff again
+    let args = substitute(args, '\k\@<!\(-s\|--signoff\)\>', '', 'g')
+
     execute printf('%s %sCOMMIT_EDITMSG', g:git_command_edit, git_dir)
     setlocal filetype=gitcommit bufhidden=wipe
     augroup GitCommit
-        autocmd BufWritePre  <buffer> g/^#\|^\s*$/d | setlocal fileencoding=utf-8
-        execute printf("autocmd BufWritePost <buffer> call GitDoCommand('commit %s -F ' . expand('%%')) | autocmd! GitCommit * <buffer>", args)
+        autocmd BufRead <buffer> setlocal fileencoding=utf-8
+        execute printf("autocmd BufUnload <buffer> call GitDoCommand('commit %s --cleanup=strip -F ' . expand('<afile>')) | autocmd! GitCommit * <buffer>", args)
     augroup END
 endfunction
-
+"
 " Checkout.
 function! GitCheckout(args)
     call GitDoCommand('checkout ' . a:args)

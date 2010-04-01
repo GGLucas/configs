@@ -154,6 +154,7 @@ nnoremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReloa
 inoremap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
 nnoremap <C-t> :norm <C-y>n
 
+nnoremap <Leader>gL :GitLog HEAD<CR>
 nnoremap <Leader>gC :GitCommit -a<CR>
 nnoremap <Leader>gt :GitAdd<Space>
 nnoremap <Leader>gb :GitBlame<CR>
@@ -370,6 +371,7 @@ autocmd FileType javascript hi link javaScriptBraces Braces
 
 " Don't jump on git commit
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+autocmd FileType git setlocal nomodeline
 
 " Syntax recognition
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
