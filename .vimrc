@@ -82,6 +82,7 @@ nnoremap <silent> <Esc>b :e .<CR>
 nnoremap <silent> <Esc>w :bnext<CR>
 nnoremap <silent> <Esc>v :bprev<CR>
 
+nnoremap <silent> <Leader>- <C-^>
 nnoremap <silent> <Leader>n :LustyBufferExplorer<CR>
 nnoremap <silent> <Leader>G :LustyFilesystemExplorer<CR>
 nnoremap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
