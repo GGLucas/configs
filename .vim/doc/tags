@@ -258,6 +258,8 @@ YRYankRange	yankring.txt	/*YRYankRange*
 YRYankRange-example	yankring.txt	/*YRYankRange-example*
 [%	matchit.txt	/*[%*
 ]%	matchit.txt	/*]%*
+aI	indent-object.txt	/*aI*
+ai	indent-object.txt	/*ai*
 any-item-example	yankring.txt	/*any-item-example*
 b:match_col	matchit.txt	/*b:match_col*
 b:match_debug	matchit.txt	/*b:match_debug*
@@ -348,9 +350,16 @@ g:snips_author	snipMate.txt	/*g:snips_author*
 g:textobj_indent_no_default_key_mappings	textobj-indent.txt	/*g:textobj_indent_no_default_key_mappings*
 g:visincr_datedivset	visincr.txt	/*g:visincr_datedivset*
 global-example	yankring.txt	/*global-example*
+iI	indent-object.txt	/*iI*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 i_CTRL-R_<Tab>	snipMate.txt	/*i_CTRL-R_<Tab>*
+idntobj-about	indent-object.txt	/*idntobj-about*
+idntobj-blanklines	indent-object.txt	/*idntobj-blanklines*
+idntobj-introduction	indent-object.txt	/*idntobj-introduction*
+idntobj-objects	indent-object.txt	/*idntobj-objects*
+ii	indent-object.txt	/*ii*
+indent-object.txt	indent-object.txt	/*indent-object.txt*
 list-snippets	snipMate.txt	/*list-snippets*
 matchit	matchit.txt	/*matchit*
 matchit-%	matchit.txt	/*matchit-%*
