@@ -155,7 +155,8 @@ inoremap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
 nnoremap <C-t> :norm <C-y>n
 
 nnoremap <Leader>gL :GitLog HEAD<CR>
-nnoremap <Leader>gC :GitCommit -a<CR>
+nnoremap <Leader>gC :GitCommit -s -a<CR>
+nnoremap <Leader>gS :GitCommit -s<CR>
 nnoremap <Leader>gt :GitAdd<Space>
 nnoremap <Leader>gb :GitBlame<CR>
 nnoremap <Leader>gP :GitPull<CR>

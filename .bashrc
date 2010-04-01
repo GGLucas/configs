@@ -175,12 +175,12 @@ tvtime() {
 c() {
     if [[ "$1" == "-i" ]]; then
         echo I
-        shift; git commit --interactive $@
+        shift; git commit -s --interactive $@
     else
         if [[ -n "$@" ]]; then
-            git commit $@
+            git commit -s $@
         else
-            git commit -a
+            git commit -s -a
         fi;
     fi;
 }
