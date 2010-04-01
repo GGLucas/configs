@@ -15,6 +15,14 @@ class CustomApplications(DefaultApps):
             args = "mplayer -channels 2".split()
             args.extend(c)
             return tup(*args)
+        elif c.mode is 3:
+            args = "playfrom".split()
+            args.extend(c)
+            return tup(*args)
+        elif c.mode is 4:
+            args = "playfrom -channels 2".split()
+            args.extend(c)
+            return tup(*args)
         else:
             return DefaultApps.app_mplayer(self, c)
 
