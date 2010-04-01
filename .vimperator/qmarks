@@ -1,6 +1,7 @@
 """ Websites
 "" Reddit
 qma r http://www.reddit.com/
+qma R http://www.reddit.com/message/inbox/
 "" Tokyo Toshokan
 qma t http://www.tokyotosho.info/?cat=1
 "" TvTorrents
