@@ -12,6 +12,7 @@ export DISPLAY=:0.1
   tm  bash --rcfile ~/bin/showtasks        # terminal with daily todo list
   se  ranger
 
+sleep 0.5
 export DISPLAY=:0.2
   se  mutt                                 # mutt email client
   se  ncmpcpp                              # ncmpcpp music player
