@@ -209,8 +209,26 @@ go() {
     fi;
 }
 
+sw() {
+    ma1=$1
+    ma2=$2
+
+    eval "dir1=\$MARK_$ma1"
+    eval "dir2=\$MARK_$ma2"
+
+    if [[ "$PWD" = "$dir1" ]]; then
+        go $ma2
+    else if [[ "$PWD" = "$dir2" ]]; then
+        go $ma1
+    else
+        go $ma1
+    fi;
+    fi;
+}
+
 got() { go t; }; gon() { go n; }
 mt() { ma t; }; mn() { ma n; }
+st() { sw t n; }
 
 # Save and load sets of marks
 lma() { [[ -n "$1" ]] && source ~/.bashmarks/$1 || source ~/.bashmarks/global; }
