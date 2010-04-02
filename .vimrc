@@ -157,8 +157,8 @@ nnoremap <C-t> :norm <C-y>n
 
 nnoremap <Leader>gL :GitLog HEAD<CR>
 nnoremap <Leader>gC :GitCommit -s -a<CR>
-nnoremap <Leader>gS :GitCommit -s<CR>
-nnoremap <Leader>gt :GitAdd<Space>
+nnoremap <Leader>gt :GitCommit -s<CR>
+nnoremap <Leader>gS :GitAdd<Space>
 nnoremap <Leader>gb :GitBlame<CR>
 nnoremap <Leader>gP :GitPull origin master<CR>
 nnoremap <Leader>gr :GitPush<CR>
