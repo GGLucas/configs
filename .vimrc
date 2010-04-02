@@ -162,6 +162,10 @@ nnoremap <Leader>gt :GitAdd<Space>
 nnoremap <Leader>gb :GitBlame<CR>
 nnoremap <Leader>gP :GitPull origin master<CR>
 nnoremap <Leader>gr :GitPush<CR>
+
+nnoremap <Leader>sc :call Pep8()<CR>
+nnoremap <Leader>v :cnext<CR>
+nnoremap <Leader>V :cprev<CR>
 " }}}
 
 " {{{ Extra motions
@@ -248,7 +252,7 @@ set expandtab
 set laststatus=2
 
 " Statusline information
-set statusline=%=%P\ 
+set statusline=%=%c\ %P\ 
 
 " Text width
 let g:textwidth=0
