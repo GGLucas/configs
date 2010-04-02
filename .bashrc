@@ -153,7 +153,7 @@ alias -- -='cd -'
 
 # Shortcut functions
 slide() { qiv -usrtm -d 7 -B $1 & }
-x(){ cd ~; xinit $@; }
+x(){ builtin cd ~; xinit $@; }
 tm() { tmux -2 attach -t $1; }
 tmn() { tmux -2 new -s $1 $1; }
 
@@ -247,7 +247,7 @@ PACKAGE_ROOT=/mnt/data-5/others/packages
 absd() {
     abs $1/$2
     cp -R /var/abs/$1/$2 $PACKAGE_ROOT/abs
-    cd $PACKAGE_ROOT/abs/$2
+    builtin cd $PACKAGE_ROOT/abs/$2
 }
 
 # Download package from aur
@@ -255,7 +255,7 @@ aurd() {
     if wget http://aur.archlinux.org/packages/$1/$1.tar.gz \
              -O $PACKAGE_ROOT/aur/$1.tar.gz;
     then
-        cd $PACKAGE_ROOT/aur
+        builtin cd $PACKAGE_ROOT/aur
         tar xvf $1.tar.gz || return 1
         rm $1.tar.gz
         cd $1
