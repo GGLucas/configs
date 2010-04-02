@@ -200,13 +200,27 @@ ma() {
     eval "MARK_$mark=\$dir"
 }
 
-ju() {
+go() {
     mark="$1"
-    eval "cd \$MARK_$mark"
+    eval "dir=\$MARK_$mark"
+
+    if [[ -n $dir ]]; then
+        cd $dir
+    fi;
 }
 
-jt() { ju t; }; jn() { ju n; }
+got() { go t; }; gon() { go n; }
 mt() { ma t; }; mn() { ma n; }
+
+# Save and load sets of marks
+lma() { [[ -n "$1" ]] && source ~/.bashmarks/$1 || source ~/.bashmarks/global; }
+sma() { file=$1; shift; for i in $@; do
+          eval "echo \"ma $i \$MARK_$i\" >> ~/.bashmarks/$file";
+done; }
+cma() { :>~/.bashmarks/$1; }
+
+# Load global bashmarks
+lma
 
 # Notify command exit status
 ns() {
