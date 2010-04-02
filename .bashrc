@@ -5,7 +5,8 @@ export BROWSER='fx'
 
 # History control
 export HISTCONTROL="ignoreboth"
-export HISTFILESIZE=500000
+export HISTFILESIZE=50000
+export HISTIGNORE="cd:..*:no:na:clear:reset:j *:exit"
 
 # Set prompt
 setprompt(){
@@ -44,6 +45,9 @@ setprompt(){
 
     # Set PS1
     PS1="${dircol}${dir} ${colormarker}\[\e[0;37m\] "
+
+    # Append history to saved file
+    history -a
 }
 PROMPT_COMMAND="setprompt &> /dev/null"
 
@@ -56,6 +60,9 @@ fi
 # General options
 shopt -s cmdhist nocaseglob
 shopt -s histappend extglob
+
+# Don't echo ^C
+stty -ctlecho
 
 ## Bindings in interactive shells
 case "$-" in *i*)
@@ -86,6 +93,8 @@ case "$-" in *i*)
     # Clear
     bind '"\ec":"cd ; clear \C-m"'
     bind '"\el":"clear \C-m"'
+
+    bind '"\en":"\ekea "'
 ;; esac;
 
 # Load autojump
@@ -120,10 +129,24 @@ alias v='vim'
 alias vv='sudo vim'
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
-alias u='cd ..'
-alias uu='cd ../..'
-alias uuu='cd ../../..'
-alias uuuu='cd ../../../..'
+
+# cd abbreviations
+alias h='builtin cd'
+alias ..='cd ..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+alias p+='dp +1'
+alias p2='dp +2'
+alias p3='dp +3'
+alias p4='dp +4'
+alias -- p-='dp -0'
+alias -- p-1='dp -1'
+alias -- p-2='dp -2'
+alias -- p-3='dp -3'
+alias -- p-4='dp -4'
+alias -- -='cd -'
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
@@ -133,6 +156,23 @@ slide() { qiv -usrtm -d 7 -B $1 & }
 x(){ cd ~; xinit $@; }
 tm() { tmux -2 attach -t $1; }
 tmn() { tmux -2 new -s $1 $1; }
+
+# ls with directory name on top
+dls() { ls $@; }
+
+# cd shortcuts
+hc() { builtin cd; clear; }
+mcd() { mkdir -p "$1" && eval cd "$1"; }
+cd() { if [[ -n "$1" ]]; then builtin cd "$1" && dls;
+                         else builtin cd && dls; fi; }
+,cd() { [[ -n "$1" ]] && builtin cd "$1" || builtin cd; }
+ca() { ,cd "$1"; dls -la; }
+cn() { ,cd "$1"; dls -a; }
+
+di() { dirs -v; }
+po() { if [[ -n "$1" ]]; then popd "$1" 1>/dev/null && dls;
+                         else popd 1>/dev/null && dls; fi; }
+dp() { pushd "$1" 1>/dev/null && dls; }
 
 # Watch list shortcuts
 w()   { ani watch: $@; }
@@ -152,6 +192,21 @@ dt() { for d in $@; do sudo /etc/rc.d/$d stop; done; }
 # Local server start and stop
 sstart() { ds httpd mysqld; }
 sstop()  { dt httpd mysqld; }
+
+# Set and jump to marks
+ma() {
+    mark="$1"
+    [[ -n "$2" ]] && dir="$2" || dir=$(pwd)
+    eval "MARK_$mark=\$dir"
+}
+
+ju() {
+    mark="$1"
+    eval "cd \$MARK_$mark"
+}
+
+jt() { ju t; }; jn() { ju n; }
+mt() { ma t; }; mn() { ma n; }
 
 # Notify command exit status
 ns() {
