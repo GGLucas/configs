@@ -6,7 +6,7 @@ export BROWSER='fx'
 # History control
 export HISTCONTROL="ignoreboth"
 export HISTFILESIZE=50000
-export HISTIGNORE="cd:..*:no:na:clear:reset:j *:exit"
+export HISTIGNORE="cd:..*:no:na:clear:reset:j *:exit:hc:h:-"
 
 # Set prompt
 setprompt(){
