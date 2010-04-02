@@ -160,7 +160,7 @@ nnoremap <Leader>gC :GitCommit -s -a<CR>
 nnoremap <Leader>gS :GitCommit -s<CR>
 nnoremap <Leader>gt :GitAdd<Space>
 nnoremap <Leader>gb :GitBlame<CR>
-nnoremap <Leader>gP :GitPull<CR>
+nnoremap <Leader>gP :GitPull origin master<CR>
 nnoremap <Leader>gr :GitPush<CR>
 " }}}
 
