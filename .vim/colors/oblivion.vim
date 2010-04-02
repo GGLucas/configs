@@ -45,7 +45,7 @@ hi DiffChange    cterm=bold ctermfg=231 ctermbg=64
 hi DiffDelete    cterm=bold ctermfg=231 ctermbg=53
 hi DiffText      cterm=bold ctermfg=231 ctermbg=64
 hi SignColumn    ctermfg=14 ctermbg=242
-hi SpellBad      ctermbg=9
+hi SpellBad      ctermbg=68 ctermfg=232
 hi SpellCap      ctermbg=12
 hi SpellRare     ctermbg=13
 hi SpellLocal    ctermbg=14
