@@ -61,6 +61,7 @@ noremap <silent> <A-u> :set invbuftabs<CR>
 
 " Quick buffer switch with the same mapping as in vim
 noremap <A-g> :buffer!<Space>
+noremap <Leader>t :buffer!<Space>
 
 " Faster scrolling
 noremap <C-e> 3<C-e>
@@ -103,15 +104,6 @@ cnoremap <CR> <CR>:<Esc>
 map <silent> <F7> :noh<CR>
 map <silent> <C-l> :noh<CR>
 
-" }}}
-
-" {{{ Feed keys
-autocmd LocationChange .* :fmapc
-autocmd LocationChange duckduckgo\\.com :fmap! j k o f
-autocmd LocationChange google\\.com/search :fmap! j k o
-
-noremap <Leader>n :open<Space>
-noremap <Leader>t :buffer!<Space>
 " }}}
 
 " {{{ Styling
