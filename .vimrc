@@ -20,7 +20,6 @@ nmap <Esc>t <C-w>w
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-nnoremap <Leader>e e
 nnoremap <silent> e :w<CR>
 
 " Meta-o for inserting a blank line
@@ -174,10 +173,16 @@ nmap <silent> <Leader>ciw ci,w
 
 map w <Plug>(smartword-w)
 map b <Plug>(smartword-w)
-map e <Plug>(smartword-w)
+map <Leader>e <Plug>(smartword-w)
 map ge <Plug>(smartword-ge)
 " }}}
 
+" {{{ Original binds
+nnoremap <Leader>/e e
+nnoremap <Leader>/w w
+nnoremap <Leader>/b b
+nnoremap <Leader>/ge ge
+" }}}
 " }}}
 
 " {{{ Plugin Settings
