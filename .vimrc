@@ -171,6 +171,11 @@ nnoremap <Leader>V :cprev<CR>
 " {{{ Extra motions
 nmap <silent> <Leader>diw di,w
 nmap <silent> <Leader>ciw ci,w
+
+map w <Plug>(smartword-w)
+map b <Plug>(smartword-w)
+map e <Plug>(smartword-w)
+map ge <Plug>(smartword-ge)
 " }}}
 
 " }}}
