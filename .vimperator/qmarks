@@ -7,6 +7,9 @@ qma t http://www.tokyotosho.info/?cat=1
 "" TvTorrents
 qma n http://tvtorrents.com/loggedin/my/new_fav_torrents.do
 qma N http://tvtorrents.com/loggedin/shared.do
+"" Github
+qma h http://github.com/GGLucas
+qma H https://github.com
 
 """ Forums
 "" Arch Linux Forums
