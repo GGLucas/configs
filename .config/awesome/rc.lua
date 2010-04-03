@@ -319,7 +319,8 @@ util = {
             end
 
             -- Go to an established position
-            cmd = {"/window left", "/window left", "/window left", "/window left", "/window down"}
+            cmd = {"/window left", "/window left", "/window left",
+                   "/window left", "/window down"}
 
             -- Select window
             if num == 1 then
@@ -339,7 +340,8 @@ util = {
             end
 
             -- Go to an established position
-            cmd = {"/window right", "/window right", "/window right", "/window right", "/window up", "/window up"}
+            cmd = {"/window right", "/window right", "/window right",
+            "/window right", "/window up", "/window up", "/window up"}
 
             -- Select window
             if num == 5 then

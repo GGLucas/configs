@@ -5,7 +5,6 @@ se() { urxvtc -e tmux -2 attach -t $1; }
 # Start all applications on their appropriate screens
 export DISPLAY=:0.0
       fx &                                 # firefox browser
-      fx &                                 # firefox browser
 
 export DISPLAY=:0.1
       urxvtc &                             # empty terminal
