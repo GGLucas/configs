@@ -165,6 +165,8 @@ nnoremap <Leader>gr :GitPush<CR>
 nnoremap <Leader>sc :call Pep8()<CR>
 nnoremap <Leader>v :cnext<CR>
 nnoremap <Leader>V :cprev<CR>
+
+map <Leader>_ <Plug>(operator-replace)
 " }}}
 
 " {{{ Extra motions
