@@ -152,7 +152,7 @@ alias -- -='cd -'
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
 
 # Shortcut functions
-slide() { qiv -usrtm -d 7 -B $1 & }
+slide() { feh -FrzZ -d7 $1 & }
 x(){ builtin cd ~; xinit $@; }
 tm() { tmux -2 attach -t $1; }
 tmn() { tmux -2 new -s $1 $1; }
