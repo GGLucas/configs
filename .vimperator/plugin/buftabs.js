@@ -4,7 +4,7 @@ let PLUGIN_INFO =
   <name>Buftabs</name>
   <description>Add buffer tabs to the statusline to save space.</description>
   <version>1.1</version>
-  <author mail="lucas@tuple-typed.org" homepage="http://tuple-typed.org/">Lucas de Vries (GGLucas)</author>
+  <author mail="lucas@glacicle.org" homepage="http://lucas.glacicle.org/">Lucas de Vries (GGLucas)</author>
   <license>WTFPL version 2 (http://sam.zoy.org/wtfpl/)</license>
   <minVersion>2.2</minVersion>
   <maxVersion>2.2</maxVersion>

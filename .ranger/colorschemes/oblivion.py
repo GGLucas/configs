@@ -21,7 +21,7 @@ class Default(ColorScheme):
         fg, bg, attr = default_colors
 
         if context.reset:
-            return fg, bg, attr
+            return default_colors
         elif context.in_browser:
             bg = black
             if context.selected:
@@ -39,6 +39,7 @@ class Default(ColorScheme):
                 attr |= bold
             if context.container:
                 fg = red
+                attr |= bold
             if context.directory:
                 fg = blue
                 attr |= bold
