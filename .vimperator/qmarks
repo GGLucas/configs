@@ -11,7 +11,8 @@ qma N http://tvtorrents.com/loggedin/shared.do
 qma h http://github.com/GGLucas
 qma H https://github.com
 "" Glacicle git
-qma G http://git.glacicle.org/
+qma g http://git.glacicle.org/
+qma G http://stats.git.glacicle.org/
 
 """ Forums
 "" Arch Linux Forums
