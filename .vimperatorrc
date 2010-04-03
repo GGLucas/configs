@@ -89,13 +89,6 @@ noremap <silent> <leader>P :stpause<CR>
 noremap <silent> <leader>l :stlarge<CR>
 noremap <silent> <leader>m :stmute<CR>
 
-" Command line cursor keys
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
-cnoremap <C-x> <Right><BS>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-
 " Hide CmdLine right after a command
 cnoremap <S-CR> <CR>
 cnoremap <CR> <CR>:<Esc>
