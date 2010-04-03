@@ -20,7 +20,7 @@ nmap <Esc>t <C-w>w
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-nnoremap <silent> e :w<CR>
+nnoremap <silent> e :up<CR>
 
 " Meta-o for inserting a blank line
 nnoremap <Esc>o o<Esc>
@@ -39,6 +39,10 @@ nnoremap ,, ,
 " Return to visual mode after indenting
 vmap < <gv
 vmap > >gv
+
+" Swap ' and ` so it goes to the column too by default
+nnoremap ` '
+nnoremap ' `
 
 " Quit all easily
 nmap ZVQ :qa<CR>
@@ -101,15 +105,6 @@ nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
 
 nmap <Leader>p :vert bo help 
-
-" }}}
-
-" {{{ Command line cursor keys
-cnoremap <C-H> <Left>
-cnoremap <C-L> <Right>
-cnoremap <C-X> <Delete>
-cnoremap <C-J> <Down>
-cnoremap <C-K> <Up>
 " }}}
 
 " {{{ Bisect keys
@@ -125,6 +120,7 @@ nmap § <Plug>StopBisect
 nnoremap <F5> :set paste!<Bar>set paste?<CR>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
+nmap <Leader>cp <F5>
 
 " F6: Toggle whether to use textwidth or not
 nnoremap <F6> :call TextwidthToggle()<CR>
@@ -198,6 +194,9 @@ let NERDTreeSortOrder = ['\/$', '\.[ch]$', '\.py$', '*']
 " Taglist
 let Tlist_Use_Right_Window = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Show_One_File = 1
+let Tlist_Enable_Fold_Column = 0
 
 " Pydoc
 let g:pydoc_highlight = 0
@@ -462,4 +461,5 @@ end
 endfunction
 " }}}
 " }}}
+"
 " vim:fdm=marker
