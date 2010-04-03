@@ -20,7 +20,7 @@ function Pep8()
   windo let l:mod_total = l:mod_total + winheight(0)/l:win_count |
         \ execute 'resize +'.l:mod_total
   " Open cwindow
-  execute 'belowright copen '.l:mod_total
+  bot copen 5
   nnoremap <buffer> <silent> c :cclose<CR>
   set nolazyredraw
   redraw!
