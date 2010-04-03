@@ -102,6 +102,11 @@ if [[ -f /etc/profile.d/autojump.bash ]]; then
     . /etc/profile.d/autojump.bash
 fi
 
+# Give ls more colors
+if [[ -x /bin/dircolors ]]; then
+    eval $(/bin/dircolors ~/.dircolors)
+fi
+
 # Complete only directories on cd
 complete -d cd
 
