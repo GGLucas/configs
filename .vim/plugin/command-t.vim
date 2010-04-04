@@ -59,16 +59,16 @@ if !has('ruby')
   finish
 endif
 
-function CommandTHandleKey(arg)
-  ruby $command_t.handle_key
+function CommandTKeyPressed(arg)
+  ruby $command_t.key_pressed
 endfunction
 
-function CommandTBackspace()
-  ruby $command_t.backspace
+function CommandTBackspacePressed()
+  ruby $command_t.backspace_pressed
 endfunction
 
-function CommandTDelete()
-  ruby $command_t.delete
+function CommandTDeletePressed()
+  ruby $command_t.delete_pressed
 endfunction
 
 function CommandTAcceptSelection()
