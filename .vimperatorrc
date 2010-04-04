@@ -63,6 +63,9 @@ noremap <silent> <A-u> :set invbuftabs<CR>
 noremap <A-g> :buffer!<Space>
 noremap <Leader>t :buffer!<Space>
 
+" Detach tab
+noremap <Leader>w :tabdetach<CR>
+
 " Faster scrolling
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
