@@ -20,14 +20,17 @@ nmap <Esc>t <C-w>w
 
 " {{{ Basic shortcuts
 " Handy shortcut for save
-nnoremap <silent> e :up<CR>
+nmap <silent> e :up<CR>
+
+" Shortcut for edit in the current file's directory
+nmap <Leader>ze :e <C-R>=expand("%:h")."/"<CR>
 
 " Meta-o for inserting a blank line
-nnoremap <Esc>o o<Esc>
+nmap <Esc>o o<Esc>
 
 " O mappings for not inserting the comment leader
-nnoremap go o<Esc>S
-nnoremap gO O<Esc>S
+nmap go o<Esc>S
+nmap gO O<Esc>S
 
 " To prevent annoying mispresses
 vmap K k
@@ -53,8 +56,8 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Search for word under cursor without moving
-nnoremap <Leader># #*
-nnoremap <Leader>* *#
+nmap <Leader># #*
+nmap <Leader>* *#
 
 " Clear screen and remove highlighting
 nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
@@ -79,16 +82,16 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 " }}}
 
 " {{{ Buffer Navigation
-nnoremap <silent> <Esc>c :A<CR>
-nnoremap <silent> <Esc>b :e .<CR>
+nmap <silent> <Esc>c :A<CR>
+nmap <silent> <Esc>b :e .<CR>
 
-nnoremap <silent> <Esc>w :bnext<CR>
-nnoremap <silent> <Esc>v :bprev<CR>
+nmap <silent> <Esc>w :bnext<CR>
+nmap <silent> <Esc>v :bprev<CR>
 
-nnoremap <silent> <Leader>- <C-^>
-nnoremap <silent> <Leader>n :LustyBufferExplorer<CR>
-nnoremap <silent> <Leader>G :LustyFilesystemExplorer<CR>
-nnoremap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
+nmap <silent> <Leader>- <C-^>
+nmap <silent> <Leader>n :LustyBufferExplorer<CR>
+nmap <silent> <Leader>G :LustyFilesystemExplorer<CR>
+nmap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
 " }}}
 
 " {{{ Opening different plugin windows
@@ -117,13 +120,13 @@ nmap § <Plug>StopBisect
 
 " {{{ Function key shortcuts
 " F5: Toggle paste mode
-nnoremap <F5> :set paste!<Bar>set paste?<CR>
+nmap <F5> :set paste!<Bar>set paste?<CR>
 imap <F5> <C-O><F5>
 set pastetoggle=<F5>
 nmap <Leader>cp <F5>
 
 " F6: Toggle whether to use textwidth or not
-nnoremap <F6> :call TextwidthToggle()<CR>
+nmap <F6> :call TextwidthToggle()<CR>
 imap <F6> <C-O><F6>
 nmap <Leader>ctw <F6>
 
@@ -141,26 +144,26 @@ imap <F9> <C-O><F9>
 nmap <Leader>chl <F9>
 
 " Turn autoclose on/off
-nnoremap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
-nnoremap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
+nmap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
+nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 
 " }}}
 
 " {{{ Plugin binds
-inoremap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
-nnoremap <C-t> :norm <C-y>n
+imap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
+nmap <C-t> :norm <C-y>n
 
-nnoremap <Leader>gL :GitLog HEAD<CR>
-nnoremap <Leader>gC :GitCommit -s -a<CR>
-nnoremap <Leader>gt :GitCommit -s<CR>
-nnoremap <Leader>gS :GitAdd<Space>
-nnoremap <Leader>gb :GitBlame<CR>
-nnoremap <Leader>gP :GitPull origin master<CR>
-nnoremap <Leader>gr :GitPush<CR>
+nmap <Leader>gL :GitLog HEAD<CR>
+nmap <Leader>gC :GitCommit -s -a<CR>
+nmap <Leader>gt :GitCommit -s<CR>
+nmap <Leader>gS :GitAdd<Space>
+nmap <Leader>gb :GitBlame<CR>
+nmap <Leader>gP :GitPull origin master<CR>
+nmap <Leader>gr :GitPush<CR>
 
-nnoremap <Leader>sc :call Pep8()<CR>
-nnoremap <Leader>v :cnext<CR>
-nnoremap <Leader>V :cprev<CR>
+nmap <Leader>sc :call Pep8()<CR>
+nmap <Leader>v :cnext<CR>
+nmap <Leader>V :cprev<CR>
 
 map <Leader>_ <Plug>(operator-replace)
 " }}}
@@ -176,10 +179,10 @@ map ge <Plug>(smartword-ge)
 " }}}
 
 " {{{ Original binds
-nnoremap <Leader>/e e
-nnoremap <Leader>/w w
-nnoremap <Leader>/b b
-nnoremap <Leader>/ge ge
+nmap <Leader>/e e
+nmap <Leader>/w w
+nmap <Leader>/b b
+nmap <Leader>/ge ge
 " }}}
 " }}}
 
