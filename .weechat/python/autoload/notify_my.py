@@ -1,9 +1,8 @@
 import weechat
-import sys
 import os
 
 SCRIPT_NAME = "notify"
-SCRIPT_AUTHOR = "Lucas de Vries <lucas@tuple-typed.org>"
+SCRIPT_AUTHOR = "Lucas de Vries <lucas@glacicle.org>"
 SCRIPT_VERSION = "1"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC = "Call a notification on highlight or private message."
@@ -25,7 +24,8 @@ def nt_highlight_pv(*args):
     subj = msg[0][1:]
     summ = msg[1].split(" :",1)[1]
 
-    os.system("notify-send '{0}' '{1}' &> /dev/null".format(subj, summ))
+    if subj != "identica":
+        os.system("notify-send '{0}' '{1}' &> /dev/null".format(subj, summ))
     return True
 
 if __name__ == "__main__":
