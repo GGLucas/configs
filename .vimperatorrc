@@ -100,6 +100,35 @@ cnoremap <CR> <CR>:<Esc>
 map <silent> <F7> :noh<CR>
 map <silent> <C-l> :noh<CR>
 
+" Go to numbered page
+js <<EOF
+mappings.add(config.browserModes, ["gr"],
+    "Go to numbered link",
+    function (count) { if (count) events.feedkeys(
+        "f,"+String(count)+","
+    ); },
+    { count: true });
+
+mappings.add(config.browserModes, ["gR"],
+    "Go to numbered link",
+    function (count) { if (count) events.feedkeys(
+        "F,"+String(count)+","
+    ); },
+    { count: true });
+EOF
+
+" Quickmark in background tab
+js <<EOF
+mappings.add(config.browserModes,
+    ["gN"], "Jump to a QuickMark in a new tab, inverting the 'activate' option",
+    function (arg) {
+        quickmarks.jumpTo(arg,
+            /\bquickmark\b/.test(options["activate"]) ?
+            liberator.NEW_BACKGROUND_TAB : liberator.NEW_TAB);
+    },
+    { arg: true });
+EOF
+
 " }}}
 
 " {{{ Styling
