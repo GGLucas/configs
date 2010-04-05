@@ -22,8 +22,10 @@ nmap <Esc>t <C-w>w
 " Handy shortcut for save
 nmap <silent> e :up<CR>
 
-" Shortcut for edit in the current file's directory
-nmap <Leader>ze :e <C-R>=expand("%:h")."/"<CR>
+" Shortcuts for edit in the current file's directory
+nmap <Leader>zew :e <C-R>=expand("%:h")."/"<CR>
+nmap <Leader>zes :sp <C-R>=expand("%:h")."/"<CR>
+nmap <Leader>zev :vsp <C-R>=expand("%:h")."/"<CR>
 
 " Meta-o for inserting a blank line
 nmap <Esc>o o<Esc>
