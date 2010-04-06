@@ -240,6 +240,9 @@ let g:yankring_min_element_length = 2
 let g:yankring_window_height = 10
 let g:yankring_history_file = '.yankring'
 
+" snipMate
+let g:snips_author = "Lucas de Vries"
+
 " delemitMate
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
@@ -477,6 +480,7 @@ if ft != ""
     exec "setlocal ft=".ft
 end
 endfunction
+
 " }}}
 " }}}
 
