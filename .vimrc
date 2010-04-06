@@ -247,15 +247,6 @@ let g:delimitMate_expand_cr = 1
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
-
-" xptemplate
-let g:xptemplate_key = 'þ'
-let g:xptemplate_nav_next = '€'
-let g:xptemplate_nav_prev = 'α'
-let g:xptemplate_nav_cancel = 'œ'
-let g:xptemplate_to_right = '≥'
-let g:xptemplate_goback = '≤'
-
 " }}}
 
 " {{{ Vim Settings
