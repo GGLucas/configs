@@ -10,12 +10,12 @@
 let mapleader=","
 
 " {{{ Window/split navigation
-nmap <Esc>h <C-w>h
-nmap <Esc>j <C-w>j
-nmap <Esc>k <C-w>k
-nmap <Esc>l <C-w>l
-nmap <Esc>n <C-w>W
-nmap <Esc>t <C-w>w
+nmap <Left> <C-w>h
+nmap <Down> <C-w>j
+nmap <Up> <C-w>k
+nmap <Right> <C-w>l
+nmap ☆ <C-w>w
+nmap ▫ <C-w>W
 " }}}
 
 " {{{ Basic shortcuts
@@ -23,9 +23,9 @@ nmap <Esc>t <C-w>w
 nmap <silent> e :up<CR>
 
 " Shortcuts for edit in the current file's directory
-nmap <Leader>zew :e <C-R>=expand("%:h")."/"<CR>
-nmap <Leader>zes :sp <C-R>=expand("%:h")."/"<CR>
-nmap <Leader>zev :vsp <C-R>=expand("%:h")."/"<CR>
+nmap zew :e <C-R>=expand("%:h")."/"<CR>
+nmap zes :sp <C-R>=expand("%:h")."/"<CR>
+nmap zev :vsp <C-R>=expand("%:h")."/"<CR>
 
 " Meta-o for inserting a blank line
 nmap <Esc>o o<Esc>
@@ -33,17 +33,29 @@ nmap <Esc>o o<Esc>
 " O mappings for not inserting the comment leader
 nmap go o<Esc>S
 nmap gO O<Esc>S
+nmap gno o<Esc>I
+nmap gho o<Backspace>
+nmap gto o<Tab>
 
 " To prevent annoying mispresses
-vmap K k
+xmap K k
 nmap Q <Nop>
+
+" Map minus to end of line
+nmap - $
+
+" Mod5+Enter to next line and indent more or less
+imap ァ <Return><Tab>
+imap ィ <Return><Backspace>
+nmap ァ gto
+nmap ィ gho
 
 " Use ,, to work around , as leader
 nnoremap ,, ,
 
 " Return to visual mode after indenting
-vmap < <gv
-vmap > >gv
+xmap < <gv
+xmap > >gv
 
 " Swap ' and ` so it goes to the column too by default
 nnoremap ` '
@@ -84,11 +96,11 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 " }}}
 
 " {{{ Buffer Navigation
-nmap <silent> <Esc>c :A<CR>
-nmap <silent> <Esc>b :e .<CR>
+nmap <silent> ∩ :A<CR>
+nmap <silent> ∪ :e .<CR>
 
-nmap <silent> <Esc>w :bnext<CR>
-nmap <silent> <Esc>v :bprev<CR>
+nmap <silent> ♥ :bnext<CR>
+nmap <silent> √ :bprev<CR>
 
 nmap <silent> <Leader>- <C-^>
 nmap <silent> <Leader>n :LustyBufferExplorer<CR>
@@ -153,7 +165,6 @@ nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR
 
 " {{{ Plugin binds
 imap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
-nmap <C-t> :norm <C-y>n
 
 nmap <Leader>gL :GitLog HEAD<CR>
 nmap <Leader>gC :GitCommit -s -a<CR>
@@ -236,6 +247,14 @@ let g:delimitMate_expand_cr = 1
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
+
+" xptemplate
+let g:xptemplate_key = '€'
+let g:xptemplate_nav_next = 'ƒ'
+let g:xptemplate_nav_prev = '§'
+let g:xptemplate_nav_cancel = 'œ'
+let g:xptemplate_to_right = 'þ'
+"let g:xptemplate_goback = '≥'
 
 " }}}
 
@@ -404,6 +423,9 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
 autocmd BufRead * let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
 
+" Clear any erroneous select-mode mappings
+"autocmd VimEnter silent smapc
+
 " Highlight dirslash correctly
 hi link treeDirSlash Function
 
@@ -466,5 +488,5 @@ end
 endfunction
 " }}}
 " }}}
-"
+
 " vim:fdm=marker

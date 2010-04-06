@@ -21,7 +21,7 @@ xkb_symbols "basic" {
     key <LWIN> {[ Alt_L, Alt_L ]};
 
     // Caps as escape
-    key <CAPS> {[ Escape ]};
+    key <CAPS> {[ Escape, Escape, oe, Escape ]};
 
     // Alphanumeric keys
     key <TLDE> {[ dollar, asciitilde, dead_acute, dead_grave ]};
@@ -75,6 +75,8 @@ xkb_symbols "basic" {
     key <AB09> {[ v, V, squareroot, botrightsqbracket ]};
     key <AB10> {[ z, Z, openstar, enopensquarebullet ]};
 
+    key <RTRN> {[ Return, Return, kana_a, kana_i ]};
+    key <TAB>  {[ Tab, Tab, thorn, OE ]};
     key <SPCE> {[ space, space, BackSpace, nobreakspace ]};
     key <BKSL> {[ backslash, bar, implies ]};
 };
