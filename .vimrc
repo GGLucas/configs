@@ -185,10 +185,10 @@ map <Leader>_ <Plug>(operator-replace)
 nmap <silent> <Leader>diw di,w
 nmap <silent> <Leader>ciw ci,w
 
-map w <Plug>(smartword-w)
-map b <Plug>(smartword-w)
-map <Leader>e <Plug>(smartword-w)
-map ge <Plug>(smartword-ge)
+nmap w <Plug>(smartword-w)
+nmap b <Plug>(smartword-w)
+nmap <Leader>e <Plug>(smartword-w)
+nmap ge <Plug>(smartword-ge)
 " }}}
 
 " {{{ Original binds
@@ -249,12 +249,12 @@ let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
 
 " xptemplate
-let g:xptemplate_key = '€'
-let g:xptemplate_nav_next = 'ƒ'
-let g:xptemplate_nav_prev = '§'
+let g:xptemplate_key = 'þ'
+let g:xptemplate_nav_next = '€'
+let g:xptemplate_nav_prev = 'α'
 let g:xptemplate_nav_cancel = 'œ'
-let g:xptemplate_to_right = 'þ'
-"let g:xptemplate_goback = '≥'
+let g:xptemplate_to_right = '≥'
+let g:xptemplate_goback = '≤'
 
 " }}}
 
