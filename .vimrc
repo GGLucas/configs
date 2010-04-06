@@ -351,6 +351,9 @@ set gdefault
 " Format (gq) options
 set formatoptions+=w
 
+" Use wildmenu
+set wildmenu
+
 " File patterns to ignore in completions
 set wildignore=*.o,*.pyc,.git,.svn
 
