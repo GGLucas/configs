@@ -31,6 +31,8 @@ class Default(ColorScheme):
                 attr = normal
             if context.empty or context.error:
                 bg = red
+            if context.border:
+                fg = default
             if context.media:
                 if context.image:
                     fg = yellow
@@ -44,9 +46,14 @@ class Default(ColorScheme):
                 fg = blue
                 attr |= bold
             elif context.executable and not \
-                    any((context.media, context.container)):
+                    any((context.media, context.container,
+                        context.fifo, context.socket)):
                 attr |= bold
+                fg = green
+            if context.socket:
                 fg = magenta
+            if context.fifo:
+                fg = yellow
             if context.link:
                 fg = context.good and cyan or magenta
             if context.tag_marker and not context.selected:
@@ -70,6 +77,9 @@ class Default(ColorScheme):
                 fg = context.bad and red or green
             elif context.directory:
                 fg = blue
+            elif context.tab:
+                if context.good:
+                    fg = red
             elif context.link:
                 fg = cyan
 
