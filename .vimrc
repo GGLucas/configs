@@ -78,7 +78,8 @@ nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
 nnoremap <silent> <C-l> :nohl<CR>
 
 " Prompt for a filetype to set
-nmap <silent> <Esc>@ :call PromptFT()<CR>
+nmap <silent> <Esc>@ :call PromptFT(1)<CR>
+nmap <silent> <Esc>^ :call PromptFT(0)<CR>
 
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
@@ -255,12 +256,12 @@ let g:user_zen_leader_key = '<C-t>'
 " {{{ Vim Settings
 " Color Schemes
 if $TERM == 'linux'
-" Virtual Console
-colorscheme default
+    " Virtual Console
+    colorscheme delek
 else
-" Oblivion
-set t_Co=256
-colorscheme oblivion
+    " Oblivion
+    set t_Co=256
+    colorscheme chasm
 endif
 
 " Config
@@ -395,9 +396,12 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 soft
 " Set correct folding
 autocmd FileType c silent setlocal fdm=syntax fdn=1
 
-" Highlight "self" in python
+" Python extra highlighting
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
+
+" Javascript extra highlighting
+autocmd FileType javascript syn match javascriptIdentifier "let"
 
 " Highlight section as comment in TeX
 autocmd FileType tex,plaintex hi link TexZone Comment
@@ -437,53 +441,58 @@ autocmd BufReadPost *
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
 function! TextwidthToggle()
-if g:textwidth == 0
-    let g:textwidth = 78
-    set textwidth=78
-else
-    let g:textwidth = 0
-    set textwidth=0
-endif
+    if g:textwidth == 0
+        let g:textwidth = 78
+        set textwidth=78
+    else
+        let g:textwidth = 0
+        set textwidth=0
+    endif
 
-set textwidth?
+    set textwidth?
 endfunction
 " }}}
 
 " {{{ HighlightLongToggl(): Toggle highlighting of long lines
 function! HighlightLongToggle()
-if exists('w:longmatch')
-    call matchdelete(w:longmatch)
-    call matchdelete(w:toolongmatch)
-    unlet w:longmatch
-    unlet w:toolongmatch
-    echo "  don't highlight long"
-else
-    let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
-    let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
-    echo "  highlight long"
-endif
+    if exists('w:longmatch')
+        call matchdelete(w:longmatch)
+        call matchdelete(w:toolongmatch)
+        unlet w:longmatch
+        unlet w:toolongmatch
+        echo "  don't highlight long"
+    else
+        let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
+        let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
+        echo "  highlight long"
+    endif
 endfunction
 " }}}
 
 " {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
-let wnr = bufwinnr("NERD_tree_1")
-if wnr == -1
-    :NERDTreeToggle
-else
-    exec wnr."wincmd w"
-endif
+    let wnr = bufwinnr("NERD_tree_1")
+    if wnr == -1
+        :NERDTreeToggle
+    else
+        exec wnr."wincmd w"
+    endif
 endfunction
 " }}}
 
 " {{{ PromptFT(): Prompt for a new filetype to set
-function! PromptFT()
-let ft = input("Filetype: ", &ft)
-if ft != ""
-    exec "setlocal ft=".ft
-end
-endfunction
+function! PromptFT(show)
+    let def = ""
 
+    if a:show == 1
+        let def = &ft
+    endif 
+
+    let ft = input("Filetype: ", def)
+    if ft != ""
+        exec "setlocal ft=".ft
+    end
+endfunction
 " }}}
 " }}}
 

@@ -69,11 +69,11 @@ set cpo&vim
 " Global Variables {{{
 
   if !exists("g:SuperTabDefaultCompletionType")
-    let g:SuperTabDefaultCompletionType = "<c-p>"
+    let g:SuperTabDefaultCompletionType = "<c-n>"
   endif
 
   if !exists("g:SuperTabContextDefaultCompletionType")
-    let g:SuperTabContextDefaultCompletionType = "<c-p>"
+    let g:SuperTabContextDefaultCompletionType = "<c-n>"
   endif
 
   if !exists("g:SuperTabCompletionContexts")
