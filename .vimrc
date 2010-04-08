@@ -401,7 +401,7 @@ autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 
 " Javascript extra highlighting
-autocmd FileType javascript syn match javascriptIdentifier "let"
+autocmd FileType javascript syn keyword javascriptIdentifier "let"
 
 " Highlight section as comment in TeX
 autocmd FileType tex,plaintex hi link TexZone Comment

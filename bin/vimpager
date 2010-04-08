@@ -26,4 +26,4 @@ if ps fuxw | grep -q '\(py\(thon\|doc\)\|man\|perl\(doc\)\?\([0-9.]*\)\?\)\>'; t
     done
 fi
 
-less_vim "$file"
+cat "$file" | sed -e 's/\[[^m]*m//g' | less_vim -
