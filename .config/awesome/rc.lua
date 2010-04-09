@@ -2,6 +2,8 @@
 -- GGLucas' Awesome-3 Lua Config
 -- Version 3
 --------------------------------
+
+-- {{{ Library includes
 -- Awful: Standard awesome library
 require("awful")
 require("awful.rules")
@@ -30,7 +32,7 @@ require("quickmarks")
 
 -- Advprompt: A more advanced prompt that can display output
 require("advprompt")
-
+-- }}}
 -- {{{ Configuration
 -- Beautiful colors
 beautiful.init(os.getenv("HOME").."/.config/awesome/theme.lua")
@@ -41,6 +43,9 @@ lower_screens = 4
 -- Applications
 terminal = "urxvtc"
 terminal_full = "/usr/bin/urxvtc"
+terminal_anigrate = "urxvtc -name Anigrate -geometry 82x45 -e sh "..
+                    "-c \"echo -e '\\e[1;31m -- %s -- \\e[0m';"..
+                    "ani %s; read -n 1\""
 
 apps = {
     -- Terminal to use
@@ -73,13 +78,18 @@ apps = {
 
     -- Start all applications
     startapps = "startapps",
+
+    -- Anigrate functions
+    anigrate = {
+        log = terminal_anigrate:format("Log", "log 32"),
+        watch = terminal_anigrate:format("Watch", "watch"),
+    },
 }
 
 -- Advprompt
 advprompt.term = apps.terminal.." -e /bin/bash -c \"source .bashrc; %s; bash\""
 advprompt.shell = "/bin/bash -c \"source .bashrc; exec %s\""
 -- }}}
-
 -- {{{ Utility functions
 dropdown = {}
 settings = {}
@@ -110,7 +120,6 @@ util = {
         end,
     },
     -- }}}
-
     -- {{{ Client based
     client = {
         movetonexttag = function (c)
@@ -145,7 +154,6 @@ util = {
         end,
     },
     -- }}}
-
     -- {{{ Screen based
     screen = {
         -- Run a function on all screens
@@ -261,7 +269,6 @@ util = {
         end,
     },
     -- }}}
-
     -- {{{ Cursor based
     banish = function (c, padd)
         if padd == nil then padd = 6 end
@@ -271,11 +278,9 @@ util = {
         mouse.coords({ x=coords.x+coords.width-padd, y=coords.y+coords.height-padd})
     end,
     -- }}}
-
     -- {{{ Prompts / wiboxes
 
     -- }}}
-
     -- {{{ Spawn based
     -- Spawn on all screens
     spawn_all = function(app)
@@ -293,7 +298,6 @@ util = {
         end
     end,
     -- }}}
-
     -- {{{ Quickmarks based
     -- Send a list of commands to weechat
     weechat_send = function (commands)
@@ -394,7 +398,6 @@ util = {
         quickmarks.set(awful.client.visible(6)[1], "d")
     end,
     -- }}}
-
     -- {{{ Clients to launch at startup
     startup = function ()
         awful.util.spawn_with_shell(apps.startapps)
@@ -403,7 +406,6 @@ util = {
         end
     end,
     -- }}}
-
     -- {{{ Notification based
     -- Notify mpd status
     notify_mpd = function ()
@@ -425,7 +427,6 @@ util = {
         end
     end,
     -- }}}
-
     -- {{{ Other functionality
     -- Toggle notifications displaying
     notify_toggle = function ()
@@ -491,7 +492,6 @@ util = {
     -- }}}
 }
 -- }}}
-
 -- {{{ Tags
 tags = {}
 for s = 1, screen.count() do
@@ -507,7 +507,6 @@ for s = 1, screen.count() do
 end
 
 -- }}}
-
 -- {{{ Keybindings
 -- Global keybindings
 bindings = {
@@ -516,6 +515,12 @@ bindings = {
         -- Open terminal
         [{"Mod4", ";"}] = apps.terminal,
 
+        -- Anigrate: Log
+        [{"Mod4", "o"}] = apps.anigrate.log,
+
+        -- Anigrate: Watch
+        [{"Mod4", "u"}] = apps.anigrate.watch,
+
         -- Open terminal with tmux
         [{"Mod4", "b"}] = apps.tmux,
 
@@ -523,7 +528,6 @@ bindings = {
         [{"Mod4", "e"}] = apps.filemanager,
     },
     -- }}}
-
     -- {{{ Commands to run
     cmd = {
         -- Toggle music
@@ -546,7 +550,6 @@ bindings = {
         [{"Mod4", "F8"}] = "amixer set Line toggle",
     },
     -- }}}
-
     -- {{{ Functions to run on screens
     screen = {
         -- Tag selection
@@ -560,7 +563,6 @@ bindings = {
         [{"Mod4", "s"}] = scratch.pad.toggle,
     },
     -- }}}
-
     -- {{{ Misc functions
     root = {
         -- Drop-down urxvtc terminal
@@ -686,7 +688,6 @@ bindings = {
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,
     },
     -- }}}
-
     -- {{{ Client bindings
     client = {
         -- Set scratchpad
@@ -906,7 +907,6 @@ end
     root.buttons(bindings.root_buttons)
 ---- }}}
 -- }}}
-
 -- {{{ Rules
 awful.rules.rules = {
     {
@@ -927,9 +927,15 @@ awful.rules.rules = {
         rule = { class = "GIMP", },
         properties = { floating = true, },
     },
+
+    {
+        -- Floating anigrate urxvt
+        rule = { instance = "Anigrate", },
+        properties = { floating = true, },
+        callback = awful.placement.centered,
+    },
 }
 -- }}}
-
 -- {{{ Naughty settings
 -- No padding
 naughty.config.padding = 0
@@ -953,7 +959,6 @@ naughty.config.presets.critical.border_color = "#ff6666"
 naughty.config.presets.normal.font = "Terminus 10"
 
 -- }}}
-
 -- {{{ Mail notifier box
 -- Create wibox
 mailnotify = wibox({
@@ -984,7 +989,6 @@ function mailnotify_set(num)
     end
 end
 -- }}}
-
 -- {{{ Listen to remote code over tempfile
 remotefile = timer { timeout = 1 }
 remotefile:add_signal("timeout", function()
@@ -1010,7 +1014,6 @@ end)
 
 remotefile:start()
 -- }}}
-
 -- {{{ Signals
 -- Client manage
 client.add_signal("manage", function (c, startup)

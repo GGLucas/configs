@@ -147,7 +147,7 @@ endif
 
 if !exists("*s:RunPyflakes")
     function s:RunPyflakes()
-        highlight link PyFlakes SpellBad
+        highlight link PyFlakes Special
 
         if exists("b:cleared")
             if b:cleared == 0

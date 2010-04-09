@@ -54,7 +54,7 @@ xterm*foreground: white
 *color4:  rgb:00/00/FF
 *color5:  rgb:74/4E/7A
 *color6:  rgb:06/98/9A
-*color7:  rgb:D3/D7/CF
+*color7:  rgb:FF/FF/FF
 *color8:  rgb:55/57/53
 *color9:  rgb:EF/29/29
 *color10: rgb:8A/E2/34
@@ -62,4 +62,4 @@ xterm*foreground: white
 *color12: rgb:72/9F/CF
 *color13: rgb:AD/7F/A8
 *color14: rgb:59/BC/D9
-*color15: rgb:EE/EE/EC
+*color15: rgb:FF/FF/FF

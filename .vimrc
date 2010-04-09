@@ -8,7 +8,6 @@
 " {{{ Key Mappings
 " Leader
 let mapleader=","
-
 " {{{ Window/split navigation
 nmap <Left> <C-w>h
 nmap <Down> <C-w>j
@@ -17,7 +16,6 @@ nmap <Right> <C-w>l
 nmap ☆ <C-w>w
 nmap ▫ <C-w>W
 " }}}
-
 " {{{ Basic shortcuts
 " Handy shortcut for save
 nmap <silent> e :up<CR>
@@ -26,6 +24,7 @@ nmap <silent> e :up<CR>
 nmap zew :e <C-R>=expand("%:h")."/"<CR>
 nmap zes :sp <C-R>=expand("%:h")."/"<CR>
 nmap zev :vsp <C-R>=expand("%:h")."/"<CR>
+nmap zed :lcd %:p:h<CR>
 
 " Meta-o for inserting a blank line
 nmap <Esc>o o<Esc>
@@ -40,6 +39,9 @@ nmap gto o<Tab>
 " To prevent annoying mispresses
 xmap K k
 nmap Q <Nop>
+
+" Consistency!
+nnoremap Y y$
 
 " Map minus to end of line
 nmap - $
@@ -81,6 +83,11 @@ nnoremap <silent> <C-l> :nohl<CR>
 nmap <silent> <Esc>@ :call PromptFT(1)<CR>
 nmap <silent> <Esc>^ :call PromptFT(0)<CR>
 
+" Add an ascii line under the current line
+nnoremap <Leader>al- yyp^v$r-o<Esc>
+nnoremap <Leader>al= yyp^v$r=o<Esc>
+nnoremap <Leader>al~ yyp^v$r~o<Esc>
+
 " Quickly send keys to a screen session through slime.vim
 " Allows for test-execution of scripts and whatnot without leaving vim.
 nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
@@ -89,13 +96,11 @@ nmap <C-c>r :call Send_to_Screen(input("send to screen: ")."<C-v>")<CR>
 nmap <C-c>g :call Send_to_Screen(input("send to screen: "))<CR>
 
 " }}}
-
 " {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
 nmap <Leader>se :set spell spelllang=en<CR>
 nmap <Leader>sn :set spell spelllang=nl<CR>
 " }}}
-
 " {{{ Buffer Navigation
 nmap <silent> ∩ :A<CR>
 nmap <silent> ∪ :e .<CR>
@@ -108,7 +113,6 @@ nmap <silent> <Leader>n :LustyBufferExplorer<CR>
 nmap <silent> <Leader>G :LustyFilesystemExplorer<CR>
 nmap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
 " }}}
-
 " {{{ Opening different plugin windows
 nmap <silent> <Leader>h :call TreeOpenFocus()<CR>
 nmap <silent> <Leader>H :NERDTreeToggle<CR>
@@ -124,7 +128,6 @@ nmap <silent> <Leader>bd :Bclose!<CR>
 
 nmap <Leader>p :vert bo help 
 " }}}
-
 " {{{ Bisect keys
 nmap ↓ <Plug>BisectDown
 nmap ↑ <Plug>BisectUp
@@ -132,7 +135,6 @@ nmap ← <Plug>BisectLeft
 nmap → <Plug>BisectRight
 nmap § <Plug>StopBisect
 " }}}
-
 " {{{ Function key shortcuts
 " F5: Toggle paste mode
 nmap <F5> :set paste!<Bar>set paste?<CR>
@@ -163,7 +165,6 @@ nmap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR
 nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 
 " }}}
-
 " {{{ Plugin binds
 imap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
 
@@ -175,13 +176,13 @@ nmap <Leader>gb :GitBlame<CR>
 nmap <Leader>gP :GitPull origin master<CR>
 nmap <Leader>gr :GitPush<CR>
 
-nmap <Leader>sc :call Pep8()<CR>
-nmap <Leader>v :cnext<CR>
-nmap <Leader>V :cprev<CR>
+nmap <silent> <Leader>sc :call Pep8()<CR>
+nmap <silent> <Leader>sv :cclose<CR>
+nmap <silent> <Leader>v :cnext<CR>
+nmap <silent> <Leader>V :cprev<CR>
 
 map <Leader>_ <Plug>(operator-replace)
 " }}}
-
 " {{{ Extra motions
 nmap <silent> <Leader>diw di,w
 nmap <silent> <Leader>ciw ci,w
@@ -191,7 +192,6 @@ nmap b <Plug>(smartword-w)
 nmap <Leader>e <Plug>(smartword-w)
 nmap ge <Plug>(smartword-ge)
 " }}}
-
 " {{{ Original binds
 nmap <Leader>/e e
 nmap <Leader>/w w
@@ -199,7 +199,6 @@ nmap <Leader>/b b
 nmap <Leader>/ge ge
 " }}}
 " }}}
-
 " {{{ Plugin Settings
 " NERD Commenter
 let NERDDefaultNesting = 1
@@ -243,27 +242,20 @@ let g:yankring_history_file = '.yankring'
 
 " snipMate
 let g:snips_author = "Lucas de Vries"
+let g:snips_mail = "lucas@glacicle.org"
 
 " delemitMate
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 
+" superTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
 " }}}
-
 " {{{ Vim Settings
-" Color Schemes
-if $TERM == 'linux'
-    " Virtual Console
-    colorscheme delek
-else
-    " Oblivion
-    set t_Co=256
-    colorscheme chasm
-endif
-
 " Config
 " Use UTF-8 encoding
 set encoding=utf-8
@@ -334,7 +326,7 @@ set history=100
 set scrolloff=3
 
 " Shortmess
-set shortmess=atI
+set shortmess=aAtI
 
 " Swap files
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -350,7 +342,7 @@ set viminfo='100,f1,<50,:50,/50,h,!
 set gdefault
 
 " Format (gq) options
-set formatoptions+=w
+set formatoptions=tcn12
 
 " Use wildmenu
 set wildmenu
@@ -364,15 +356,32 @@ set hls
 " Don't fold less than 2 lines
 set foldminlines=2
 
+" Syntax highlighting
+syntax on
+
 " Filetype
 filetype on
 filetype plugin on
 filetype indent off
 
-" Syntax highlighting
-syntax on
-" }}}
+" Color Schemes
+if $TERM == 'linux'
+    " Virtual Console
+    colorscheme delek
+else
+    " Color terminal
+    set t_Co=256
+    colorscheme leo
 
+    " Some highlighting customisations
+    hi VertSplit ctermfg=17 ctermbg=17
+    hi Comment ctermfg=243
+    hi CursorLine ctermbg=235
+    hi String ctermbg=NONE
+    hi SpecialKey ctermbg=NONE
+endif
+
+" }}}
 " {{{ Autocommands
 " Read-only .doc through antiword
 autocmd BufReadPre *.doc silent set ro
@@ -397,6 +406,7 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 soft
 autocmd FileType c silent setlocal fdm=syntax fdn=1
 
 " Python extra highlighting
+autocmd FileType python filetype indent on
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 
@@ -437,7 +447,6 @@ autocmd BufReadPost *
 \ endif
 
 " }}}
-
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
 function! TextwidthToggle()
@@ -486,7 +495,7 @@ function! PromptFT(show)
 
     if a:show == 1
         let def = &ft
-    endif 
+    endif
 
     let ft = input("Filetype: ", def)
     if ft != ""
