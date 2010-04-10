@@ -82,6 +82,7 @@ apps = {
     -- Anigrate functions
     anigrate = {
         log = terminal_anigrate:format("Log", "log 32"),
+        history = terminal_anigrate:format("History", "hist 37"),
         watch = terminal_anigrate:format("Watch", "watch"),
     },
 }
@@ -520,6 +521,9 @@ bindings = {
 
         -- Anigrate: Watch
         [{"Mod4", "u"}] = apps.anigrate.watch,
+
+        -- Anigrate: History
+        [{"Mod4", "d"}] = apps.anigrate.history,
 
         -- Open terminal with tmux
         [{"Mod4", "b"}] = apps.tmux,
