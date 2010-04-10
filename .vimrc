@@ -254,6 +254,17 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
+
+" Don't load python plugins without python
+if !has('python')
+    au FileType python let b:did_pyflakes_plugin = 1
+endif
+
+" Don't load ruby plugins without ruby
+if !has('ruby')
+    let g:command_t_loaded = 1
+    let g:loaded_lustyexplorer = 1
+endif
 " }}}
 " {{{ Vim Settings
 " Config
