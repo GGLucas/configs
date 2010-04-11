@@ -355,6 +355,9 @@ set gdefault
 " Format (gq) options
 set formatoptions=tcn12
 
+" Don't show so many completions
+set pumheight=8
+
 " Use wildmenu
 set wildmenu
 
