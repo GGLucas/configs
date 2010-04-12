@@ -184,7 +184,7 @@ dp() { pushd "$1" 1>/dev/null && dls; }
 w()   { ani watch: $@; }
 lo()  { ani log: $@; }
 li()  { ani list: $@; }
-wh()  { ani hist: +w; }
+wh()  { ani hist; }
 an()  { ani list: +w =anime; }
 anh() { ani hist: =anime; }
 tn()  { ani list: +w =tv; }
@@ -198,6 +198,9 @@ dt() { for d in $@; do sudo /etc/rc.d/$d stop; done; }
 # Local server start and stop
 sstart() { ds httpd mysqld; }
 sstop()  { dt httpd mysqld; }
+
+# Sync music
+syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/iriver/Music/Anime/; }
 
 # Set and jump to marks
 ma() {
@@ -267,7 +270,6 @@ tvtime() {
 # Commit git -a or path
 c() {
     if [[ "$1" == "-i" ]]; then
-        echo I
         shift; git commit -s --interactive $@
     else
         if [[ -n "$@" ]]; then
@@ -276,6 +278,25 @@ c() {
             git commit -s -a
         fi;
     fi;
+}
+
+# Show inbox
+scan() { command scan -w $(($COLUMNS + 24)) $@; }
+sc() { scan last:20; }
+mll() { box="$1"; shift; ml "+list/$box" $@; }
+showp() { mhshow -type text/plain $@; }
+ml() {
+    [[ -n "$1" ]] && box=$1 || box="+inbox"
+    [[ -n "$2" ]] && msg=$2 || msg="last:20"
+    scan $box $msg
+}
+rml() {
+    [[ -n "$1" ]] && box=$1 || box="+inbox"
+    mark $box -delete all -seq unseen
+}
+th() {
+    [[ -n "$1" ]] && box=$1 || box="+inbox"
+    mhthread.pl $box
 }
 
 # Root where packages are stored

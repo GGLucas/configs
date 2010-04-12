@@ -481,13 +481,11 @@ util = {
     end,
 
     -- Toggle weechat away
-    weechat_away = function ()
-        if settings._away then
-            settings._away = false
-            util.weechat_send({"/away -all"})
-        else 
-            settings._away = true
+    weechat_away = function (set)
+        if set then
             util.weechat_send({"/away -all away"})
+        else 
+            util.weechat_send({"/away -all"})
         end
     end,
     -- }}}
@@ -686,7 +684,8 @@ bindings = {
         [{"Mod4", "Return"}] = util.defquickmarks,
 
         -- Toggle away on weechat
-        [{"Mod4", "F3"}] = util.weechat_away,
+        [{"Mod4", "F3"}] = {util.weechat_away, true},
+        [{"Mod4", "F4"}] = {util.weechat_away, false},
 
         -- Restart awesome
         [{"Mod4", "Mod1", "r"}] = awful.util.restart,

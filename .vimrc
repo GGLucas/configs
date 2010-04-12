@@ -95,6 +95,9 @@ nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v>")<CR>
 nmap <C-c>r :call Send_to_Screen(input("send to screen: ")."<C-v>")<CR>
 nmap <C-c>g :call Send_to_Screen(input("send to screen: "))<CR>
 
+" Various ways to "decode" a block
+map <silent> ,cdb <Esc>:call Base64Decode()<CR>:s/<C-v><C-m>\?<C-@>/<C-v><C-m><CR>
+map ,cdl :!elinks -dump<CR>
 " }}}
 " {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
@@ -392,7 +395,7 @@ else
     hi Comment ctermfg=243
     hi CursorLine ctermbg=235
     hi String ctermbg=NONE
-    hi SpecialKey ctermbg=NONE
+    hi Special ctermbg=NONE
 endif
 
 " }}}
@@ -435,6 +438,11 @@ autocmd FileType xhtml,html hi link htmlEndTag BoldBraces
 autocmd FileType xml hi link xmlEndTag BoldBraces
 autocmd FileType javascript hi link javaScriptBraces Braces
 
+" Highlight subject better
+autocmd FileType mail hi link mailHeader Comment
+autocmd FileType mail hi link mailSubject Function
+autocmd FileType mail silent call HighlightLongToggle()
+
 " Don't jump on git commit
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 autocmd FileType git setlocal nomodeline
@@ -475,7 +483,6 @@ function! TextwidthToggle()
     set textwidth?
 endfunction
 " }}}
-
 " {{{ HighlightLongToggl(): Toggle highlighting of long lines
 function! HighlightLongToggle()
     if exists('w:longmatch')
@@ -491,7 +498,6 @@ function! HighlightLongToggle()
     endif
 endfunction
 " }}}
-
 " {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
     let wnr = bufwinnr("NERD_tree_1")
@@ -502,7 +508,6 @@ function! TreeOpenFocus()
     endif
 endfunction
 " }}}
-
 " {{{ PromptFT(): Prompt for a new filetype to set
 function! PromptFT(show)
     let def = ""
@@ -517,6 +522,23 @@ function! PromptFT(show)
     end
 endfunction
 " }}}
+" {{{ Base64Decode(): Decode a base64 block
+function! Base64Decode()
+    ruby require "base64"
+    norm gv
+    '<,'>rubydo $_=Base64.decode64 $_
+    norm gvgJ0
+endfunction
+" }}}
+" {{{ Base64Decode(): Decode a base64 block
+function! Base64Decode()
+    ruby require "base64"
+    norm gv
+    '<,'>rubydo $_=Base64.decode64 $_
+    norm gvgJ0
+endfunction
+" }}}
+
 " }}}
 
 " vim:fdm=marker

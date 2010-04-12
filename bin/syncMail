@@ -1,0 +1,25 @@
+#!/usr/bin/python
+from subprocess import Popen, PIPE
+
+p = Popen(["ssh", "syncmail@glacicle.org"], stdout=PIPE)
+fd = None
+folder = None
+
+while True:
+    line = p.stdout.readline().replace("\r\n", "\n")
+    if line:
+        if line.startswith("--new : "):
+            folder = line[8:-6]
+            print("New message in folder: "+folder)
+            fname = Popen(["mhpath", "+"+folder, "new"], stdout=PIPE)\
+                        .stdout.readline().strip("\r\n")
+            print("Filename: "+fname)
+            fnum = fname.split("/")[-1]
+            fd = None
+            fd = open(fname, "w")
+        elif line.startswith("--end--"):
+            Popen(["mark", "+"+folder, "-seq", "unseen", fnum])
+            fd.close()
+            print("End of Message")
+        elif fd is not None:
+            fd.write(line)

@@ -1,0 +1,11 @@
+[0;31m\
+%4(msg)%<(unseen)[1m%|[0m%>%<(cur)+%| %>%<{replied}-%?{encrypted}E%| %>\
+[33m\
+%3(day{date}) %02(mday{date}) %3(month{date})%<{date} %|*%>\
+[32m\
+%<(mymbox{from})%<{to}To:%14(decode(friendly{to}))%>%>\
+%<(zero)%17(decode(friendly{from}))%>  \
+[31m\
+%(decode{x-mh-thread-markup})\
+[36m\
+%(decode{subject})
