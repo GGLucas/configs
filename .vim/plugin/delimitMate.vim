@@ -340,14 +340,11 @@ function! s:QuoteDelim(char) "{{{
     if line[col] == a:char
       if line[col+1] == a:char
           let col = col('.')
-          call setline('.', line[:(col-2)].line[(col+1):])
-          if (col < col('$'))
-              norm h
-          endif
+          call setline('.', line[:(col-2)].line[(col):])
           return ''
       else
           let col = col('.')
-          call setline('.', line[:(col-2)].line[(col+1):])
+          call setline('.', line[:(col-2)].line[(col-1):])
           return a:char
       endif
     endif
