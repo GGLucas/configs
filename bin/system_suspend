@@ -1,9 +1,12 @@
 #!/bin/bash
 
-if [[ "$1" = "1" ]]; then
+if [[ "$1" != "2" ]]; then
     # Music off
     ([[ $(mpc current) =~ "AnimeNfo" ]] && mpc stop || mpc pause)&>/dev/null&
+fi
 
+
+if [[ "$1" = "1" ]]; then
     # Weechat away
     echo "*/away -all away" > ~/.weechat/*fifo*
 

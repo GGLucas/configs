@@ -67,8 +67,11 @@ apps = {
     -- Suspend activity
     system_suspend = "system_suspend 1",
 
+    -- Displays and music off
+    system_silent = "system_suspend 0",
+
     -- Turn off displays
-    displays_off = "system_suspend 0",
+    displays_off = "system_suspend 2",
 
     -- Shutdown system
     shutdown = "sudo halt",
@@ -546,7 +549,10 @@ bindings = {
         [{"Mod4", "F1"}] = apps.system_suspend,
 
         -- Turn displays off
-        [{"Mod4", "F2"}] = apps.displays_off,
+        [{"Mod4", "F2"}] = apps.system_silent,
+
+        -- Turn displays off
+        [{"Mod4", "F5"}] = apps.displays_off,
 
         -- Toggle Line In mute
         [{"Mod4", "F8"}] = "amixer set Line toggle",
