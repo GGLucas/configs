@@ -421,7 +421,12 @@ endfunction "}}}
 
 function! DelimitMate_ExpandSpace() "{{{
 	" Expand:
-	return "\<Space>\<Space>\<Left>"
+    let char = getline('.')[col('.')-1]
+    if char != '"' && char != "'"
+        return "\<Space>\<Space>\<Left>"
+    else
+        return "\<Space>"
+    endif
 endfunction "}}}
 
 function! s:ExtraMappings() "{{{

@@ -123,7 +123,6 @@ nmap <silent> <Leader>l :TlistOpen<CR>
 nmap <silent> <Leader>L :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
-nmap <silent> <Leader>y :YRShow<CR>
 nmap <silent> <Leader>T :CommandTFlush<CR>
 
 nmap <silent> <Leader>d :Bclose<CR>
@@ -137,6 +136,12 @@ nmap ↑ <Plug>BisectUp
 nmap ← <Plug>BisectLeft
 nmap → <Plug>BisectRight
 nmap § <Plug>StopBisect
+
+xmap ↓ <Plug>VisualBisectDown
+xmap ↑ <Plug>VisualBisectUp
+xmap ← <Plug>VisualBisectLeft
+xmap → <Plug>VisualBisectRight
+xmap § <Plug>VisualStopBisect
 " }}}
 " {{{ Function key shortcuts
 " F5: Toggle paste mode
@@ -163,10 +168,6 @@ nmap <F9> :call HighlightLongToggle()<CR>
 imap <F9> <C-O><F9>
 nmap <Leader>chl <F9>
 
-" Turn autoclose on/off
-nmap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
-nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
-
 " }}}
 " {{{ Plugin binds
 imap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
@@ -185,6 +186,9 @@ nmap <silent> <Leader>v :cnext<CR>
 nmap <silent> <Leader>V :cprev<CR>
 
 map <Leader>_ <Plug>(operator-replace)
+
+nmap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
+nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
 " }}}
 " {{{ Extra motions
 nmap <silent> <Leader>diw di,w
@@ -217,9 +221,6 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Show_One_File = 1
 let Tlist_Enable_Fold_Column = 0
 
-" Pydoc
-let g:pydoc_highlight = 0
-
 " Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
@@ -239,11 +240,6 @@ let g:LustyJugglerSuppressRubyWarning = 1
 let g:CommandTMaxHeight = 10
 let g:CommandTAlwaysShowDotFiles = 1
 let g:CommandTScanDotDirectories = 1
-
-" Yankring
-let g:yankring_min_element_length = 2
-let g:yankring_window_height = 10
-let g:yankring_history_file = '.yankring'
 
 " snipMate
 let g:snips_author = "Lucas de Vries"
