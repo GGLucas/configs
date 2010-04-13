@@ -282,21 +282,21 @@ function! s:JumpIn(char, leftchar) " {{{
   let line = getline('.')
   let col = col('.')
 
-  if line[col-3] != a:leftchar
-    if (col-2) < 0
-      call setline('.',a:char.line)
-    else
-      "echom string(col).':'.line[:(col)].'|'.line[(col+1):]
-      call setline('.', line[:(col-2)].a:char.line[(col-1):])
-    endif
-    return ''
-  else
+  if line[col-3] == a:leftchar && line[col-1] == a:char
     call setline('.', line[:(col-3)].line[(col):])
     if (col < col('$'))
         norm h
     endif
     return ''
   endif
+
+  if (col-2) < 0
+    call setline('.',a:char.line)
+  else
+    "echom string(col).':'.line[:(col)].'|'.line[(col+1):]
+    call setline('.', line[:(col-2)].a:char.line[(col-1):])
+  endif
+  return ''
 endfunction " }}}
 
 function! s:JumpOut(char) "{{{
@@ -338,12 +338,18 @@ function! s:QuoteDelim(char) "{{{
 	let col = col('.') - 2
 
     if line[col] == a:char
-      let col = col('.')
-      call setline('.', line[:(col-2)].line[(col+1):])
-      if (col < col('$'))
-          norm h
+      if line[col+1] == a:char
+          let col = col('.')
+          call setline('.', line[:(col-2)].line[(col+1):])
+          if (col < col('$'))
+              norm h
+          endif
+          return ''
+      else
+          let col = col('.')
+          call setline('.', line[:(col-2)].line[(col+1):])
+          return a:char
       endif
-      return ''
     endif
 
 	if line[col] == "\\"

@@ -420,7 +420,7 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 soft
 autocmd FileType c silent setlocal fdm=syntax fdn=1
 
 " Python extra highlighting
-autocmd FileType python filetype indent on
+autocmd FileType python source ~/.vim/indent/python.vim
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 
