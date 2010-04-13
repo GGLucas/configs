@@ -138,13 +138,13 @@ nmap ↓ <Plug>BisectDown
 nmap ↑ <Plug>BisectUp
 nmap ← <Plug>BisectLeft
 nmap → <Plug>BisectRight
-nmap § <Plug>StopBisect
+nmap Æ <Plug>StopBisect
 
 xmap ↓ <Plug>VisualBisectDown
 xmap ↑ <Plug>VisualBisectUp
 xmap ← <Plug>VisualBisectLeft
 xmap → <Plug>VisualBisectRight
-xmap § <Plug>VisualStopBisect
+xmap Æ <Plug>VisualStopBisect
 " }}}
 " {{{ Function key shortcuts
 " F5: Toggle paste mode
