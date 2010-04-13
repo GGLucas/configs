@@ -10,16 +10,35 @@ while True:
     if line:
         if line.startswith("--new : "):
             folder = line[8:-6]
-            print("New message in folder: "+folder)
             fname = Popen(["mhpath", "+"+folder, "new"], stdout=PIPE)\
                         .stdout.readline().strip("\r\n")
-            print("Filename: "+fname)
             fnum = fname.split("/")[-1]
             fd = None
             fd = open(fname, "w")
         elif line.startswith("--end--"):
-            Popen(["mark", "+"+folder, "-seq", "unseen", fnum])
+            # Close the file
             fd.close()
-            print("End of Message")
+
+            # Mark as unread
+            Popen(["mark", "+"+folder, "-seq", "unseen", fnum])
+
+            # Rethread
+            Popen(["mhthread.pl", "+"+folder])
+
+            # Notify
+            if folder == "inbox":
+                new = Popen(["scan", "+inbox", "unseen"], stdout=PIPE)
+                amount = 0
+
+                while True:
+                    line = new.stdout.readline()
+
+                    if line:
+                        amount += 1
+                    else:
+                        break
+
+                with open("/tmp/awesome-remote", "a") as notif:
+                    notif.write("mailnotify_set(%d)\n" % amount)
         elif fd is not None:
             fd.write(line)

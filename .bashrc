@@ -280,10 +280,15 @@ c() {
     fi;
 }
 
+sa() {
+    git status | ack -B 999 --no-color "Untracked"
+}
+
 # Show inbox
-scan() { command scan -w $(($COLUMNS + 24)) $@; }
+scan() { command scan -w $(($COLUMNS + 28)) $@; }
 sc() { scan last:20; }
 mll() { box="$1"; shift; ml "+list/$box" $@; }
+thl() { box="$1"; shift; th "+list/$box" $@; }
 showp() { mhshow -type text/plain $@; }
 ml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
@@ -293,6 +298,11 @@ ml() {
 rml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
     mark $box -delete all -seq unseen
+    [[ $box = "+inbox" ]] && echo "mailnotify_set(0)" >> /tmp/awesome-remote
+}
+eml() {
+    amn=$(scan +inbox unseen | wc -l)
+    echo "mailnotify_set($amn)" >> /tmp/awesome-remote
 }
 th() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
@@ -322,7 +332,7 @@ aurd() {
 }
 
 # Make a git package, then show the log
-gi() { 
+gi() {
     gitdir=$1; shift
     from=$(git --git-dir=src/$gitdir/.git rev-parse HEAD)
     makepkg -fi $@

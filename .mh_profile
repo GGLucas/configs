@@ -1,15 +1,16 @@
-Path: Mail
+Path: mail
 Editor: /home/archlucas/bin/vimmail
-Draft-Folder: /home/archlucas/Mail/drafts
+Draft-Folder: /home/archlucas/mail/drafts
 Unseen-Sequence: unseen
 Signature: Lucas de Vries
 scan: -form .mh_scan
 show: -nocheckmime
 next: -nocheckmime
 prev: -nocheckmime
-send: -msgid -draftfolder +drafts
+send: -draftfolder +drafts
 lproc: /home/archlucas/bin/vimmail
 showproc: /home/archlucas/bin/vimmail
 rmmproc: /bin/rm
+postproc: /usr/lib/nmh/spost
 mhshow-show-text/plain: vimmail %F
 mhshow-show-text/html: elinks -dump %F | vimpager
