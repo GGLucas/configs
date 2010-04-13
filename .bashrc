@@ -290,6 +290,7 @@ sc() { scan last:20; }
 mll() { box="$1"; shift; ml "+list/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
 showp() { mhshow -type text/plain $@; }
+shows() { show $(pick -search $@); }
 ml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
     [[ -n "$2" ]] && msg=$2 || msg="last:20"
