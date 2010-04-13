@@ -532,15 +532,6 @@ function! Base64Decode()
     norm gvgJ0
 endfunction
 " }}}
-" {{{ Base64Decode(): Decode a base64 block
-function! Base64Decode()
-    ruby require "base64"
-    norm gv
-    '<,'>rubydo $_=Base64.decode64 $_
-    norm gvgJ0
-endfunction
-" }}}
-
 " }}}
 
 " vim:fdm=marker
