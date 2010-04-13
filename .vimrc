@@ -20,6 +20,9 @@ nmap ▫ <C-w>W
 " Handy shortcut for save
 nmap <silent> e :up<CR>
 
+" Save with sudo
+nmap <silent> <Leader>sa :silent %!sudo tee %<CR>
+
 " Shortcuts for edit in the current file's directory
 nmap zew :e <C-R>=expand("%:h")."/"<CR>
 nmap zes :sp <C-R>=expand("%:h")."/"<CR>
