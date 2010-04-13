@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Spawn mail syncer in the background
-syncMail &>/dev/null &
+#syncMail &>/dev/null &
 
 # Spawn rssdler in the background
 rssdler -o &>/dev/null &

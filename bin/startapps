@@ -13,7 +13,7 @@ export DISPLAY=:0.1
 
 sleep 0.5
 export DISPLAY=:0.2
-  se  mutt                                 # mutt email client
+      urxvtc &                             # empty terminal
   se  ncmpcpp                              # ncmpcpp music player
   tm  htop                                 # htop system monitor
 

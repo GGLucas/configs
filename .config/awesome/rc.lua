@@ -545,7 +545,7 @@ bindings = {
         -- Suspend all activity
         [{"Mod4", "F1"}] = apps.system_suspend,
 
-        -- Turns displays off
+        -- Turn displays off
         [{"Mod4", "F2"}] = apps.displays_off,
 
         -- Toggle Line In mute
@@ -774,7 +774,6 @@ for i=1, #tags[1]  do
     end
 end
 ---- }}}
-
 ---- {{{ Set up keybindings - Code
     --- Add specific bindings into root bindings array
     -- Spawn applications
