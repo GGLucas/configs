@@ -131,6 +131,9 @@ nmap <silent> <Leader>bd :Bclose!<CR>
 nmap <Leader>p :vert bo help 
 " }}}
 " {{{ Bisect keys
+nmap ,f :let g:bisectFull = 1<CR>
+nmap ,F :let g:bisectFull = 0<CR>
+
 nmap ↓ <Plug>BisectDown
 nmap ↑ <Plug>BisectUp
 nmap ← <Plug>BisectLeft

@@ -10,12 +10,18 @@ if exists("loaded_bisect")
   finish
 endif
 let g:loaded_bisect = 1
+let g:bisectFull = 0
 
 function! s:StartBisect(invoking_mode)
   let s:running = 1
   let s:current_mode = a:invoking_mode
-  let s:top_mark = line('w0') - 1
-  let s:bottom_mark = line('w$') + 1
+  if g:bisectFull == 1
+      let s:top_mark = line('0') - 1
+      let s:bottom_mark = line('$') + 1
+  else
+      let s:top_mark = line('w0') - 1
+      let s:bottom_mark = line('w$') + 1
+  endif
   let s:left_mark = 0
   let s:right_mark = col('$')
   let s:current_col = col('.')
