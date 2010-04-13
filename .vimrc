@@ -190,8 +190,7 @@ nmap <silent> <Leader>V :cprev<CR>
 
 map <Leader>_ <Plug>(operator-replace)
 
-nmap <silent> <Leader>an :let delimitMate_autoclose = 1 \| :DelimitMateReload<CR>
-nmap <silent> <Leader>ar :let delimitMate_autoclose = 0 \| :DelimitMateReload<CR>
+nmap <Leader>an :call SwitchAutoclose()<CR>
 " }}}
 " {{{ Extra motions
 nmap <silent> <Leader>diw di,w
@@ -258,11 +257,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
-
-" Don't load python plugins without python
-if !has('python')
-    au FileType python let b:did_pyflakes_plugin = 1
-endif
 
 " Don't load ruby plugins without ruby
 if !has('ruby')
@@ -397,6 +391,8 @@ else
     hi CursorLine ctermbg=235
     hi String ctermbg=NONE
     hi Special ctermbg=NONE
+    hi AlmostOver ctermbg=233
+    hi OverLength ctermbg=234
 endif
 
 " }}}
@@ -454,8 +450,8 @@ autocmd BufNewFile,BufRead *.tex set ft=tex
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 
 " Highlight long lines
-autocmd BufRead * let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
-autocmd BufRead * let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
+autocmd BufRead * let w:longmatch = matchadd('AlmostOver', '\%<81v.\%>77v', -1)
+autocmd BufRead * let w:toolongmatch = matchadd('OverLength', '\%>80v.\+', -1)
 
 " Clear any erroneous select-mode mappings
 "autocmd VimEnter silent smapc
@@ -493,8 +489,8 @@ function! HighlightLongToggle()
         unlet w:toolongmatch
         echo "  don't highlight long"
     else
-        let w:longmatch = matchadd('MoreMsg', '\%<81v.\%>77v', -1)
-        let w:toolongmatch = matchadd('Folded', '\%>80v.\+', -1)
+        let w:longmatch = matchadd('AlmostOver', '\%<81v.\%>77v', -1)
+        let w:toolongmatch = matchadd('OverLength', '\%>80v.\+', -1)
         echo "  highlight long"
     endif
 endfunction
