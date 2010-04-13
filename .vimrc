@@ -237,6 +237,8 @@ let g:LustyJugglerSuppressRubyWarning = 1
 
 " Command-T
 let g:CommandTMaxHeight = 10
+let g:CommandTAlwaysShowDotFiles = 1
+let g:CommandTScanDotDirectories = 1
 
 " Yankring
 let g:yankring_min_element_length = 2
