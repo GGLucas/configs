@@ -34,37 +34,38 @@ set noinsertmode
 let mapleader=","
 
 " }}}
-
 " {{{ Mappings
 " Show/hide toolbars
-noremap <silent> <C-+> :set go+=Bm<CR>
-noremap <silent> <C-=> :set go-=Bm<CR>
+nmap <silent> <C-+> :set go+=Bm<CR>
+nmap <silent> <C-=> :set go-=Bm<CR>
 
 " Passthrough mode shortcut
-noremap c <C-z>
+nmap c <C-z>
+
+" Random link :P
+nmap <Leader>e frandom<CR>
 
 " Next/Prev Tab
-noremap w <C-Tab>
-noremap v <C-S-Tab>
+nmap w <C-Tab>
+nmap v <C-S-Tab>
 
-noremap <silent> V :tabmove -1<CR>
-noremap <silent> W :tabmove +1<CR>
-
+nmap <silent> V :tabmove -1<CR>
+nmap <silent> W :tabmove +1<CR>
 
 " Toggle userstyles/userscripts
-noremap <silent> <Leader>s :styletoggle<CR>
-noremap <silent> <Leader>S :loaduserstyles<CR>
-noremap <silent> <Leader>g :gmset!<CR>
+nmap <silent> <Leader>s :styletoggle<CR>
+nmap <silent> <Leader>S :loaduserstyles<CR>
+nmap <silent> <Leader>g :gmset!<CR>
 
 " Show/hide the buftabbar
-noremap <silent> <A-u> :set invbuftabs<CR>
+nmap <silent> <A-u> :set invbuftabs<CR>
 
 " Quick buffer switch with the same mapping as in vim
-noremap <A-g> :buffer!<Space>
-noremap <Leader>t :buffer!<Space>
+nmap <A-g> :buffer!<Space>
+nmap <Leader>t :buffer!<Space>
 
 " Detach tab
-noremap <Leader>w :tabdetach<CR>
+nmap <Leader>w :tabdetach<CR>
 
 " Faster scrolling
 noremap <C-e> 3<C-e>
@@ -79,18 +80,18 @@ noremap J 6j
 noremap K 6k
 
 " Remove tabs
-noremap <silent> <leader>D :removetabsright<CR>
-noremap <silent> <leader>d :removetabsleft<CR>
+nmap <silent> <leader>D :removetabsright<CR>
+nmap <silent> <leader>d :removetabsleft<CR>
 
 " Background tab
-noremap <A-t> :tabopen!<Space>
-noremap <A-w> :winopen<Space>
+nmap <A-t> :tabopen!<Space>
+nmap <A-w> :winopen<Space>
 
 " Video control keys
-noremap <silent> <leader>p :stplay<CR>
-noremap <silent> <leader>P :stpause<CR>
-noremap <silent> <leader>l :stlarge<CR>
-noremap <silent> <leader>m :stmute<CR>
+nmap <silent> <leader>p :stplay<CR>
+nmap <silent> <leader>P :stpause<CR>
+nmap <silent> <leader>l :stlarge<CR>
+nmap <silent> <leader>m :stmute<CR>
 
 " Hide CmdLine right after a command
 cnoremap <S-CR> <CR>
@@ -130,7 +131,6 @@ mappings.add(config.browserModes,
 EOF
 
 " }}}
-
 " {{{ Styling
 
 " Buftab styling
@@ -170,7 +170,6 @@ hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 
 " }}}
-
 " {{{ Youtube settings on load
 au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args.tab)
 js <<EOF
@@ -199,7 +198,6 @@ loadYoutube = function (tab)
 }
 EOF
 " }}}
-
 " {{{ Quickmarks / Bookmarks
 " Quickmarks
 delqm!
@@ -208,7 +206,6 @@ source ~/.vimperator/qmarks
 " Bookmarks
 source ~/.vimperator/bookmarks
 " }}}
-
 " {{{ Readability
 noremap <silent> <leader>r :js readability()<CR>
 js <<EOF
