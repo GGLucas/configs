@@ -131,7 +131,8 @@ nmap <silent> <Leader>T :CommandTFlush<CR>
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>
 
-nmap <Leader>p :vert bo help 
+command! -nargs=1 H :help <args> | :only
+nmap <Leader>p :H<Space>
 " }}}
 " {{{ Bisect keys
 nmap ,f :let g:bisectFull = 1<CR>
@@ -276,7 +277,7 @@ set encoding=utf-8
 set nocursorline
 
 " Characters to use in list mode
-set listchars=tab:▸\ ,trail:·
+set listchars=tab:│\ ,trail:·
 set list
 
 " Enter spaces when tab is pressed:
@@ -394,6 +395,7 @@ else
     hi CursorLine ctermbg=235
     hi String ctermbg=NONE
     hi Special ctermbg=NONE
+    hi SpecialKey ctermbg=NONE
     hi AlmostOver ctermbg=233
     hi OverLength ctermbg=234
 endif
