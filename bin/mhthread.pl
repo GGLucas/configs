@@ -657,11 +657,13 @@ sub dig_thru_tree {
   # just use the encoded string directly, it's quicker and simpler.
 
   my $MARKUP_START =			'=?US-ASCII?Q?';
-  my $MARKUP_NODE_LAST_CHILD =		'=60=2d=a0';	# "\- "
-  my $MARKUP_NODE_CHILD_W_SIBLINGS =	'=7c=2d=a0';	# "|- "
-  my $MARKUP_TREE_EMPTY =		'=a0=a0';	# "  "
-  my $MARKUP_TREE_BRANCH =		'=7c=a0';	# "| "
-  my $MARKUP_END =			'?=';
+
+  my $MARKUP_NODE_LAST_CHILD =          '└─=a0';        # "\- "
+  my $MARKUP_NODE_CHILD_W_SIBLINGS =    '├─=a0';        # "|- "
+  my $MARKUP_TREE_EMPTY =               '=a0=a0=a0';    # "  "
+  my $MARKUP_TREE_BRANCH =              '│=a0=a0';      # "| "
+  my $MARKUP_END =                      '?=';
+
 
   # TODO: limit levels to 3 for UI reasons
 

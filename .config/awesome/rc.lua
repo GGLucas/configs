@@ -422,6 +422,10 @@ util = {
 
     -- Clear all notifications
     notify_clear = function ()
+        -- Mail
+        mailnotify_set(0)
+
+        -- Notifications
         for s = 1, screen.count() do
             for p,pos in pairs(naughty.notifications[s]) do
                 for i,notification in pairs(naughty.notifications[s][p]) do
