@@ -289,9 +289,9 @@ scan() { command scan -w $(($COLUMNS + 28)) $@; }
 sc() { scan last:20; }
 mll() { box="$1"; shift; ml "+list/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
-shp() { mhshow -type text/plain $@; }
-shs() { show $(pick -search $@); }
-shn() { show unseen $@; }
+sp() { mhshow -type text/plain $@; }
+ss() { show $(pick -search $@); }
+sn() { show unseen $@; }
 ml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
     [[ -n "$2" ]] && msg=$2 || msg="last:20"

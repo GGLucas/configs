@@ -5,4 +5,4 @@ else
     file="$1"
 fi
 
-cat $1 | curl -F 'sprunge=<-' http://sprunge.us | xclip
+cat $file | curl -F "content=<-" http://npaste.de | sed -e 's#/$##' | xclip

@@ -3,7 +3,7 @@ Editor: /home/archlucas/bin/vimmail
 Draft-Folder: /home/archlucas/mail/drafts
 Unseen-Sequence: unseen
 Signature: Lucas de Vries
-scan: -form .mh_scan
+scan: -form /home/archlucas/.mh_scan
 show: -nocheckmime
 next: -nocheckmime
 prev: -nocheckmime
