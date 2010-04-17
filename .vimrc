@@ -423,6 +423,7 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 soft
 
 " Set correct folding
 autocmd FileType c silent setlocal fdm=syntax fdn=1
+autocmd FileType c set cindent
 
 " Python extra highlighting
 autocmd FileType python source ~/.vim/indent/python.vim
@@ -452,6 +453,7 @@ autocmd FileType git setlocal nomodeline
 " Syntax recognition
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
 autocmd BufNewFile,BufRead *.tex set ft=tex
+autocmd BufNewFile,BufRead *.go set ft=go
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 
 " Highlight long lines

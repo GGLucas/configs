@@ -288,10 +288,12 @@ sa() {
 scan() { command scan -w $(($COLUMNS + 28)) $@; }
 sc() { scan last:20; }
 mll() { box="$1"; shift; ml "+list/$box" $@; }
+rmll() { box="$1"; shift; rml "+list/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
 sp() { mhshow -type text/plain $@; }
 ss() { show $(pick -search $@); }
 sn() { show unseen $@; }
+mu() { munpack $(mhpath cur); }
 ml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
     [[ -n "$2" ]] && msg=$2 || msg="last:20"

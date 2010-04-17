@@ -23,7 +23,7 @@ while True:
             Popen(["mark", "+"+folder, "-seq", "unseen", fnum])
 
             # Rethread
-            Popen(["mhthread.pl", "+"+folder])
+            Popen(["/home/archlucas/bin/mhthread.pl", "+"+folder])
 
             # Notify
             if folder == "inbox":
