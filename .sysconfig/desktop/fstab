@@ -9,8 +9,9 @@ LABEL=HeresyRoot / btrfs defaults,noatime,nodiratime,compress 0 0
 none                   /dev/pts      devpts    defaults            0      0
 none                   /dev/shm      tmpfs     defaults            0      0
 
-# Mount /tmp on tmpfs 
+# Mount /tmp and /var/ipc on tmpfs 
 none /tmp tmpfs defaults,noatime,nodiratime 0 0
+none /var/ipc tmpfs defaults,noatime,nodiratime 0 0
 
 # Boot directory
 LABEL=HeresyBoot /boot ext4 defaults,noatime,nodiratime 0 0 
@@ -28,10 +29,10 @@ LABEL=HeresyBoot /boot ext4 defaults,noatime,nodiratime 0 0
 
 # Data union partition
 #### mhddfs union:
-#/usr/bin/mhddfs#/mnt/data-5,/mnt/data-4,/mnt/data-3 /data fuse defaults,noatime,allow_other,fsname=data 0 0
+/usr/bin/mhddfs#/mnt/data-5,/mnt/data-4,/mnt/data-3 /data fuse defaults,noatime,allow_other,fsname=data 0 0
 
 #### aufs union
-data /data aufs br:/mnt/data-5=rw:/mnt/data-4=rw:/mnt/data-3=rw,create=pmfs,noatime,noauto 0 0
+#data /data aufs br:/mnt/data-5=rw:/mnt/data-4=rw:/mnt/data-3=rw,create=pmfs,noatime,noauto 0 0
 
 #### unionfs-fuse union
 #/usr/sbin/unionfs#/mnt/data-5=RW:/mnt/data-4=RW:/mnt/data-3=RW /data fuse defaults,noatime,allow_other,fsname=data 0 0

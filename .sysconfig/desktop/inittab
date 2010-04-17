@@ -29,4 +29,6 @@ su:S:wait:/sbin/sulogin -p
 ca::ctrlaltdel:/sbin/shutdown -t3 -r now
 
 # Start the first virtual console
-c1:2345:respawn:/sbin/mingetty --autologin archlucas tty1 linux
+#c1:2345:respawn:/sbin/mingetty --autologin archlucas tty1 linux
+c1:2345:respawn:/sbin/agetty -8 115200 tty1 linux
+c2:2345:respawn:/sbin/agetty -8 115200 tty2 linux
