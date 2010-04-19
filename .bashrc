@@ -134,6 +134,7 @@ alias v='vim'
 alias vv='sudo vim'
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
+alias ts='todo --database ~/.todo.schedule'
 alias un='aunpack'
 
 # cd abbreviations
