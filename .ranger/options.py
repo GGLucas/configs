@@ -1,4 +1,5 @@
 from ranger.api.options import *
+from colorschemes import oblivion
 
 colorscheme = "oblivion"
 show_cursor = False
