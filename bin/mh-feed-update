@@ -1,0 +1,98 @@
+#!/usr/bin/env python2.6
+# Get feeds from list in ~/.feeds and file them into nmh folders
+import os
+import feedparser
+from thread import start_new_thread
+from urlparse import urlparse
+from subprocess import Popen, PIPE
+from email.utils import formatdate
+from time import mktime
+
+# Get a pickle library
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
+
+# Configuration
+COMMAND = "/usr/lib/nmh/rcvstore +%s/%s -create"
+FEEDLIST_PATH= os.environ["HOME"]+"/.feeds"
+SEEN_PATH = os.environ["HOME"]+"/.feeds.seen"
+MH_FOLDER = "feed"
+VERBOSE = True
+
+# Listed feeds
+Feeds = []
+
+# Seen cache
+Seen = {}
+if os.path.exists(SEEN_PATH):
+    try:
+        with open(SEEN_PATH, 'rb') as fd:
+            Seen = pickle.load(fd)
+    except:
+        pass
+
+# Get all feeds
+with open(FEEDLIST_PATH) as fd:
+    for line in fd:
+        line = line.strip()
+        if not line.startswith("#") and line:
+            Feeds.append(line.strip().split())
+
+def feed_parse(name, feed):
+    if VERBOSE:
+        print("Synchronising feed: "+str(feed))
+
+    # Parse feed
+    data = feedparser.parse(feed)
+
+    # Create seen list
+    if name not in Seen:
+        Seen[name] = []
+
+    for entry in data["entries"]:
+        if "id" not in entry:
+            entry["id"] = entry["link"]
+
+        if entry["id"] not in Seen[name]:
+            if VERBOSE:
+                print("  New entry in "+name+": "+entry["title"])
+
+            # Mark entry as seen
+            Seen[name].append(entry["id"])
+
+            # File entry into mailbox
+            add = Popen((COMMAND % (MH_FOLDER, name)).split(), stdin=PIPE, close_fds=True)
+            write_utf8 = lambda st: add.stdin.write(st.encode("utf-8"))
+
+            # Write link on first line
+            write_utf8(entry["link"]+"\n")
+
+            # Write headers
+            write_utf8("From: %s <%s>\n" % (data["feed"]["title"], feed))
+            write_utf8("Subject: %s\n" % entry["title"])
+
+            if "updated_parsed" in entry:
+                write_utf8("Date: %s\n" % formatdate(mktime(entry["updated_parsed"])))
+            else:
+                write_utf8("Date: %s\n" % formatdate())
+
+            if "content" in entry and entry["content"]:
+                write_utf8("\n"+entry["content"][0]["value"])
+            elif "summary_detail" in entry:
+                write_utf8("\n"+entry["summary_detail"]["value"])
+            elif "summary" in entry:
+                write_utf8("\n"+entry["summary"]["value"])
+            else:
+                write_utf8("\nNo content detected...")
+
+            add.stdin.close()
+
+# Sync all feeds
+for name, feed in Feeds:
+    feed_parse(name, feed)
+
+# Save seen cache
+with open(SEEN_PATH, 'wb') as fd:
+    pickle.dump(Seen, fd, pickle.HIGHEST_PROTOCOL)

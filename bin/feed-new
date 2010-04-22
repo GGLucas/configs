@@ -1,0 +1,21 @@
+#!/bin/bash
+# Open all new feed entries found
+SCAN_DIRECTORY="$HOME/mail"
+MH_DIRECTORY="feed"
+COMMAND="fxs :0.0"
+
+for feed in ${SCAN_DIRECTORY}/${MH_DIRECTORY}/*; do
+    folder=$(basename "${feed}")
+
+    if mhpath "+${MH_DIRECTORY}/${folder}" unseen &>/dev/null; then
+        if [[ "$1" = "open" ]]; then
+            mhpath "+${MH_DIRECTORY}/${folder}" unseen | while read entry; do
+                ${COMMAND} $(head -n1 "${entry}")
+            done
+            mark "+${MH_DIRECTORY}/${folder}" -delete all -seq unseen
+        else
+            echo $folder
+            scan unseen "+${MH_DIRECTORY}/${folder}"
+        fi;
+    fi;
+done

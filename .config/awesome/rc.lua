@@ -946,6 +946,11 @@ awful.rules.rules = {
         properties = { floating = true, },
         callback = awful.placement.centered,
     },
+
+    {
+        rule = { class = "Boecks", },
+        properties = { floating = true, },
+    },
 }
 -- }}}
 -- {{{ Naughty settings

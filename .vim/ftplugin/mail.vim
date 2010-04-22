@@ -12,7 +12,7 @@ function! GetFold(lnum)
     if s:fromnum == -1
         let linepos = 0
         while linepos <= line("$")
-            if getline(linepos) =~ '^\(Date\|Subject\|Reply\|To\): '
+            if getline(linepos) =~ '^\(Date\|Subject\|Reply\|To\|From\): '
                 let s:fromnum = linepos
                 break
             endif

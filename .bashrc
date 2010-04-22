@@ -289,12 +289,17 @@ sa() {
 scan() { command scan -w $(($COLUMNS + 28)) $@; }
 sc() { scan last:20; }
 mll() { box="$1"; shift; ml "+list/$box" $@; }
+mlf() { box="$1"; shift; ml "+feed/$box" $@; }
+rmlc() { rml " " $@; }
 rmll() { box="$1"; shift; rml "+list/$box" $@; }
+rmlf() { box="$1"; shift; rml "+feed/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
 sp() { mhshow -type text/plain $@; }
 ss() { show $(pick -search $@); }
 sn() { show unseen $@; }
-mu() { munpack $(mhpath cur); }
+mu() { munpack $(mhpath $@); }
+fn() { feed-new; }
+fno() { feed-new open; }
 ml() {
     [[ -n "$1" ]] && box=$1 || box="+inbox"
     [[ -n "$2" ]] && msg=$2 || msg="last:20"
