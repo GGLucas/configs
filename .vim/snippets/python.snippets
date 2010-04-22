@@ -94,3 +94,10 @@ snippet doc
 	"""
 snippet ndoc
 	""" ${1:docstring} """
+snippet test
+	def test_${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		"""
+			Tests for: $1
+
+			* ${3:testcase}
+		"""
