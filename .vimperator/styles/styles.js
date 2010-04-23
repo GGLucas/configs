@@ -8,6 +8,12 @@ var loaduserstyles = function()
     /// Userstyles
     var userstyles = [
         [
+            "global",
+            "*",
+            "global.css",
+        ],
+
+        [
             "wikipedia:minimal",
             "en.wikipedia.org",
             "wikipedia.css",
@@ -65,6 +71,12 @@ var loaduserstyles = function()
             "youtube:dark-minimal",
             "youtube.com",
             "youtube.css",
+        ],
+
+        [
+            "myanimelist:dark",
+            "myanimelist.net",
+            "myanimelist.css",
         ],
 
     ];

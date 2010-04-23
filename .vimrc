@@ -309,6 +309,9 @@ set shiftwidth=4
 " Copy indent from current line when starting a new line
 set autoindent
 
+" Don't go mad reindenting
+set cinkeys="0{,0},0)"
+
 " Makes the backspace key more powerful
 set backspace=indent,eol,start
 
