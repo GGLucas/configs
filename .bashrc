@@ -163,6 +163,7 @@ slide() { feh -FrzZ -D7 $1 & }
 x(){ builtin cd ~; exec xinit $@; }
 tm() { tmux -2 attach -t $1; }
 tmn() { tmux -2 new -s $1 $1; }
+yt() { youtube-pl -q $(xclip -o); }
 
 # ls with directory name on top
 dls() { ls $@; }

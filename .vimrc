@@ -287,7 +287,7 @@ set expandtab
 set laststatus=2
 
 " Statusline information
-set statusline=%=%c\ %P\ 
+"set statusline=%=%c\ %P\ 
 
 " Text width
 let g:textwidth=0
