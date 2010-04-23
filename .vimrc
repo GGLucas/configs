@@ -401,6 +401,7 @@ else
     hi SpecialKey ctermbg=NONE
     hi AlmostOver ctermbg=233
     hi OverLength ctermbg=234
+    hi Underlined cterm=NONE
 endif
 
 " }}}
