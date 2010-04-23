@@ -13,4 +13,5 @@ body[bgcolor]
 a:link
 {
     color: #608BCC;
+    text-decoration: none;
 }
