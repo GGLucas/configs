@@ -441,8 +441,6 @@ autocmd FileType javascript syn keyword javascriptIdentifier "let"
 autocmd FileType tex,plaintex hi link TexZone Comment
 
 " Highlight braces with braces style
-autocmd FileType xhtml,html hi link htmlEndTag BoldBraces
-autocmd FileType xml hi link xmlEndTag BoldBraces
 autocmd FileType javascript hi link javaScriptBraces Braces
 
 " Highlight subject better
