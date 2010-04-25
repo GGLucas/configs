@@ -3,6 +3,7 @@ loadplugins
 
 " Load userstyles
 source ~/.vimperator/styles/styles.js
+styledisable -name global
 
 " {{{ Configuration
 
@@ -54,6 +55,7 @@ nmap <silent> W :tabmove +1<CR>
 
 " Toggle userstyles/userscripts
 nmap <silent> <Leader>s :styletoggle<CR>
+nmap <silent> <Leader>h :styletoggle -name global<CR>
 nmap <silent> <Leader>S :loaduserstyles<CR>
 nmap <silent> <Leader>g :gmset!<CR>
 

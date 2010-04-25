@@ -281,3 +281,7 @@ div.message div.message div.message div.message div.message div.message div.mess
 	background-color: #121212 !important;
 }
 
+
+.comment .child {
+    border-left: none !important;
+}
