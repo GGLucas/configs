@@ -13,6 +13,9 @@ qma H https://github.com
 "" Glacicle git
 qma g http://git.glacicle.org/
 qma G http://stats.git.glacicle.org/
+"" Vim.org
+qma e http://www.vim.org/scripts/index.php
+qma E http://www.vim.org/
 
 """ Forums
 "" Arch Linux Forums
