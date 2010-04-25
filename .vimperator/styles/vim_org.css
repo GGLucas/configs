@@ -11,7 +11,7 @@ a:link
     text-decoration: none !important;
 }
 
-.sidebar, .darkbg, body > table:first-child, body > table:last-child
+.sidebar, .darkbg, body > table:first-child, body > table:nth-child(3)
 {
     display: none !important;
 }
