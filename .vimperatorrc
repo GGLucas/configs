@@ -54,9 +54,9 @@ nmap <silent> V :tabmove -1<CR>
 nmap <silent> W :tabmove +1<CR>
 
 " Toggle userstyles/userscripts
-nmap <silent> <Leader>s :styletoggle<CR>
+nmap <silent> <Leader>s :styletoggle<CR>:styledisable -name global<CR>
 nmap <silent> <Leader>h :styletoggle -name global<CR>
-nmap <silent> <Leader>S :loaduserstyles<CR>
+nmap <silent> <Leader>S :loaduserstyles<CR>:styledisable -name global<CR>
 nmap <silent> <Leader>g :gmset!<CR>
 
 " Show/hide the buftabbar

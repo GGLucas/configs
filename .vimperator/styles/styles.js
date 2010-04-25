@@ -79,6 +79,11 @@ var loaduserstyles = function()
             "myanimelist.css",
         ],
 
+        [
+            "vim:dark",
+            "vim.org",
+            "vim_org.css",
+        ],
     ];
 
     // Get style directory
