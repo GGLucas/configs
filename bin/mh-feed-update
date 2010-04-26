@@ -72,14 +72,14 @@ def feed_parse(name, feed):
 
     # Add all entries
     for entry in data["entries"]:
-        if entry["link"] not in Seen[name]:
+        if entry["title"] not in Seen[name]:
             # Create mailbox file
             with open(os.path.join(folder, str(num)), "w") as mfile:
                 if VERBOSE:
                     print("  New entry in "+name+": "+entry["title"])
 
                 # Mark entry as seen
-                Seen[name][entry["link"]] = True
+                Seen[name][entry["title"]] = True
 
                 # File entry into mailbox
                 write_utf8 = lambda st: mfile.write(st.encode("utf-8"))
