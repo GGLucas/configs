@@ -62,7 +62,7 @@ def feed_parse(name, feed):
                  close_fds=True, stdout=PIPE)
 
     try:
-        num = int(last.stdout.readline())+1
+        num = int(last.stdout.readline().split("/")[-1])+1
     except ValueError:
         num = 1
     last.stdout.close()
