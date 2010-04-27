@@ -105,10 +105,11 @@ def feed_parse(name, feed):
                 else:
                     write_utf8("\nNo content detected...")
 
-                num += 1
-
             # Add to unseen list
             unseen.append(str(num))
+
+            # Increment number
+            num += 1
 
     # Save unseen sequence
     seqpath = os.path.join(folder, ".mh_sequences")
