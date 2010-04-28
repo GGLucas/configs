@@ -422,8 +422,11 @@ autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" -
 autocmd BufReadPre *.rtf silent set ro
 autocmd BufReadPost *.rtf silent %!unrtf --text
 
+" Cakefiles are yaml
+autocmd BufReadPre Cakefile silent set filetype=yaml
+
 " Files to indent with two spaces
-autocmd FileType xhtml,html,xml,sass,tex,plaintex silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Set correct folding
 autocmd FileType c silent setlocal fdm=syntax fdn=1

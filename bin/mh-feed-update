@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.6
 # Get feeds from list in ~/.feeds and file them into nmh folders
+import sys
 import os
 import feedparser
 from thread import start_new_thread
@@ -22,6 +23,12 @@ VERBOSE = True
 
 # Listed feeds
 Feeds = []
+
+# Lock
+if os.path.exists(SEEN_PATH+".lock"):
+    print("Seen file in use, quitting. Remove "+SEEN_PATH+".lock to proceed.")
+    sys.exit(1)
+os.system("touch "+SEEN_PATH+".lock")
 
 # Seen cache
 Seen = {}
@@ -135,3 +142,6 @@ for name, feed in Feeds:
 # Save seen cache
 with open(SEEN_PATH, 'wb') as fd:
     pickle.dump(Seen, fd, pickle.HIGHEST_PROTOCOL)
+
+# Remove lock
+os.unlink(SEEN_PATH+".lock")
