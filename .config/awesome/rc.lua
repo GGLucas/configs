@@ -43,9 +43,6 @@ lower_screens = 4
 -- Applications
 terminal = "urxvtc"
 terminal_full = "/usr/bin/urxvtc"
-terminal_anigrate = "urxvtc -name Anigrate -geometry 82x45 -e sh "..
-                    "-c \"echo -e '\\e[1;31m -- %s -- \\e[0m';"..
-                    "ani %s; read -n 1\""
 
 apps = {
     -- Terminal to use
@@ -81,13 +78,6 @@ apps = {
 
     -- Start all applications
     startapps = "startapps",
-
-    -- Anigrate functions
-    anigrate = {
-        log = terminal_anigrate:format("Log", "log 32"),
-        history = terminal_anigrate:format("History", "hist 37"),
-        watch = terminal_anigrate:format("Watch", "watch"),
-    },
 }
 
 -- Advprompt
@@ -521,15 +511,6 @@ bindings = {
         -- Open terminal
         [{"Mod4", ";"}] = apps.terminal,
 
-        -- Anigrate: Log
-        [{"Mod4", "o"}] = apps.anigrate.log,
-
-        -- Anigrate: Watch
-        [{"Mod4", "u"}] = apps.anigrate.watch,
-
-        -- Anigrate: History
-        [{"Mod4", "d"}] = apps.anigrate.history,
-
         -- Open terminal with tmux
         [{"Mod4", "b"}] = apps.tmux,
 
@@ -938,13 +919,6 @@ awful.rules.rules = {
         -- Float the GIMP
         rule = { class = "GIMP", },
         properties = { floating = true, },
-    },
-
-    {
-        -- Floating anigrate urxvt
-        rule = { instance = "Anigrate", },
-        properties = { floating = true, },
-        callback = awful.placement.centered,
     },
 
     {

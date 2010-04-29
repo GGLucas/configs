@@ -433,7 +433,7 @@ autocmd FileType c silent setlocal fdm=syntax fdn=1
 autocmd FileType c set cindent
 
 " Python extra highlighting
-autocmd FileType python source ~/.vim/indent/python.vim
+"autocmd FileType python source ~/.vim/indent/python.vim
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 

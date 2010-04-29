@@ -139,11 +139,6 @@ alias un='aunpack'
 
 # cd abbreviations
 alias h='builtin cd'
-alias ..='cd ..'
-alias ..2='cd ../..'
-alias ..3='cd ../../..'
-alias ..4='cd ../../../..'
-alias ..5='cd ../../../../..'
 alias p+='dp +1'
 alias p2='dp +2'
 alias p3='dp +3'
@@ -154,6 +149,13 @@ alias -- p-2='dp -2'
 alias -- p-3='dp -3'
 alias -- p-4='dp -4'
 alias -- -='cd -'
+
+# directory up abbreviations
+..() { cd "../$@"; }
+..2() { cd "../../$@"; }
+..3() { cd "../../../$@"; }
+..4() { cd "../../../../$@"; }
+..5() { cd "../../../../../$@"; }
 
 # Fallback to grep if ack is not found
 [[ ! -x ~/bin/ack ]] && alias ack="grep"
