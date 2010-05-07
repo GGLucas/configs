@@ -136,12 +136,14 @@ def feed_parse(name, feed):
             seq.writelines([line])
 
 # Sync all feeds
-for name, feed in Feeds:
-    feed_parse(name, feed)
+try:
+    for name, feed in Feeds:
+        feed_parse(name, feed)
 
 # Save seen cache
-with open(SEEN_PATH, 'wb') as fd:
-    pickle.dump(Seen, fd, pickle.HIGHEST_PROTOCOL)
+finally:
+    with open(SEEN_PATH, 'wb') as fd:
+        pickle.dump(Seen, fd, pickle.HIGHEST_PROTOCOL)
 
-# Remove lock
-os.unlink(SEEN_PATH+".lock")
+    # Remove lock
+    os.unlink(SEEN_PATH+".lock")

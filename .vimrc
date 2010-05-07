@@ -29,9 +29,6 @@ nmap zes :sp <C-R>=expand("%:h")."/"<CR>
 nmap zev :vsp <C-R>=expand("%:h")."/"<CR>
 nmap zed :lcd %:p:h<CR>
 
-" Meta-o for inserting a blank line
-nmap <Esc>o o<Esc>
-
 " O mappings for not inserting the comment leader
 nmap go o<Esc>S
 nmap gO O<Esc>S
@@ -79,12 +76,10 @@ nmap <Leader># #*
 nmap <Leader>* *#
 
 " Clear screen and remove highlighting
-nnoremap <silent> <Esc><C-l> :nohl<CR><C-l>
 nnoremap <silent> <C-l> :nohl<CR>
 
 " Prompt for a filetype to set
-nmap <silent> <Esc>@ :call PromptFT(1)<CR>
-nmap <silent> <Esc>^ :call PromptFT(0)<CR>
+nmap <silent> <C-@> :call PromptFT(1)<CR>
 
 " Add an ascii line under the current line
 nnoremap <Leader>al- yyp^v$r-o<Esc>
@@ -127,6 +122,9 @@ nmap <silent> <Leader>L :TlistToggle<CR>
 nmap <silent> <Leader>s :SessionList<CR>
 nmap <silent> <Leader>S :SessionSave<CR>
 nmap <silent> <Leader>T :CommandTFlush<CR>
+
+nmap <silent> <Leader>ct :bo ConqueTermVSplit bash<CR><Esc>:setlocal nolist<CR>i
+nmap <silent> <Leader>cT :ConqueTerm bash<CR><Esc>:setlocal nolist<CR>i
 
 nmap <silent> <Leader>d :Bclose<CR>
 nmap <silent> <Leader>bd :Bclose!<CR>

@@ -16,6 +16,9 @@ qma G http://stats.git.glacicle.org/
 "" Vim.org
 qma e http://www.vim.org/scripts/index.php
 qma E http://www.vim.org/
+"" hurl
+qma p http://hurl.hereticlinux.org/
+qma P http://hurl.hereticlinux.org/branch/GGLucas
 
 """ Forums
 "" Arch Linux Forums

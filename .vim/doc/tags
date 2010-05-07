@@ -188,6 +188,7 @@
 <Plug>(textobj-lastpat-n)	textobj-lastpat.txt	/*<Plug>(textobj-lastpat-n)*
 <Plug>(textobj-syntax-a)	textobj-syntax.txt	/*<Plug>(textobj-syntax-a)*
 <Plug>(textobj-syntax-i)	textobj-syntax.txt	/*<Plug>(textobj-syntax-i)*
+ConqueTerm	conque_term.txt	/*ConqueTerm*
 DelimitMate_ExpandReturn()	delimitMate.txt	/*DelimitMate_ExpandReturn()*
 DelimitMate_ExpandSpace()	delimitMate.txt	/*DelimitMate_ExpandSpace()*
 DelimitMate_JumpAny()	delimitMate.txt	/*DelimitMate_JumpAny()*
@@ -386,6 +387,13 @@ command-t-usage	command-t.txt	/*command-t-usage*
 command-t-website	command-t.txt	/*command-t-website*
 command-t-wildignore	command-t.txt	/*command-t-wildignore*
 command-t.txt	command-t.txt	/*command-t.txt*
+conque_term-bugs	conque_term.txt	/*conque_term-bugs*
+conque_term-changelog	conque_term.txt	/*conque_term-changelog*
+conque_term-contribute	conque_term.txt	/*conque_term-contribute*
+conque_term-requirements	conque_term.txt	/*conque_term-requirements*
+conque_term-settings	conque_term.txt	/*conque_term-settings*
+conque_term-todo	conque_term.txt	/*conque_term-todo*
+conque_term-usage	conque_term.txt	/*conque_term-usage*
 cs	surround.txt	/*cs*
 delimitMate	delimitMate.txt	/*delimitMate*
 delimitMate-contents	delimitMate.txt	/*delimitMate-contents*
