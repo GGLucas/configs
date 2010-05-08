@@ -463,6 +463,9 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 autocmd BufRead * let w:longmatch = matchadd('AlmostOver', '\%<81v.\%>77v', -1)
 autocmd BufRead * let w:toolongmatch = matchadd('OverLength', '\%>80v.\+', -1)
 
+" Use rainbox parens
+autocmd BufReadPost * so ~/.vim/plugin/RainbowParenthsis.vim
+
 " Clear any erroneous select-mode mappings
 "autocmd VimEnter silent smapc
 
