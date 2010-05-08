@@ -388,18 +388,7 @@ if $TERM == 'linux'
 else
     " Color terminal
     set t_Co=256
-    colorscheme leo
-
-    " Some highlighting customisations
-    hi VertSplit ctermfg=17 ctermbg=17
-    hi Comment ctermfg=243
-    hi CursorLine ctermbg=235
-    hi String ctermbg=NONE
-    hi Special ctermbg=NONE
-    hi SpecialKey ctermbg=NONE
-    hi AlmostOver ctermbg=233
-    hi OverLength ctermbg=234
-    hi Underlined cterm=NONE
+    colorscheme leo-edit
 endif
 
 " }}}
