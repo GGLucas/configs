@@ -199,7 +199,7 @@ nmap <silent> <Leader>diw di,w
 nmap <silent> <Leader>ciw ci,w
 
 nmap w <Plug>(smartword-w)
-nmap b <Plug>(smartword-w)
+nmap b <Plug>(smartword-b)
 nmap <Leader>e <Plug>(smartword-w)
 nmap ge <Plug>(smartword-ge)
 " }}}

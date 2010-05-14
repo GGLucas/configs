@@ -299,7 +299,8 @@ rmlf() { box="$1"; shift; rml "+feed/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
 sp() { mhshow -type text/plain $@; }
 ss() { show $(pick -search $@); }
-sn() { show unseen $@; }
+sn() { show unseen $@ && eml; }
+snn() { show unseen $@; }
 mu() { munpack $(mhpath $@); }
 fn() { feed-new; }
 fno() { feed-new open; }
