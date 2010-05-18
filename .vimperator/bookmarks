@@ -64,7 +64,7 @@ bma -k=valid http://validator.w3.org/check?uri=%s
 """" Websites
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 bma -k=bboard http://blackboard.tudelft.nl/webapps/portal/frameset.jsp
-bma -k=sched http://srv571.tudelft.net/scientia/sws/nl/swstud/default.aspx
+bma -k=sched http://blackboard.tudelft.nl/webapps/mmmt-rooster-bb_bb60/Scheduleviewer.html
 bma -k=vimp http://code.google.com/p/vimperator-labs/
 bma -k=router http://192.168.1.1
 bma -k=nipponsei https://nipponsei.minglong.org

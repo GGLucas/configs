@@ -723,7 +723,9 @@ bindings = {
     client_buttons = awful.util.table.join(
         awful.button({}, 1, function (c) client.focus = c; c:raise() end),
         awful.button({"Mod4",}, 1, awful.mouse.client.move),
-        awful.button({"Mod4",}, 3, awful.mouse.client.resize)
+        awful.button({"Mod4",}, 3, awful.mouse.client.resize),
+        awful.button({}, 8, function () util.screen.focusprev() end),
+        awful.button({}, 9, function () util.screen.focusnext() end)
     ), 
 }
 
