@@ -135,7 +135,6 @@ alias vv='sudo vim'
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
 alias ts='todo --database ~/.todo.schedule'
-alias un='aunpack'
 
 # cd abbreviations
 alias h='builtin cd'
@@ -158,7 +157,18 @@ alias -- -='cd -'
 ..5() { cd "../../../../../$@"; }
 
 # Fallback to grep if ack is not found
-[[ ! -x ~/bin/ack ]] && alias ack="grep"
+if [[ ! -x ~/bin/ack ]]; then
+    alias ack="grep -i --color=always"
+else
+    alias ack="command ack -i"
+fi
+
+# Unpack programs
+if [[ -x '/usr/bin/aunpack' ]]; then
+    alias un='aunpack'
+else
+    alias un='tar xvf'
+fi
 
 # Shortcut functions
 slide() { feh -FrzZ -D7 $1 & }
