@@ -1,2 +1,6 @@
 #!/bin/bash
-DISPLAY=$1 fx "$2"
+if [[ -n "$2" ]]; then
+    DISPLAY=$1 fx "$2"
+else
+    DISPLAY=:0.0 fx "$1"
+fi
