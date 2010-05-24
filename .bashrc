@@ -70,31 +70,29 @@ case "$-" in *i*)
     bind -m vi -r v
 
     # Walk through completions with ^T
-    bind "\\C-t: menu-complete"
+    bind "\C-t: menu-complete"
 
     # Clear screen with ^L
-    bind "\\C-l: clear-screen"
+    bind "\C-l: clear-screen"
 
-    # Add pager pipe with <A-w>
-    bind '"\ew":" | $PAGER \C-m"'
+    # Add pager pipe with <C-w>
+    bind '"\C-v":" | $PAGER \C-m"'
 
-    # Background & ignore with <A-b>
-    bind '"\eb":" &> /dev/null &\C-m"'
+    # Background & ignore with <C-b>
+    bind '"\C-b":" &> /dev/null &\C-m"'
 
     # Search
-    bind '"\e\\":" | ack "'
+    bind '"\C-w":" | ack "'
 
     # Display status
-    bind '"\ez":"; ns\C-m"'
+    bind '"\C-x":"; ns\C-m"'
 
     # Reset
-    bind '"\er":"reset ; clear \C-m"'
+    bind '"\C-a":"reset ; clear \C-m"'
 
     # Clear
-    bind '"\ec":"cd ; clear \C-m"'
-    bind '"\el":"clear \C-m"'
-
-    bind '"\en":"\ekea "'
+    bind '"\C-e":"cd ; clear \C-m"'
+    bind '"\C-k":"clear \C-m"'
 ;; esac;
 
 # Load autojump
@@ -309,8 +307,8 @@ rmlf() { box="$1"; shift; rml "+feed/$box" $@; }
 thl() { box="$1"; shift; th "+list/$box" $@; }
 sp() { mhshow -type text/plain $@; }
 ss() { show $(pick -search $@); }
-sn() { show unseen $@ && eml; }
-snn() { show unseen $@; }
+sn() { eml; show unseen +inbox $@; }
+snn() { show unseen +inbox $@; }
 mu() { munpack $(mhpath $@); }
 fn() { feed-new; }
 fno() { feed-new open; }
