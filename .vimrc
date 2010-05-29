@@ -30,6 +30,7 @@ nmap <Right> <C-w>l
 nmap ☆ <C-w>w
 nmap ▫ <C-w>W
 nmap ,sp :vsp<CR>
+""" }}}
 """ {{{ Buffer navigation
 nmap <silent> ∩ :A<CR>
 nmap <silent> ∪ :e .<CR>
@@ -37,7 +38,6 @@ nmap <silent> <Leader>- <C-^>
 
 nmap <silent> ♥ :bnext<CR>
 nmap <silent> √ :bprev<CR>
-""" }}}
 """ }}}
 """ {{{ Editing shortcuts
 " Creating new lines without comment leader
