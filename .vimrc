@@ -21,6 +21,8 @@ cmap ∩ <C-R>=expand("%:h")."/"<CR>
 nmap <Leader>@ :call PromptFT(0)<CR>
 nmap <Leader>? :call PromptFT(1)<CR>
 
+" Close everything
+nmap ZN :wqa<CR>
 """ }}}
 """ {{{ Window navigation
 nmap <Left> <C-w>h
