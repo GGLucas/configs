@@ -32,6 +32,7 @@ nmap <Right> <C-w>l
 nmap ☆ <C-w>w
 nmap ▫ <C-w>W
 nmap ,sp :vsp<CR>
+nmap ,on :on<CR>
 """ }}}
 """ {{{ Buffer navigation
 nmap <silent> ∩ :A<CR>
