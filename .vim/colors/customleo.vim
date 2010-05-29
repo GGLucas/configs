@@ -14,3 +14,5 @@ hi Underlined cterm=NONE
 " Properly highlight matching paren
 hi MatchParen cterm=NONE ctermbg=20 ctermfg=NONE
 
+" Highlight tree directory slash correctly
+hi link treeDirSlash Function

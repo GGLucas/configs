@@ -5,137 +5,89 @@
 " Website: lucas.glacicle.org
 "
 
-" {{{ Key Mappings
-" Leader
+" {{{ Key mappings
+"" {{{ Convenience shortcuts
+""" {{{ Mapleader
 let mapleader=","
-" {{{ Window/split navigation
+""" }}}
+""" {{{ File actions
+" Handy shortcut for save
+nmap <silent> e :up<CR>
+
+" Put current path in commandline
+cmap ∩ <C-R>=expand("%:h")."/"<CR>
+
+" Prompt for filetype to set
+nmap <Leader>@ :call PromptFT(0)<CR>
+nmap <Leader>? :call PromptFT(1)<CR>
+
+""" }}}
+""" {{{ Window navigation
 nmap <Left> <C-w>h
 nmap <Down> <C-w>j
 nmap <Up> <C-w>k
 nmap <Right> <C-w>l
 nmap ☆ <C-w>w
 nmap ▫ <C-w>W
-" }}}
-" {{{ Basic shortcuts
-" Handy shortcut for save
-nmap <silent> e :up<CR>
+nmap ,sp :vsp<CR>
+""" {{{ Buffer navigation
+nmap <silent> ∩ :A<CR>
+nmap <silent> ∪ :e .<CR>
+nmap <silent> <Leader>- <C-^>
 
-" Save with sudo
-nmap <silent> <Leader>sa :silent %!sudo tee %<CR>
-
-" Shortcuts for edit in the current file's directory
-nmap zew :e <C-R>=expand("%:h")."/"<CR>
-nmap zes :sp <C-R>=expand("%:h")."/"<CR>
-nmap zev :vsp <C-R>=expand("%:h")."/"<CR>
-nmap zed :lcd %:p:h<CR>
-
-" O mappings for not inserting the comment leader
+nmap <silent> ♥ :bnext<CR>
+nmap <silent> √ :bprev<CR>
+""" }}}
+""" }}}
+""" {{{ Editing shortcuts
+" Creating new lines without comment leader
 nmap go o<Esc>S
 nmap gO O<Esc>S
-nmap gno o<Esc>I
-nmap gho o<Backspace>
-nmap gto o<Tab>
-
-" To prevent annoying mispresses
-xmap K k
-nmap Q <Nop>
-
-" Consistency!
-nnoremap Y y$
-
-" Map minus to end of line
-nmap - $
-
-" Mod5+Enter to next line and indent more or less
-imap ァ <Return><Tab>
-imap ィ <Return><Backspace>
-nmap ァ gto
-nmap ィ gho
-
-" Use ,, to work around , as leader
-nnoremap ,, ,
 
 " Return to visual mode after indenting
 xmap < <gv
 xmap > >gv
 
-" Swap ' and ` so it goes to the column too by default
-nnoremap ` '
-nnoremap ' `
+" Consistency!
+nnoremap Y y$
 
-" Quit all easily
-nmap ZVQ :qa<CR>
-nmap ZVZ :wqa<CR>
+" Minus to eol, since underscore is bol
+nmap - $
+
+" Use ,, for regular , (since it's the leader)
+nnoremap ,, ,
 
 " Faster scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Search for word under cursor without moving
-nmap <Leader># #*
-nmap <Leader>* *#
-
 " Clear screen and remove highlighting
 nnoremap <silent> <C-l> :nohl<CR>
 
-" Prompt for a filetype to set
-nmap <silent> <C-@> :call PromptFT(1)<CR>
+" Camel case word edit
+nmap <silent> <Leader>ciw ci,w
 
-" Add an ascii line under the current line
-nnoremap <Leader>al- yyp^v$r-o<Esc>
-nnoremap <Leader>al= yyp^v$r=o<Esc>
-nnoremap <Leader>al~ yyp^v$r~o<Esc>
-
-" Quickly send keys to a screen session through slime.vim
-" Allows for test-execution of scripts and whatnot without leaving vim.
-nmap <C-c>m :call Send_to_Screen("<C-v>")<CR>
-nmap <C-c>c :call Send_to_Screen("<C-v>OA<C-v>")<CR>
-nmap <C-c>r :call Send_to_Screen(input("send to screen: ")."<C-v>")<CR>
-nmap <C-c>g :call Send_to_Screen(input("send to screen: "))<CR>
-
-" Various ways to "decode" a block
-map <silent> ,cdb <Esc>:call Base64Decode()<CR>:s/<C-v><C-m>\?<C-@>/<C-v><C-m><CR>
-map ,cdl :!elinks -dump<CR>
-" }}}
-" {{{ Spellcheck
+" Toggle textwidth
+nmap <Leader>/ :call TextwidthToggle()<CR>
+""" }}}
+""" {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
 nmap <Leader>se :set spell spelllang=en<CR>
 nmap <Leader>sn :set spell spelllang=nl<CR>
-" }}}
-" {{{ Buffer Navigation
-nmap <silent> ∩ :A<CR>
-nmap <silent> ∪ :e .<CR>
-
-nmap <silent> ♥ :bnext<CR>
-nmap <silent> √ :bprev<CR>
-
-nmap <silent> <Leader>- <C-^>
-nmap <silent> <Leader>n :LustyBufferExplorer<CR>
-nmap <silent> <Leader>G :LustyFilesystemExplorer<CR>
-nmap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
-" }}}
-" {{{ Opening different plugin windows
-nmap <silent> <Leader>h :call TreeOpenFocus()<CR>
-nmap <silent> <Leader>H :NERDTreeToggle<CR>
-nmap <silent> <Leader>l :TlistOpen<CR>
-nmap <silent> <Leader>L :TlistToggle<CR>
-nmap <silent> <Leader>s :SessionList<CR>
-nmap <silent> <Leader>S :SessionSave<CR>
-nmap <silent> <Leader>T :CommandTFlush<CR>
-
-nmap <silent> <Leader>ct :bo ConqueTermVSplit bash<CR><Esc>:setlocal nolist<CR>i
-nmap <silent> <Leader>cT :ConqueTerm bash<CR><Esc>:setlocal nolist<CR>i
-
-nmap <silent> <Leader>d :Bclose<CR>
-nmap <silent> <Leader>bd :Bclose!<CR>
-
-command! -nargs=1 H :help <args> | :only
-nmap <Leader>p :H<Space>
-" }}}
-" {{{ Bisect keys
-nmap ,f :let g:bisectFull = 1<CR>
-nmap ,F :let g:bisectFull = 0<CR>
-
+""" }}}
+""" {{{ Quickfix window
+nmap <silent> <Leader>vp :call Pep8()<CR>
+nmap <silent> <Leader>vc :cclose<CR>
+nmap <silent> <Leader>vn :cnext<CR>
+nmap <silent> <Leader>vN :cprev<CR>
+""" }}}
+""" {{{ Remove inconvenient binds
+xmap K k
+nmap Q <Nop>
+""" }}}
+"" }}}
+"" {{{ Plugin bindings
+""" {{{ Bisect
 nmap ↓ <Plug>BisectDown
 nmap ↑ <Plug>BisectUp
 nmap ← <Plug>BisectLeft
@@ -147,36 +99,31 @@ xmap ↑ <Plug>VisualBisectUp
 xmap ← <Plug>VisualBisectLeft
 xmap → <Plug>VisualBisectRight
 xmap Æ <Plug>VisualStopBisect
-" }}}
-" {{{ Function key shortcuts
-" F5: Toggle paste mode
-nmap <F5> :set paste!<Bar>set paste?<CR>
-imap <F5> <C-O><F5>
-set pastetoggle=<F5>
-nmap <Leader>cp <F5>
-
-" F6: Toggle whether to use textwidth or not
-nmap <F6> :call TextwidthToggle()<CR>
-imap <F6> <C-O><F6>
-nmap <Leader>ctw <F6>
-
-" F7: Turn search highlight off until next search
-nmap <F7> :noh<CR>
-imap <F7> <C-O><F7>
-
-" F8: Toggle list mode
-nmap <F8> :set list!<Bar>set list?<CR>
-imap <F8> <C-O><F8>
-
-" F9: Toggle highlighting long lines
-nmap <F9> :call HighlightLongToggle()<CR>
-imap <F9> <C-O><F9>
-nmap <Leader>chl <F9>
-
-" }}}
-" {{{ Plugin binds
-imap <C-e> <Esc>:norm <C-y>,<C-y>n<CR>
-
+""" }}}
+""" {{{ Command-T
+nmap <silent> <Leader>T :CommandTFlush<CR>
+""" }}}
+""" {{{ Lusty Explorer
+nmap <silent> <Leader>n :LustyBufferExplorer<CR>
+nmap <silent> <Leader>G :LustyFilesystemExplorer<CR>
+nmap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
+""" }}}
+""" {{{ Taglist
+nmap <silent> <Leader>l :TlistOpen<CR>
+nmap <silent> <Leader>L :TlistToggle<CR>
+""" }}}
+""" {{{ NERD Tree
+nmap <silent> <Leader>h :call TreeOpenFocus()<CR>
+nmap <silent> <Leader>H :NERDTreeToggle<CR>
+""" }}}
+""" {{{ BClose
+nmap <silent> <Leader>d :Bclose<CR>
+nmap <silent> <Leader>D :Bclose!<CR>
+""" }}}
+""" {{{ Operator-Replace
+map <Leader>_ <Plug>(operator-replace)
+""" }}}
+""" {{{ Git extras
 nmap <Leader>gL :GitLog HEAD<CR>
 nmap <Leader>gC :GitCommit -s -a<CR>
 nmap <Leader>gt :GitCommit -s<CR>
@@ -184,118 +131,138 @@ nmap <Leader>gS :GitAdd<Space>
 nmap <Leader>gb :GitBlame<CR>
 nmap <Leader>gP :GitPull origin master<CR>
 nmap <Leader>gr :GitPush<CR>
-
-nmap <silent> <Leader>sc :call Pep8()<CR>
-nmap <silent> <Leader>sv :cclose<CR>
-nmap <silent> <Leader>v :cnext<CR>
-nmap <silent> <Leader>V :cprev<CR>
-
-map <Leader>_ <Plug>(operator-replace)
-
-nmap <Leader>an :call SwitchAutoclose()<CR>
+""" }}}
+"" }}}
 " }}}
-" {{{ Extra motions
-nmap <silent> <Leader>diw di,w
-nmap <silent> <Leader>ciw ci,w
-
-nmap w <Plug>(smartword-w)
-nmap b <Plug>(smartword-b)
-nmap <Leader>e <Plug>(smartword-w)
-nmap ge <Plug>(smartword-ge)
-" }}}
-" {{{ Original binds
-nmap <Leader>/e e
-nmap <Leader>/w w
-nmap <Leader>/b b
-nmap <Leader>/ge ge
-" }}}
-" }}}
-" {{{ Plugin Settings
-" NERD Commenter
+" {{{ Configuration
+"" {{{ Plugin configuration
+""" {{{ NERD Commenter
 let NERDDefaultNesting = 1
-
-" NERD Tree
-let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$']
+""" }}}
+""" {{{ NERD Tree
+let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$', '\.pyo$']
 let NERDTreeSortOrder = ['\/$', '\.[ch]$', '\.py$', '*']
-
-" Taglist
+""" }}}
+""" {{{ Taglist
 let Tlist_Use_Right_Window = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Show_One_File = 1
 let Tlist_Enable_Fold_Column = 0
-
-" Python syntax
+""" }}}
+""" {{{ Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
-
-" Buffer tabs in statusline
-let g:buftabs_active_highlight_group = "Visual"
-let g:buftabs_in_statusline = 1
-let g:buftabs_only_basename = 1
-
-" Use fancy css for TOhtml
-let html_use_css = 1
-
-" Lusty Explorer
-let g:LustyJugglerSuppressRubyWarning = 1
-
-" Command-T
+""" }}}
+""" {{{ Command-T
 let g:CommandTMaxHeight = 10
 let g:CommandTAlwaysShowDotFiles = 1
 let g:CommandTScanDotDirectories = 1
-
-" snipMate
+""" }}}
+""" {{{ snipMate
 let g:snips_author = "Lucas de Vries"
 let g:snips_mail = "lucas@glacicle.org"
-
-" delemitMate
+""" }}}
+""" {{{ delimitMate
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
-
-" superTab
+""" }}}
+""" {{{ superTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" ZenCoding
+""" }}}
+""" {{{ ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
-
-" Don't load ruby plugins without ruby
+""" }}}
+""" {{{ Don't load ruby
 if !has('ruby')
     let g:command_t_loaded = 1
     let g:loaded_lustyexplorer = 1
 endif
-" }}}
-" {{{ Vim Settings
-" Config
+""" }}}
+"" }}}
+"" {{{ Vim settings
+""" {{{ General
 " Use UTF-8 encoding
 set encoding=utf-8
 
-" Don't highlight the current line
-set nocursorline
+" Allow hidden buffers with changes
+set hidden
 
+" Put swapfiles in central directory
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" Data to store in the viminfo file
+set viminfo='100,f1,<50,:50,/50,h,!
+
+" File patterns to ignore in completions
+set wildignore=*.o,*.pyc,*.pyo,.git,.svn
+
+" Don't use filetype indent
+filetype on
+filetype plugin on
+filetype indent off
+""" }}}
+""" {{{ Mappings
+""" }}}
+""" {{{ Display
 " Characters to use in list mode
 set listchars=tab:│\ ,trail:·
 set list
 
-" Enter spaces when tab is pressed:
-set expandtab
-
 " Always display statusline
 set laststatus=2
 
-" Statusline information
-"set statusline=%=%c\ %P\ 
+" Show chain while typing
+set showcmd
 
+" Show search match while typing
+set incsearch
+
+" Show line and column number
+set number
+set ruler
+
+" Show matching brackets when typed
+set showmatch
+
+" Number of lines from the edge to scroll
+set scrolloff=3
+
+" Display shorter messages
+set shortmess=aAtI
+
+" Don't show so many completions
+set pumheight=8
+
+" Highlight matches on a search
+set hls
+
+" Don't fold less than 2 lines
+set foldminlines=2
+
+" Highlight syntax
+syntax on
+""" }}}
+""" {{{ Editing
 " Text width
 let g:textwidth=0
 set textwidth=0
 
-" Show command while typing
-set showcmd
+" Use actual block mode for visual block
+set virtualedit=block
 
-" Wrap lines
-set wrap
+" Global match by default
+set gdefault
+
+" Smart case insensitive search
+set ignorecase
+set smartcase
+""" }}}
+""" {{{ Formatting
+" Enter spaces when tab is pressed:
+set expandtab
 
 " Use 4 spaces to represent a tab
 set tabstop=4
@@ -310,77 +277,13 @@ set autoindent
 " Don't go mad reindenting
 set cinkeys="0{,0},0)"
 
-" Makes the backspace key more powerful
+" Allow backspacing over more items
 set backspace=indent,eol,start
 
-" Shows the match while typing
-set incsearch
-
-" Case insensitive search
-set ignorecase
-set smartcase
-
-" Show line and column number
-set number
-set ruler
-
-" Allow hidden buffers with changes
-set hidden
-
-" Automatically switch to the directory we're editing in
-"set autochdir
-
-" Show matching
-set showmatch
-
-" Remember history
-set history=100
-
-" Scrolloff
-set scrolloff=3
-
-" Shortmess
-set shortmess=aAtI
-
-" Swap files
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
-" Use actual block mode for visual block
-set virtualedit=block
-
-" Viminfo
-set viminfo='100,f1,<50,:50,/50,h,!
-
-" Global match by default
-set gdefault
-
-" Format (gq) options
+" Options for formatting blocks (gq)
 set formatoptions=tcn12
-
-" Don't show so many completions
-set pumheight=8
-
-" Use wildmenu
-set wildmenu
-
-" File patterns to ignore in completions
-set wildignore=*.o,*.pyc,.git,.svn
-
-" Highlight search
-set hls
-
-" Don't fold less than 2 lines
-set foldminlines=2
-
-" Syntax highlighting
-syntax on
-
-" Filetype
-filetype on
-filetype plugin on
-filetype indent off
-
+""" }}}
+""" {{{ Colors
 " Color Schemes
 if $TERM == 'linux'
     " Virtual Console
@@ -388,11 +291,13 @@ if $TERM == 'linux'
 else
     " Color terminal
     set t_Co=256
-    colorscheme leo-edit
+    colorscheme customleo
 endif
-
+""" }}}
+"" }}}
 " }}}
 " {{{ Autocommands
+"" {{{ Filetype filters
 " Read-only .doc through antiword
 autocmd BufReadPre *.doc silent set ro
 autocmd BufReadPost *.doc silent %!antiword "%"
@@ -408,65 +313,57 @@ autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" -
 " Read-only rtf through unrtf
 autocmd BufReadPre *.rtf silent set ro
 autocmd BufReadPost *.rtf silent %!unrtf --text
-
-" Cakefiles are yaml
+"" }}}
+"" {{{ Filetype detection
 autocmd BufReadPre Cakefile silent set filetype=yaml
-
-" Files to indent with two spaces
-autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-" Set correct folding
-autocmd FileType c silent setlocal fdm=syntax fdn=1
-autocmd FileType c set cindent
-
-" Python extra highlighting
-"autocmd FileType python source ~/.vim/indent/python.vim
-autocmd FileType python syn keyword Identifier self
-autocmd FileType python syn keyword Type True False None
-
-" Javascript extra highlighting
-autocmd FileType javascript syn keyword javascriptIdentifier "let"
-
-" Highlight section as comment in TeX
-autocmd FileType tex,plaintex hi link TexZone Comment
-
-" Highlight braces with braces style
-autocmd FileType javascript hi link javaScriptBraces Braces
-
-" Highlight subject better
-autocmd FileType mail hi link mailHeader Comment
-autocmd FileType mail hi link mailSubject Function
-autocmd FileType mail silent call HighlightLongToggle()
-
-" Don't jump on git commit
-autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-autocmd FileType git setlocal nomodeline
-
-" Syntax recognition
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
 autocmd BufNewFile,BufRead *.tex set ft=tex
 autocmd BufNewFile,BufRead *.go set ft=go
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
+"" }}}
+"" {{{ Filetype settings
+" Files to indent with two spaces
+autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-" Highlight long lines
-autocmd BufRead * let w:longmatch = matchadd('AlmostOver', '\%<81v.\%>77v', -1)
-autocmd BufRead * let w:toolongmatch = matchadd('OverLength', '\%>80v.\+', -1)
+" Set correct folding for C
+autocmd FileType c silent setlocal fdm=syntax fdn=1
+autocmd FileType c set cindent
 
-" Use rainbox parens
-autocmd BufReadPost * so ~/.vim/plugin/RainbowParenthsis.vim
+" Git: Don't jump to last position, no modeline
+autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
+autocmd FileType git setlocal nomodeline
 
-" Clear any erroneous select-mode mappings
-"autocmd VimEnter silent smapc
+" Mail textwidth
+autocmd FileType mail set textwidth=78
+autocmd FileType mail let g:textwidth=78
+"" }}}
+"" {{{ Filetype highlighting
+" Python keywords
+autocmd FileType python syn keyword Identifier self
+autocmd FileType python syn keyword Type True False None
 
-" Highlight dirslash correctly
-hi link treeDirSlash Function
+" Javascript let and braces
+autocmd FileType javascript syn keyword javascriptIdentifier "let"
+autocmd FileType javascript hi link javaScriptBraces Braces
+
+" TeX zone
+autocmd FileType tex,plaintex hi link TexZone Comment
+
+" Mail header highlighting
+autocmd FileType mail hi link mailHeader Comment
+autocmd FileType mail hi link mailSubject Function
+"" }}}
+"" {{{ Other
+" Rainbow Parenthesis
+command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim
+autocmd BufReadPost * Rainbow
 
 " Jump to last known cursor position
 autocmd BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \   exe "normal! g`\"" |
 \ endif
-
+"" }}}
 " }}}
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
@@ -482,22 +379,7 @@ function! TextwidthToggle()
     set textwidth?
 endfunction
 " }}}
-" {{{ HighlightLongToggl(): Toggle highlighting of long lines
-function! HighlightLongToggle()
-    if exists('w:longmatch')
-        call matchdelete(w:longmatch)
-        call matchdelete(w:toolongmatch)
-        unlet w:longmatch
-        unlet w:toolongmatch
-        echo "  don't highlight long"
-    else
-        let w:longmatch = matchadd('AlmostOver', '\%<81v.\%>77v', -1)
-        let w:toolongmatch = matchadd('OverLength', '\%>80v.\+', -1)
-        echo "  highlight long"
-    endif
-endfunction
-" }}}
-" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
+"" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
     let wnr = bufwinnr("NERD_tree_1")
     if wnr == -1
@@ -506,7 +388,7 @@ function! TreeOpenFocus()
         exec wnr."wincmd w"
     endif
 endfunction
-" }}}
+"" }}}
 " {{{ PromptFT(): Prompt for a new filetype to set
 function! PromptFT(show)
     let def = ""
@@ -518,15 +400,8 @@ function! PromptFT(show)
     let ft = input("Filetype: ", def)
     if ft != ""
         exec "setlocal ft=".ft
+        Rainbow
     end
-endfunction
-" }}}
-" {{{ Base64Decode(): Decode a base64 block
-function! Base64Decode()
-    ruby require "base64"
-    norm gv
-    '<,'>rubydo $_=Base64.decode64 $_
-    norm gvgJ0
 endfunction
 " }}}
 " }}}
