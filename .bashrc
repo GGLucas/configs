@@ -1,7 +1,7 @@
 # Applications
 export PAGER='vimpager'
 export EDITOR='vim'
-export BROWSER='fx'
+export BROWSER='fxs'
 
 # History control
 export HISTCONTROL="ignoreboth"
@@ -70,13 +70,13 @@ case "$-" in *i*)
     bind -m vi -r v
 
     # Walk through completions with ^T
-    bind "\C-t: menu-complete"
+    bind "\C-n: menu-complete"
 
     # Clear screen with ^L
     bind "\C-l: clear-screen"
 
     # Add pager pipe with <C-w>
-    bind '"\C-v":" | $PAGER \C-m"'
+    bind '"\C-t":" | $PAGER \C-m"'
 
     # Background & ignore with <C-b>
     bind '"\C-b":" &> /dev/null &\C-m"'
@@ -91,8 +91,8 @@ case "$-" in *i*)
     bind '"\C-a":"reset ; clear \C-m"'
 
     # Clear
-    bind '"\C-e":"cd ; clear \C-m"'
-    bind '"\C-k":"clear \C-m"'
+    bind '"\C-k":"cd ; clear \C-m"'
+    bind '"\C-e":"clear \C-m"'
 ;; esac;
 
 # Load autojump
@@ -119,6 +119,7 @@ alias na='ll'
 alias prf='export WINEPREFIX=$(pwd)'
 alias i='makepkg -fi'
 alias a='git add'
+alias m='encMount'
 alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
@@ -201,6 +202,10 @@ an()  { ani list: +w =anime; }
 anh() { ani hist: =anime; }
 tn()  { ani list: +w =tv; }
 tnh() { ani hist: =tv; }
+
+# Feed shortcuts
+fu()  { feed-update > ~/.feeds.update; }
+fo()  { cat ~/.feeds.update | while read url; do $BROWSER $url; done; }
 
 # Daemon shortcuts
 dr() { for d in $@; do sudo /etc/rc.d/$d restart; done; }
@@ -294,41 +299,6 @@ c() {
 
 sa() {
     git status | ack -B 999 --no-color "Untracked"
-}
-
-# Show inbox
-scan() { command scan -w $(($COLUMNS + 28)) $@; }
-sc() { scan last:20; }
-mll() { box="$1"; shift; ml "+list/$box" $@; }
-mlf() { box="$1"; shift; ml "+feed/$box" $@; }
-rmlc() { rml " " $@; }
-rmll() { box="$1"; shift; rml "+list/$box" $@; }
-rmlf() { box="$1"; shift; rml "+feed/$box" $@; }
-thl() { box="$1"; shift; th "+list/$box" $@; }
-sp() { mhshow -type text/plain $@; }
-ss() { show $(pick -search $@); }
-sn() { eml; show unseen +inbox $@; }
-snn() { show unseen +inbox $@; }
-mu() { munpack $(mhpath $@); }
-fn() { feed-new; }
-fno() { feed-new open; }
-ml() {
-    [[ -n "$1" ]] && box=$1 || box="+inbox"
-    [[ -n "$2" ]] && msg=$2 || msg="last:20"
-    scan $box $msg
-}
-rml() {
-    [[ -n "$1" ]] && box=$1 || box="+inbox"
-    mark $box -delete all -seq unseen
-    [[ $box = "+inbox" ]] && echo "mailnotify_set(0)" >> /tmp/awesome-remote
-}
-eml() {
-    amn=$(scan +inbox unseen | wc -l)
-    echo "mailnotify_set($amn)" >> /tmp/awesome-remote
-}
-th() {
-    [[ -n "$1" ]] && box=$1 || box="+inbox"
-    mhthread.pl $box
 }
 
 # Root where packages are stored

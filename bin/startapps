@@ -13,14 +13,14 @@ export DISPLAY=:0.1
 
 sleep 0.5
 export DISPLAY=:0.2
-      urxvtc &                             # empty terminal
+  se  mutt                                 # mutt email
   se  ncmpcpp                              # ncmpcpp music player
   tm  htop                                 # htop system monitor
 
 export DISPLAY=:0.3
   se  rtorrent                             # rtorrent torrent client
   se  cortex                               # cortex reddit browser
-  se  newsbeuter                           # newsbeuter rss reader
+      urxvtc &                             # empty terminal
 
 export DISPLAY=:0.4
   se  weechat                              # irc channels

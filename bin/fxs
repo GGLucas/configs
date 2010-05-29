@@ -1,6 +1,7 @@
 #!/bin/bash
 if [[ -n "$2" ]]; then
-    DISPLAY=$1 fx "$2"
+    disp=$1; shift
+    DISPLAY=$disp fx "$@"
 else
-    DISPLAY=:0.0 fx "$1"
+    DISPLAY=:0.0 fx "$@"
 fi

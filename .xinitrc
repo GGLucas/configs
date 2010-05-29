@@ -6,9 +6,6 @@
 # Spawn rssdler in the background
 rssdler -o &>/var/log/rssdler &
 
-# Update feeds once
-mh-feed-update &>/var/log/mh-feed-update &
-
 # Start SCIM
 #scim -d &
 

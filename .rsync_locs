@@ -7,7 +7,7 @@ exc="--exclude-from=$HOME/.rsync_exclude"
 ### Glacicle
 ## Project website directories
 RSYNC_projects="$del $exc /data/web/projects/ root@glacicle.org:/srv/www/projects"
-RSYNC_homepage="$del $exc /data/web/glacicle/lucas/ root@glacicle.org:/srv/www/glacicle/lucas"
+RSYNC_homepage="$del $exc /data/web/glacicle/lucas/ lucas@glacicle.org:www/glacicle/lucas"
 
 ## IN2805 project
 RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.org:/srv/git/api/in2805-b.git"

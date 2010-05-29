@@ -50,10 +50,10 @@ source ~/.mutt/aliases
 source ~/.mutt/lists
 
 # Vi binds
-bind index "y" imap-fetch-mail
-bind index "l" display-message
-bind index "G" bottom-page
-bind pager "h" exit
+bind index y imap-fetch-mail
+bind index l display-message
+bind index G bottom-page
+bind pager h exit
 
 # Easy create alias
 bind index A create-alias
