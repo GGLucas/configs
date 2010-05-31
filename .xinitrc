@@ -41,6 +41,9 @@ wmname LG3D &
 # Set keyboard repeat rate
 xset r rate 250 30 &
 
+# Add local fonts
+xset fp+ /usr/share/fonts/local
+
 # Monitor-specific commands
 for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
 do

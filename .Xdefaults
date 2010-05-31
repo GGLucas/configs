@@ -30,8 +30,8 @@ URxvt*cursorColor: #ffffff
 URxvt*cursorBlink: false
 
 !!rxvt-unicode fonts
-URxvt.font: -*-terminus-medium-*-*-*-*-140-*-*-*-*-*-*
-URxvt.boldFont: -*-terminus-bold-*-*-*-*-140-*-*-*-*-*-*
+URxvt.font: -*-terminus-medium-*-*-*-*-120-*-*-*-*-*-*
+URxvt.boldFont: -*-terminus-bold-*-*-*-*-120-*-*-*-*-*-*
 
 ! xterm settings
 xterm*background: black
