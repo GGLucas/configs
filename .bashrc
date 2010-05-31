@@ -205,7 +205,7 @@ tnh() { ani hist: =tv; }
 
 # Feed shortcuts
 fu()  { feed-update > ~/.feeds.update; }
-fo()  { cat ~/.feeds.update | while read url; do $BROWSER $url; done; }
+fo()  { cat ~/.feeds.update | while read url; do [[ -n "$url" ]] && $BROWSER $url; done; echo -n; }
 
 # Daemon shortcuts
 dr() { for d in $@; do sudo /etc/rc.d/$d restart; done; }

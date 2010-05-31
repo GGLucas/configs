@@ -34,13 +34,8 @@ URxvt*cursorColor: #ffffff
 URxvt*cursorBlink: false
 
 !!rxvt-unicode fonts
-URxvt.font: xft:Terminus:size=10:antialias=false:hinting=false,\
-            [codeset=JISX0208]xft:Kochi Gothic:antialias=false,\
-            xft:Code 2000:antialias=false
-
-URxvt.boldFont: xft:Terminus:size=10:style=Bold:antialias=false:hinting=false,\
-                [codeset=JISX0208]xft:Kochi Gothic:antialias=false,\
-                xft:Code 2000:antialias=false:style=Bold
+URxvt.font: -*-terminus-medium-*-*-*-*-140-*-*-*-*-*-*
+URxvt.boldFont: -*-terminus-bold-*-*-*-*-140-*-*-*-*-*-*
 
 ! xterm settings
 xterm*background: black
