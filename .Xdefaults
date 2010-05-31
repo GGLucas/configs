@@ -2,10 +2,6 @@
 Xcursor.size: 22
 Xcursor.theme: Vanilla-DMZ-AA
 
-! Font render settings
-Xft*dpi:        99
-Xft*antialias:    true
-
 ! rxvt-unicode settings
 !! rxvt-unicode behaviour
 URxvt*termName: rxvt
