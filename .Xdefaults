@@ -1,7 +1,3 @@
-! Pointer settings
-Xcursor.size: 22
-Xcursor.theme: Vanilla-DMZ-AA
-
 ! rxvt-unicode settings
 !! rxvt-unicode behaviour
 URxvt*termName: rxvt
