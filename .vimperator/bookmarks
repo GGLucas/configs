@@ -52,6 +52,8 @@ bma -k=aw http://wiki.archlinux.org/index.php?search=%s
 bma -k=dict http://dictionary.reference.com/browse/%s
 "" Japanese Dictionary
 bma -k=jp http://www.nihongodict.com/?s=%s
+"" WWWJDIC
+bma -k=jdic http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1C
 "" Urban Dictionary
 bma -k=udict http://www.urbandictionary.com/define.php?term=%s
 "" Thesaurus
