@@ -336,9 +336,9 @@ autocmd FileType c set cindent
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 autocmd FileType git setlocal nomodeline
 
-" Mail textwidth
-autocmd FileType mail set textwidth=78
-autocmd FileType mail let g:textwidth=78
+" Files to set default textwidth
+autocmd FileType mail,tex set textwidth=78
+autocmd FileType mail,tex let g:textwidth=78
 "" }}}
 "" {{{ Filetype highlighting
 " Python keywords
