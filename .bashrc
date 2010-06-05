@@ -232,7 +232,7 @@ tnh() { ani hist: =tv; }
 # }}}
 # {{{ Feed update
 fu()  { feed-update >> ~/.feeds.update; }
-fo()  { cat ~/.feeds.update | while read url; do [[ -n "$url" ]] && $BROWSER $url; done; echo -n; :>~/.feeds.update }
+fo()  { cat ~/.feeds.update | while read url; do [[ -n "$url" ]] && $BROWSER $url; done; echo -n; :>~/.feeds.update; }
 # }}}
 # {{{ Daemons
 rc.d() { [[ -d /etc/rc.d ]] && sudo /etc/rc.d/$@;
