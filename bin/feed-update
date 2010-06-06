@@ -61,7 +61,7 @@ def feed_parse(name, feed):
                 sys.stderr.write("  New entry in "+name+": "+entry["title"].encode("utf-8")+"\n")
 
             if entry["title"] not in Seen[name]:
-                print(entry["link"]+"\n")
+                print(entry["link"])
 
             Seen[name][entry["title"]] = True
             num += 1
