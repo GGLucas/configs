@@ -1,4 +1,4 @@
-" 
+"
 " Lucas de Vries' .vimrc
 " Nick: GGLucas
 " Mail: lucas@glacicle.org
@@ -72,6 +72,9 @@ nmap <silent> <Leader>ciw ci,w
 
 " Toggle textwidth
 nmap <Leader>/ :call TextwidthToggle()<CR>
+
+" Toggle line numbers
+nmap <Leader>c :call NuToggle()<CR>
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
@@ -137,7 +140,7 @@ nmap <Leader>gr :GitPush<CR>
 """ }}}
 "" }}}
 " }}}
-" {{{ Configuration
+"" {{{ Configuration
 "" {{{ Plugin configuration
 """ {{{ NERD Commenter
 let NERDDefaultNesting = 1
@@ -380,6 +383,18 @@ function! TextwidthToggle()
     endif
 
     set textwidth?
+endfunction
+" }}}
+" {{{ NuToggle(): Toggle between abs/rel nu
+let g:nu = 0
+function! NuToggle()
+    if g:nu == 0
+        let g:nu = 1
+        set rnu
+    else
+        let g:nu = 0
+        set nu
+    endif
 endfunction
 " }}}
 "" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
