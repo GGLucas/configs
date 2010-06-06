@@ -1,4 +1,4 @@
-# Feeds file for mh-feed-update
+# Feeds file for feed-update
 # Syntax:
 #  folder   http://feed.url
 
@@ -27,7 +27,7 @@ abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
 subnormality                http://www.viruscomix.com/rss.xml
 marryme                     http://marryme.keenspot.com/main/feed/
 dresdencodak                http://feeds2.feedburner.com/rsspect/fJur
-#oglaf                       http://pipes.yahoo.com/pipes/pipe.run?_id=_j_P8zpm3hGBTmHJHzfpSg&_render=rss
+oglaf                       http://oglaf.com/feeds/rss/
 qwantz                      http://www.rsspect.com/rss/qwantz.xml
 pfsc                        http://www.rsspect.com/rss/pfsc.xml
 hijinks                     http://feeds.feedburner.com/hijinksensue

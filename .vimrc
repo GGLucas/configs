@@ -351,9 +351,8 @@ autocmd FileType mail,tex let g:textwidth=78
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 
-" Javascript let and braces
+" Javascript let is a keyword
 autocmd FileType javascript syn keyword javascriptIdentifier "let"
-autocmd FileType javascript hi link javaScriptBraces Braces
 
 " TeX zone
 autocmd FileType tex,plaintex hi link TexZone Comment
