@@ -357,6 +357,14 @@ function! delimitMate#JumpIn(char) " {{{
 	endif
 	let line = getline('.')
 	let col = col('.')-2
+
+	if ((a:char == ")" && line[(col-1)] == "(" && line[(col+1)] == ")") || (a:char == "]" && line[(col-1)] == "[" && line[(col+1)] == "]") || (a:char == "}" && line[(col-1)] == "{" && line[(col+1)] == "}"))
+		call setline('.', line[:(col-1)].line[(col+2):])
+		call delimitMate#RmBuffer(1)
+		echom line[:(col-1)].line[(col+2):]
+		return ''
+	endif
+
 	if (col) < 0
 		call setline('.',a:char.line)
 		call insert(b:delimitMate_buffer, a:char)
@@ -650,9 +658,7 @@ function! delimitMate#ExtraMappings() "{{{
 	"the following simply creates an ambiguous mapping so vim fully
 	"processes the escape sequence for terminal keys, see 'ttimeout' for a
 	"rough explanation, this just forces it to work
-	if &term[:4] == "xterm"
-		inoremap <silent> <C-[>OC <RIGHT>
-	endif
+	inoremap <silent> <C-[>OC <RIGHT>
 endfunction "}}}
 
 function! delimitMate#UnMap() " {{{

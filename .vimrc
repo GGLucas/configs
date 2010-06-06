@@ -75,6 +75,9 @@ nmap <Leader>/ :call TextwidthToggle()<CR>
 
 " Toggle line numbers
 nmap <Leader>c :call NuToggle()<CR>
+
+" For deleting extra delimiters
+imap œ <Del>
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
