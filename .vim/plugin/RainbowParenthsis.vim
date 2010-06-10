@@ -18,13 +18,12 @@
 " guifg=xx or ever termfg=, though what good this script will do on a 
 " black and white terminal I don't know.
 " Parens
-hi level10c ctermfg=blue
-hi level11c ctermfg=magenta
-hi level12c ctermfg=brown
-hi level13c ctermfg=red
-hi level14c ctermfg=green
-hi level15c ctermfg=yellow
-hi level16c cterm=bold ctermfg=25
+hi level11c ctermfg=blue
+hi level12c ctermfg=magenta
+hi level13c ctermfg=brown
+hi level14c ctermfg=red
+hi level15c ctermfg=green
+hi level16c cterm=bold ctermfg=27
 
 " Brackets
 hi clevel10c ctermfg=cyan
