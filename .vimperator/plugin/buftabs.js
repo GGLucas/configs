@@ -1,30 +1,40 @@
-// PLUGIN_INFO {{{
-let PLUGIN_INFO =
-<VimperatorPlugin>
-  <name>Buftabs</name>
-  <description>Add buffer tabs to the statusline to save space.</description>
-  <version>1.1</version>
-  <author mail="lucas@glacicle.org" homepage="http://lucas.glacicle.org/">Lucas de Vries (GGLucas)</author>
-  <license>WTFPL version 2 (http://sam.zoy.org/wtfpl/)</license>
-  <minVersion>2.2</minVersion>
-  <maxVersion>2.2</maxVersion>
-  <detail><![CDATA[
+// {{{ Information
+var INFO =
+<plugin name="buftabs" version="1.0"
+    href="http://git.glacicle.org/vimperator-buftabs/"
+    summary="Buftabs: show the tabbar in the statusline"
+    xmlns="http://vimperator.org/namespaces/liberator">
+    <author email="lucas@glacicle.org">Lucas de Vries</author>
+    <license href="http://sam.zoy.org/wtfpl/">WTFPL</license>
+    <p>
+      When the script is loaded it hijacks the statusline to display a list of tabs,
+      you can use the "buftabs" option to toggle it on or off.
 
-  == Usage ==
-  When the script is loaded it hijacks the statusline to display a list of tabs,
-  you can use the "buftabs" option to toggle it on or off.
+      Use the BufTab and BufTabSelected highlight groups to style the buftabs.
+      Make sure you've called the "loadplugins" command before using the highlight
+      groups in your vimperatorrc.
 
-  == Styling ==
-  Use the BufTab and BufTabSelected highlight groups to style the buftabs.
-  Make sure you've called the "loadplugins" command before using the highlight
-  groups in your vimperatorrc.
-
-  == Length ==
-  You can set the max length of a title before it is cut off with the 
-  buftabs_maxlength option. It is set to 25 by default.
-
-  ]]></detail>
-</VimperatorPlugin>;
+      You can set the max length of a title before it is cut off with the 
+      buftabs_maxlength option. It is set to 25 by default.
+    </p>
+    <item>
+        <tags>'buftabs'</tags>
+        <spec>'buftabs'</spec>
+        <type>boolean</type> <default>true</default>
+        <description>
+            Toggle the buftabs on or off.
+        </description>
+    </item>
+    <item>
+        <tags>'buftabs_maxlength'</tags>
+        <spec>'buftabs_maxlength'</spec>
+        <type>number</type> <default>25</default>
+        <description>
+            The maximum length in characters of a single entry in the buftabs line.
+            Set to 0 for unlimited.
+        </description>
+    </item>
+</plugin>;
 // }}}
 
 buftabs = {
@@ -113,7 +123,7 @@ buftabs = {
         }
 
         // Check length
-        if (tabvalue.length > maxlength)
+        if (maxlength > 0 && tabvalue.length > maxlength)
             tabvalue = tabvalue.substr(0, maxlength-3)+"...";
 
         // Bookmark icon

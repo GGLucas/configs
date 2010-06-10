@@ -78,6 +78,10 @@ nmap <Leader>c :call NuToggle()<CR>
 
 " For deleting extra delimiters
 imap œ <Del>
+
+" Swap ` and '
+noremap ' `
+noremap ` '
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
