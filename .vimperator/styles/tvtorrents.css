@@ -70,7 +70,7 @@ td[colspan="3"] a
    margin-left:110px!important;
 }
 
-.sidebox 
+.sidebox, .topbar
 {
    background:none!important;
    background-color:#343434!important;
