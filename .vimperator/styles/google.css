@@ -1,7 +1,7 @@
 #gbar, #guser,
 #prs, #logo,
 #mbEnd, .clr, .gbh, .csb,
-.nobr.xsm, .lsb, #leftnav
+.nobr.xsm, .lsb, #leftnav, .mbEnd
 {
     display: none !important;
 }
