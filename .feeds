@@ -4,7 +4,6 @@
 
 ## Webcomics
 xkcd                        http://www.xkcd.com/rss.xml
-cad                         http://feeds.feedburner.com/cad-comic
 egs                         http://www.egscomics.com/rss.php
 egsnp                       http://www.egscomics.com/egsnp/rss.php
 pennyarcade                 http://feeds.penny-arcade.com/pa-mainsite/
@@ -36,6 +35,7 @@ buttersafe                  http://feeds.feedburner.com/Buttersafe
 paperhero                   http://paperherocomics.com/?feed=rss2
 bug                         http://www.bugcomic.com/feed/
 dawn                        http://www.dawnoftimecomics.com/rss.php
+nedroid                     http://nedroid.com/feed/
 
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/

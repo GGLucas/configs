@@ -19,9 +19,9 @@ qma E http://www.vim.org/
 "" hurl
 qma p http://hurl.hereticlinux.org/
 qma P http://hurl.hereticlinux.org/branch/GGLucas
-" stardock
+" Elemental
 qma f http://forums.elementalgame.com/recent
-qma F http://forums.sinsofasolarempire.com/recent
+qma F http://elementalgame.com
 
 """ Forums
 "" Arch Linux Forums
