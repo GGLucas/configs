@@ -84,7 +84,9 @@ border-color: black !important;
 .editsection,
 .usermessage,
 #protected-icon,
-#panel, #head, #page-base, #head-base
+#featured-star img,
+#panel, #head, #page-base, #head-base,
+#mw-fr-revisiontag
 {
     display:none !important;
 }
@@ -92,4 +94,14 @@ border-color: black !important;
 #column-content, #content
 {
     margin: 0 0 0 0 !important;
+}
+
+#featured-star:before
+{
+    color: #6666aa;
+    content: "Featured";
+    font-weight: bold;
+    position: absolute;
+    margin-top: -10px;
+    right: 10px;
 }
