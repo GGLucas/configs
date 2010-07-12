@@ -60,3 +60,37 @@ h2, .borderDark, .borderLight, .normal_header
     border-color: #222 !important;
     border-bottom-width: 2px !important;
 }
+
+.quotetext
+{
+    background: #242424 !important;
+    border: 1px solid black !important;
+}
+
+.forum_locheader
+{
+    color: white !important;
+}
+
+.forum_boardrowspacer, #roadblock
+{
+    display: none !important;
+}
+
+.forum_category
+{
+    background: #341414 !important;
+    border: 1px solid #343434 !important;
+}
+
+.forum_border_around .forum_category
+{
+    border: none !important;
+    border-bottom: 1px solid #343434 !important;
+}
+
+.forum_border_around table
+{
+    border: 1px solid #343434 !important;
+    border-bottom: none !important;
+}
