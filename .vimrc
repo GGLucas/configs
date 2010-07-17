@@ -82,6 +82,10 @@ imap œ <Del>
 " Swap ` and '
 noremap ' `
 noremap ` '
+
+" Go back to start of edit after repeat
+nmap . .'[
+
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
