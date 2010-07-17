@@ -340,7 +340,7 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2
 
 " Set correct folding for C
 autocmd FileType c silent setlocal fdm=syntax fdn=1
-autocmd FileType c set cindent
+"autocmd FileType c set cindent
 
 " Git: Don't jump to last position, no modeline
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
