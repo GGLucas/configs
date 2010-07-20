@@ -133,7 +133,8 @@ div.expando-button.video:before {
 
 .footer-parent, #sr-header-area, .share, .report-button, .hide-button, .save-button,
 .sidebox.submit, #search, .sidecontentbox, .titlebox .usertext-body, .titlebox .bottom,
-.titlebox h1, .titlebox .option, .titlebox .number, .titlebox .word, .sidebox.create {
+.titlebox h1, .titlebox .option, .titlebox .number, .titlebox .word, .sidebox.create,
+#ad-frame {
     display: none !important;
 }
 
@@ -146,11 +147,13 @@ div.expando-button.video:before {
 }
 
 .side .upvotes {
-    color: #66bb66 !important;
+    color: #66a066 !important;
+    font-size: 1em !important;
 }
 
 .side .downvotes {
-    color: #bb6666 !important;
+    color: #a06666 !important;
+    font-size: 1em !important;
 }
 
 .side .titlebox {
