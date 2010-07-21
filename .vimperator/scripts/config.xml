@@ -26,4 +26,7 @@
 	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" enabled="true" basedir="mangafox3_fit_image">
 		<Include>http://www.mangafox.com/*</Include>
 	</Script>
+	<Script filename="reddit_username_colorize.user.js" name="Reddit Username Colorizer" namespace="userscripts.org" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" basedir="reddit_username_colorize">
+		<Include>http://www.reddit.com/*</Include>
+	</Script>
 </UserScriptConfig>

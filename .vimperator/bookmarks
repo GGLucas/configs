@@ -36,6 +36,8 @@ bma -k=btj http://btjunkie.org/search?q=%s
 bma -k=db http://danbooru.donmai.us/post?tags=%s
 "" MyAnimeList
 bma -k=mal http://myanimelist.net/anime.php?q=%s
+"" Reddit
+bma -k=r http://reddit.com/r/%s/
 
 """ Wikis
 "" Wikipedia
