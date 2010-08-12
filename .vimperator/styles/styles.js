@@ -31,11 +31,11 @@ var loaduserstyles = function()
             "reddit.css",
         ],
 
-        [
-            "archlinux-forums:minimal",
-            "bbs.archlinux.org",
-            "archlinux.forum.css",
-        ],
+        //[
+            //"archlinux-forums:minimal",
+            //"bbs.archlinux.org",
+            //"archlinux.forum.css",
+        //],
 
         [
             "tokyotosho:minimal",
@@ -95,8 +95,8 @@ var loaduserstyles = function()
       styles.removeSheet(false, name)
 
       // Add the sheet
-      styles.addSheet(false, name, filter, 
-      File(styledir+"/"+file).read())
+      styles.addSheet(false, name, filter,
+          File(styledir+"/"+file).read())
     }
 }
 

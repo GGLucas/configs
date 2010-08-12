@@ -20,7 +20,8 @@ body
 .yt-uix-expander-head,
 .ratingVS,
 #watch-panel,
-#guided-help-alert
+#guided-help-alert,
+.watch-module-body h4
 {
     display: none !important;
 }

@@ -72,6 +72,7 @@ bma -k=sched http://blackboard.tudelft.nl/webapps/mmmt-rooster-bb_bb60/Schedulev
 bma -k=vimp http://code.google.com/p/vimperator-labs/
 bma -k=router http://192.168.1.1
 bma -k=nipponsei https://nipponsei.minglong.org
+bma -k=pallete http://www.cssdrive.com/imagepalette/index.php
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
