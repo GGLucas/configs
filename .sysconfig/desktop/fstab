@@ -3,7 +3,7 @@
 # <file system>        <dir>         <type>    <options>          <dump> <pass>
 
 # Root fs
-LABEL=HeresyRoot / btrfs defaults,noatime,nodiratime,compress 0 0
+LABEL=HeresyRoot / ext4 defaults,noatime,nodiratime 0 0
 
 # Mount special entries (/dev/..)
 none                   /dev/pts      devpts    defaults            0      0
@@ -17,19 +17,19 @@ none /var/ipc tmpfs defaults,noatime,nodiratime 0 0
 LABEL=HeresyBoot /boot ext4 defaults,noatime,nodiratime 0 0 
 
 # Data partitions
-/dev/mapper/data-5 /mnt/data-5 btrfs defaults,compress,noatime,nodiratime,noauto 0 0
-/dev/mapper/data-4 /mnt/data-4 btrfs defaults,compress,noatime,nodiratime,noauto 0 0
-/dev/mapper/data-3 /mnt/data-3 btrfs defaults,compress,noatime,nodiratime,noauto 0 0
+/dev/mapper/data-5 /mnt/data-5 ext4 defaults,noatime,nodiratime,noauto 0 0
+/dev/mapper/data-4 /mnt/data-4 ext4 defaults,noatime,nodiratime,noauto 0 0
+/dev/mapper/data-3 /mnt/data-3 ext4 defaults,noatime,nodiratime,noauto 0 0
 
 # Home partition
-/dev/mapper/home /home btrfs defaults,compress,noatime,nodiratime,noauto 0 0
+/dev/mapper/home /home ext4 defaults,noatime,nodiratime,noauto 0 0
 
 # Pacman database
 #/var/lib/pacman.db /var/lib/pacman ext4 defaults,loop,noatime 0 0
 
 # Data union partition
 #### mhddfs union:
-/usr/bin/mhddfs#/mnt/data-5,/mnt/data-4,/mnt/data-3 /data fuse defaults,noatime,allow_other,fsname=data 0 0
+/usr/bin/mhddfs#/mnt/data-4,/mnt/data-5,/mnt/data-3 /data fuse defaults,noatime,allow_other,fsname=data 0 0
 
 #### aufs union
 #data /data aufs br:/mnt/data-5=rw:/mnt/data-4=rw:/mnt/data-3=rw,create=pmfs,noatime,noauto 0 0
