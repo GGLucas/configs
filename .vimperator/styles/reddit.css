@@ -266,6 +266,18 @@ div.comment div.entry {
     border-bottom: none !important;
 }
 
+.new-comment .usertext-body {
+    border: none !important;
+    padding: 0px 5px !important;
+    background: #141614 !important;
+}
+
+.gold-accent {
+    background-color: #141414 !important;
+    border-color: #343434 !important;
+    color: #888 !important;
+}
+
 div.comment div.comment,
 div.comment div.comment div.comment div.comment,
 div.comment div.comment div.comment div.comment div.comment div.comment,

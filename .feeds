@@ -66,6 +66,7 @@ vimcasts                    http://vimcasts.org/feeds/ogg
 vimperator-news             http://vimperator.org/news/rss.xml
 python-news                 http://feeds.feedburner.com/polarcloud?format=xml
 achron-news                 http://achrongame.com/achron.rss
+sr-news                     http://www.blind-mind.com/rss/srnews.rss
 
 ## Manga
 nanoha-vivid                http://www.mangafox.com/rss/mahou_shoujo_lyrical_nanoha_vivid.xml
