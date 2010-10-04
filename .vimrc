@@ -377,7 +377,7 @@ autocmd FileType mail hi link mailHeader Comment
 autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
-autocmd BufReadPost /mnt/starruler/* setlocal noet nolist inc=""
+autocmd BufReadPost /mnt/starruler/* set noet nolist inc=""
 
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim

@@ -179,11 +179,18 @@ function <SID>CloseStackPop(char) " ---{{{2
     if(a:char == '')
         pclose
     endif
+    let column = col('.') - 1
+    let line = getline('.')
+    if line[(column)] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+
     if len(s:closeStack) == 0
         return <SID>JumpOut(a:char)
     endif
-    let column = col('.') - 1
-    let line = getline('.')
+
     let popped = ''
     let lastpop = ''
     "echom join(s:closeStack,'').' || '.lastpop
