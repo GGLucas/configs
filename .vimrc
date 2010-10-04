@@ -86,6 +86,10 @@ noremap ` '
 " Go back to start of edit after repeat
 nmap . .'[
 
+" Expand braces
+"inoremap {{ {
+"inoremap {<CR> {<CR><CR>}<Up><Tab>
+
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
@@ -118,6 +122,7 @@ xmap → <Plug>VisualBisectRight
 xmap Æ <Plug>VisualStopBisect
 """ }}}
 """ {{{ Command-T
+nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>T :CommandTFlush<CR>
 """ }}}
 """ {{{ Lusty Explorer
@@ -220,6 +225,7 @@ set wildignore=*.o,*.pyc,*.pyo,.git,.svn
 filetype on
 filetype plugin on
 filetype indent off
+
 """ }}}
 """ {{{ Mappings
 """ }}}
@@ -336,6 +342,7 @@ autocmd BufReadPre Cakefile silent set filetype=yaml
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
 autocmd BufNewFile,BufRead *.tex set ft=tex
 autocmd BufNewFile,BufRead *.go set ft=go
+autocmd BufNewFile,BufRead *.as set ft=cpp
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 "" }}}
 "" {{{ Filetype settings
@@ -370,6 +377,8 @@ autocmd FileType mail hi link mailHeader Comment
 autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
+autocmd BufReadPost /mnt/starruler/* setlocal noet nolist inc=""
+
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim
 autocmd BufReadPost * Rainbow

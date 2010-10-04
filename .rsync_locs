@@ -10,6 +10,9 @@ RSYNC_projects="$del $exc /data/web/projects/ root@glacicle.org:/srv/www/project
 RSYNC_homepage="$del $exc /data/web/glacicle/lucas/ lucas@glacicle.org:www/glacicle/lucas"
 RSYNC_glacicle="$del $exc /data/web/glacicle/root/ lucas@glacicle.org:www/glacicle/root"
 
+# Star Ruler
+RSYNC_starruler="$del $exc /data/projects/sr/site/ lucas@glacicle.org:www/glacicle/starruler"
+
 ## IN2805 project
 RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.org:/srv/git/api/in2805-b.git"
 

@@ -37,6 +37,8 @@ bug                         http://www.bugcomic.com/feed/
 dawn                        http://www.dawnoftimecomics.com/rss.php
 nedroid                     http://nedroid.com/feed/
 amazing                     http://www.amazingsuperpowers.com/category/comics/feed/
+humon                       http://feeds.feedburner.com/HumonComics
+gunner                      http://www.rsspect.com/rss/gunner.xml
 
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/
@@ -46,21 +48,18 @@ reddit                      http://feeds.feedburner.com/redditblog?format=xml
 xkcd-blag                   http://blag.xkcd.com/feed/
 writequit                   http://feeds.feedburner.com/writequit/feed
 commandline                 http://commandline.org.uk/feeds/full/
-thedailywtf                 http://syndication.thedailywtf.com/TheDailyWtf
 ubuntard                    http://ubuntard.com/feed/
 shitmydadsays               http://twitter.com/statuses/user_timeline/62581962.rss
 
 ## UofR
 music                       http://www.reddit.com/r/IntroToMusicTheory/.rss
 
-## Videos
-zeropunctuation             http://www.escapistmagazine.com/rss/videos/list/1.xml
-unskippable                 http://www.escapistmagazine.com/rss/videos/list/82.xml
-avgn                        http://www.cinemassacre.com/feed/
-
 ## Screencasts
 fosscasts                   http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg
 vimcasts                    http://vimcasts.org/feeds/ogg
+
+## Podcasts
+alive                       http://feeds.feedburner.com/itpc/wwwwaylandws/Wayland_Productions/Were_Alive_-_Podcast/rssxml
 
 ## Project News
 vimperator-news             http://vimperator.org/news/rss.xml

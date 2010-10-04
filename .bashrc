@@ -139,6 +139,8 @@ alias m='encMount'
 x(){ builtin cd ~; exec xinit $@; }
 ## sync music to iriver
 syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/iriver/Music/Anime/; }
+## compile & view tex
+re() { texi2pdf $1.tex && zathura $1.pdf; }
 # }}}
 # {{{ Git shortcuts
 alias a='git add'
