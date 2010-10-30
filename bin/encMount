@@ -42,11 +42,11 @@ if [[ "$group" == "dw" ]]; then
     if [[ "$cmd" == "umount" ]]; then
         sudo umount -l /dev/mapper/dw
         sudo cryptsetup luksClose dw
-        sudo losetup -d /dev/loop7
+        sudo losetup -d /dev/loop6
     else
-        sudo losetup /dev/loop7 /data/others/virtual/crypt.img
-        echo $pass | sudo cryptsetup luksOpen /dev/loop7 dw
-        sudo mount -o noatime,nodiratime -t btrfs /dev/mapper/dw /data/others/dw
+        sudo losetup /dev/loop6 /mnt/data-4/others/virtual/crypt.img
+        echo $pass | sudo cryptsetup luksOpen /dev/loop6 dw
+        sudo mount -o noatime,nodiratime /dev/mapper/dw /data/others/dw
     fi
 elif [[ "$group" == "home" ]]; then
     # Open home directory
@@ -54,7 +54,7 @@ elif [[ "$group" == "home" ]]; then
 elif [[ "$group" == "data" ]]; then
     # Open all encrypted data partitions
     open "data-5" "/dev/disk/by-uuid/58487ea5-ac11-4497-aba7-d0ce47822cc8"
-    open "data-4" "/dev/disk/by-uuid/4339c665-c667-4f12-a632-c4912c8b37ea"
+    open "data-4" "/dev/disk/by-uuid/9269f4fc-2ca1-4961-be8b-d1fa1bc86468"
     open "data-3" "/dev/disk/by-uuid/9030861f-7167-4d7e-85d7-27f4e135984d"
 
     #sudo mount /data

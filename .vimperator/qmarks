@@ -19,7 +19,6 @@ qma E http://www.vim.org/
 "" hurl
 qma p http://hurl.hereticlinux.org/
 qma P http://hurl.hereticlinux.org/branch/GGLucas
-" Forums
 
 """ Forums
 "" Arch Linux
@@ -27,9 +26,12 @@ qma a http://bbs.archlinux.org/search.php?action=show_new
 qma A http://bbs.archlinux.org/
 "" Glacier Gaming
 qma i http://glaciergaming.co.uk/index.php?action=unread
-qma I http://achrongame.com/forums/search.php?search_id=newposts
 "" Achron
+qma I http://achrongame.com/forums/search.php?search_id=newposts
+" Star Ruler
 qma l http://forums.blind-mind.com/index.php?action=unread
+qma b http://gglucas.tadalist.com/lists/1752277
+" SoaSE
 qma L http://forums.sinsofasolarempire.com/recent
 "" Wesnoth
 qma c http://forum.wesnoth.org/search.php?search_id=active_topics

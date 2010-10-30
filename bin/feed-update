@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.6
+#!/usr/bin/env python2
 # Get feeds from list in ~/.feeds and print new links
 import sys
 import os

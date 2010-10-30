@@ -86,6 +86,31 @@ noremap ` '
 " Go back to start of edit after repeat
 nmap . .'[
 
+" Insert/remove braces around single line
+noremap ysb mZkA {<Esc>jo}<Esc><<`Z
+noremap dsb mZkA<BS><BS><Esc>jjddk`Z
+
+" Localization
+nmap <Leader>. :call Localize()<CR>
+nmap <Leader>p :call LocalizeNow()<CR>
+nmap <Leader>u <Right>o<Esc>"zpds"bx<Left>
+
+fun! Localize()
+    let name = input("Localize var: ", "")
+    norm "zdia
+    exe "norm ilocalize(\"#" . name . "\")"
+    let @z = "#".name.": ".@z
+    norm '[
+endfun
+
+fun! LocalizeNow()
+    let name = input("Localize var: ", "")
+    norm "zdia
+    exe "norm ilocalize_now(\"#" . name . "\")"
+    let @z = "#".name.": ".@z
+    norm '[
+endfun
+
 " Expand braces
 "inoremap {{ {
 "inoremap {<CR> {<CR><CR>}<Up><Tab>
@@ -153,6 +178,10 @@ nmap <Leader>gS :GitAdd<Space>
 nmap <Leader>gb :GitBlame<CR>
 nmap <Leader>gP :GitPull origin master<CR>
 nmap <Leader>gr :GitPush<CR>
+""" }}}
+""" {{{ BufSurf
+nmap <silent> <Leader><Leader>- :BufSurfBack<CR>
+nmap <silent> <Leader>+ :BufSurfForward<CR>
 """ }}}
 "" }}}
 " }}}
@@ -264,6 +293,9 @@ set hls
 
 " Don't fold less than 2 lines
 set foldminlines=2
+
+" By default, marker folding
+set fdm=marker
 
 " Highlight syntax
 syntax on

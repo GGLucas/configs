@@ -593,7 +593,7 @@ endfunction " }}}
   if g:SuperTabCrMapping
     " using a <c-r> mapping instead of <expr>, seems to prevent evaluating
     " other functions mapped to <cr> etc. (like endwise.vim)
-    inoremap <cr> <c-r>=<SID>SelectCompletion()<cr>
+    inoremap <C-t> <c-r>=<SID>SelectCompletion()<cr>
     function s:SelectCompletion()
       return pumvisible() ? "\<space>\<bs>" : "\<cr>"
     endfunction
