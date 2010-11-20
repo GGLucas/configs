@@ -62,6 +62,7 @@
 'b:delimitMate_matchpairs'	delimitMate.txt	/*'b:delimitMate_matchpairs'*
 'b:delimitMate_nesting_quotes'	delimitMate.txt	/*'b:delimitMate_nesting_quotes'*
 'b:delimitMate_quotes'	delimitMate.txt	/*'b:delimitMate_quotes'*
+'b:delimitMate_smart_matchpairs'	delimitMate.txt	/*'b:delimitMate_smart_matchpairs'*
 'b:delimitMate_smart_quotes'	delimitMate.txt	/*'b:delimitMate_smart_quotes'*
 'b:loaded_delimitMate'	delimitMate.txt	/*'b:loaded_delimitMate'*
 'delimitMate_apostrophes'	delimitMate.txt	/*'delimitMate_apostrophes'*
@@ -74,6 +75,7 @@
 'delimitMate_matchpairs'	delimitMate.txt	/*'delimitMate_matchpairs'*
 'delimitMate_nesting_quotes'	delimitMate.txt	/*'delimitMate_nesting_quotes'*
 'delimitMate_quotes'	delimitMate.txt	/*'delimitMate_quotes'*
+'delimitMate_smart_matchpairs'	delimitMate.txt	/*'delimitMate_smart_matchpairs'*
 'delimitMate_smart_quotes'	delimitMate.txt	/*'delimitMate_smart_quotes'*
 'loaded_delimitMate'	delimitMate.txt	/*'loaded_delimitMate'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
@@ -323,6 +325,14 @@ b:match_word	matchit.txt	/*b:match_word*
 b:match_words	matchit.txt	/*b:match_words*
 b:textobj_function_select()	textobj-function.txt	/*b:textobj_function_select()*
 bisect.txt	bisect.txt	/*bisect.txt*
+bufsurf	bufsurf.txt	/*bufsurf*
+bufsurf-contents	bufsurf.txt	/*bufsurf-contents*
+bufsurf-history	bufsurf.txt	/*bufsurf-history*
+bufsurf-introduction	bufsurf.txt	/*bufsurf-introduction*
+bufsurf-license	bufsurf.txt	/*bufsurf-license*
+bufsurf-requirements	bufsurf.txt	/*bufsurf-requirements*
+bufsurf-usage	bufsurf.txt	/*bufsurf-usage*
+bufsurf.txt	bufsurf.txt	/*bufsurf.txt*
 camelcasemotion-configuration	camelcasemotion.txt	/*camelcasemotion-configuration*
 camelcasemotion-dependencies	camelcasemotion.txt	/*camelcasemotion-dependencies*
 camelcasemotion-description	camelcasemotion.txt	/*camelcasemotion-description*
@@ -373,6 +383,7 @@ delimitMateMappings	delimitMate.txt	/*delimitMateMappings*
 delimitMateOptionDetails	delimitMate.txt	/*delimitMateOptionDetails*
 delimitMateOptionSummary	delimitMate.txt	/*delimitMateOptionSummary*
 delimitMateOptions	delimitMate.txt	/*delimitMateOptions*
+delimitMateSmartMatchpairs	delimitMate.txt	/*delimitMateSmartMatchpairs*
 delimitMateSmartQuotes	delimitMate.txt	/*delimitMateSmartQuotes*
 delimitMateSyntax	delimitMate.txt	/*delimitMateSyntax*
 delimitMateTodo	delimitMate.txt	/*delimitMateTodo*

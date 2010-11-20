@@ -541,6 +541,9 @@ bindings = {
 
         -- Toggle Line In mute
         [{"Mod4", "F8"}] = "amixer set Line toggle",
+
+        -- Toggle Mic mute
+        [{"Mod4", "o"}] = "amixer set Capture toggle",
     },
     -- }}}
     -- {{{ Functions to run on screens

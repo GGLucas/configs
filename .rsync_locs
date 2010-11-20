@@ -18,7 +18,7 @@ RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.or
 
 ### Zorgberaad
 ## Zorgberaadmh.nl website
-RSYNC_zorgberaadmh="$del $exc /data/web/zorgberaad/website/_site/ root@glacicle.org:/srv/www/zorgberaad/website"
+RSYNC_zorgberaadmh="$del $exc /data/web/zorgberaad/website/_site/ lucas@glacicle.org:www/zorgberaad/website"
 
 ## Bravogouda.nl website
 RSYNC_bravogouda="$del $exc /data/web/zorgberaad/bravogouda/_site/ root@glacicle.org:/srv/www/zorgberaad/bravogouda"

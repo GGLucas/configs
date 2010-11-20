@@ -31,6 +31,8 @@ qma I http://achrongame.com/forums/search.php?search_id=newposts
 " Star Ruler
 qma l http://forums.blind-mind.com/index.php?action=unread
 qma b http://gglucas.tadalist.com/lists/1752277
+" SW
+qma B http://www.plaidhatgames.com/sum_forums/search.php?searchid=17654
 " SoaSE
 qma L http://forums.sinsofasolarempire.com/recent
 "" Wesnoth

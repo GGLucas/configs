@@ -36,6 +36,8 @@ bma -k=btj http://btjunkie.org/search?q=%s
 bma -k=db http://danbooru.donmai.us/post?tags=%s
 "" MyAnimeList
 bma -k=mal http://myanimelist.net/anime.php?q=%s
+"" AniDB
+bma -k=ad http://anidb.net/perl-bin/animedb.pl?show=animelist&adb.search=%s&do.search=search
 "" Reddit
 bma -k=r http://reddit.com/r/%s/
 

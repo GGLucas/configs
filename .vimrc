@@ -87,8 +87,8 @@ noremap ` '
 nmap . .'[
 
 " Insert/remove braces around single line
-noremap ysb mZkA {<Esc>jo}<Esc><<`Z
-noremap dsb mZkA<BS><BS><Esc>jjddk`Z
+nnoremap ysb mZkA {<Esc>jo}<Esc><<`Z
+nnoremap dsb mZkA<BS><BS><Esc>jjddk`Z
 
 " Localization
 nmap <Leader>. :call Localize()<CR>
@@ -250,6 +250,9 @@ set viminfo='100,f1,<50,:50,/50,h,!
 " File patterns to ignore in completions
 set wildignore=*.o,*.pyc,*.pyo,.git,.svn
 
+" Allow more memory
+set maxmempattern=5000
+
 " Don't use filetype indent
 filetype on
 filetype plugin on
@@ -382,16 +385,16 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Set correct folding for C
-autocmd FileType c silent setlocal fdm=syntax fdn=1
-"autocmd FileType c set cindent
+autocmd FileType c,cpp silent setlocal fdm=syntax fdn=1
+autocmd FileType c,cpp setlocal cindent
 
 " Git: Don't jump to last position, no modeline
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
 autocmd FileType git setlocal nomodeline
 
 " Files to set default textwidth
-autocmd FileType mail,tex set textwidth=78
-autocmd FileType mail,tex let g:textwidth=78
+autocmd FileType mail,tex setlocal textwidth=78
+autocmd FileType mail,tex let b:textwidth=78
 "" }}}
 "" {{{ Filetype highlighting
 " Python keywords
@@ -425,12 +428,12 @@ autocmd BufReadPost *
 " {{{ Functions
 " {{{ TextwidthToggle(): Change textwidth, 0<->78
 function! TextwidthToggle()
-    if g:textwidth == 0
-        let g:textwidth = 78
-        set textwidth=78
+    if b:textwidth == 0
+        let b:textwidth = 78
+        setlocal textwidth=78
     else
-        let g:textwidth = 0
-        set textwidth=0
+        let b:textwidth = 0
+        setlocal textwidth=0
     endif
 
     set textwidth?
