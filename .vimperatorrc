@@ -93,6 +93,8 @@ nmap <silent> <leader>D :removetabsright<CR>
 nmap <silent> <leader>d :removetabsleft<CR>
 
 " Background tab
+noremap t :to<Space>
+noremap o :o<Space>
 nmap <A-t> :tabopen!<Space>
 nmap <A-w> :winopen<Space>
 

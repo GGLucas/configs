@@ -1,6 +1,6 @@
 #
 # highmon.pl - Highlight Monitoring for weechat 0.3.0
-# Version 2.0
+# Version 2.1.2
 #
 # Add 'Highlight Monitor' buffer/bar to log all highlights in one spot
 #
@@ -17,10 +17,11 @@
 #
 # /set plugins.var.perl.highmon.alignment
 #  The config setting "alignment" can be changed to;
-#  "channel", "schannel", "channel,nick", "schannel,nick"
+#  "channel", "schannel", "nchannel", "channel,nick", "schannel,nick", "nchannel,nick"
 #  to change how the monitor appears
-#  The 'schannel' value will only show the buffer number as opposed to
-#  'server#channel'
+#  The 'channel'  value will show: "#weechat"
+#  The 'schannel' value will show: "6"
+#  The 'nchannel' value will show: "6:#weechat"
 #
 # /set plugins.var.perl.highmon.short_names
 #  Setting this to 'on' will trim the network name from highmon, ala buffers.pl
@@ -57,6 +58,11 @@
 #
 
 # History:
+# 2010-09-30, KenjiE20 <longbow@longbowslair.co.uk>:
+#	v2.1.2:	-fix: logging config was not correctly toggling back on (thanks to sleo for noticing)
+#			-version sync w/ chanmon
+# 2010-08-27, KenjiE20 <longbow@longbowslair.co.uk>:
+#	v2.1: -feature: Add 'nchannel' option to alignment to display buffer and name
 # 2010-04-25, KenjiE20 <longbow@longbowslair.co.uk>:
 #	v2.0:	Release as version 2.0
 # 2010-04-24, KenjiE20 <longbow@longbowslair.co.uk>:
@@ -103,9 +109,11 @@
 # Replicate info earlier for in-client help
 $highmonhelp = weechat::color("bold")."/set plugins.var.perl.highmon.alignment".weechat::color("-bold")."
  The config setting \"alignment\" can be changed to;
- \"channel\", \"schannel\", \"channel,nick\", \"schannel,nick\"
+ \"channel\", \"schannel\", \"nchannel\", \"channel,nick\", \"schannel,nick\", \"nchannel,nick\"
  to change how the monitor appears
- The 'schannel' value will only show the buffer number as opposed to 'server#channel'
+ The 'channel'  value will show: \"#weechat\"
+ The 'schannel' value will show: \"6\"
+ The 'nchannel' value will show: \"6:#weechat\"
 
 ".weechat::color("bold")."/set plugins.var.perl.highmon.short_names".weechat::color("-bold")."
  Setting this to 'on' will trim the network name from highmon, ala buffers.pl
@@ -482,7 +490,7 @@ sub highmon_config_cb
 		}
 		else
 		{
-			weechat::buffer_set($highmon_buffer, "localvar_set_no_log", "0");
+			weechat::buffer_set($highmon_buffer, "localvar_del_no_log", "");
 		}
 	}
 	# Output changer
@@ -654,6 +662,15 @@ sub highmon_print
 			# Build string
 			$outstr = $bufname."\t".$nick." ".$cb_msg;
 		}
+		# or if it is number:#channel | nick msg
+		elsif (weechat::config_get_plugin("alignment") eq "nchannel")
+		{
+			$nick =~ s/\s(.*)/$1/;
+			# Place channel number in front of formatted name
+			$bufname = weechat::color("chat_prefix_buffer").weechat::buffer_get_integer($cb_bufferp, 'number').":".weechat::color("reset").$bufname;
+			# Build string
+			$outstr = $bufname."\t".$nick." ".$cb_msg;
+		}
 		# or if it is #channel nick | msg
 		elsif (weechat::config_get_plugin("alignment") eq "channel,nick")
 		{
@@ -665,6 +682,14 @@ sub highmon_print
 		{
 			# Use channel number instead
 			$bufname = weechat::color("chat_prefix_buffer").weechat::buffer_get_integer($cb_bufferp, 'number').weechat::color("reset");
+			# Build string
+			$outstr = $bufname.":".$nick."\t".$cb_msg;
+		}
+		# or if it is number:#channel nick | msg
+		elsif (weechat::config_get_plugin("alignment") eq "nchannel,nick")
+		{
+			# Place channel number in front of formatted name
+			$bufname = weechat::color("chat_prefix_buffer").weechat::buffer_get_integer($cb_bufferp, 'number').":".weechat::color("reset").$bufname;
 			# Build string
 			$outstr = $bufname.":".$nick."\t".$cb_msg;
 		}
@@ -689,6 +714,12 @@ sub highmon_print
 			{
 				# Use channel number instead
 				$bufname = weechat::color("chat_prefix_buffer").weechat::buffer_get_integer($cb_bufferp, 'number').weechat::color("reset");
+			}
+			# Or if it's actually number:#channel * | *
+			if (weechat::config_get_plugin("alignment") =~ /nchannel/)
+			{
+				# Place channel number in front of formatted name
+			$bufname = weechat::color("chat_prefix_buffer").weechat::buffer_get_integer($cb_bufferp, 'number').":".weechat::color("reset").$bufname;
 			}
 			$outstr = $bufname."\t".$cb_msg;
 		}
@@ -898,7 +929,7 @@ sub format_buffer_name
 }
 
 # Check result of register, and attempt to behave in a sane manner
-if (!weechat::register("highmon", "KenjiE20", "2.0", "GPL3", "Highlight Monitor", "", ""))
+if (!weechat::register("highmon", "KenjiE20", "2.1.2", "GPL3", "Highlight Monitor", "", ""))
 {
 	# Double load
 	weechat::print ("", "\tHighmon is already loaded");

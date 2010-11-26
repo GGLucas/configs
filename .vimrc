@@ -179,10 +179,6 @@ nmap <Leader>gb :GitBlame<CR>
 nmap <Leader>gP :GitPull origin master<CR>
 nmap <Leader>gr :GitPush<CR>
 """ }}}
-""" {{{ BufSurf
-nmap <silent> <Leader><Leader>- :BufSurfBack<CR>
-nmap <silent> <Leader>+ :BufSurfForward<CR>
-""" }}}
 "" }}}
 " }}}
 "" {{{ Configuration
@@ -217,6 +213,9 @@ let g:snips_mail = "lucas@glacicle.org"
 """ {{{ delimitMate
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
+let g:delimitMate_balance_matchpairs = 1
+
+inoremap {{ {
 """ }}}
 """ {{{ superTab
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -299,6 +298,9 @@ set foldminlines=2
 
 " By default, marker folding
 set fdm=marker
+
+" Only fold one level by default
+set fdn=1
 
 " Highlight syntax
 syntax on
@@ -385,7 +387,6 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Set correct folding for C
-autocmd FileType c,cpp silent setlocal fdm=syntax fdn=1
 autocmd FileType c,cpp setlocal cindent
 
 " Git: Don't jump to last position, no modeline
@@ -412,7 +413,7 @@ autocmd FileType mail hi link mailHeader Comment
 autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
-autocmd BufReadPost /mnt/starruler/* set noet nolist inc=""
+autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
 
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim

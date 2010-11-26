@@ -29,4 +29,8 @@
 	<Script filename="reddit_username_colorize.user.js" name="Reddit Username Colorizer" namespace="userscripts.org" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" basedir="reddit_username_colorize">
 		<Include>http://www.reddit.com/*</Include>
 	</Script>
+	<Script filename="reddit_noclick.user.js" name="Reddit NoClick" namespace="akjdfkjs" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" enabled="true" basedir="reddit_noclick">
+		<Include>http://www.reddit.com/*</Include>
+		<Include>http://reddit.com/*</Include>
+	</Script>
 </UserScriptConfig>
