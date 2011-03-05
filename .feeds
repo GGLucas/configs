@@ -19,7 +19,6 @@ supereffective              http://www.vgcats.com/super/se.rdf.xml
 sinfest                     http://www.sinfest.net/rss.php
 mistakesofyouth             http://mistakesofyouth.com/rss.xml
 cynh                        http://feedproxy.google.com/Explosm
-fanboys                     http://fanboys-online.com/rss/main.xml
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml
 abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
 subnormality                http://www.viruscomix.com/rss.xml
@@ -49,8 +48,6 @@ mistakesofyouth-blog        http://blog.mistakesofyouth.com/feed/
 reddit                      http://feeds.feedburner.com/redditblog?format=xml
 xkcd-blag                   http://blag.xkcd.com/feed/
 writequit                   http://feeds.feedburner.com/writequit/feed
-commandline                 http://commandline.org.uk/feeds/full/
-ubuntard                    http://ubuntard.com/feed/
 shitmydadsays               http://twitter.com/statuses/user_timeline/62581962.rss
 
 ## UofR

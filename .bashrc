@@ -30,6 +30,7 @@ setprompt(){
         "ayu") local dircol="\[\e[1;35m\]"; ;; # Desktop
         "misuzu") local dircol="\[\e[1;32m\]"; ;; # Laptop
         "izaya") local dircol="\[\e[1;31m\]"; ;; # Server
+        "GGLucas-VM") local dircol="\[\e[1;36m\]"; ;; # Virtual Machine
         *) local dircol="\[\e[1;37m\]"; ;; # Other
     esac
 
@@ -73,7 +74,9 @@ shopt -s histappend extglob
 complete -d cd
 
 # Don't echo ^C
-stty -ctlecho
+if [[ -x /bin/stty ]]; then
+    stty -ctlecho
+fi
 
 # Load autojump
 if [[ -f /etc/profile.d/autojump.bash ]]; then
@@ -128,6 +131,9 @@ alias ts='todo --database ~/.todo.schedule'
 alias v='vim'
 alias vv='sudo vim'
 
+# Cowsay
+alias qsay='cowsay -f qb'
+
 # Tmux
 tm() { tmux -2 attach -t $1; }
 tmn() { tmux -2 new -s $1 $1; }
@@ -144,6 +150,7 @@ re() { texi2pdf $1.tex && zathura $1.pdf; }
 # }}}
 # {{{ Git shortcuts
 alias a='git add'
+alias ai='git add -i'
 alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
@@ -151,6 +158,10 @@ alias gpo='git push origin'
 alias gpuo='git pull origin'
 alias gp='git push'
 alias gpu='git pull'
+alias gsp='git stash; git svn rebase; git stash pop &> /dev/null; git status -uno'
+alias gsu='git svn fetch'
+alias gsc='git stash; git svn dcommit; git stash pop &> /dev/null;'
+alias gs='git status -uno'
 
 # Commit everything or specified path
 c() {
@@ -164,6 +175,7 @@ c() {
         fi;
     fi;
 }
+alias ci='c -i';
 
 # Git show relevant status
 sa() {
@@ -212,7 +224,7 @@ alias -- -='cd -'
 if [[ ! -x ~/bin/ack ]]; then
     alias ack="grep -i --color=always"
 else
-    alias ack="command ack -i"
+    alias ack="command ack --smart-case"
 fi
 
 # Unpack programs

@@ -5,7 +5,7 @@ qma R http://www.reddit.com/message/inbox/
 "" Tokyo Toshokan
 qma t http://www.tokyotosho.info/?cat=1
 "" TvTorrents
-qma n http://tvtorrents.com/loggedin/my/new_fav_torrents.do
+qma n http://tvtorrents.com/loggedin/my/new_fav_tag_torrents.do
 qma N http://tvtorrents.com/loggedin/shared.do
 "" Github
 qma h http://github.com/GGLucas

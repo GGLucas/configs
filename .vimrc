@@ -24,6 +24,10 @@ nmap <Leader>? :call PromptFT(1)<CR>
 " Close everything
 nmap ZN :wqa<CR>
 """ }}}
+""" {{{ System bindings
+nmap <Leader>bl :silent !sh -c "ideautom build &"<CR>:redraw!<CR>
+nmap <Leader>br :silent !sh -c "ideautom run &"<CR>:redraw!<CR>
+""" }}}
 """ {{{ Window navigation
 nmap <Left> <C-w>h
 nmap <Down> <C-w>j
@@ -87,7 +91,7 @@ noremap ` '
 nmap . .'[
 
 " Insert/remove braces around single line
-nnoremap ysb mZkA {<Esc>jo}<Esc><<`Z
+nnoremap ysb mZkA {<Esc>jo}<Esc>`Z
 nnoremap dsb mZkA<BS><BS><Esc>jjddk`Z
 
 " Localization
@@ -218,7 +222,7 @@ let g:delimitMate_balance_matchpairs = 1
 inoremap {{ {
 """ }}}
 """ {{{ superTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<C-n>"
 """ }}}
 """ {{{ ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
@@ -229,6 +233,25 @@ if !has('ruby')
     let g:command_t_loaded = 1
     let g:loaded_lustyexplorer = 1
 endif
+""" }}}
+""" {{{ EchoFunc
+let g:EchoFuncKeyNext = "<C-t>"
+""" }}}
+""" {{{ OmniCppComplete
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+set completeopt=menu,menuone
+let OmniCpp_MayCompleteDot = 1
+let OmniCpp_MayCompleteArrow = 1
+let OmniCpp_MayCompleteScope = 1
+let OmniCpp_SelectFirstItem = 0
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_DefaultNamespaces   = ["std", "_GLIBCXX_STD"]
+map <C-F12> :!ctags --langmap=c++:+.as -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+set tags+=/usr/local/stl/tags
+set tags+=~/.vim/SRTags
+set tags+=~/.vim/SRSTags
+set tags+=~/.vim/IrrTags
 """ }}}
 "" }}}
 "" {{{ Vim settings
@@ -414,6 +437,9 @@ autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
+autocmd BufReadPost /mnt/starruler/*.cpp let b:SuperTabDefaultCompletionType = "<c-x><c-o>"
+autocmd BufReadPost /data/projects/fray/* set noet inc= lcs=tab:\ \ ,trail:·
+autocmd BufReadPost /mnt/starruler/*.txt set ft=
 
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim

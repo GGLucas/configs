@@ -76,13 +76,13 @@ nmap <Leader>w :tabdetach<CR>
 noremap <C-e> 3<C-e>
 noremap <C-y> 3<C-y>
 
-noremap h 2h
-noremap j 2j
-noremap k 2k
-noremap l 2l
+noremap h 6h
+noremap j 6j
+noremap k 6k
+noremap l 6l
 
-noremap J 6j
-noremap K 6k
+noremap J 2j
+noremap K 2k
 
 noremap s f
 noremap S F

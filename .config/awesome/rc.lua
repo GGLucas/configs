@@ -543,7 +543,7 @@ bindings = {
         [{"Mod4", "F8"}] = "amixer set Line toggle",
 
         -- Toggle Mic mute
-        [{"Mod4", "o"}] = "amixer set Capture toggle",
+        [{"Mod4", "o"}] = "toggle_mic",
     },
     -- }}}
     -- {{{ Functions to run on screens
@@ -594,42 +594,42 @@ bindings = {
         [{"Mod4", "Shift", "-"}] = quickmarks.iset,
 
         -- Easy quickmark access with Mod4+Alt_r+Homerow
-        [{"Mod4", "Mod5", "a"}] = {quickmarks.focus, "a"},
-        [{"Mod4", "Mod5", "o"}] = {quickmarks.focus, "o"},
-        [{"Mod4", "Mod5", "e"}] = {quickmarks.focus, "e"},
-        [{"Mod4", "Mod5", "u"}] = {quickmarks.focus, "u"},
-        [{"Mod4", "Mod5", "i"}] = {quickmarks.focus, "i"},
-        [{"Mod4", "Mod5", "d"}] = {quickmarks.focus, "d"},
-        [{"Mod4", "Mod5", "h"}] = {quickmarks.focus, "h"},
-        [{"Mod4", "Mod5", "t"}] = {quickmarks.focus, "t"},
-        [{"Mod4", "Mod5", "n"}] = {quickmarks.focus, "n"},
-        [{"Mod4", "Mod5", "s"}] = {quickmarks.focus, "s"},
-        [{"Mod4", "Mod5", "w"}] = {quickmarks.focus, "w"},
-        [{"Mod4", "Mod5", "v"}] = {quickmarks.focus, "v"},
-        [{"Mod4", "Mod5", "j"}] = {quickmarks.focus, "j"},
-        [{"Mod4", "Mod5", "k"}] = {quickmarks.focus, "k"},
+        [{"Mod1", "Mod5", "a"}] = {quickmarks.focus, "a"},
+        [{"Mod1", "Mod5", "o"}] = {quickmarks.focus, "o"},
+        [{"Mod1", "Mod5", "e"}] = {quickmarks.focus, "e"},
+        [{"Mod1", "Mod5", "u"}] = {quickmarks.focus, "u"},
+        [{"Mod1", "Mod5", "i"}] = {quickmarks.focus, "i"},
+        [{"Mod1", "Mod5", "d"}] = {quickmarks.focus, "d"},
+        [{"Mod1", "Mod5", "h"}] = {quickmarks.focus, "h"},
+        [{"Mod1", "Mod5", "t"}] = {quickmarks.focus, "t"},
+        [{"Mod1", "Mod5", "n"}] = {quickmarks.focus, "n"},
+        [{"Mod1", "Mod5", "s"}] = {quickmarks.focus, "s"},
+        [{"Mod1", "Mod5", "w"}] = {quickmarks.focus, "w"},
+        [{"Mod1", "Mod5", "v"}] = {quickmarks.focus, "v"},
+        [{"Mod1", "Mod5", "j"}] = {quickmarks.focus, "j"},
+        [{"Mod1", "Mod5", "k"}] = {quickmarks.focus, "k"},
 
         -- Irc quickmarks that focus a particular weechat window
-        [{"Mod4", "Mod5", "Shift", ","}] = {util.weechat_window, 1},
-        [{"Mod4", "Mod5", "Shift", "."}] = {util.weechat_window, 2},
-        [{"Mod4", "Mod5", "Shift", "c"}] = {util.weechat_window, 5},
-        [{"Mod4", "Mod5", "Shift", "r"}] = {util.weechat_window, 6},
+        [{"Mod1", "Mod5", "Shift", ","}] = {util.weechat_window, 1},
+        [{"Mod1", "Mod5", "Shift", "."}] = {util.weechat_window, 2},
+        [{"Mod1", "Mod5", "Shift", "c"}] = {util.weechat_window, 5},
+        [{"Mod1", "Mod5", "Shift", "r"}] = {util.weechat_window, 6},
 
-        [{"Mod4", "Mod5", "Shift", "o"}] = {util.weechat_window, 3},
-        [{"Mod4", "Mod5", "Shift", "e"}] = {util.weechat_window, 4},
-        [{"Mod4", "Mod5", "Shift", "t"}] = {util.weechat_window, 7},
-        [{"Mod4", "Mod5", "Shift", "n"}] = {util.weechat_window, 8},
+        [{"Mod1", "Mod5", "Shift", "o"}] = {util.weechat_window, 3},
+        [{"Mod1", "Mod5", "Shift", "e"}] = {util.weechat_window, 4},
+        [{"Mod1", "Mod5", "Shift", "t"}] = {util.weechat_window, 7},
+        [{"Mod1", "Mod5", "Shift", "n"}] = {util.weechat_window, 8},
 
         -- Quickmark "^^" is a shortcut for "globally last focussed client."
-        [{"Mod4", "Mod5", "-"}] = {quickmarks.focus, "^^"},
+        [{"Mod1", "Mod5", "-"}] = {quickmarks.focus, "^^"},
 
         -- Number "Quickmarks" to focus a particular screen
-        [{"Mod4", "Mod5", "#10"}] = {util.screen.focus, 4},
-        [{"Mod4", "Mod5", "#11"}] = {util.screen.focus, 1},
-        [{"Mod4", "Mod5", "#12"}] = {util.screen.focus, 2},
-        [{"Mod4", "Mod5", "#13"}] = {util.screen.focus, 3},
-        [{"Mod4", "Mod5", "#20"}] = {util.screen.focus, 5},
-        [{"Mod4", "Mod5", "#21"}] = {util.screen.focus, 6},
+        [{"Mod1", "Mod5", "#10"}] = {util.screen.focus, 4},
+        [{"Mod1", "Mod5", "#11"}] = {util.screen.focus, 1},
+        [{"Mod1", "Mod5", "#12"}] = {util.screen.focus, 2},
+        [{"Mod1", "Mod5", "#13"}] = {util.screen.focus, 3},
+        [{"Mod1", "Mod5", "#20"}] = {util.screen.focus, 5},
+        [{"Mod1", "Mod5", "#21"}] = {util.screen.focus, 6},
 
         -- Switch between layouts
         [{"Mod4", "'"}] = {awful.layout.set, awful.layout.suit.max},

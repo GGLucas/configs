@@ -1,36 +1,75 @@
 <UserScriptConfig>
-	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" enabled="true" basedir="reddit_keyboard_shortcut">
+	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" version="" enabled="true" basedir="reddit_keyboard_shortcut" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.reddit.com/*</Include>
 		<Include>http://www.reddit.com/r/*</Include>
 		<Exclude>http://www.reddit.com/*/comments/*</Exclude>
 		<Exclude>http://www.reddit.com/r/*/comments/*</Exclude>
 	</Script>
-	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="true" basedir="smbc_reader">
+	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." version="0.1" enabled="true" basedir="smbc_reader" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>
-	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" enabled="true" basedir="xkcd_fan_keyboard_shortc">
+	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" version="0.1.5" enabled="true" basedir="xkcd_fan_keyboard_shortc" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://*xkcd.com/*</Include>
 	</Script>
-	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." enabled="true" basedir="dinosaur_comics_extra_te">
+	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." version="" enabled="true" basedir="dinosaur_comics_extra_te" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://qwantz.com/index.php</Include>
 		<Include>http://qwantz.com/index.php?comic=*</Include>
 		<Include>http://www.qwantz.com/index.php</Include>
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
 	</Script>
-	<Script filename="google_search_enhanced_k.user.js" name="Google Search Enhanced Keyboard Navigation" namespace="http://userscripts.org/users/82018" description="Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages." enabled="true" basedir="google_search_enhanced_k">
+	<Script filename="google_search_enhanced_k.user.js" name="Google Search Enhanced Keyboard Navigation" namespace="http://userscripts.org/users/82018" description="Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages." version="1.3a" enabled="true" basedir="google_search_enhanced_k" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://*google.com/search*</Include>
 	</Script>
-	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" namespace="dukgo" description="Dukgo fix" enabled="true" basedir="dukgo_fix_shortcuts">
+	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" namespace="dukgo" description="Dukgo fix" version="0.1" enabled="true" basedir="dukgo_fix_shortcuts" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://duckduckgo.com/*</Include>
 	</Script>
-	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" enabled="true" basedir="mangafox3_fit_image">
+	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" version="4.2" enabled="true" basedir="mangafox3_fit_image" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.mangafox.com/*</Include>
 	</Script>
-	<Script filename="reddit_username_colorize.user.js" name="Reddit Username Colorizer" namespace="userscripts.org" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" basedir="reddit_username_colorize">
+	<Script filename="reddit_username_colorize.user.js" name="Reddit Username Colorizer" namespace="userscripts.org" description="Colorizes usernames on reddit comments for easy recognition." version="" enabled="true" basedir="reddit_username_colorize" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.reddit.com/*</Include>
 	</Script>
-	<Script filename="reddit_noclick.user.js" name="Reddit NoClick" namespace="akjdfkjs" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" enabled="true" basedir="reddit_noclick">
+	<Script filename="reddit_noclick.user.js" name="Reddit NoClick" namespace="akjdfkjs" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" version="" enabled="true" basedir="reddit_noclick" modified="1290349901000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.reddit.com/*</Include>
 		<Include>http://reddit.com/*</Include>
+	</Script>
+	<Script filename="forum_pornifier.user.js" name="Forum Pornifier" namespace="userscripts.org" description="Make image boards easier to navigate" version="1.1.2" enabled="true" basedir="forum_pornifier" modified="1298334146000" dependhash="0c051404f9e13f6cb9e7355dd3baa5cd98222899" installurl="http://userscripts.org/scripts/source/55900.user.js">
+		<Include>http://*exposedforums.com/*</Include>
+		<Include>http://exposedforums.com/*</Include>
+		<Include>http://*thenudeboard.com*</Include>
+		<Include>http://thenudeboard.com*</Include>
+		<Include>http://anonib.com/*/*</Include>
+		<Include>http://userscripts.org/scripts/*/55900</Include>
+		<Include>*.linkbucks.com*</Include>
+		<Include>http://*freean.us*</Include>
+		<Include>http://www.facialforum.net/*</Include>
+		<Include>http://facialforum.net/*</Include>
+		<Include>http://motherless.com/*</Include>
+		<Include>http://www.motherless.com/*</Include>
+		<Include>http://*livejasmin.com/*</Include>
+		<Include>http://http://forum.xnxx.com/*</Include>
+		<Include>http://*.imagefap.com/gallery*</Include>
+		<Include>http://www.imagefap.com/usergallery.php*</Include>
+		<Include>http://imagefap.com/gallery*</Include>
+		<Include>http://imagefap.com/pics*</Include>
+		<Include>http://www.imagefap.com/pics*</Include>
+		<Include>http://www.camwins.com/video*</Include>
+		<Include>http://camwins.com/video*</Include>
+		<Include>http://www.camwins.com/albums*</Include>
+		<Include>http://www.snuska.com/index.php</Include>
+		<Include>http://www.snuska.com/f*</Include>
+		<Include>http://snuska.com/f*</Include>
+		<Include>http://forum.oneclickchicks.com/*</Include>
+		<Include>http://www.xtube.com/watch.php*</Include>
+		<Include>http://xtube.com/watch.php*</Include>
+		<Include>http://*.xtube.com/watch.php?*</Include>
+		<Include>http://www.beefjerkyreview.com/</Include>
+		<Include>http://www.rhyzzy.com/*/*</Include>
+		<Exclude>*www.linkbucks.com*</Exclude>
+		<Require filename="gm_config.js"/>
+	</Script>
+	<Script filename="4chan.user.js" name="4chan" namespace="4chan" description="4chan" version="" enabled="true" basedir="4chan" modified="1298926883000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/79180.user.js">
+		<Include>http://sys.4chan.org/*/post*</Include>
+		<Include>http://boards.4chan.org/*</Include>
 	</Script>
 </UserScriptConfig>
