@@ -437,7 +437,7 @@ autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
-autocmd BufReadPost /mnt/starruler/*.cpp let b:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"autocmd BufReadPost /mnt/starruler/*.cpp let b:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd BufReadPost /data/projects/fray/* set noet inc= lcs=tab:\ \ ,trail:·
 autocmd BufReadPost /mnt/starruler/*.txt set ft=
 

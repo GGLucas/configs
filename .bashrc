@@ -151,6 +151,7 @@ re() { texi2pdf $1.tex && zathura $1.pdf; }
 # {{{ Git shortcuts
 alias a='git add'
 alias ai='git add -i'
+alias aip='git add -i -p'
 alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
@@ -176,6 +177,11 @@ c() {
     fi;
 }
 alias ci='c -i';
+
+# Show diff for a particular commit
+dn() {
+    git diff $1~..$1
+}
 
 # Git show relevant status
 sa() {

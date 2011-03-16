@@ -53,7 +53,11 @@ snippet wh
 # For Loop
 snippet for
 	for (int ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) {
-		${4:/* code */}
+		${4}
+	}
+snippet ufor
+	for (uint ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) {
+		${4}
 	}
 # Custom For Loop
 snippet forr

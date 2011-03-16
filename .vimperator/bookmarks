@@ -12,6 +12,10 @@ bma -k=ka http://duckduckgo.com/?q=%s&v=
 bma -k=ks http://duckduckgo.com/?q=%s&v=s
 "" YubNub
 bma -k=y http://yubnub.org/parser/parse?command=%s
+"" Anime Music
+bma -k=gd http://gendou.com/amusic/?filter=%s
+"" Lojban dictionary
+bma -k=loj http://vlasisku.lojban.org/chair
 
 """ Websites
 "" Youtube
