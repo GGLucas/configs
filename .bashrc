@@ -28,7 +28,7 @@ setprompt(){
     # Path color indicates host
     case "$HOSTNAME" in
         "ayu") local dircol="\[\e[1;35m\]"; ;; # Desktop
-        "misuzu") local dircol="\[\e[1;32m\]"; ;; # Laptop
+        "hitagi") local dircol="\[\e[1;32m\]"; ;; # Laptop
         "izaya") local dircol="\[\e[1;31m\]"; ;; # Server
         "GGLucas-VM") local dircol="\[\e[1;36m\]"; ;; # Virtual Machine
         *) local dircol="\[\e[1;37m\]"; ;; # Other
