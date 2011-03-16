@@ -1,15 +1,15 @@
 #!/bin/sh
 
 # Default path
-PATH="/home/archlucas/bin:/bin:/usr/bin:/sbin:/usr/sbin"
+PATH="/home/archlucas/bin:/bin:/usr/bin:/sbin:/usr/sbin:/data/winedrive/bin"
 export PATH
 
 # Profile entries
 . /etc/profile.d/xorg.sh
-. /etc/profile.d/wine.sh
+#. /etc/profile.d/wine.sh
 
 # Make sure we have lib32 libs
-LD_LIBRARY_PATH="/opt/lib32/lib:/opt/lib32/usr/lib:$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="/usr/lib32:/opt/lib32/lib:/opt/lib32/usr/lib:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH
 
 # Set Locale
