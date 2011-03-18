@@ -11,12 +11,6 @@
 	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" version="0.1.5" enabled="true" basedir="xkcd_fan_keyboard_shortc" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://*xkcd.com/*</Include>
 	</Script>
-	<Script filename="google_search_enhanced_k.user.js" name="Google Search Enhanced Keyboard Navigation" namespace="http://userscripts.org/users/82018" description="Enables Google's experimental keyboard shortcut navigation in search results, plus additional feature for jumping to Next/Previous result pages." version="1.3a" enabled="true" basedir="google_search_enhanced_k" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
-		<Include>http://*google.com/search*</Include>
-	</Script>
-	<Script filename="dukgo_fix_shortcuts.js" name="Dukgo Shortcut Fix" namespace="dukgo" description="Dukgo fix" version="0.1" enabled="true" basedir="dukgo_fix_shortcuts" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
-		<Include>http://duckduckgo.com/*</Include>
-	</Script>
 	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" version="4.2" enabled="true" basedir="mangafox3_fit_image" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.mangafox.com/*</Include>
 	</Script>
@@ -62,14 +56,21 @@
 		<Exclude>*www.linkbucks.com*</Exclude>
 		<Require filename="gm_config.js"/>
 	</Script>
-	<Script filename="4chan.user.js" name="4chan" namespace="4chan" description="4chan" version="" enabled="true" basedir="4chan" modified="1298926883000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/79180.user.js">
-		<Include>http://sys.4chan.org/*/post*</Include>
-		<Include>http://boards.4chan.org/*</Include>
-	</Script>
 	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." version="" enabled="true" basedir="dinosaur_comics_extra_te" modified="1300205654000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/53688.user.js">
 		<Include>http://qwantz.com/index.php</Include>
 		<Include>http://qwantz.com/index.php?comic=*</Include>
 		<Include>http://www.qwantz.com/index.php</Include>
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
+	</Script>
+	<Script filename="autopagerize.user.js" name="AutoPagerize" namespace="http://swdyh.yu.to/" description="loading next page and inserting into current page." version="" enabled="true" basedir="autopagerize" modified="1300376680000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/8551.user.js">
+		<Include>http://*</Include>
+		<Include>https://*</Include>
+		<Exclude>https://mail.google.com/*</Exclude>
+		<Exclude>http://b.hatena.ne.jp/*</Exclude>
+		<Exclude>http://www.facebook.com/plugins/like.php*</Exclude>
+		<Exclude>http://api.tweetmeme.com/button.js*</Exclude>
+	</Script>
+	<Script filename="4chan_x_updater.user.js" name="4chan x Updater" namespace="aeosynth" description="Updates threads." version="1.5.2" enabled="true" basedir="4chan_x_updater" modified="1300380103000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/75146.user.js">
+		<Include>http://boards.4chan.org/*/res/*</Include>
 	</Script>
 </UserScriptConfig>

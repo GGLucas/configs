@@ -180,7 +180,11 @@ alias ci='c -i';
 
 # Show diff for a particular commit
 dn() {
-    git diff $1~..$1
+    if [[ "$1" == "" ]]; then
+        git diff HEAD~..HEAD
+    else
+        git diff $1~..$1
+    fi
 }
 
 # Git show relevant status

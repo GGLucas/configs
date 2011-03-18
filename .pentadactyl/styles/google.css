@@ -2,9 +2,29 @@
 #prs, #logo,
 #mbEnd, .clr, .gbh, .csb,
 .nobr.xsm, .lsb, #leftnav, .mbEnd,
-#mngb
+#mngb, #tsf > div > div > a > img
 {
     display: none !important;
+}
+
+.gac_od {
+
+}
+
+.gac_id {
+    border: 1px solid white !important;
+}
+
+.gac_a {
+    background: #141414 !important;
+}
+
+.gac_b > .gac_c {
+    background: #341434 !important;
+}
+
+span.spell {
+    color: white !important;
 }
 
 #center_col

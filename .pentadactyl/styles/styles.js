@@ -20,6 +20,12 @@ var loaduserstyles = function()
         ],
 
         [
+            "wikimedia:minimal",
+            "secure.wikimedia.org",
+            "wikipedia.css",
+        ],
+
+        [
             "scroogle:minimal",
             "https://ssl.scroogle.org/cgi-bin/nbbwssl.cgi",
             "scroogle.css",
@@ -57,7 +63,7 @@ var loaduserstyles = function()
 
         [
             "google:minimal",
-            "http://www.google.com/search*",
+            "https://encrypted.google.com/search*",
             "google.css",
         ],
 

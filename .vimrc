@@ -174,15 +174,6 @@ nmap <silent> <Leader>D :Bclose!<CR>
 """ {{{ Operator-Replace
 map <Leader>_ <Plug>(operator-replace)
 """ }}}
-""" {{{ Git extras
-nmap <Leader>gL :GitLog HEAD<CR>
-nmap <Leader>gC :GitCommit -s -a<CR>
-nmap <Leader>gt :GitCommit -s<CR>
-nmap <Leader>gS :GitAdd<Space>
-nmap <Leader>gb :GitBlame<CR>
-nmap <Leader>gP :GitPull origin master<CR>
-nmap <Leader>gr :GitPush<CR>
-""" }}}
 "" }}}
 " }}}
 "" {{{ Configuration

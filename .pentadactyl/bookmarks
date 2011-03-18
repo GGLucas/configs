@@ -7,9 +7,7 @@ silent bma -k=g http://google.com/search?q=%s&num=100
 "" Google: Feeling Lucky
 silent bma -k=gg http://google.com/search?btnI=1&q=%s
 "" Duck Duck Go
-silent bma -k=k http://duckduckgo.com/?q=%s&v=r
-silent bma -k=ka http://duckduckgo.com/?q=%s&v=
-silent bma -k=ks http://duckduckgo.com/?q=%s&v=s
+silent bma -k=k https://duckduckgo.com/?q=%s&v=r&kd=-1&kh=1&kw=s
 "" YubNub
 silent bma -k=y http://yubnub.org/parser/parse?command=%s
 "" Anime Music

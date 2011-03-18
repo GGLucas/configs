@@ -7,7 +7,7 @@ styledisable -name global
 
 " {{{ Configuration
 " Default search
-set ds=g
+set ds=google
 
 " Default GUI options
 set go=sC
@@ -21,15 +21,11 @@ set showtabline=never
 " Use console vim as editor
 set editor=g
 
-" Vim editing in textareas
-set noinsertmode
-
 " Homerow hints
 set hintkeys="aoeuhtns"
 
 " Leader
 set mapleader=","
-let mapleader=","
 
 " }}}
 " {{{ Mappings
@@ -81,6 +77,7 @@ noremap K 2k
 noremap s f
 noremap S F
 noremap e d
+noremap ;s g;b
 
 " Remove tabs
 nmap <silent> <leader>D :removetabsright<CR>
@@ -180,7 +177,7 @@ hi BufTab padding-left: 5px; padding-right: 5px; color: #9fbc00;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px; color: #9fbc00;
 
 "" Hint font size
-hi Hint font-family: monospace; font-size: 13px; font-weight: bold; color: white; padding: 1px 3px; background: #744E7A;
+hi Hint font-family: monospace; font-size: 13px; font-weight: bold; color: white; padding: 1px 3px; background: #744E7A !important;
 hi HintElem none: none;
 hi HintActive none: none;
 
@@ -189,6 +186,7 @@ hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-s
 hi StatusLineBroken background: #1a1414; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
 hi StatusLineExtended background: #141a14; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
 hi StatusLineSecure background: #14141a; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
+hi ModeMsg display: none;
 
 " Completion colors from zenburn
 hi CompDesc             color: #d0d0d0; width: 50%;font-size: 12px;
@@ -207,3 +205,4 @@ hi CompResult           width: 45%; overflow: hidden;font-size: 12px; font-famil
 hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 " }}}
+" vim: ft=vimperator:
