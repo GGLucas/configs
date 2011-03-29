@@ -12,6 +12,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Handy shortcut for save
+noremap <Leader>e e
 nmap <silent> e :up<CR>
 
 " Put current path in commandline
@@ -59,7 +60,9 @@ xmap > >gv
 nnoremap Y y$
 
 " Minus to eol, since underscore is bol
-nmap - $
+noremap - ^
+noremap _ $
+noremap __ $
 
 " Use ,, for regular , (since it's the leader)
 nnoremap ,, ,
@@ -430,7 +433,7 @@ autocmd FileType mail hi link mailSubject Function
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
 "autocmd BufReadPost /mnt/starruler/*.cpp let b:SuperTabDefaultCompletionType = "<c-x><c-o>"
 autocmd BufReadPost /data/projects/fray/* set noet inc= lcs=tab:\ \ ,trail:·
-autocmd BufReadPost /mnt/starruler/*.txt set ft=
+autocmd BufReadPost /mnt/starruler/*.txt set ft=starruler
 
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim

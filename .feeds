@@ -17,7 +17,7 @@ erfworld                    http://www.erfworld.com/feed/
 vgcats                      http://www.vgcats.com/vgcats.rdf.xml
 supereffective              http://www.vgcats.com/super/se.rdf.xml
 sinfest                     http://www.sinfest.net/rss.php
-mistakesofyouth             http://mistakesofyouth.com/rss.xml
+mistakesofyouth             http://mistakesofyouth.com/feed/
 cynh                        http://feedproxy.google.com/Explosm
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml
 abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
@@ -44,7 +44,7 @@ mn3                         http://www.menagea3.net/comic.rss
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/
 dailyvim                    http://dailyvim.blogspot.com/feeds/posts/default
-mistakesofyouth-blog        http://blog.mistakesofyouth.com/feed/
+mistakesofyouth-blog        http://analoghousou.com/comments/feed/
 reddit                      http://feeds.feedburner.com/redditblog?format=xml
 xkcd-blag                   http://blag.xkcd.com/feed/
 writequit                   http://feeds.feedburner.com/writequit/feed

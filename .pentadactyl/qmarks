@@ -19,6 +19,8 @@ silent qma E http://www.vim.org/
 "" hurl
 silent qma p http://hurl.hereticlinux.org/
 silent qma P http://hurl.hereticlinux.org/branch/GGLucas
+" 4chan
+silent qma j http://4chan.org/a/
 
 """ Forums
 "" Arch Linux

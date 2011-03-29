@@ -161,8 +161,8 @@ nmap _t :call JumpT()<cr>
 "nmap t :call JumpT()<cr>
 
 "" !! EXPERIMENTAL !!
-" omap _f :call JumpF()<cr>
-" omap _w :call JumpW()<cr>
-" omap _t :call JumpT()<cr>
+omap _f :call JumpF()<cr>
+omap _w :call JumpW()<cr>
+omap _t :call JumpT()<cr>
 
 endif " if version >= 702

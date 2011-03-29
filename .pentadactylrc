@@ -78,6 +78,8 @@ noremap s f
 noremap S F
 noremap e d
 noremap ;s g;b
+noremap ;t ;y
+noremap ;n ;i
 
 " Remove tabs
 nmap <silent> <leader>D :removetabsright<CR>
