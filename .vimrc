@@ -12,7 +12,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Handy shortcut for save
-noremap <Leader>e e
+noremap _e e
 nmap <silent> e :up<CR>
 
 " Put current path in commandline
