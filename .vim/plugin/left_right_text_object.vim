@@ -1,7 +1,7 @@
-vmap iH :call SelectLeft('i')<CR>
-vmap aH :call SelectLeft('a')<CR>
-vmap iL :call SelectRight('i')<CR>
-vmap aL :call SelectRight('a')<CR>
+vmap iH :call SetCurrentSelection('viH')<CR>:call SelectLeft('i')<CR>
+vmap aH :call SetCurrentSelection('vaH')<CR>:call SelectLeft('a')<CR>
+vmap iL :call SetCurrentSelection('viL')<CR>:call SelectRight('i')<CR>
+vmap aL :call SetCurrentSelection('viL')<CR>:call SelectRight('a')<CR>
 
 omap iL :normal viL<CR>
 omap aL :normal vaL<CR>
@@ -40,7 +40,14 @@ function! SelectRight(inner_or_all)
   endif
 
   if a:inner_or_all == 'i'
-    call feedkeys(iStart.'|v$h')
+    let string_length = strlen(getline('.'))
+    let last_char = getline('.')[string_length - 1]
+
+    if last_char == ',' || last_char == ';'
+      call feedkeys(iStart.'|v'. (string_length - 1) . '|')
+    else
+      call feedkeys(iStart.'|v$h')
+    endif
   else
     call feedkeys(iStart.'|v$')
   endif
