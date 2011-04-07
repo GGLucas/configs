@@ -12,7 +12,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Handy shortcut for save
-noremap _e e
+noremap <Leader>e e
 nmap <silent> e :up<CR>
 
 " Put current path in commandline
@@ -130,9 +130,10 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 """ }}}
 """ {{{ Quickfix window
 nmap <silent> <Leader>vp :call Pep8()<CR>
-nmap <silent> <Leader>vc :cclose<CR>
-nmap <silent> <Leader>vn :cnext<CR>
-nmap <silent> <Leader>vN :cprev<CR>
+nnoremap <silent> <leader>q :execute 'vimgrep /'.@/.'/g %'<CR>:bot copen<CR><C-w><C-w>
+nnoremap <silent> Q :bot copen<CR><C-w><C-w>
+nnoremap <silent> ]n :cnext<CR>
+nnoremap <silent> [n :cprev<CR>
 """ }}}
 """ {{{ Remove inconvenient binds
 xmap K k
@@ -246,6 +247,13 @@ set tags+=/usr/local/stl/tags
 set tags+=~/.vim/SRTags
 set tags+=~/.vim/SRSTags
 set tags+=~/.vim/IrrTags
+""" }}}
+""" {{{ EasyMotion
+let g:EasyMotion_leader_key = '_'
+let g:EasyMotion_keys = 'aoeuhtnsAOEUHTNSbcdfgijklmpqrvwxyzBCDFGIJKLMPQRVWXYZ'
+
+nmap _J _j
+nmap _K _k
 """ }}}
 "" }}}
 "" {{{ Vim settings

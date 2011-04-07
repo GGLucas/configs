@@ -1,5 +1,5 @@
 <UserScriptConfig>
-	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" version="" enabled="true" basedir="reddit_keyboard_shortcut" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" version="" enabled="false" basedir="reddit_keyboard_shortcut" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.reddit.com/*</Include>
 		<Include>http://www.reddit.com/r/*</Include>
 		<Exclude>http://www.reddit.com/*/comments/*</Exclude>
@@ -72,5 +72,12 @@
 	</Script>
 	<Script filename="4chan_x_updater.user.js" name="4chan x Updater" namespace="aeosynth" description="Updates threads." version="1.5.2" enabled="true" basedir="4chan_x_updater" modified="1300380103000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/75146.user.js">
 		<Include>http://boards.4chan.org/*/res/*</Include>
+	</Script>
+	<Script filename="reddit_enhancement_suite.user.js" name="Reddit Enhancement Suite" namespace="http://reddit.honestbleeps.com/" description="A suite of tools to enhance reddit..." version="" enabled="true" basedir="reddit_enhancement_suite" modified="1302178957000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js">
+		<Include>http://reddit.honestbleeps.com/*</Include>
+		<Include>http://reddit.com/*</Include>
+		<Include>https://reddit.com/*</Include>
+		<Include>http://*.reddit.com/*</Include>
+		<Include>https://*.reddit.com/*</Include>
 	</Script>
 </UserScriptConfig>
