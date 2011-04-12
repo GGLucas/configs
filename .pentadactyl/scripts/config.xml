@@ -1,10 +1,4 @@
 <UserScriptConfig>
-	<Script filename="reddit_keyboard_shortcut.user.js" name="Reddit keyboard shortcuts" namespace="http://simulacra.in" description="Add some keyboard shortcuts to reddit" version="" enabled="false" basedir="reddit_keyboard_shortcut" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
-		<Include>http://www.reddit.com/*</Include>
-		<Include>http://www.reddit.com/r/*</Include>
-		<Exclude>http://www.reddit.com/*/comments/*</Exclude>
-		<Exclude>http://www.reddit.com/r/*/comments/*</Exclude>
-	</Script>
 	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." version="0.1" enabled="true" basedir="smbc_reader" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>

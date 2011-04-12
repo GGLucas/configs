@@ -40,6 +40,7 @@ humon                       http://feeds.feedburner.com/HumonComics
 gunner                      http://www.rsspect.com/rss/gunner.xml
 hh                          http://hipsterhitler.com/feed/
 mn3                         http://www.menagea3.net/comic.rss
+gnk                         http://www.rsspect.com/rss/gunner.xml
 
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/
@@ -48,7 +49,6 @@ mistakesofyouth-blog        http://analoghousou.com/comments/feed/
 reddit                      http://feeds.feedburner.com/redditblog?format=xml
 xkcd-blag                   http://blag.xkcd.com/feed/
 writequit                   http://feeds.feedburner.com/writequit/feed
-shitmydadsays               http://twitter.com/statuses/user_timeline/62581962.rss
 
 ## UofR
 music                       http://www.reddit.com/r/IntroToMusicTheory/.rss
