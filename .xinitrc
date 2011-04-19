@@ -54,6 +54,12 @@ do
     (sleep 1 ; DISPLAY=$display urxvtc) &
 done;
 
+# Turn off touchpad
+tsy 1
+
+# Start compositing
+xcompmgr -r0 &
+
 # Start WM
 while true;
 do

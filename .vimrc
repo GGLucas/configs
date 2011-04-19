@@ -178,6 +178,14 @@ nmap <silent> <Leader>D :Bclose!<CR>
 """ {{{ Operator-Replace
 map <Leader>_ <Plug>(operator-replace)
 """ }}}
+""" {{{ Latex Suite
+fun! RefreshTex()
+    silent call Tex_CompileLatex()
+    silent !pkill -USR1 xdvi
+    redraw!
+endfun
+nmap <Leader>z :call RefreshTex()<CR>
+""" }}}
 "" }}}
 " }}}
 "" {{{ Configuration
