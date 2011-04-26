@@ -304,3 +304,7 @@ div.message div.message div.message div.message div.message div.message div.mess
 .comment .child {
     border-left: none !important;
 }
+
+.voteWeight {
+    background: none !important;
+}

@@ -144,7 +144,7 @@ alias m='encMount'
 ## start xorg
 x(){ builtin cd ~; exec xinit $@; }
 ## sync music to iriver
-syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/iriver/Music/Anime/; }
+syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/usb/MUSIC/Anime; }
 ## compile & view tex
 re() { texi2pdf $1.tex && zathura $1.pdf; }
 # }}}
@@ -244,7 +244,7 @@ else
     alias un='tar xvf'
 fi
 # }}}
-# {{{ Anigrate watch list
+# {{{ Watch list
 w()   { ani watch: $@; }
 lo()  { ani log: $@; }
 li()  { ani list: $@; }
@@ -253,6 +253,9 @@ an()  { ani list: +w =anime; }
 anh() { ani hist: =anime; }
 tn()  { ani list: +w =tv; }
 tnh() { ani hist: =tv; }
+
+las() { find /data/series -mtime -7 -type d; }
+laa() { find /data/anime -mtime -7 -type d; }
 # }}}
 # {{{ Feed update
 fu()  { feed-update >> ~/.feeds.update; }
