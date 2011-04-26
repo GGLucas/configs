@@ -24,6 +24,9 @@ nmap <Leader>? :call PromptFT(1)<CR>
 
 " Close everything
 nmap ZN :wqa<CR>
+
+" Close the tab
+nmap ZV :tabclose<CR>
 """ }}}
 """ {{{ System bindings
 nmap <Leader>bl :silent !sh -c "ideautom build &"<CR>:redraw!<CR>
@@ -60,8 +63,7 @@ xmap > >gv
 nnoremap Y y$
 
 " Minus to eol, since underscore is bol
-noremap - ^
-noremap _ $
+noremap -- ^
 noremap __ $
 
 " Use ,, for regular , (since it's the leader)
@@ -186,6 +188,17 @@ fun! RefreshTex()
 endfun
 nmap <Leader>z :call RefreshTex()<CR>
 """ }}}
+""" {{{ Git
+nmap <Leader>ga :Git add<Space>
+nmap <silent> <Leader>gr :!sh -c "git pull origin master; read"<CR>:e<CR>
+nmap <silent> <Leader>gp :Git push origin master<CR>
+nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>
+nmap <silent> <Leader>gc :Gcommit -s -a<CR>:redraw!<CR>
+nmap <silent> <Leader>gC :Gcommit -s<CR>:redraw!<CR>
+nmap <silent> <Leader>gs :Gstatus<CR>:redraw!<CR>
+nmap <silent> <Leader>gd :Gdiff<CR>:redraw!<CR>
+nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
+""" }}}
 "" }}}
 " }}}
 "" {{{ Configuration
@@ -262,6 +275,18 @@ let g:EasyMotion_keys = 'aoeuhtnsAOEUHTNSbcdfgijklmpqrvwxyzBCDFGIJKLMPQRVWXYZ'
 
 nmap _J _j
 nmap _K _k
+nmap -w _w
+nmap -W _W
+nmap -f _f
+nmap -F _f
+nmap -t _t
+nmap -T _T
+nmap -h _f
+nmap -H _F
+nmap -b _b
+nmap -B _B
+nmap -e _e
+nmap -E _E
 """ }}}
 "" }}}
 "" {{{ Vim settings
