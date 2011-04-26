@@ -163,6 +163,7 @@ alias gsp='git stash; git svn rebase; git stash pop &> /dev/null; git status -un
 alias gsu='git svn fetch'
 alias gsc='git stash; git svn dcommit; git stash pop &> /dev/null;'
 alias gs='git status -uno'
+alias gst='git status'
 
 # Commit everything or specified path
 c() {
