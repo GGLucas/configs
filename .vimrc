@@ -62,9 +62,9 @@ xmap > >gv
 " Consistency!
 nnoremap Y y$
 
-" Minus to eol, since underscore is bol
-noremap -- ^
-noremap __ $
+" Double dash for end of line, double underscore for beginning
+noremap -- $
+noremap __ ^
 
 " Use ,, for regular , (since it's the leader)
 nnoremap ,, ,
@@ -190,7 +190,7 @@ nmap <Leader>z :call RefreshTex()<CR>
 """ }}}
 """ {{{ Git
 nmap <Leader>ga :Git add<Space>
-nmap <silent> <Leader>gr :!sh -c "git pull origin master; read"<CR>:e<CR>
+nmap <silent> <Leader>gr :!sh -c "git pull origin master; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>
 nmap <silent> <Leader>gc :Gcommit -s -a<CR>:redraw!<CR>
@@ -270,23 +270,13 @@ set tags+=~/.vim/SRSTags
 set tags+=~/.vim/IrrTags
 """ }}}
 """ {{{ EasyMotion
-let g:EasyMotion_leader_key = '_'
+let g:EasyMotion_leader_key = '-'
 let g:EasyMotion_keys = 'aoeuhtnsAOEUHTNSbcdfgijklmpqrvwxyzBCDFGIJKLMPQRVWXYZ'
 
-nmap _J _j
-nmap _K _k
-nmap -w _w
-nmap -W _W
-nmap -f _f
-nmap -F _f
-nmap -t _t
-nmap -T _T
-nmap -h _f
-nmap -H _F
-nmap -b _b
-nmap -B _B
-nmap -e _e
-nmap -E _E
+nmap -J -j
+nmap -K -k
+nmap -h -f
+nmap -H -F
 """ }}}
 "" }}}
 "" {{{ Vim settings
