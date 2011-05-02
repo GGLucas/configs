@@ -186,17 +186,19 @@ fun! RefreshTex()
     silent !pkill -USR1 xdvi
     redraw!
 endfun
+
 nmap <Leader>z :call RefreshTex()<CR>
 """ }}}
 """ {{{ Git
 nmap <Leader>ga :Git add<Space>
 nmap <silent> <Leader>gr :!sh -c "git pull origin master; read -n1"<CR>:e<CR>
+nmap <silent> <Leader>gR :!sh -c "git stash && git pull origin master && git stash pop; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>
 nmap <silent> <Leader>gc :Gcommit -s -a<CR>:redraw!<CR>
 nmap <silent> <Leader>gC :Gcommit -s<CR>:redraw!<CR>
 nmap <silent> <Leader>gs :Gstatus<CR>:redraw!<CR>
-nmap <silent> <Leader>gd :Gdiff<CR>:redraw!<CR>
+nmap <silent> <Leader>gd :Git diff<CR>:redraw!<CR>
 nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 """ }}}
 "" }}}
@@ -444,6 +446,9 @@ autocmd FileType git setlocal nomodeline
 " Files to set default textwidth
 autocmd FileType mail,tex setlocal textwidth=78
 autocmd FileType mail,tex let b:textwidth=78
+
+" No {-expansion in latex
+autocmd FileType tex silent! iunmap {{
 "" }}}
 "" {{{ Filetype highlighting
 " Python keywords
