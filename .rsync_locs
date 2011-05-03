@@ -16,6 +16,9 @@ RSYNC_starruler="$del $exc /data/projects/sr/site/ lucas@glacicle.org:www/glacic
 ## IN2805 project
 RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.org:/srv/git/api/in2805-b.git"
 
+# WelzijnE25
+RSYNC_e25="$exc /data/web/welzijne25/ lucas@glacicle.org:www/welzijne25"
+
 ### Zorgberaad
 ## Zorgberaadmh.nl website
 RSYNC_zorgberaadmh="$del $exc /data/web/zorgberaad/website/_site/ lucas@glacicle.org:www/zorgberaad/website"

@@ -11,3 +11,4 @@ fcgi_start
 fcgi.sock
 fcgi.pid
 *.db
+settings.php

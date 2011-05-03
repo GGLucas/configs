@@ -224,14 +224,14 @@ function! MakeTexFolds(force)
 		\ )
 	" }}}
 	" {{{ items
-	call AddSyntaxFoldItem (
-		\ '^\s*\\item',
-		\ '^\s*\\item\|^\s*\\end{\(enumerate\|itemize\|description\)}',
-		\ 0,
-		\ -1,
-		\ '^\s*\\begin{\(enumerate\|itemize\|description\)}',
-		\ '^\s*\\end{\(enumerate\|itemize\|description\)}'
-		\ )
+	"call AddSyntaxFoldItem (
+		"\ '^\s*\\item',
+		"\ '^\s*\\item\|^\s*\\end{\(enumerate\|itemize\|description\)}',
+		"\ 0,
+		"\ -1,
+		"\ '^\s*\\begin{\(enumerate\|itemize\|description\)}',
+		"\ '^\s*\\end{\(enumerate\|itemize\|description\)}'
+		"\ )
 	" }}}
 	" {{{ subsubsection
 	call AddSyntaxFoldItem (

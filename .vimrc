@@ -180,10 +180,13 @@ nmap <silent> <Leader>D :Bclose!<CR>
 """ {{{ Operator-Replace
 map <Leader>_ <Plug>(operator-replace)
 """ }}}
-""" {{{ Latex Suite
+""" {{{ LateX Suite
 fun! RefreshTex()
+    let dir = getcwd()
+    cd %:p:h
     silent call Tex_CompileLatex()
     silent !pkill -USR1 xdvi
+    exe "cd " . dir
     redraw!
 endfun
 
@@ -280,6 +283,9 @@ nmap -K -k
 nmap -h -f
 nmap -H -F
 """ }}}
+""" {{{ LaTeX Suite
+let g:Tex_FoldedMisc = '<<<'
+""" }}}
 "" }}}
 "" {{{ Vim settings
 """ {{{ General
@@ -307,8 +313,6 @@ filetype on
 filetype plugin on
 filetype indent off
 
-""" }}}
-""" {{{ Mappings
 """ }}}
 """ {{{ Display
 " Characters to use in list mode
