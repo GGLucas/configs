@@ -234,12 +234,12 @@ function! MakeTexFolds(force)
 		"\ )
 	" }}}
 	" {{{ subsubsection
-	call AddSyntaxFoldItem (
-		\ '^\s*\\subsubsection\W',
-		\ '^\s*\\appendix\W\|^\s*\\subsubsection\W\|^\s*\\subsection\W\|^\s*\\section\W\|^\s*%%fakesection\|^\s*\\chapter\W\|^\s*\\begin{slide\|^\s*\\end{document',
-		\ 0,
-		\ -1,
-		\ )
+	"call AddSyntaxFoldItem (
+		"\ '^\s*\\subsubsection\W',
+		"\ '^\s*\\appendix\W\|^\s*\\subsubsection\W\|^\s*\\subsection\W\|^\s*\\section\W\|^\s*%%fakesection\|^\s*\\chapter\W\|^\s*\\begin{slide\|^\s*\\end{document',
+		"\ 0,
+		"\ -1,
+		"\ )
 	" }}}
 	" {{{ subsection
 	call AddSyntaxFoldItem (
