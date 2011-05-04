@@ -99,6 +99,13 @@ nmap . .'[
 nnoremap ysb mZkA {<Esc>jo}<Esc>`Z
 nnoremap dsb mZkA<BS><BS><Esc>jjddk`Z
 
+" Wordwise C-Y
+inoremap <silent> <C-E> <C-C>:let @z = @"<CR>mz
+    \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
+    \:exec (col('.')==col('$')-1 ? 'let @" = @_' : 'normal! yiW')<CR>
+    \`zp:let @" = @z<CR>a
+
+
 " Localization
 nmap <Leader>. :call Localize()<CR>
 nmap <Leader>p :call LocalizeNow()<CR>
