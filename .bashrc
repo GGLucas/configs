@@ -144,7 +144,7 @@ alias m='encMount'
 ## start xorg
 x(){ builtin cd ~; exec xinit $@; }
 ## sync music to iriver
-syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/usb/MUSIC/Anime; }
+syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/sansa/MUSIC/Anime; }
 ## compile & view tex
 re() { texi2pdf $1.tex && zathura $1.pdf; }
 # }}}
@@ -155,6 +155,7 @@ alias aip='git add -i -p'
 alias d='git diff'
 alias p='git push origin master'
 alias pu='git pull origin master'
+alias pb='git pull --rebase origin master'
 alias gpo='git push origin'
 alias gpuo='git pull origin'
 alias gp='git push'

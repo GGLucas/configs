@@ -202,6 +202,7 @@ nmap <Leader>z :call RefreshTex()<CR>
 """ {{{ Git
 nmap <Leader>ga :Git add<Space>
 nmap <silent> <Leader>gr :!sh -c "git pull origin master; read -n1"<CR>:e<CR>
+nmap <silent> <Leader>gw :!sh -c "git pull --rebase origin master; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gR :!sh -c "git stash && git pull origin master && git stash pop; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>

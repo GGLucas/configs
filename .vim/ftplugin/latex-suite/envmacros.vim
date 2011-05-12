@@ -211,7 +211,7 @@ call s:Tex_EnvMacros('ETI', '&Lists.', 'theindex')
 call s:Tex_EnvMacros('ETL', '&Lists.', 'trivlist')
 " }}}
 " Tables {{{
-call s:Tex_SpecialMacros('ETE', '&Tables.', 'table', s:table)
+"call s:Tex_SpecialMacros('ETE', '&Tables.', 'table', s:table)
 call s:Tex_EnvMacros('ETG', '&Tables.', 'tabbing')
 call s:Tex_EnvMacros('',    '&Tables.', 'table*')
 call s:Tex_EnvMacros('',    '&Tables.', 'table2')
