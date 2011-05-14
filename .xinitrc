@@ -39,7 +39,7 @@ hdv &
 wmname LG3D &
 
 # Set keyboard repeat rate
-xset r rate 250 30 &
+xset r rate 180 80 &
 
 # Add local fonts
 xset fp+ /usr/share/fonts/local
