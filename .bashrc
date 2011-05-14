@@ -57,7 +57,7 @@ export BROWSER='fxs'
 
 # History control
 export HISTCONTROL="ignoreboth"
-export HISTFILESIZE=500000
+export HISTFILESIZE=5000000
 export HISTIGNORE="cd:..*:no:na:clear:reset:j *:exit:hc:h:-"
 
 # Check for current bash version
@@ -73,9 +73,13 @@ shopt -s histappend extglob
 # Complete only directories on cd
 complete -d cd
 
-# Don't echo ^C
 if [[ -x /bin/stty ]]; then
+    # Don't echo ^C
     stty -ctlecho
+
+    # Remove shortcuts for start and stop
+    stty stop undef
+    stty start undef
 fi
 
 # Load autojump
@@ -105,6 +109,12 @@ case "$-" in *i*)
     # Background & ignore with <C-b>
     bind '"\C-b":" &> /dev/null &\C-m"'
 
+    # Special backwards search
+    bind '"\C-r":" f\C-m"'
+
+    # Quick directory jump
+    bind '"\C-s":" fcd\C-m"'
+
     # Search
     bind '"\C-w":" | ack "'
 
@@ -114,7 +124,6 @@ case "$-" in *i*)
     bind '"\C-e":"clear \C-m"'
 ;; esac;
 # }}}
-
 # {{{ General shortcuts
 # Ls
 alias ls='ls --color=auto -Fh --group-directories-first'
@@ -130,6 +139,38 @@ alias ts='todo --database ~/.todo.schedule'
 # Editor
 alias v='vim'
 alias vv='sudo vim'
+
+# Backward search
+f() {
+    fname=$(mktemp)
+    fzsel ~/.bash_history $fname
+    cmd=$(cat $fname)
+    rm $fname
+
+    if [[ -n "$cmd" ]]; then
+        echo -e "\e[1;32m$cmd\e[0;37m"
+        eval "$cmd"
+    fi
+}
+
+# Quick folder jump
+fcd() {
+    fname=$(mktemp)
+    fzsel ~/.folder_index $fname
+    dir=$(cat $fname)
+    rm $fname
+
+    if [[ -n "$dir" ]]; then
+        echo -e "\e[1;34m$dir\e[0;37m"
+        cd "$dir"
+    fi
+}
+
+# Refresh quick folder index
+icd() {
+    echo > ~/.folder_index
+    find /data/{anime,series,music} -type d >> ~/.folder_index
+}
 
 # Cowsay
 alias qsay='cowsay -f qb'
