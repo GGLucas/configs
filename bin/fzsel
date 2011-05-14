@@ -9,7 +9,6 @@ import os
 
 MATCHER_ITEMS = 20
 PROMPT = ">"
-MAXLEN = 80
 
 def fuzzymatch(string, target, caseinsensitive=True):
     """ Calculate fuzzy match score between two series. """
@@ -85,6 +84,14 @@ def fuzzyselect(items):
     scroll = 0
     amount = MATCHER_ITEMS
 
+    # Get terminal size
+    import struct
+
+    s = struct.pack("HHHH", 0, 0, 0, 0)
+    fd_stdout = sys.stdout.fileno()
+    x = fcntl.ioctl(fd_stdout, termios.TIOCGWINSZ, s)
+    columns = struct.unpack("HHHH", x)[1]
+
     try:
         tty.setraw(fd)
         filt = ""
@@ -99,8 +106,8 @@ def fuzzyselect(items):
 
             for i, s in enumerate(subset[scroll:scroll + amount]):
                 data = s
-                if len(data) > MAXLEN:
-                    data = data[:MAXLEN-3] + "..."
+                if len(data) > columns:
+                    data = data[:columns-3] + "..."
                 if i == selected - scroll:
                     sys.stdout.write(down + zero + clear +
                                      rev + data + sgr0)
