@@ -131,6 +131,9 @@ alias ll='ls -lah'
 alias no='ls'
 alias na='ll'
 
+# Movement
+alias qmv='qmv -o "spaces,indicator2=│→│    "'
+
 # Devtodo
 alias t='todo'
 alias td='todo --database ~/.todo.daily'
