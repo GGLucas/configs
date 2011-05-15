@@ -206,6 +206,8 @@ nmap <silent> <Leader>gw :!sh -c "git pull --rebase origin master; read -n1"<CR>
 nmap <silent> <Leader>gR :!sh -c "git stash && git pull origin master && git stash pop; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>
+nmap <silent> <Leader>gL :Gitv!<CR>:redraw!<CR>
+vmap <silent> <Leader>gl :Gitv!<CR>:redraw!<CR>
 nmap <silent> <Leader>gc :Gcommit -s -a<CR>:redraw!<CR>
 nmap <silent> <Leader>gC :Gcommit -s<CR>:redraw!<CR>
 nmap <silent> <Leader>gs :Gstatus<CR>:redraw!<CR>
