@@ -11,16 +11,8 @@
 let mapleader=","
 """ }}}
 """ {{{ File actions
-" Handy shortcut for save
-noremap <Leader>e e
-nmap <silent> e :up<CR>
-
-" Put current path in commandline
-cmap ∩ <C-R>=expand("%:h")."/"<CR>
-
-" Prompt for filetype to set
-nmap <Leader>@ :call PromptFT(0)<CR>
-nmap <Leader>? :call PromptFT(1)<CR>
+" Save file
+nmap ƒ :up<CR>
 
 " Close everything
 nmap ZN :wqa<CR>
@@ -28,19 +20,11 @@ nmap ZN :wqa<CR>
 " Close the tab
 nmap ZV :tabclose<CR>
 """ }}}
-""" {{{ System bindings
-nmap <Leader>bl :silent !sh -c "ideautom build &"<CR>:redraw!<CR>
-nmap <Leader>br :silent !sh -c "ideautom run &"<CR>:redraw!<CR>
-""" }}}
 """ {{{ Window navigation
 nmap <Left> <C-w>h
 nmap <Down> <C-w>j
 nmap <Up> <C-w>k
 nmap <Right> <C-w>l
-nmap ☆ <C-w>w
-nmap ▫ <C-w>W
-nmap ,sp :vsp<CR>
-nmap ,on :on<CR>
 """ }}}
 """ {{{ Buffer navigation
 nmap <silent> ∩ :A<CR>
@@ -76,18 +60,6 @@ nnoremap <C-y> 3<C-y>
 " Clear screen and remove highlighting
 nnoremap <silent> <C-l> :nohl<CR>
 
-" Camel case word edit
-nmap <silent> <Leader>ciw ci,w
-
-" Toggle textwidth
-nmap <Leader>/ :call TextwidthToggle()<CR>
-
-" Toggle line numbers
-nmap <Leader>c :call NuToggle()<CR>
-
-" For deleting extra delimiters
-imap œ <Del>
-
 " Swap ` and '
 noremap ' `
 noremap ` '
@@ -101,36 +73,9 @@ nnoremap dsb mZkA<BS><BS><Esc>jjddk`Z
 
 " Wordwise C-Y
 inoremap <silent> <C-E> <C-C>:let @z = @"<CR>mz
-    \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
-    \:exec (col('.')==col('$')-1 ? 'let @" = @_' : 'normal! yiW')<CR>
-    \`zp:let @" = @z<CR>a
-
-
-" Localization
-nmap <Leader>. :call Localize()<CR>
-nmap <Leader>p :call LocalizeNow()<CR>
-nmap <Leader>u <Right>o<Esc>"zpds"bx<Left>
-
-fun! Localize()
-    let name = input("Localize var: ", "")
-    norm "zdia
-    exe "norm ilocalize(\"#" . name . "\")"
-    let @z = "#".name.": ".@z
-    norm '[
-endfun
-
-fun! LocalizeNow()
-    let name = input("Localize var: ", "")
-    norm "zdia
-    exe "norm ilocalize_now(\"#" . name . "\")"
-    let @z = "#".name.": ".@z
-    norm '[
-endfun
-
-" Expand braces
-"inoremap {{ {
-"inoremap {<CR> {<CR><CR>}<Up><Tab>
-
+\:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
+\:exec (col('.')==col('$')-1 ? 'let @" = @_' : 'normal! yiW')<CR>
+\`zp:let @" = @z<CR>a
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
@@ -139,10 +84,8 @@ nmap <Leader>sn :set spell spelllang=nl<CR>
 """ }}}
 """ {{{ Quickfix window
 nmap <silent> <Leader>vp :call Pep8()<CR>
-nnoremap <silent> <leader>q :execute 'vimgrep /'.@/.'/g %'<CR>:bot copen<CR><C-w><C-w>
-nnoremap <silent> Q :bot copen<CR><C-w><C-w>
-nnoremap <silent> ]n :cnext<CR>
-nnoremap <silent> [n :cprev<CR>
+nnoremap <silent> ]t :cnext<CR>
+nnoremap <silent> [t :cprev<CR>
 """ }}}
 """ {{{ Remove inconvenient binds
 xmap K k
@@ -218,6 +161,13 @@ nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 " }}}
 "" {{{ Configuration
 "" {{{ Plugin configuration
+""" {{{ Pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+""" }}}
+""" {{{ Supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
+""" }}}
 """ {{{ NERD Commenter
 let NERDDefaultNesting = 1
 """ }}}
@@ -244,45 +194,21 @@ let g:CommandTScanDotDirectories = 1
 """ {{{ snipMate
 let g:snips_author = "Lucas de Vries"
 let g:snips_mail = "lucas@glacicle.org"
-""" }}}
+let g:snippets_dir = "~/.vim/snippets"
 """ {{{ delimitMate
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_balance_matchpairs = 1
-
-inoremap {{ {
-""" }}}
-""" {{{ superTab
-let g:SuperTabDefaultCompletionType = "<C-n>"
 """ }}}
 """ {{{ ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
 let g:user_zen_leader_key = '<C-t>'
 """ }}}
-""" {{{ Don't load ruby
+""" {{{ Don't load ruby if we don't have it
 if !has('ruby')
     let g:command_t_loaded = 1
     let g:loaded_lustyexplorer = 1
 endif
-""" }}}
-""" {{{ EchoFunc
-let g:EchoFuncKeyNext = "<C-t>"
-""" }}}
-""" {{{ OmniCppComplete
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-set completeopt=menu,menuone
-let OmniCpp_MayCompleteDot = 1
-let OmniCpp_MayCompleteArrow = 1
-let OmniCpp_MayCompleteScope = 1
-let OmniCpp_SelectFirstItem = 0
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_ShowPrototypeInAbbr = 1
-let OmniCpp_DefaultNamespaces   = ["std", "_GLIBCXX_STD"]
-map <C-F12> :!ctags --langmap=c++:+.as -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-set tags+=/usr/local/stl/tags
-set tags+=~/.vim/SRTags
-set tags+=~/.vim/SRSTags
-set tags+=~/.vim/IrrTags
 """ }}}
 """ {{{ EasyMotion
 let g:EasyMotion_leader_key = '-'
@@ -292,9 +218,6 @@ nmap -J -j
 nmap -K -k
 nmap -h -f
 nmap -H -F
-""" }}}
-""" {{{ LaTeX Suite
-let g:Tex_FoldedMisc = '<<<'
 """ }}}
 "" }}}
 "" {{{ Vim settings
@@ -321,7 +244,7 @@ set maxmempattern=5000
 " Don't use filetype indent
 filetype on
 filetype plugin on
-filetype indent off
+filetype indent on
 
 """ }}}
 """ {{{ Display
@@ -406,6 +329,9 @@ set backspace=indent,eol,start
 
 " Options for formatting blocks (gq)
 set formatoptions=tcn12
+
+" Don't display a user completion scratch window
+set completeopt=menu,menuone
 """ }}}
 """ {{{ Colors
 " Color Schemes
@@ -421,25 +347,7 @@ endif
 "" }}}
 " }}}
 " {{{ Autocommands
-"" {{{ Filetype filters
-" Read-only .doc through antiword
-autocmd BufReadPre *.doc silent set ro
-autocmd BufReadPost *.doc silent %!antiword "%"
-
-" Read-only odt/odp through odt2txt
-autocmd BufReadPre *.odt,*.odp silent set ro
-autocmd BufReadPost *.odt,*.odp silent %!odt2txt "%"
-
-" Read-only pdf through pdftotext
-autocmd BufReadPre *.pdf silent set ro
-autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk -layout -q -eol unix "%" - | fmt -w78
-
-" Read-only rtf through unrtf
-autocmd BufReadPre *.rtf silent set ro
-autocmd BufReadPost *.rtf silent %!unrtf --text
-"" }}}
 "" {{{ Filetype detection
-autocmd BufReadPre Cakefile silent set filetype=yaml
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
 autocmd BufNewFile,BufRead *.tex set ft=tex
 autocmd BufNewFile,BufRead *.go set ft=go
@@ -448,9 +356,9 @@ autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 "" }}}
 "" {{{ Filetype settings
 " Files to indent with two spaces
-autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal ts=2 sts=2 sw=2
 
-" Set correct folding for C
+" cindent
 autocmd FileType c,cpp setlocal cindent
 
 " Git: Don't jump to last position, no modeline
@@ -460,29 +368,19 @@ autocmd FileType git setlocal nomodeline
 " Files to set default textwidth
 autocmd FileType mail,tex setlocal textwidth=78
 autocmd FileType mail,tex let b:textwidth=78
-
-" No {-expansion in latex
-autocmd FileType tex silent! iunmap {{
 "" }}}
 "" {{{ Filetype highlighting
 " Python keywords
 autocmd FileType python syn keyword Identifier self
 autocmd FileType python syn keyword Type True False None
 
-" Javascript let is a keyword
-autocmd FileType javascript syn keyword javascriptIdentifier "let"
-
-" TeX zone
-autocmd FileType tex,plaintex hi link TexZone Comment
-
 " Mail header highlighting
 autocmd FileType mail hi link mailHeader Comment
 autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
+" Project-specifics
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
-"autocmd BufReadPost /mnt/starruler/*.cpp let b:SuperTabDefaultCompletionType = "<c-x><c-o>"
-autocmd BufReadPost /data/projects/fray/* set noet inc= lcs=tab:\ \ ,trail:·
 autocmd BufReadPost /mnt/starruler/*.txt set ft=starruler
 
 " Rainbow Parenthesis
@@ -497,31 +395,6 @@ autocmd BufReadPost *
 "" }}}
 " }}}
 " {{{ Functions
-" {{{ TextwidthToggle(): Change textwidth, 0<->78
-function! TextwidthToggle()
-    if b:textwidth == 0
-        let b:textwidth = 78
-        setlocal textwidth=78
-    else
-        let b:textwidth = 0
-        setlocal textwidth=0
-    endif
-
-    set textwidth?
-endfunction
-" }}}
-" {{{ NuToggle(): Toggle between abs/rel nu
-let g:nu = 0
-function! NuToggle()
-    if g:nu == 0
-        let g:nu = 1
-        set rnu
-    else
-        let g:nu = 0
-        set nu
-    endif
-endfunction
-" }}}
 "" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
     let wnr = bufwinnr("NERD_tree_1")
@@ -532,33 +405,4 @@ function! TreeOpenFocus()
     endif
 endfunction
 "" }}}
-" {{{ PromptFT(): Prompt for a new filetype to set
-function! PromptFT(show)
-    let def = ""
-
-    if a:show == 1
-        let def = &ft
-    endif
-
-    let ft = input("Filetype: ", def)
-    if ft != ""
-        exec "setlocal ft=".ft
-        Rainbow
-    end
-endfunction
-" }}}
-" {{{ TwiddleCase(): Switch case between upper/lower and title.
-function! TwiddleCase(str)
-  if a:str ==# toupper(a:str)
-    let result = tolower(a:str)
-  elseif a:str ==# tolower(a:str)
-    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-  else
-    let result = toupper(a:str)
-  endif
-  return result
-endfunction
-vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
-" }}}
-
 " vim:fdm=marker

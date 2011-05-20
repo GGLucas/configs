@@ -110,6 +110,7 @@ case "$-" in *i*)
     bind '"\C-b":" &> /dev/null &\C-m"'
 
     # Special backwards search
+    bind '\C-f: reverse-search-history'
     bind '"\C-r":" f\C-m"'
 
     # Quick directory jump
@@ -209,6 +210,7 @@ alias gsu='git svn fetch'
 alias gsc='git stash; git svn dcommit; git stash pop &> /dev/null;'
 alias gs='git status -uno'
 alias gst='git status'
+alias gpm='git submodule foreach git pull origin master'
 
 # Commit everything or specified path
 c() {
