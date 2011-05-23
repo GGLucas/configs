@@ -190,6 +190,8 @@ let python_highlight_space_errors = 0
 let g:CommandTMaxHeight = 10
 let g:CommandTAlwaysShowDotFiles = 1
 let g:CommandTScanDotDirectories = 1
+let g:CommandTSelectPrevMap = ['<C-p>']
+let g:CommandTSelectNextMap = ['<Tab>', '<C-n>']
 """ }}}
 """ {{{ snipMate
 let g:snips_author = "Lucas de Vries"
