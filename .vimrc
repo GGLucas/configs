@@ -158,6 +158,10 @@ nmap <silent> <Leader>gd :Git diff<CR>:redraw!<CR>
 nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 """ }}}
 "" }}}
+"" {{{ Text objects
+vnoremap iP :<C-U>silent! normal! }kV{jj<CR>
+omap iP :normal ViP<CR>
+"" }}}
 " }}}
 "" {{{ Configuration
 "" {{{ Plugin configuration
