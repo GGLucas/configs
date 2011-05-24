@@ -12,7 +12,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Save file
-nmap ƒ :up<CR>
+nmap ƒ <silent> :up<CR>
 
 " Close everything
 nmap ZN :wqa<CR>
@@ -359,6 +359,7 @@ autocmd BufNewFile,BufRead *.tex set ft=tex
 autocmd BufNewFile,BufRead *.go set ft=go
 autocmd BufNewFile,BufRead *.as set ft=cpp
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
+autocmd BufNewFile,BufRead *.ftl set ft=html
 "" }}}
 "" {{{ Filetype settings
 " Files to indent with two spaces
