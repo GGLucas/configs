@@ -12,7 +12,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Save file
-nmap ƒ <silent> :up<CR>
+nmap ƒ :up<CR>
 
 " Close everything
 nmap ZN :wqa<CR>
