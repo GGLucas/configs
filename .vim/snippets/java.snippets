@@ -3,6 +3,23 @@ snippet main
 	{
 		${1:/* code */}
 	}
+snippet var
+	/** ${2:description} */
+	private ${3:String} ${1:var};
+	/**
+	 * Get the ${4:class}'s $1.
+	 * @return The $1.
+	 */
+	public $3 get${5:var_proper}() {
+		return $1;
+	}
+	/**
+	 * Set the $4's $1.
+	 * @param $1 The new $1.
+	 */
+	public void set$5($3 $1) {
+		this.$1 = $1;
+	}
 snippet pu
 	public
 snippet po
