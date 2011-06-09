@@ -16,7 +16,7 @@ oots                        http://www.giantitp.com/comics/oots.rss
 erfworld                    http://www.erfworld.com/feed/
 vgcats                      http://www.vgcats.com/vgcats.rdf.xml
 supereffective              http://www.vgcats.com/super/se.rdf.xml
-sinfest                     http://www.sinfest.net/rss.php
+#sinfest                     http://www.sinfest.net/rss.php
 mistakesofyouth             http://mistakesofyouth.com/feed/
 cynh                        http://feedproxy.google.com/Explosm
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml

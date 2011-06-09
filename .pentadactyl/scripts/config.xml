@@ -15,41 +15,6 @@
 		<Include>http://www.reddit.com/*</Include>
 		<Include>http://reddit.com/*</Include>
 	</Script>
-	<Script filename="forum_pornifier.user.js" name="Forum Pornifier" namespace="userscripts.org" description="Make image boards easier to navigate" version="1.1.2" enabled="true" basedir="forum_pornifier" modified="1298334146000" dependhash="0c051404f9e13f6cb9e7355dd3baa5cd98222899" installurl="http://userscripts.org/scripts/source/55900.user.js">
-		<Include>http://*exposedforums.com/*</Include>
-		<Include>http://exposedforums.com/*</Include>
-		<Include>http://*thenudeboard.com*</Include>
-		<Include>http://thenudeboard.com*</Include>
-		<Include>http://anonib.com/*/*</Include>
-		<Include>http://userscripts.org/scripts/*/55900</Include>
-		<Include>*.linkbucks.com*</Include>
-		<Include>http://*freean.us*</Include>
-		<Include>http://www.facialforum.net/*</Include>
-		<Include>http://facialforum.net/*</Include>
-		<Include>http://motherless.com/*</Include>
-		<Include>http://www.motherless.com/*</Include>
-		<Include>http://*livejasmin.com/*</Include>
-		<Include>http://http://forum.xnxx.com/*</Include>
-		<Include>http://*.imagefap.com/gallery*</Include>
-		<Include>http://www.imagefap.com/usergallery.php*</Include>
-		<Include>http://imagefap.com/gallery*</Include>
-		<Include>http://imagefap.com/pics*</Include>
-		<Include>http://www.imagefap.com/pics*</Include>
-		<Include>http://www.camwins.com/video*</Include>
-		<Include>http://camwins.com/video*</Include>
-		<Include>http://www.camwins.com/albums*</Include>
-		<Include>http://www.snuska.com/index.php</Include>
-		<Include>http://www.snuska.com/f*</Include>
-		<Include>http://snuska.com/f*</Include>
-		<Include>http://forum.oneclickchicks.com/*</Include>
-		<Include>http://www.xtube.com/watch.php*</Include>
-		<Include>http://xtube.com/watch.php*</Include>
-		<Include>http://*.xtube.com/watch.php?*</Include>
-		<Include>http://www.beefjerkyreview.com/</Include>
-		<Include>http://www.rhyzzy.com/*/*</Include>
-		<Exclude>*www.linkbucks.com*</Exclude>
-		<Require filename="gm_config.js"/>
-	</Script>
 	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." version="" enabled="true" basedir="dinosaur_comics_extra_te" modified="1300205654000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/53688.user.js">
 		<Include>http://qwantz.com/index.php</Include>
 		<Include>http://qwantz.com/index.php?comic=*</Include>
@@ -64,14 +29,15 @@
 		<Exclude>http://www.facebook.com/plugins/like.php*</Exclude>
 		<Exclude>http://api.tweetmeme.com/button.js*</Exclude>
 	</Script>
-	<Script filename="4chan_x_updater.user.js" name="4chan x Updater" namespace="aeosynth" description="Updates threads." version="1.5.2" enabled="true" basedir="4chan_x_updater" modified="1300380103000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/75146.user.js">
-		<Include>http://boards.4chan.org/*/res/*</Include>
-	</Script>
 	<Script filename="reddit_enhancement_suite.user.js" name="Reddit Enhancement Suite" namespace="http://reddit.honestbleeps.com/" description="A suite of tools to enhance reddit..." version="" enabled="true" basedir="reddit_enhancement_suite" modified="1302178957000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js">
 		<Include>http://reddit.honestbleeps.com/*</Include>
 		<Include>http://reddit.com/*</Include>
 		<Include>https://reddit.com/*</Include>
 		<Include>http://*.reddit.com/*</Include>
 		<Include>https://*.reddit.com/*</Include>
+	</Script>
+	<Script filename="4chan_x.user.js" name="4chan x" namespace="aeosynth" description="Adds various features." version="2.10.0" enabled="true" basedir="4chan_x" modified="1306699346000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/51412.user.js">
+		<Include>http://boards.4chan.org/*</Include>
+		<Include>http://sys.4chan.org/*</Include>
 	</Script>
 </UserScriptConfig>
