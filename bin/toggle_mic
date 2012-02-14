@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Figure out if we're muted
-(amixer sget Capture | grep "\[on\]") &> /dev/null
+(amixer -c AK5370 sget Mic | grep "\[on\]") &> /dev/null
+#(amixer sget Capture | grep "\[on\]") &> /dev/null
 hadmic=$?
 
 # Toggle
@@ -18,12 +19,16 @@ if (($hadmic != 0)); then
         rm -f /tmp/hadmusic
     fi;
 
-    amixer set Capture toggle
+    amixer -c AK5370 set Mic toggle
+    xset led 3
+    #amixer set Capture toggle
 else
     if [[ -e "/tmp/hadmusic" ]]; then
         echo "Had Music"
         rm -f /tmp/hadmusic
         mpc play
     fi;
-    amixer set Capture toggle
+    amixer -c AK5370 set Mic toggle
+    xset -led 3
+    #amixer set Capture toggle
 fi;

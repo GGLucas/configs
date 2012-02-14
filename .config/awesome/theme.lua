@@ -1,5 +1,8 @@
 theme = {}
 
+--Wallpaper
+theme.wallpaper_cmd = {}
+
 -- Background
 theme.bg_normal = "#444444"
 theme.bg_focus = "#285577"

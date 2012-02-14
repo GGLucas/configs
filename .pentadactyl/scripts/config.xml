@@ -1,27 +1,27 @@
 <UserScriptConfig>
-	<Script filename="smbc_reader.user.js" name="SMBC Reader" namespace="#aVg" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." version="0.1" enabled="true" basedir="smbc_reader" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script basedir="smbc_reader" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="true" filename="smbc_reader.user.js" installTime="1329051851433" lastUpdateCheck="1287582871000" modified="1287582871000" name="SMBC Reader" namespace="#aVg" runAt="document-end" updateAvailable="false" version="0.1">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>
-	<Script filename="xkcd_fan_keyboard_shortc.user.js" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" version="0.1.5" enabled="true" basedir="xkcd_fan_keyboard_shortc" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script basedir="xkcd_fan_keyboard_shortc" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" enabled="true" filename="xkcd_fan_keyboard_shortc.user.js" installTime="1329051851435" lastUpdateCheck="1287582871000" modified="1287582871000" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" runAt="document-end" updateAvailable="false" version="0.1.5">
 		<Include>http://*xkcd.com/*</Include>
 	</Script>
-	<Script filename="mangafox3_fit_image.user.js" name="Mangafox3 Fit Image" namespace="Knace" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" version="4.2" enabled="true" basedir="mangafox3_fit_image" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script basedir="mangafox3_fit_image" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" enabled="true" filename="mangafox3_fit_image.user.js" installTime="1329051851435" lastUpdateCheck="1287582871000" modified="1287582871000" name="Mangafox3 Fit Image" namespace="Knace" runAt="document-end" updateAvailable="false" version="4.2">
 		<Include>http://www.mangafox.com/*</Include>
 	</Script>
-	<Script filename="reddit_username_colorize.user.js" name="Reddit Username Colorizer" namespace="userscripts.org" description="Colorizes usernames on reddit comments for easy recognition." version="" enabled="true" basedir="reddit_username_colorize" modified="1287582871000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script basedir="reddit_username_colorize" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" filename="reddit_username_colorize.user.js" installTime="1329051851436" lastUpdateCheck="1287582871000" modified="1287582871000" name="Reddit Username Colorizer" namespace="userscripts.org" runAt="document-end" updateAvailable="false" version="">
 		<Include>http://www.reddit.com/*</Include>
 	</Script>
-	<Script filename="reddit_noclick.user.js" name="Reddit NoClick" namespace="akjdfkjs" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" version="" enabled="true" basedir="reddit_noclick" modified="1290349901000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709">
+	<Script basedir="reddit_noclick" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" enabled="true" filename="reddit_noclick.user.js" installTime="1329051851436" lastUpdateCheck="1290349901000" modified="1290349901000" name="Reddit NoClick" namespace="akjdfkjs" runAt="document-end" updateAvailable="false" version="">
 		<Include>http://www.reddit.com/*</Include>
 		<Include>http://reddit.com/*</Include>
 	</Script>
-	<Script filename="dinosaur_comics_extra_te.user.js" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" description="Displays extra text on dinosaur comics pages." version="" enabled="true" basedir="dinosaur_comics_extra_te" modified="1300205654000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/53688.user.js">
+	<Script basedir="dinosaur_comics_extra_te" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Displays extra text on dinosaur comics pages." enabled="true" filename="dinosaur_comics_extra_te.user.js" installTime="1329051851439" lastUpdateCheck="1300205654000" modified="1300205654000" name="Dinosaur Comics extra text" namespace="http://miff.furopolis.org/" runAt="document-end" updateAvailable="false" version="" installurl="http://userscripts.org/scripts/source/53688.user.js" updateurl="http://userscripts.org/scripts/source/53688.meta.js">
 		<Include>http://qwantz.com/index.php</Include>
 		<Include>http://qwantz.com/index.php?comic=*</Include>
 		<Include>http://www.qwantz.com/index.php</Include>
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
 	</Script>
-	<Script filename="autopagerize.user.js" name="AutoPagerize" namespace="http://swdyh.yu.to/" description="loading next page and inserting into current page." version="" enabled="true" basedir="autopagerize" modified="1300376680000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/8551.user.js">
+	<Script basedir="autopagerize" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="loading next page and inserting into current page." enabled="true" filename="autopagerize.user.js" installTime="1329051851439" lastUpdateCheck="1300376680000" modified="1300376680000" name="AutoPagerize" namespace="http://swdyh.yu.to/" runAt="document-end" updateAvailable="false" version="" installurl="http://userscripts.org/scripts/source/8551.user.js" updateurl="http://userscripts.org/scripts/source/8551.meta.js">
 		<Include>http://*</Include>
 		<Include>https://*</Include>
 		<Exclude>https://mail.google.com/*</Exclude>
@@ -29,14 +29,17 @@
 		<Exclude>http://www.facebook.com/plugins/like.php*</Exclude>
 		<Exclude>http://api.tweetmeme.com/button.js*</Exclude>
 	</Script>
-	<Script filename="reddit_enhancement_suite.user.js" name="Reddit Enhancement Suite" namespace="http://reddit.honestbleeps.com/" description="A suite of tools to enhance reddit..." version="" enabled="true" basedir="reddit_enhancement_suite" modified="1302178957000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js">
+	<Script basedir="reddit_enhancement_suite" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="A suite of tools to enhance reddit..." enabled="true" filename="reddit_enhancement_suite.user.js" installTime="1329051851440" lastUpdateCheck="1302178957000" modified="1302178957000" name="Reddit Enhancement Suite" namespace="http://reddit.honestbleeps.com/" runAt="document-end" updateAvailable="false" version="" installurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js" updateurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js">
 		<Include>http://reddit.honestbleeps.com/*</Include>
 		<Include>http://reddit.com/*</Include>
 		<Include>https://reddit.com/*</Include>
 		<Include>http://*.reddit.com/*</Include>
 		<Include>https://*.reddit.com/*</Include>
 	</Script>
-	<Script filename="4chan_x.user.js" name="4chan x" namespace="aeosynth" description="Adds various features." version="2.10.0" enabled="true" basedir="4chan_x" modified="1306699346000" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" installurl="http://userscripts.org/scripts/source/51412.user.js">
+	<Script basedir="tex_the_world" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="TeX the world" enabled="true" filename="tex_the_world.user.js" installTime="1329051851443" lastUpdateCheck="1314114519000" modified="1314114519000" name="TeX the world" namespace="http://thewe.net/tex" runAt="document-end" updateAvailable="false" version="" installurl="https://www.userscripts.org/scripts/source/92758.user.js" updateurl="https://www.userscripts.org/scripts/source/92758.user.js">
+		<Include>*</Include>
+	</Script>
+	<Script basedir="4chan_y" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Adds various features." enabled="true" filename="4chan_y.user.js" installTime="1329051851444" lastUpdateCheck="1316035753000" modified="1316035753000" name="4chan Y" namespace="Anonymous" runAt="document-end" updateAvailable="false" version="11.09.14" installurl="https://www.userscripts.org/scripts/source/108985.user.js" updateurl="https://www.userscripts.org/scripts/source/108985.user.js">
 		<Include>http://boards.4chan.org/*</Include>
 		<Include>http://sys.4chan.org/*</Include>
 	</Script>

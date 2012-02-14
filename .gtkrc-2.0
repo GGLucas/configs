@@ -10,6 +10,8 @@ widget_class "*" style "user-font"
 #gtk-font-name="Terminus 9"
 gtk-font-name="Bitstream Vera Sans 8"
 
+gtk-theme-name = "Adapted Glossy"
+
 gtk-icon-theme-name = "Tango"
 
 gtk-toolbar-style = GTK_TOOLBAR_BOTH_HORIZ

@@ -11,6 +11,7 @@ set ds=google
 
 " Default GUI options
 set go=sC
+set nofs
 
 " Don't automatically expand completion
 set autocomplete=
@@ -23,6 +24,9 @@ set editor=g
 
 " Homerow hints
 set hintkeys="aoeuhtns"
+
+" No smooth scrolling
+set scs=1 sct=0
 
 " Leader
 set mapleader=","
@@ -81,6 +85,11 @@ noremap ;s g;b
 noremap ;t ;y
 noremap ;n ;i
 noremap ;N ;I
+
+nmap <Down> r
+nmap <Left> v
+nmap <Right> w
+nmap <Up> d
 
 " Remove tabs
 nmap <silent> <leader>D :removetabsright<CR>

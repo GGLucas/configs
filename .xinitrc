@@ -50,6 +50,9 @@ do
     # Set background color to gray
     DISPLAY=$display xsetroot -gray &
 
+    # Set mouse speed
+    DISPLAY=$display xset m 1.5 1
+
     # Start a term
     (sleep 1 ; DISPLAY=$display urxvtc) &
 done;

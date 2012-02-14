@@ -105,6 +105,8 @@ xmap ↑ <Plug>VisualBisectUp
 xmap ← <Plug>VisualBisectLeft
 xmap → <Plug>VisualBisectRight
 xmap Æ <Plug>VisualStopBisect
+
+let g:bisect_disable_paging = 1
 """ }}}
 """ {{{ Command-T
 nmap <silent> <Leader>t :CommandT<CR>
@@ -143,18 +145,21 @@ endfun
 nmap <Leader>z :call RefreshTex()<CR>
 """ }}}
 """ {{{ Git
-nmap <Leader>ga :Git add<Space>
-nmap <silent> <Leader>gr :!sh -c "git pull origin master; read -n1"<CR>:e<CR>
+nmap <Leader>gA :Git add<Space>
+nmap <Leader>ga :Git add %<CR>
+nmap <silent> <Leader>gsu :!sh -c "git stash; git svn rebase; git stash pop &> /dev/null; git status -uno; read -n1"<CR>:e<CR>
+nmap <silent> <Leader>gsp :!sh -c "git stash; git svn dcommit; git stash pop &> /dev/null; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gw :!sh -c "git pull --rebase origin master; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gR :!sh -c "git stash && git pull origin master && git stash pop; read -n1"<CR>:e<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gl :Gitv<CR>:redraw!<CR>
 nmap <silent> <Leader>gL :Gitv!<CR>:redraw!<CR>
 vmap <silent> <Leader>gl :Gitv!<CR>:redraw!<CR>
-nmap <silent> <Leader>gc :Gcommit -s -a<CR>:redraw!<CR>
-nmap <silent> <Leader>gC :Gcommit -s<CR>:redraw!<CR>
-nmap <silent> <Leader>gs :Gstatus<CR>:redraw!<CR>
+nmap <silent> <Leader>gc :Gcommit -a<CR>:redraw!<CR>
+nmap <silent> <Leader>gC :Gcommit <CR>:redraw!<CR>
+nmap <silent> <Leader>gS :Gstatus<CR>:redraw!<CR>
 nmap <silent> <Leader>gd :Git diff<CR>:redraw!<CR>
+nmap <silent> <Leader>gD :Git diff --cached<CR>:redraw!<CR>
 nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 """ }}}
 "" }}}
@@ -242,7 +247,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set viminfo='100,f1,<50,:50,/50,h,!
 
 " File patterns to ignore in completions
-set wildignore=*.o,*.pyc,*.pyo,.git,.svn
+set wildignore=*.o,*.d,*.pyc,*.pyo,.git,.svn
 
 " Allow more memory
 set maxmempattern=5000
@@ -387,8 +392,11 @@ autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
 " Project-specifics
+autocmd BufReadPost /data/projects/sr2/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
+autocmd BufReadPost /data/projects/sr2/* syn keyword cRepeat foreach
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
-autocmd BufReadPost /mnt/starruler/*.txt set ft=starruler
+autocmd BufReadPost /mnt/starruler/Game Data/*.txt set ft=starruler
+autocmd BufReadPost /mnt/starruler/Locales/*.txt set ft=defs
 
 " Rainbow Parenthesis
 command Rainbow so ~/.vim/plugin/RainbowParenthsis.vim

@@ -1,6 +1,8 @@
 #!/bin/bash
-fxs "http://forums.somethingawful.com/showthread.php?threadid=3301744&userid=0&perpage=40&pagenumber=58"
-fxs "http://forums.penny-arcade.com/showthread.php?t=125522&page=35"
-fxs "http://www.facepunch.com/showthread.php?t=933349&page=61"
+fxs "http://forums.somethingawful.com/showthread.php?threadid=3301744&userid=0&perpage=40&pagenumber=65"
+fxs "http://forums.penny-arcade.com/discussion/125522/star-ruler-indie-4x-game-of-greatness-signs-point-to-yes./p28"
+fxs "http://www.facepunch.com/showthread.php?t=933349&page=75"
 fxs "http://forums.steampowered.com/forums/forumdisplay.php?f=979"
-fxs "http://www.moddb.com/games/star-ruler"
+#fxs "http://www.moddb.com/games/star-ruler"
+fxs "http://www.bay12forums.com/smf/index.php?topic=48969.720"
+#fxs "http://www.bay12forums.com/smf/index.php?topic=87470.0"

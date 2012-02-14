@@ -134,7 +134,7 @@ div.expando-button.video:before {
 .footer-parent, #sr-header-area, .share, .report-button, .hide-button, .save-button,
 .sidebox.submit, #search, .sidecontentbox, .titlebox .usertext-body, .titlebox .bottom,
 .titlebox h1, .titlebox .option, .titlebox .number, .titlebox .word, .sidebox.create,
-#ad-frame, .leavecontributor-button {
+#ad-frame, .leavecontributor-button, #header-img, #censorshipbar {
     display: none !important;
 }
 

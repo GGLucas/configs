@@ -925,7 +925,12 @@ awful.rules.rules = {
     },
 
     {
-        rule = { class = "Boecks", },
+        rule = { name = "Star Ruler 2", },
+        properties = { floating = true, },
+    },
+
+    {
+        rule = { class = "skype", },
         properties = { floating = true, },
     },
 }

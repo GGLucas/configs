@@ -189,9 +189,9 @@ alias m='encMount'
 ## start xorg
 x(){ builtin cd ~; exec xinit $@; }
 ## sync music to iriver
-syncm() { sudo rsync -vhru --progress /data/music/Anime/ /mnt/sansa/MUSIC/Anime; }
+syncm() { sudo rsync -vhru --progress --ignore-existing /data/music/Anime/ /mnt/sansa/MUSIC/Anime; }
 ## compile & view tex
-re() { texi2pdf $1.tex && zathura $1.pdf; }
+re() { texi2pdf $1.tex && apvlv $1.pdf; }
 # }}}
 # {{{ Git shortcuts
 alias a='git add'
@@ -211,6 +211,9 @@ alias gsc='git stash; git svn dcommit; git stash pop &> /dev/null;'
 alias gs='git status -uno'
 alias gst='git status'
 alias gpm='git submodule foreach git pull origin master'
+alias sd='svn diff | vim -'
+alias spu='svn up'
+alias sp='svn ci'
 
 # Commit everything or specified path
 c() {
