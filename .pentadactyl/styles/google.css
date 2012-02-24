@@ -1,15 +1,88 @@
-#gbar, #guser,
-#prs, #logo,
-#mbEnd, .clr, .gbh, .csb,
-.nobr.xsm, .lsb, #leftnav, .mbEnd,
-#mngb, #tsf > div > div > a > img
+body
+{
+    background: #141414 !important;
+}
+
+
+#appbar, #mngb, #leftnav, #bb_pp_tos_ack,
+#botstuff, #fll, .r.inl, .bl, #videobox,
+.nyc_opening .vspii, .nyc_open .vspii, .vspib
 {
     display: none !important;
 }
 
-.gac_od {
-
+#center_col, li.g, #cnt, .ab_center_col, .mw, #rcnt {
+    width: 100% !important;
+    clear: none !important;
 }
+
+#center_col
+{
+    border-left: 0 !important;
+    margin-left: 10px !important;
+}
+
+li.g {
+    padding: 2em 1em !important;
+    border-bottom: 1px solid #343434 !important;
+    margin-bottom: 0 !important;
+}
+
+li.g:nth-child(odd) {
+    background: #0f0f0f !important;
+}
+
+li.g:nth-child(even) {
+    background: #121212 !important;
+}
+
+a
+{
+    color: #608baa !important;
+    text-decoration: none !important;
+}
+
+em, b {
+    color: inherit !important;
+    font-weight: inherit !important;
+}
+
+.st, a, li.g  {
+    font-family: Verdana !important;
+}
+
+.st {
+    color: white !important;
+}
+
+.csb {
+    background: none !important;
+}
+
+#gfn {
+    padding-bottom: 32px;
+}
+
+span.spell {
+    color: white !important;
+}
+
+cite
+{
+    color: #888 !important;
+}
+
+
+/*#gbar, #guser,
+#prs, #logo,
+#mbEnd, .clr, .gbh, .csb,
+.nobr.xsm, .lsb, #leftnav, .mbEnd,
+#mngb, #tsf > div > div > a > img,
+#bb_pp_tos_ack, #appbar, #botstuff, #fll
+{
+    display: none !important;
+}
+
 
 .gac_id {
     border: 1px solid white !important;
@@ -23,15 +96,7 @@
     background: #341434 !important;
 }
 
-span.spell {
-    color: white !important;
-}
 
-#center_col
-{
-    border-left: 0 !important;
-    margin-left: 10px !important;
-}
 
 #sft
 {
@@ -80,16 +145,7 @@ body,
     padding: 0 !important;
 }
 
-a
-{
-    color: #608BCC !important;
-    text-decoration: none !important;
-}
 
-cite
-{
-    color: #888 !important;
-}
 
 li.g
 {
@@ -113,3 +169,4 @@ input, textarea, select
     color: #e0e0e0 !important;
     -moz-appearance: none !important;
 }
+
