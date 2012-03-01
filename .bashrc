@@ -110,8 +110,7 @@ case "$-" in *i*)
     bind '"\C-b":" &> /dev/null &\C-m"'
 
     # Special backwards search
-    bind '\C-f: reverse-search-history'
-    bind '"\C-r":" f\C-m"'
+    bind '\C-r: reverse-search-history'
 
     # Quick directory jump
     bind '"\C-s":" fcd\C-m"'
@@ -321,7 +320,7 @@ dt() { for d in $@; do rc.d $d stop; done; }
 # }}}
 # {{{ Package management helper functions
 # Root where packages are stored
-PACKAGE_ROOT=/mnt/data-5/others/packages
+PACKAGE_ROOT=/mnt/data-6/others/packages
 alias i='makepkg -fi'
 
 # Download package from abs

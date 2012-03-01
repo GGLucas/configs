@@ -21,26 +21,13 @@
 		<Include>http://www.qwantz.com/index.php</Include>
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
 	</Script>
-	<Script basedir="autopagerize" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="loading next page and inserting into current page." enabled="true" filename="autopagerize.user.js" installTime="1329051851439" lastUpdateCheck="1300376680000" modified="1300376680000" name="AutoPagerize" namespace="http://swdyh.yu.to/" runAt="document-end" updateAvailable="false" version="" installurl="http://userscripts.org/scripts/source/8551.user.js" updateurl="http://userscripts.org/scripts/source/8551.meta.js">
-		<Include>http://*</Include>
-		<Include>https://*</Include>
-		<Exclude>https://mail.google.com/*</Exclude>
-		<Exclude>http://b.hatena.ne.jp/*</Exclude>
-		<Exclude>http://www.facebook.com/plugins/like.php*</Exclude>
-		<Exclude>http://api.tweetmeme.com/button.js*</Exclude>
-	</Script>
-	<Script basedir="reddit_enhancement_suite" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="A suite of tools to enhance reddit..." enabled="true" filename="reddit_enhancement_suite.user.js" installTime="1329051851440" lastUpdateCheck="1302178957000" modified="1302178957000" name="Reddit Enhancement Suite" namespace="http://reddit.honestbleeps.com/" runAt="document-end" updateAvailable="false" version="" installurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js" updateurl="http://reddit.honestbleeps.com/latest/reddit_enhancement_suite.user.js">
-		<Include>http://reddit.honestbleeps.com/*</Include>
-		<Include>http://reddit.com/*</Include>
-		<Include>https://reddit.com/*</Include>
-		<Include>http://*.reddit.com/*</Include>
-		<Include>https://*.reddit.com/*</Include>
-	</Script>
 	<Script basedir="tex_the_world" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="TeX the world" enabled="true" filename="tex_the_world.user.js" installTime="1329051851443" lastUpdateCheck="1314114519000" modified="1314114519000" name="TeX the world" namespace="http://thewe.net/tex" runAt="document-end" updateAvailable="false" version="" installurl="https://www.userscripts.org/scripts/source/92758.user.js" updateurl="https://www.userscripts.org/scripts/source/92758.user.js">
 		<Include>*</Include>
 	</Script>
-	<Script basedir="4chan_y" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Adds various features." enabled="true" filename="4chan_y.user.js" installTime="1329051851444" lastUpdateCheck="1316035753000" modified="1316035753000" name="4chan Y" namespace="Anonymous" runAt="document-end" updateAvailable="false" version="11.09.14" installurl="https://www.userscripts.org/scripts/source/108985.user.js" updateurl="https://www.userscripts.org/scripts/source/108985.user.js">
+	<Script basedir="4chan_x" checkRemoteUpdates="true" dependhash="92bf94a84700b942085cd5a2225acdad7f712595" description="Adds various features." enabled="true" filename="4chan_x.user.js" installTime="1330356865834" lastUpdateCheck="1330356865000" modified="1330356865000" name="4chan x" namespace="aeosynth" runAt="document-start" updateAvailable="false" version="2.27.1" installurl="https://raw.github.com/mayhemydg/4chan-x/stable/4chan_x.user.js" updateurl="https://raw.github.com/MayhemYDG/4chan-x/stable/4chan_x.user.js" icon="favicon.gif">
 		<Include>http://boards.4chan.org/*</Include>
+		<Include>http://images.4chan.org/*</Include>
 		<Include>http://sys.4chan.org/*</Include>
+		<Include>http://www.4chan.org/*</Include>
 	</Script>
 </UserScriptConfig>

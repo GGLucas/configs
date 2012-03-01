@@ -134,13 +134,12 @@ div.expando-button.video:before {
 .footer-parent, #sr-header-area, .share, .report-button, .hide-button, .save-button,
 .sidebox.submit, #search, .sidecontentbox, .titlebox .usertext-body, .titlebox .bottom,
 .titlebox h1, .titlebox .option, .titlebox .number, .titlebox .word, .sidebox.create,
-#ad-frame, .leavecontributor-button, #header-img, #censorshipbar {
+#ad-frame, .leavecontributor-button, #header-img, #censorshipbar, .titlebox, .account-activity-box {
     display: none !important;
 }
 
 .side {
     background: #141414 !important;
-    position: absolute;
     right: 16px;
     margin: 0;
     top: 16px;
@@ -308,3 +307,24 @@ div.message div.message div.message div.message div.message div.message div.mess
 .voteWeight {
     background: none !important;
 }
+
+.flair {
+    background: #202020 !important;
+    border-color: #343434 !important;
+    color: #bbb !important;
+}
+
+.RESDialogSmall {
+    background: inherit !important;
+    color: white !important;
+    border-color: #343434 !important;
+}
+
+.RESDialogSmall > h3, #NREFloat {
+    display: none !important;
+}
+
+.RESDialogContents {
+    padding: 6px !important;
+}
+

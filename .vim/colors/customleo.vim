@@ -1,7 +1,10 @@
 source ~/.vim/colors/leo.vim
 
 " Remove some annoying highlights
-hi VertSplit ctermfg=17 ctermbg=17
+hi VertSplit ctermfg=235 ctermbg=235
+hi StatusLine ctermfg=255 ctermbg=235
+hi StatusLineNC ctermfg=255 ctermbg=235
+hi NonText ctermfg=236
 hi Comment ctermfg=243
 hi CursorLine ctermbg=235
 hi String ctermbg=NONE

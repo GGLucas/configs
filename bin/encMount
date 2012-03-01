@@ -46,7 +46,7 @@ if [[ "$group" == "dw" ]]; then
     else
         sudo losetup /dev/loop6 /mnt/data-4/others/virtual/crypt.img
         echo $pass | sudo cryptsetup luksOpen /dev/loop6 dw
-        sudo mount -o noatime,nodiratime /dev/mapper/dw /data/others/dw
+        sudo mount -o noatime,nodiratime -t ext4 /dev/mapper/dw /data/others/dw
     fi
 elif [[ "$group" == "home" ]]; then
     # Open home directory

@@ -356,6 +356,11 @@ else
 endif
 """ }}}
 "" }}}
+""" {{{ Powerline
+let g:Powerline_symbols = 'unicode'
+let g:Powerline_colorscheme = 'custom'
+""" }}}
+"" }}}
 " }}}
 " {{{ Autocommands
 "" {{{ Filetype detection

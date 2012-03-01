@@ -145,32 +145,6 @@ mappings.add(config.browserModes,
 EOF
 
 " }}}
-" {{{ Youtube settings on load
-au -js PageLoad http://(www\.)?youtube\.com/watch.* loadYoutube(args.tab)
-js <<EOF
-loadYoutube = function (tab)
-{
-    let doc = tabs.getTab(tab-1).linkedBrowser.contentDocument;
-    let player = doc.getElementById("movie_player");
-    let base = doc.getElementById("watch-video");
-
-    if (base)
-        // Wide mode by default
-        base.className = (base.className || "")+" wide"
-
-    if (player)
-    {
-        player = player.wrappedJSObject;
-
-        // Try the highest quality
-        player.setPlaybackQuality("hd720");
-
-        // Don't start playing
-        player.pauseVideo();
-    }
-}
-EOF
-" }}}
 " {{{ Quickmarks / Bookmarks
 " Quickmarks
 silent delqm!

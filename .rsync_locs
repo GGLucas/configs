@@ -18,8 +18,8 @@ RSYNC_in2805="$del $exc /data/projects/tu/st4groep5/src/apidoc/ root@glacicle.or
 
 # WelzijnE25
 RSYNC_e25="$exc /data/web/welzijne25/ lucas@glacicle.org:www/welzijne25"
-RSYNC_events25="$exc $del /data/projects/e25/ events25@shell.argewebhosting.nl:public_html"
-#RSYNC_events25="$exc $del events25@shell.argewebhosting.nl:public_html/ /data/projects/e25/"
+#RSYNC_events25="$exc $del /data/projects/e25/ events25@shell.argewebhosting.nl:public_html"
+RSYNC_events25="$exc events25@shell.argewebhosting.nl:public_html/ /data/projects/e25/"
 
 ### Zorgberaad
 ## Zorgberaadmh.nl website
