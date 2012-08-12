@@ -15,14 +15,9 @@ subfont-osd-scale=2 # Use 2% for osd
 subfont-text-scale=6 # Use 6% for subs
 osdlevel=0 # Start without the osd
 
-# Use vdpau
-#vc=ffh264vdpau,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,
-
 # Language defaults
 slang=jp,jpn,eng,en,
 alang=jp,jpn,eng,en,
 
 # Outputs
-#vo=vdpau
-vo=xv
 ao=alsa

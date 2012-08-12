@@ -177,8 +177,8 @@ util = {
             end
         end,
 
-        -- Focus previous screen
-        focusprev = function ()
+        -- Get previous screen
+        scrprev = function()
             local capiscreen = screen
             local screen = mouse.screen
 
@@ -196,19 +196,11 @@ util = {
                 end
             end
 
-            mouse.screen = screen
-
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
+            return screen
         end,
 
-        -- Focus next screen
-        focusnext = function ()
+        -- Get next screen
+        scrnext = function()
             local capiscreen = screen
             local screen = mouse.screen
 
@@ -225,20 +217,12 @@ util = {
                     screen = screen + 1
                 end
             end
-                
-            mouse.screen = screen
 
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
+            return screen
         end,
 
-        -- Focus screen in row up
-        focusnextrow = function ()
+        -- Get screen in next row
+        scrrow = function()
             local screen = mouse.screen
 
             if screen == 5 then
@@ -251,15 +235,52 @@ util = {
                 screen = 6
             end
 
-            mouse.screen = screen
+            return screen
+        end,
 
-            local c = awful.client.focus.history.get(screen, 0)
-            if c then
-                mouse.coords({ x = c:geometry().x+6,
-                               y = c:geometry().y+4
-                            })
-                client.focus = c
-            end
+        -- Focus previous screen
+        focusprev = function ()
+            local screen = util.screen.scrprev()
+            mouse.screen = screen
+            util.screen.focus(screen)
+        end,
+
+        -- Focus next screen
+        focusnext = function ()
+            local screen = util.screen.scrnext()
+            mouse.screen = screen
+            util.screen.focus(screen)
+        end,
+
+        -- Focus screen in row up
+        focusnextrow = function ()
+            local screen = util.screen.scrrow()
+            mouse.screen = screen
+            util.screen.focus(screen)
+        end,
+
+        -- Focus previous screen
+        moveprev = function (c)
+            local screen = util.screen.scrprev()
+            awful.client.movetoscreen(c, screen)
+            mouse.screen = screen
+            util.screen.focus(screen)
+        end,
+
+        -- Focus next screen
+        movenext = function (c)
+            local screen = util.screen.scrnext()
+            awful.client.movetoscreen(c, screen)
+            mouse.screen = screen
+            util.screen.focus(screen)
+        end,
+
+        -- Focus screen in row up
+        movenextrow = function (c)
+            local screen = util.screen.scrrow()
+            awful.client.movetoscreen(c, screen)
+            mouse.screen = screen
+            util.screen.focus(screen)
         end,
     },
     -- }}}
@@ -494,6 +515,8 @@ for s = 1, screen.count() do
     -- Figure out layout to use
     if s == 3 then
         layout = awful.layout.suit.tile.left
+    elseif s == 4 then
+        layout = awful.layout.suit.tile.bottom
     else
         layout = awful.layout.suit.spiral.dwindle
     end
@@ -646,10 +669,6 @@ bindings = {
         [{"Mod4", "Mod1", "Shift", "h"}] = {awful.tag.incmwfact, -0.05},
         [{"Mod4", "Mod1", "Shift", "l"}] = {awful.tag.incmwfact, 0.05},
 
-        -- Increase or decrease wfact
-        [{"Mod4", "Shift", "h"}] = {awful.client.incwfact, -0.05},
-        [{"Mod4", "Shift", "l"}] = {awful.client.incwfact, 0.05},
-
         -- Reset wfact
         [{"Mod4", "Control", "h"}] = util.tag.resetwfact,
 
@@ -672,7 +691,7 @@ bindings = {
         [{"Mod4", "F12"}] = util.toggle_numbers,
 
         -- Start a set of common clients with quickmarks
-        [{"Mod4", "BackSpace"}] = util.startup,
+        [{"Mod4", "Delete"}] = util.startup,
 
         -- Set quickmarks
         [{"Mod4", "Return"}] = util.defquickmarks,
@@ -705,6 +724,11 @@ bindings = {
         -- Window swapping
         [{"Mod4", "Shift", "t"}] = {awful.client.swap.byidx, 1},
         [{"Mod4", "Shift", "n"}] = {awful.client.swap.byidx, -1},
+
+        -- Screen movement
+        [{"Mod4", "Shift", "h"}] = util.screen.moveprev,
+        [{"Mod4", "Shift", "l"}] = util.screen.movenext,
+        [{"Mod4", "Shift", "g"}] = util.screen.movenextrow,
 
         -- Toggle floating
         [{"Mod4", "c"}] = awful.client.floating.toggle,

@@ -4,7 +4,7 @@ xkbdir=$HOME/.xkb
 # Check if folder exists
 if [[ -d "$xkbdir" ]]; then
     # Set keymap
-    setxkbmap -v 0 -I$xkbdir -layout hdv -print \
+    setxkbmap -v 0 -I$xkbdir -layout hdv_te -print \
         -option "terminate:ctrl_alt_bksp" | \
         xkbcomp -I$xkbdir - $DISPLAY &> /dev/null
 

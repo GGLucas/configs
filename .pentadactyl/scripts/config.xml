@@ -1,5 +1,5 @@
 <UserScriptConfig>
-	<Script basedir="smbc_reader" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="true" filename="smbc_reader.user.js" installTime="1329051851433" lastUpdateCheck="1287582871000" modified="1287582871000" name="SMBC Reader" namespace="#aVg" runAt="document-end" updateAvailable="false" version="0.1">
+	<Script basedir="smbc_reader" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Makes reading Saturday Morning Breakfast Cereal more pleasurable, with adblock and hidden comic (votey) viewer." enabled="false" filename="smbc_reader.user.js" installTime="1329051851433" lastUpdateCheck="1287582871000" modified="1287582871000" name="SMBC Reader" namespace="#aVg" runAt="document-end" updateAvailable="false" version="0.1">
 		<Include>http://www.smbc-comics.com/*</Include>
 	</Script>
 	<Script basedir="xkcd_fan_keyboard_shortc" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Read xkcd with only comic and alt-text and keyboard shortcuts, fullscreen fit and more" enabled="true" filename="xkcd_fan_keyboard_shortc.user.js" installTime="1329051851435" lastUpdateCheck="1287582871000" modified="1287582871000" name="xkcd Fan (+keyboard shortcuts)" namespace="#avg" runAt="document-end" updateAvailable="false" version="0.1.5">
@@ -8,7 +8,7 @@
 	<Script basedir="mangafox3_fit_image" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Thnx to Knace. A mangafox.com script: Loads several images (up to entire chapter) vertically for your reading pleasure. You only need to scroll down to continue reading which keeps the flow of the manga. Also makes saving the entire chapter simple and easy!" enabled="true" filename="mangafox3_fit_image.user.js" installTime="1329051851435" lastUpdateCheck="1287582871000" modified="1287582871000" name="Mangafox3 Fit Image" namespace="Knace" runAt="document-end" updateAvailable="false" version="4.2">
 		<Include>http://www.mangafox.com/*</Include>
 	</Script>
-	<Script basedir="reddit_username_colorize" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" filename="reddit_username_colorize.user.js" installTime="1329051851436" lastUpdateCheck="1287582871000" modified="1287582871000" name="Reddit Username Colorizer" namespace="userscripts.org" runAt="document-end" updateAvailable="false" version="">
+	<Script basedir="reddit_username_colorize" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Colorizes usernames on reddit comments for easy recognition." enabled="true" filename="reddit_username_colorize.user.js" installTime="1329051851436" lastUpdateCheck="1287582871000" modified="1331045427000" name="Reddit Username Colorizer" namespace="" runAt="document-end" updateAvailable="false" version="">
 		<Include>http://www.reddit.com/*</Include>
 	</Script>
 	<Script basedir="reddit_noclick" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Removes onclick handlers that interfere with vimperator's &quot;follow-hint&quot;" enabled="true" filename="reddit_noclick.user.js" installTime="1329051851436" lastUpdateCheck="1290349901000" modified="1290349901000" name="Reddit NoClick" namespace="akjdfkjs" runAt="document-end" updateAvailable="false" version="">
@@ -21,13 +21,21 @@
 		<Include>http://www.qwantz.com/index.php</Include>
 		<Include>http://www.qwantz.com/index.php?comic=*</Include>
 	</Script>
-	<Script basedir="tex_the_world" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="TeX the world" enabled="true" filename="tex_the_world.user.js" installTime="1329051851443" lastUpdateCheck="1314114519000" modified="1314114519000" name="TeX the world" namespace="http://thewe.net/tex" runAt="document-end" updateAvailable="false" version="" installurl="https://www.userscripts.org/scripts/source/92758.user.js" updateurl="https://www.userscripts.org/scripts/source/92758.user.js">
+	<Script basedir="tex_the_world" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="TeX the world" enabled="true" filename="tex_the_world.user.js" installTime="1329051851443" lastUpdateCheck="1344437976888" modified="1314114519000" name="TeX the world" namespace="http://thewe.net/tex" runAt="document-end" updateAvailable="false" version="" installurl="https://www.userscripts.org/scripts/source/92758.user.js" updateurl="https://www.userscripts.org/scripts/source/92758.user.js">
 		<Include>*</Include>
 	</Script>
-	<Script basedir="4chan_x" checkRemoteUpdates="true" dependhash="92bf94a84700b942085cd5a2225acdad7f712595" description="Adds various features." enabled="true" filename="4chan_x.user.js" installTime="1330356865834" lastUpdateCheck="1330356865000" modified="1330356865000" name="4chan x" namespace="aeosynth" runAt="document-start" updateAvailable="false" version="2.27.1" installurl="https://raw.github.com/mayhemydg/4chan-x/stable/4chan_x.user.js" updateurl="https://raw.github.com/MayhemYDG/4chan-x/stable/4chan_x.user.js" icon="favicon.gif">
+	<Script basedir="4chan_x" checkRemoteUpdates="true" dependhash="92bf94a84700b942085cd5a2225acdad7f712595" description="Adds various features." enabled="true" filename="4chan_x.user.js" installTime="1344455163988" lastUpdateCheck="1344455163000" modified="1344455163000" name="4chan x" namespace="aeosynth" runAt="document-start" updateAvailable="false" version="2.34.4" installurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" updateurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" icon="favicon.gif">
 		<Include>http://boards.4chan.org/*</Include>
+		<Include>https://boards.4chan.org/*</Include>
 		<Include>http://images.4chan.org/*</Include>
+		<Include>https://images.4chan.org/*</Include>
 		<Include>http://sys.4chan.org/*</Include>
-		<Include>http://www.4chan.org/*</Include>
+		<Include>https://sys.4chan.org/*</Include>
+	</Script>
+	<Script basedir="4chan_Sound_Player" checkRemoteUpdates="true" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Allows to play the posted sounds on 4chan (based on Triangle's 4chan Sound Script dev)" enabled="true" filename="136244.user.js" installTime="1340741594911" lastUpdateCheck="1340741594000" modified="1340741594000" name="4chan Sound Player" namespace="ms11" runAt="document-end" updateAvailable="false" version="0.59" installurl="http://userscripts.org/scripts/source/136244.user.js" updateurl="http://userscripts.org.nyud.net/scripts/source/136244.meta.js">
+		<Include>http://boards.4chan.org/*</Include>
+		<Include>https://boards.4chan.org/*</Include>
+		<Include>http://archive.foolz.us/*</Include>
+		<Include>https://archive.foolz.us/*</Include>
 	</Script>
 </UserScriptConfig>

@@ -28,9 +28,6 @@ set hintkeys="aoeuhtns"
 " No smooth scrolling
 set scs=1 sct=0
 
-" Leader
-set mapleader=","
-
 " }}}
 " {{{ Mappings
 " Show/hide toolbars
@@ -41,7 +38,7 @@ nmap <silent> <C-=> :set go-=Bm<CR>
 nmap c <C-z>
 
 " Random link :P
-nmap <Leader>e frandom<CR>
+nmap ,e frandom<CR>
 
 " Next/Prev Tab
 nmap w <C-Tab>
@@ -51,40 +48,42 @@ nmap <silent> V :tabmove -1<CR>
 nmap <silent> W :tabmove +1<CR>
 
 " Toggle userstyles/userscripts
-nmap <silent> <Leader>s :styletoggle!<CR>:styledisable -name global<CR>
-nmap <silent> <Leader>h :styletoggle -name global<CR>
-nmap <silent> <Leader>S :loaduserstyles<CR>:styledisable -name global<CR>
-nmap <silent> <Leader>g :gmset!<CR>
+nmap <silent> ,s :styletoggle!<CR>:styledisable -name global<CR>
+nmap <silent> ,h :styletoggle -name global<CR>
+nmap <silent> ,S :loaduserstyles<CR>:styledisable -name global<CR>
+nmap <silent> ,g :gmset!<CR>
 
 " Show/hide the buftabbar
 nmap <silent> <A-u> :set invbuftabs<CR>
 
 " Quick buffer switch with the same mapping as in vim
 nmap <A-g> :buffer!<Space>
-nmap <Leader>t :buffer!<Space>
+nmap ,t :buffer!<Space>
 
 " Detach tab
-nmap <Leader>w :tabdetach<CR>
+nmap ,w :tabdetach<CR>
 
 " Faster scrolling
-noremap <C-e> 3<C-e>
-noremap <C-y> 3<C-y>
+map -builtin <C-e> 3<C-e>
+map -builtin <C-y> 3<C-y>
+nmap <BS> <Space>
+nmap <S-BS> <S-Space>
 
-noremap h 5h
-noremap j 5j
-noremap k 5k
-noremap l 5l
+map -builtin h 5h
+map -builtin j 5j
+map -builtin k 5k
+map -builtin l 5l
 
-noremap J 2j
-noremap K 2k
+map -builtin J 2j
+map -builtin K 2k
 
-noremap s f
-noremap S F
-noremap e d
-noremap ;s g;b
-noremap ;t ;y
-noremap ;n ;i
-noremap ;N ;I
+map -builtin s f
+map -builtin S F
+map -builtin e d
+map -builtin ;s g;b
+map -builtin ;t ;y
+map -builtin ;n ;i
+map -builtin ;N ;I
 
 nmap <Down> r
 nmap <Left> v
@@ -96,8 +95,8 @@ nmap <silent> <leader>D :removetabsright<CR>
 nmap <silent> <leader>d :removetabsleft<CR>
 
 " Background tab
-noremap t :to<Space>
-noremap o :o<Space>
+map -builtin t :to<Space>
+map -builtin o :o<Space>
 nmap <A-t> :tabopen!<Space>
 nmap <A-w> :winopen<Space>
 
@@ -108,8 +107,8 @@ nmap <silent> <leader>l :stlarge<CR>
 nmap <silent> <leader>m :stmute<CR>
 
 " Hide CmdLine right after a command
-cnoremap <S-CR> <CR>
-cnoremap <CR> <CR>:<Esc>
+cmap -builtin <S-CR> <CR>
+cmap -builtin <CR> <CR>:<Esc>
 
 " C-l/F7: Search highlight toggle
 map <silent> <F7> :noh<CR>
@@ -117,14 +116,14 @@ map <silent> <C-l> :noh<CR>
 
 " Go to numbered page
 js <<EOF
-mappings.add(config.browserModes, ["gr"],
+group.mappings.add(config.browserModes, ["gr"],
     "Go to numbered link",
     function (count) { if (count) events.feedkeys(
         "f,"+String(count)+","
     ); },
     { count: true });
 
-mappings.add(config.browserModes, ["gR"],
+group.mappings.add(config.browserModes, ["gR"],
     "Go to numbered link",
     function (count) { if (count) events.feedkeys(
         "F,"+String(count)+","
@@ -156,22 +155,22 @@ source ~/.pentadactyl/bookmarks
 " {{{ Styling
 hi Normal background: #141414; color: white;
 hi Question background: #141414; color: white;
-hi CmdLine padding: 0px; font-family: terminus; font-size: 12px; font-weight: normal; color: white; background: #141414;
+hi CmdLine padding: 0px; font-family: sans; font-size: 12px; font-weight: normal; color: white; background: #141414;
 
 "" Buftab styling
 hi BufTab padding-left: 5px; padding-right: 5px; color: #9fbc00;
 hi BufTabSelected background: #343434; padding-left: 5px; padding-right: 5px; color: #9fbc00;
 
 "" Hint font size
-hi Hint font-family: monospace; font-size: 13px; font-weight: bold; color: white; padding: 1px 3px; background: #744E7A !important;
+hi Hint font-family: sans; font-size: 13px; font-weight: bold; color: white; padding: 1px 3px; background: #744E7A !important;
 hi HintElem none: none;
 hi HintActive none: none;
 
 "" Statusbar and commandline styling
-hi StatusLine background: #141414; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
-hi StatusLineBroken background: #1a1414; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
-hi StatusLineExtended background: #141a14; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
-hi StatusLineSecure background: #14141a; color: #9FBC00; font-family: terminus; font-size: 12px; font-weight: normal;
+hi StatusLine background: #141414; color: #9FBC00; font-family: sans; font-size: 12px; font-weight: normal;
+hi StatusLineBroken background: #1a1414; color: #9FBC00; font-family: sans; font-size: 12px; font-weight: normal;
+hi StatusLineExtended background: #141a14; color: #9FBC00; font-family: sans; font-size: 12px; font-weight: normal;
+hi StatusLineSecure background: #14141a; color: #9FBC00; font-family: sans; font-size: 12px; font-weight: normal;
 hi ModeMsg display: none;
 
 " Completion colors from zenburn
@@ -187,7 +186,7 @@ hi CompLess::after      content: "\2303" /* Unicode up arrowhead */
 hi CompMore             text-align: center; height: .5ex; line-height: .5ex; margin-bottom: -.5ex;
 hi CompMore::after      content: "\2304" /* Unicode down arrowhead */
 hi CompMsg              font-style: italic; margin-left: 16px;
-hi CompResult           width: 45%; overflow: hidden;font-size: 12px; font-family: monospace; font-weight: normal;
+hi CompResult           width: 45%; overflow: hidden;font-size: 12px; font-family: sans; font-weight: normal;
 hi CompTitle            color: #87af87; background: #242421; font-weight: bold;
 hi CompTitle>*          padding: 0 .5ex;
 " }}}

@@ -132,7 +132,7 @@ let buftabs = {
             tabvalue = tabvalue.substr(0, maxlength-3)+"...";
 
         // Bookmark icon
-        if (bookmarks.isBookmarked(browser.contentDocument.location.href))
+        if (bookmarkcache.isBookmarked(browser.contentDocument.location.href))
             tabvalue += "\u2764";
 
         // Brackets and index
@@ -190,7 +190,7 @@ highlight.loadCSS(<![CDATA[
 ]]>);
 
 /// Options
-options.add(["buftabs", "bt"],
+group.options.add(["buftabs", "bt"],
         "Control whether to use buftabs in the statusline",
         "boolean", true, 
         {
@@ -204,7 +204,7 @@ options.add(["buftabs", "bt"],
             }
         });
 
-options.add(["buftabs-maxlength", "btm"],
+group.options.add(["buftabs-maxlength", "btm"],
         "Max length of an entry in the buftabs list",
         "number", "25", 
         {

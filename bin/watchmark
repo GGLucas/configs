@@ -1,3 +1,7 @@
 #!/bin/bash
 mplayer "$1"
-anigrate watch: %e "$2"
+case "$3" in
+    "anime") anigrate watch: %e =anime "$2" ;;
+    "series") anigrate watch: %e =tv "$2" ;;
+    *) anigrate watch: %e "$2" ;;
+esac

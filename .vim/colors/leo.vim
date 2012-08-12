@@ -89,7 +89,7 @@ endif
 " ### Normal should come first
 
 " console-gui different
-hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#121212
+hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#080808
 hi CursorLine		cterm=none		ctermbg=16		guibg=#050505
 hi SpecialKey		cterm=none		ctermfg=245		ctermbg=233		guifg=#8a8a8a	guibg=#090909
 hi Folded				cterm=none		ctermfg=110		ctermbg=233		guifg=#87afd7	guibg=#000000

@@ -11,6 +11,7 @@ div.content {
     border-right:0px solid #cccccc !important;
     margin:0 !important;
     padding:10px 20px 0 10px !important;
+    background-color: #141414 !important;
 }
 
 div.infobar {
@@ -194,7 +195,7 @@ div.expando-button.video:before {
     color: white !important;
 }
 
-#header,#header-bottom-right,#header a {
+#header,#header-bottom-right {
     background-color: black !important;
     color: white !important;
 }
@@ -309,7 +310,7 @@ div.message div.message div.message div.message div.message div.message div.mess
 }
 
 .flair {
-    background: #202020 !important;
+    background-color: #202020 !important;
     border-color: #343434 !important;
     color: #bbb !important;
 }
@@ -326,5 +327,10 @@ div.message div.message div.message div.message div.message div.message div.mess
 
 .RESDialogContents {
     padding: 6px !important;
+}
+
+.keyHighlight {
+    background-color: #202020 !important;
+    outline: none !important;
 }
 

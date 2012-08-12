@@ -6,8 +6,8 @@
 # Spawn rssdler in the background
 rssdler -o &>/var/log/rssdler &
 
-# Start SCIM
-#scim -d &
+# Xrandr layout
+#sh .screenlayout/setup.sh
 
 # Merge X settings
 xrdb -merge $HOME/.Xresources &
@@ -19,7 +19,7 @@ unclutter -idle 2 -root &
 imwheel -k -b "67" > /dev/null &
 
 # Enable Glyph Cache
-nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
+#nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
 
 # Enable sound
 amixer set Front 100 unmute > /dev/null &
@@ -33,7 +33,7 @@ mpc volume 74 &
 urxvtd &
 
 # Set keyboard layout
-hdv &
+hdv_te &
 
 # WMName for Java
 wmname LG3D &
@@ -44,28 +44,38 @@ xset r rate 180 80 &
 # Add local fonts
 xset fp+ /usr/share/fonts/local
 
+# Turn off screensaver
+xset s off
+
+#Control mouse speed
+xset m 1.9 1
+
+#Boot up synergy
+sudo /etc/rc.d/synergys start
+
 # Monitor-specific commands
-for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
-do
-    # Set background color to gray
-    DISPLAY=$display xsetroot -gray &
+#for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
+#do
+    ## Set background color to gray
+    #DISPLAY=$display xsetroot -solid black &
 
-    # Set mouse speed
-    DISPLAY=$display xset m 1.5 1
+    ## Set mouse speed
+    #DISPLAY=$display xset m 1.5 1
 
-    # Start a term
-    (sleep 1 ; DISPLAY=$display urxvtc) &
-done;
+    ## Start a term
+    #(sleep 1 ; DISPLAY=$display urxvtc) &
+#done;
 
 # Turn off touchpad
-tsy 1
+#tsy 1
 
 # Start compositing
-xcompmgr -r0 &
+#xcompmgr -r0 &
 
 # Start WM
 while true;
 do
     awesome &> ~/.awesome.log
+    #goomwwm &> ~/.goomwwm.log
     #sleep 25
 done;

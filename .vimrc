@@ -162,6 +162,9 @@ nmap <silent> <Leader>gd :Git diff<CR>:redraw!<CR>
 nmap <silent> <Leader>gD :Git diff --cached<CR>:redraw!<CR>
 nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 """ }}}
+""" {{{ Gundo
+nmap <Leader>gg :GundoToggle<CR><CR>:GundoFocus<CR>
+""" }}}
 "" }}}
 "" {{{ Text objects
 vnoremap iP :<C-U>silent! normal! }kV{jj<CR>
@@ -223,7 +226,7 @@ endif
 """ }}}
 """ {{{ EasyMotion
 let g:EasyMotion_leader_key = '-'
-let g:EasyMotion_keys = 'aoeuhtnsAOEUHTNSbcdfgijklmpqrvwxyzBCDFGIJKLMPQRVWXYZ'
+let g:EasyMotion_keys = 'aoeuhtnsbcdfgijklmpqrvwxyz'
 
 nmap -J -j
 nmap -K -k
@@ -231,6 +234,13 @@ nmap -h -f
 nmap -H -F
 """ }}}
 "" }}}
+""" {{{ Powerline
+let g:Powerline_symbols = 'unicode'
+let g:Powerline_colorscheme = 'custom'
+""" }}}
+""" {{{ Gundo
+let g:gundo_right = 1
+""" }}}
 "" {{{ Vim settings
 """ {{{ General
 " Use UTF-8 encoding
@@ -356,10 +366,6 @@ else
 endif
 """ }}}
 "" }}}
-""" {{{ Powerline
-let g:Powerline_symbols = 'unicode'
-let g:Powerline_colorscheme = 'custom'
-""" }}}
 "" }}}
 " }}}
 " {{{ Autocommands
@@ -397,8 +403,8 @@ autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
 " Project-specifics
-autocmd BufReadPost /data/projects/sr2/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
-autocmd BufReadPost /data/projects/sr2/* syn keyword cRepeat foreach
+autocmd BufReadPost ~/projects/sr2/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
+autocmd BufReadPost ~/projects/sr2/* syn keyword cRepeat foreach
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
 autocmd BufReadPost /mnt/starruler/Game Data/*.txt set ft=starruler
 autocmd BufReadPost /mnt/starruler/Locales/*.txt set ft=defs
