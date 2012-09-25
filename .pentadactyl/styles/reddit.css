@@ -256,9 +256,11 @@ div.comment, div.message {
     margin: 0px 5px 5px 0px !important;
     border-left: 2px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
+    border-color: #1a1a1a !important;
 }
 
 div.comment {
+	background-color: #121212 !important;
     padding-top: 5px !important;
 }
 
@@ -309,7 +311,7 @@ div.message div.message div.message div.message div.message div.message div.mess
     background: none !important;
 }
 
-.flair {
+.flair, .linkflairlabel {
     background-color: #202020 !important;
     border-color: #343434 !important;
     color: #bbb !important;

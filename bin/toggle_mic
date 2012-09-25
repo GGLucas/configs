@@ -2,7 +2,7 @@
 
 # Figure out if we're muted
 (amixer -c AK5370 sget Mic | grep "\[on\]") &> /dev/null
-#(amixer sget Mic | grep "\[on\]") &> /dev/null
+#(amixer sget Capture | grep "\[on\]") &> /dev/null
 hadmic=$?
 
 # Toggle
@@ -21,7 +21,7 @@ if (($hadmic != 0)); then
 
     amixer -c AK5370 set Mic toggle
     xset led 3
-    #amixer set Mic toggle
+    #amixer set Capture toggle
 else
     if [[ -e "/tmp/hadmusic" ]]; then
         echo "Had Music"
@@ -30,5 +30,5 @@ else
     fi;
     amixer -c AK5370 set Mic toggle
     xset -led 3
-    #amixer set Mic toggle
+    #amixer set Capture toggle
 fi;

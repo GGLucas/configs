@@ -43,6 +43,8 @@ silent qma C http://ladder.subversiva.org/
 "" Elemental
 silent qma f http://forums.elementalgame.com/recent
 silent qma F http://elementalgame.com
+"" Angelscript
+silent qma k http://www.gamedev.net/forum/49-angelcode/
 
 """ Watch lists
 silent qma v http://lucas.glacicle.org/watch-list/hist/%3Danime

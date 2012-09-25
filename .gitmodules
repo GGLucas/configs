@@ -1,12 +1,6 @@
-[submodule ".vim/bundle/delimitMate"]
-	path = .vim/bundle/delimitMate
-	url = git://github.com/Raimondi/delimitMate.git
 [submodule ".vim/bundle/nerdCommenter"]
 	path = .vim/bundle/nerdCommenter
 	url = git://github.com/scrooloose/nerdcommenter
-[submodule ".vim/bundle/vim-enter-indent"]
-	path = .vim/bundle/vim-enter-indent
-	url = git://github.com/acustodioo/vim-enter-indent
 [submodule ".vim/bundle/easymotion"]
 	path = .vim/bundle/easymotion
 	url = git://github.com/Lokaltog/vim-easymotion
@@ -61,9 +55,12 @@
 [submodule ".vim/bundle/a.vim"]
 	path = .vim/bundle/a.vim
 	url = git://github.com/vim-scripts/a.vim
-[submodule ".vim/bundle/vim-powerline"]
-	path = .vim/bundle/vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = git://github.com/jiangmiao/auto-pairs.git
 [submodule ".vim/bundle/gundo.vim"]
 	path = .vim/bundle/gundo.vim
 	url = http://github.com/sjl/gundo.vim
+[submodule ".vim/bundle/vim-powerline"]
+	path = .vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git

@@ -81,8 +81,8 @@ apps = {
 }
 
 -- Advprompt
-advprompt.term = apps.terminal.." -e /bin/bash -c \"source .bashrc; %s; bash\""
-advprompt.shell = "/bin/bash -c \"source .bashrc; exec %s\""
+advprompt.term = apps.terminal.." -e /bin/fish -c \"%s\""
+advprompt.shell = "/bin/fish -c \"exec %s\""
 -- }}}
 -- {{{ Utility functions
 dropdown = {}
@@ -491,7 +491,7 @@ util = {
     toggle_numbers = function ()
         if settings._numbers then
             settings._numbers = false
-            awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/nonumbers")
+            awful.util.spawn_with_shell("hdv_te")
         else 
             settings._numbers = true
             awful.util.spawn_with_shell("xmodmap ~/.xkb/xmm/numbers")
@@ -691,10 +691,10 @@ bindings = {
         [{"Mod4", "F12"}] = util.toggle_numbers,
 
         -- Start a set of common clients with quickmarks
-        [{"Mod4", "Delete"}] = util.startup,
+        --[{"Mod4", "Delete"}] = util.startup,
 
         -- Set quickmarks
-        [{"Mod4", "Return"}] = util.defquickmarks,
+        --[{"Mod4", "Return"}] = util.defquickmarks,
 
         -- Toggle away on weechat
         [{"Mod4", "F3"}] = {util.weechat_away, true},
@@ -736,10 +736,6 @@ bindings = {
         -- Move to tag
         [{"Mod4", "Shift", "w"}] = util.client.movetonexttag,
         [{"Mod4", "Shift", "v"}] = util.client.movetoprevtag,
-
-        -- Geometry for screenjoins
-        [{"Mod4", "+"}] = {util.client.setfloatgeom, 0, 0, 3360, 1050},
-        [{"Mod4", "]"}] = {util.client.setfloatgeom, -1680, 0, 3360, 1050},
     },
     -- }}}
 

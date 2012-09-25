@@ -111,6 +111,9 @@ let g:bisect_disable_paging = 1
 """ {{{ Command-T
 nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>T :CommandTFlush<CR>
+let g:CommandTToggleFocusMap = []
+let g:CommandTSelectNextMap = ["<Tab>"]
+let g:CommandTSelectPrevMap = ["<C-p>"]
 """ }}}
 """ {{{ Lusty Explorer
 nmap <silent> <Leader>n :LustyBufferExplorer<CR>
@@ -209,10 +212,9 @@ let g:CommandTSelectNextMap = ['<Tab>', '<C-n>']
 let g:snips_author = "Lucas de Vries"
 let g:snips_mail = "lucas@glacicle.org"
 let g:snippets_dir = "~/.vim/snippets"
-""" {{{ delimitMate
-let g:delimitMate_expand_space = 1
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_balance_matchpairs = 1
+""" {{{ AutoPairs
+let g:AutoPairsShortcutFastWrap = '<C-_>'
+let g:AutoPairsCenterLine = 0
 """ }}}
 """ {{{ ZenCoding
 let g:user_zen_settings = {'indentation': '  ',}
@@ -342,8 +344,8 @@ set shiftwidth=4
 " Copy indent from current line when starting a new line
 set autoindent
 
-" Don't go mad reindenting
-set cinkeys="0{,0},0)"
+" Don't reindent on ::
+set cinkeys=0{,0},0),0#,!^F,o,O,e")
 
 " Allow backspacing over more items
 set backspace=indent,eol,start
@@ -376,13 +378,11 @@ autocmd BufNewFile,BufRead *.go set ft=go
 autocmd BufNewFile,BufRead *.as set ft=cpp
 autocmd BufNewFile,BufRead COMMIT_EDITMSG set ft=gitcommit
 autocmd BufNewFile,BufRead *.ftl set ft=html
+autocmd BufNewFile,BufRead *.fish set ft=fish
 "" }}}
 "" {{{ Filetype settings
 " Files to indent with two spaces
 autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal ts=2 sts=2 sw=2
-
-" cindent
-autocmd FileType c,cpp setlocal cindent
 
 " Git: Don't jump to last position, no modeline
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])

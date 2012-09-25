@@ -44,7 +44,7 @@ if [[ "$group" == "dw" ]]; then
         sudo cryptsetup luksClose dw
         sudo losetup -d /dev/loop6
     else
-        sudo losetup /dev/loop6 /mnt/data-4/others/virtual/crypt.img
+        sudo losetup /dev/loop6 /mnt/data-6/others/virtual/crypt.img
         echo $pass | sudo cryptsetup luksOpen /dev/loop6 dw
         sudo mount -o noatime,nodiratime -t ext4 /dev/mapper/dw /data/others/dw
     fi

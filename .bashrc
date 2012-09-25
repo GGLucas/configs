@@ -186,7 +186,7 @@ tmn() { tmux -2 new -s $1 $1; }
 ## mount encrypted filesystems
 alias m='encMount'
 ## start xorg
-x(){ builtin cd ~; exec xinit $@; }
+x(){ builtin cd ~; while true; do xinit $@; done; }
 ## sync music to iriver
 syncm() { sudo rsync -vhru --progress --ignore-existing /data/music/Anime/ /mnt/sansa/MUSIC/Anime; }
 ## compile & view tex

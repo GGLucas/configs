@@ -45,12 +45,31 @@ a
     text-decoration: none !important;
 }
 
+#watch-player, #watch-player embed {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#watch-video {
+    width: 1920px !important;
+    height: 1080px !important;
+}
+
+#watch-video.large {
+    margin: 0 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+
 #watch-player embed {
     position: absolute !important;
-    top: 100px !important;
-    left: 0 !important;
-    width: 100px !important;
-    height: 100px !important;
     display: block !important;
     -moz-binding: none !important
+}
+
+#playlist-bar {
+    display: none !important;
 }
