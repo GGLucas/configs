@@ -14,7 +14,7 @@ extralife                   http://www.myextralife.com/?feed=rss2
 oots                        http://www.giantitp.com/comics/oots.rss
 erfworld                    http://www.erfworld.com/feed/
 vgcats                      http://www.vgcats.com/vgcats.rdf.xml
-supereffective              http://www.vgcats.com/super/se.rdf.xml
+#supereffective              http://www.vgcats.com/super/se.rdf.xml
 mistakesofyouth             http://mistakesofyouth.com/feed/
 cynh                        http://feedproxy.google.com/Explosm
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml
@@ -48,7 +48,7 @@ vimcasts                    http://vimcasts.org/feeds/ogg
 
 ## Podcasts
 #alive                       http://feeds.feedburner.com/itpc/wwwwaylandws/Wayland_Productions/Were_Alive_-_Podcast/rssxml
-susd                        http://www.shutupshow.com/rss
+#susd                        http://www.shutupshow.com/rss
 
 ## Project News
 #vimperator-news             http://vimperator.org/news/rss.xml

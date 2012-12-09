@@ -181,7 +181,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 """ }}}
 """ {{{ Supertab
-let g:SuperTabDefaultCompletionType = "<c-x><c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 """ }}}
 """ {{{ NERD Commenter
 let NERDDefaultNesting = 1
@@ -251,9 +251,10 @@ set encoding=utf-8
 " Allow hidden buffers with changes
 set hidden
 
-" Put swapfiles in central directory
+" Keep files centralized, don't create swapfiles
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set noswapfile
 
 " Data to store in the viminfo file
 set viminfo='100,f1,<50,:50,/50,h,!
@@ -386,7 +387,7 @@ autocmd FileType xhtml,html,xml,sass,tex,plaintex,yaml silent setlocal ts=2 sts=
 
 " Git: Don't jump to last position, no modeline
 autocmd FileType gitcommit call setpos('.', [0, 1, 1, 0])
-autocmd FileType git setlocal nomodeline
+autocmd FileType git setlocal nomodeline nolist
 
 " Files to set default textwidth
 autocmd FileType mail,tex setlocal textwidth=78

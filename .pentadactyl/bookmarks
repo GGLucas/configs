@@ -27,7 +27,7 @@ silent bma -k=appdb http://www.winehq.org/search?cx=partner-pub-0971840239976722
 "" The Pirate Bay
 silent bma -k=tpb http://thepiratebay.org/search/%s
 "" BakaBT
-silent bma -k=baka http://www.bakabt.com/browse.php?q=%s
+silent bma -k=baka http://www.bakabt.me/browse.php?q=%s
 "" BaconBits
 silent bma -k=bb http://baconbits.org/torrents.php?searchstr=%s
 "" AnimeBytes

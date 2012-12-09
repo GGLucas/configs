@@ -8,3 +8,5 @@
 	ui = auto
 [pack]
 	threads = 0
+[log]
+	date = local

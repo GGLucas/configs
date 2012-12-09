@@ -6,57 +6,22 @@ body
     font-family: verdana !important;
 }
 
-#masthead-container, #alerts,
-#footer-container, .yt-badge-std,
-#search-section-header, #search-refinements,
-.horizontal-rule, #watch-main, #watch-headline-user-info {
+#gb, #yt-masthead-container, #guide,
+#watch7-content, #watch7-sidebar,
+#footer-hh-container, #yt-uix-clickcard-card1 {
     display: none !important;
 }
 
-#eow-title, #search-header, .num-results {
-    color: white !important;
-}
-
-.horizontal-rule {
-    border-bottom: none !important;
-}
-
-.yt-uix-button, .yt-uix-button-content {
-    background: #141414 !important;
-    color: white !important;
-    text-shadow: none !important;
-    border-color: #343434 !important;
-}
-
-.result-item {
-}
-
-.result-item:nth-child(n) {
-    background: #0f0f0f !important;
-}
-
-.result-item:nth-child(3n) {
-    background: #121212 !important;
-}
-
-a
-{
-    color: #608baa !important;
-    text-decoration: none !important;
-}
-
-#watch-player, #watch-player embed {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-#watch-video {
+#watch7-video, #movie_player, #watch7-player {
     width: 1920px !important;
     height: 1080px !important;
+    margin: 0 0 !important;
+    padding: 0 0 !important;
 }
 
-#watch-video.large {
+#watch7-video-container {
     margin: 0 0 !important;
+    padding: 0 auto !important;
     height: 100% !important;
     width: 100% !important;
     position: absolute !important;
@@ -64,12 +29,8 @@ a
     left: 0px !important;
 }
 
-#watch-player embed {
+#movie_player {
     position: absolute !important;
     display: block !important;
     -moz-binding: none !important
-}
-
-#playlist-bar {
-    display: none !important;
 }

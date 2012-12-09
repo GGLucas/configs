@@ -204,9 +204,9 @@ alias gpo='git push origin'
 alias gpuo='git pull origin'
 alias gp='git push'
 alias gpu='git pull'
-alias gsp='git stash; git svn rebase; git stash pop &> /dev/null; git status -uno'
-alias gsu='git svn fetch'
-alias gsc='git stash; git svn dcommit; git stash pop &> /dev/null;'
+alias gsu='git stash; git svn rebase; git stash pop &> /dev/null; git status -uno'
+alias gsf='git svn fetch'
+alias gsp='git stash; git svn dcommit; git stash pop &> /dev/null;'
 alias gs='git status -uno'
 alias gst='git status'
 alias gpm='git submodule foreach git pull origin master'
@@ -216,13 +216,18 @@ alias sp='svn ci'
 
 # Commit everything or specified path
 c() {
+    opts="-s"
+    if [[ -f ".no_signoff" ]]; then
+        opts=""
+    fi;
+
     if [[ "$1" == "-i" ]]; then
-        shift; git commit -s --interactive $@
+        shift; git commit $opts --interactive $@
     else
         if [[ -n "$@" ]]; then
-            git commit -s $@
+            git commit $opts $@
         else
-            git commit -s -a
+            git commit $opts -a
         fi;
     fi;
 }
@@ -332,7 +337,7 @@ absd() {
 
 # Download package from aur
 aurd() {
-    if wget http://aur.archlinux.org/packages/$1/$1.tar.gz \
+    if wget http://aur.archlinux.org/packages/${1:0:2}/$1/$1.tar.gz \
              -O $PACKAGE_ROOT/aur/$1.tar.gz;
     then
         builtin cd $PACKAGE_ROOT/aur

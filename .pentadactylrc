@@ -7,7 +7,7 @@ styledisable -name global
 
 " {{{ Configuration
 " Default search
-set ds=google
+set ds=g
 
 " Default GUI options
 set go=sC

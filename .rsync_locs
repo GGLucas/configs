@@ -21,6 +21,7 @@ RSYNC_e25="$exc /data/web/welzijne25/ lucas@glacicle.org:www/welzijne25"
 #RSYNC_events25="$exc $del /data/projects/e25/ events25@shell.argewebhosting.nl:public_html"
 RSYNC_events25="$exc blikbvnl@shell.argewebhosting.nl:public_html/ /data/projects/blikbv/"
 RSYNC_forward="$exc /data/web/forward/ lucas@glacicle.org:www/clients/forward/"
+RSYNC_teneleven="/data/web/teneleven/ clubtenel@shell.argewebhosting.nl:public_html/"
 
 ### Zorgberaad
 ## Zorgberaadmh.nl website
