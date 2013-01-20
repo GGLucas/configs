@@ -9,7 +9,7 @@ bind ^f eval "hardstatus ignore"
 bind f eval "hardstatus alwayslastline"
 
 # Escape sequence
-escape \034\034
+escape \024\024
 
 # Settings
 vbell off

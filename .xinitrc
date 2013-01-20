@@ -15,6 +15,9 @@ xrdb -merge $HOME/.Xresources &
 # Start unclutter
 unclutter -idle 2 -root &
 
+# Start keynav for keyboard navigation
+keynav &
+
 # Make forward & back mouse buttons work
 imwheel -k -b "67" > /dev/null &
 
@@ -48,7 +51,7 @@ xset fp+ /usr/share/fonts/local
 xset s off
 
 #Control mouse speed
-xset m 1.9 1
+xset m 1/1 1
 
 #Boot up synergy
 sudo /etc/rc.d/synergys start
@@ -75,7 +78,9 @@ sudo /etc/rc.d/synergys start
 # Start WM
 while true;
 do
-    awesome &> ~/.awesome.log
+    #awesome &> ~/.awesome.log
+    #pekwm &> ~/.pekwm.log
+    i3 &> ~/.i3.log
     #goomwwm &> ~/.goomwwm.log
     #sleep 25
 done;

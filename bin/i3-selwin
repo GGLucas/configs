@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#Get all visible windows
+wins=""
+curwin=""
+re_name=".*(0x[0-9a-f]+)\s*\"([^\"]*)\""
+while read line; do
+    if [[ "$line" =~ $re_name ]]; then
+        name=${BASH_REMATCH[2]}
+        id=${BASH_REMATCH[1]}
+        if [[ ! "$name" =~ \[i3\ con\] ]]; then
+            wins="$wins\n$id $name"
+        fi
+    fi
+done < <(xwininfo -root -tree)
+
+#Choose from visible windows
+sel=$(echo -e $wins | dmenu -i -l 10)
+
+#Select window
+if [[ "$sel" ]]; then
+    id=$(echo $sel | cut -d" " -f1)
+    eval "i3-msg \"[id=\\\"\$(($id))\\\"] focus\""
+fi

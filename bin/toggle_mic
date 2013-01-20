@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Figure out if we're muted
 (amixer -c AK5370 sget Mic | grep "\[on\]") &> /dev/null
 #(amixer sget Capture | grep "\[on\]") &> /dev/null

@@ -1,0 +1,159 @@
+set $mod Mod4
+
+# font for window titles
+font -*-terminus-medium-*-*-*-*-120-*-*-*-*-*-*
+
+# use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+focus_follows_mouse no
+
+# start a terminal
+bindsym $mod+semicolon exec urxvtc
+
+# execute things
+bindsym $mod+o exec toggle_mic
+bindsym $mod+period exec mpc_toggle
+bindsym $mod+k exec urxvtc -e ranger /data
+bindsym $mod+F5 exec system_suspend 2
+bindsym $mod+F12 exec i3-start
+bindsym $mod+mod1+ampersand exec i3-def
+bindsym $mod+space exec i3-selwin
+
+# kill focused window
+bindsym $mod+dollar kill
+
+# start dmenu (a program launcher)
+bindsym $mod+comma exec dmenu_run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+t focus down
+bindsym $mod+n focus up
+bindsym $mod+l focus right
+
+# change focused display
+bindsym $mod+Mod5+h focus output left
+bindsym $mod+Mod5+t focus output down
+bindsym $mod+Mod5+n focus output up
+bindsym $mod+Mod5+l focus output right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+t move down
+bindsym $mod+Shift+n move up
+bindsym $mod+Shift+l move right
+
+# move window on display
+bindsym $mod+Mod5+Shift+h move container to output left
+bindsym $mod+Mod5+Shift+t move container to output down
+bindsym $mod+Mod5+Shift+n move container to output up
+bindsym $mod+Mod5+Shift+l move container to output right
+
+# move workspace on display
+bindsym $mod+Mod5+Mod1+h move workspace to output left
+bindsym $mod+Mod5+Mod1+t move workspace to output down
+bindsym $mod+Mod5+Mod1+n move workspace to output up
+bindsym $mod+Mod5+Mod1+l move workspace to output right
+
+# split in horizontal orientation
+bindsym $mod+d split h
+
+# split in vertical orientation
+bindsym $mod+b split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+e layout toggle split
+bindsym $mod+u layout stacked
+bindsym $mod+Shift+u layout tabbed
+bindsym $mod+j split v; layout stacked
+bindsym $mod+Shift+j split v; layout tabbed
+
+# toggle tiling / floating
+bindsym $mod+Shift+Tab floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Tab focus mode_toggle
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# focus the parent container
+bindsym $mod+a focus parent
+bindsym $mod+mod5+a focus child
+
+# switch to workspace
+workspace h output DFP1
+workspace t output DFP5
+workspace n output DFP9
+workspace s output DFP13
+workspace g output DFP17
+workspace c output DFP21
+
+bindsym $mod+g workspace g
+bindsym $mod+c workspace c
+
+bindsym $mod+mod5+g focus output DFP17
+bindsym $mod+mod5+c focus output DFP21
+
+bindsym $mod+Shift+g move container to workspace g
+bindsym $mod+Shift+c move container to workspace c
+
+bindsym $mod+Shift+mod5+g move container to output DFP17
+bindsym $mod+Shift+mod5+c move container to output DFP21
+
+bindsym $mod+ampersand workspace h
+bindsym $mod+bracketleft workspace t
+bindsym $mod+braceleft workspace n
+bindsym $mod+braceright workspace s
+bindsym $mod+mod5+ampersand focus output DFP1
+bindsym $mod+mod5+bracketleft focus output DFP5
+bindsym $mod+mod5+braceleft focus output DFP9
+bindsym $mod+mod5+braceright focus output DFP13
+bindsym $mod+apostrophe exec i3-newws
+
+bindsym $mod+m exec i3-selws
+bindsym $mod+Shift+m exec i3-movews
+
+bindsym $mod+slash exec i3-input -F 'exec i3-msg "[con_mark=\"%s\"] focus"' -P 'Goto Mark: '
+bindsym $mod+Shift+slash exec i3-input -F 'mark %s' -P 'Create Mark: '
+
+bindsym $mod+w workspace next_on_output
+bindsym $mod+v workspace prev_on_output
+bindsym $mod+z workspace back_and_forth
+
+bindsym $mod+Shift+w move container to workspace next_on_output
+bindsym $mod+Shift+v move container to workspace prev_on_output
+bindsym $mod+Shift+z move container to workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace h
+bindsym $mod+Shift+bracketleft move container to workspace t
+bindsym $mod+Shift+braceleft move container to workspace n
+bindsym $mod+Shift+braceright move container to workspace s
+bindsym $mod+Shift+mod5+ampersand move container to output DFP1
+bindsym $mod+Shift+mod5+bracketleft move container to output DFP5
+bindsym $mod+Shift+mod5+braceleft move container to output DFP9
+bindsym $mod+Shift+mod5+braceright move container to output DFP13
+
+# reload the configuration file
+bindsym $mod+Shift+p reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+y restart
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym t resize grow height 10 px or 10 ppt
+    bindsym n resize shrink height 10 px or 10 ppt
+    bindsym s resize grow width 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+f mode "resize"

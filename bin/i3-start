@@ -1,0 +1,37 @@
+#!/bin/bash
+#Create right monitor
+i3-msg workspace n
+i3-msg exec "urxvtc -title ncmpcpp -e sh -c \"tmux -2 attach -t ncmpcpp\"" && sleep 0.1
+i3-msg split h
+i3-msg exec "urxvtc -title mutt -e sh -c \"tmux -2 attach -t mutt\"" && sleep 0.1
+i3-msg focus left
+i3-msg split v
+i3-msg exec "urxvtc -title htop -e htop" && sleep 0.1
+
+#Create left monitor
+i3-msg workspace s
+i3-msg exec "urxvtc -title cortex -e sh -c \"cortex\"" && sleep 0.1
+i3-msg split v
+i3-msg exec "urxvtc -title rtorrent -e sh -c \"tmux -2 attach -t rtor\"" && sleep 0.1
+i3-msg split h
+i3-msg exec urxvtc
+
+#Create code monitor
+i3-msg workspace t
+i3-msg exec urxvtc
+
+#Open irc
+i3-msg workspace c
+i3-msg exec "urxvtc -title irc -e sh -c \"tmux -2 attach -t weechat\"" && sleep 0.1
+
+#Create firefox monitor
+i3-msg workspace h
+i3-msg exec fx && sleep 5
+i3-msg exec urxvtc && sleep 0.2
+i3-msg resize shrink width 20 px or 20 ppt
+i3-msg split v
+i3-msg exec urxvtc && sleep 0.1
+i3-msg focus parent && sleep 0.1
+i3-msg layout stacked && sleep 0.1
+i3-msg focus up
+i3-msg workspace h

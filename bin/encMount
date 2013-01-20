@@ -56,7 +56,7 @@ elif [[ "$group" == "data" ]]; then
     open "data-7" "/dev/disk/by-uuid/3b836e34-814c-407d-a04b-83e370d74d17"
     open "data-6" "/dev/disk/by-uuid/9de28f8b-8bde-45cc-815f-c1654d33b32e"
     open "data-5" "/dev/disk/by-uuid/58487ea5-ac11-4497-aba7-d0ce47822cc8"
-    open "data-3" "/dev/disk/by-uuid/9030861f-7167-4d7e-85d7-27f4e135984d"
+    #open "data-3" "/dev/disk/by-uuid/9030861f-7167-4d7e-85d7-27f4e135984d"
 fi
 
 # Reset vars

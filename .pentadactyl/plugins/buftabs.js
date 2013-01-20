@@ -1,48 +1,3 @@
-// {{{ Information
-var INFO =
-<plugin name="buftabs" version="1.0"
-    href="http://git.glacicle.org/vimperator-buftabs/"
-    summary="Buftabs: show the tabbar in the statusline"
-    xmlns={NS}>
-    <author email="lucas@glacicle.org">Lucas de Vries</author>
-    <license href="http://sam.zoy.org/wtfpl/">WTFPL</license>
-    <project name="Pentadactyl" minVersion="1.0"/>
-    <p>
-        When the script is loaded it hijacks the statusline to display a
-        list of tabs, you can use the <o>buftabs</o> option to toggle it
-        on or off.
-    </p>
-
-    <p>
-        Use the BufTab and BufTabSelected highlight groups to style the
-        buftabs. Make sure you've called the "loadplugins" command
-        before using the highlight groups in your vimperatorrc.
-    </p>
-
-    <p>
-        You can set the max length of a title before it is cut off with
-        the <o>buftabs-maxlength</o> option. It is set to 25 by default.
-    </p>
-    <item>
-        <tags>'bt' 'buftabs'</tags>
-        <spec>'buftabs' 'bt'</spec>
-        <type>boolean</type> <default>true</default>
-        <description>
-            Toggle the buftabs on or off.
-        </description>
-    </item>
-    <item>
-        <tags>'btm' 'buftabs-maxlength'</tags>
-        <spec>'buftabs-maxlength' 'btm'</spec>
-        <type>number</type> <default>25</default>
-        <description>
-            The maximum length in characters of a single entry in the buftabs line.
-            Set to 0 for unlimited.
-        </description>
-    </item>
-</plugin>;
-// }}}
-
 let buftabs = {
     // Update the tabs
     update: function ()
@@ -142,11 +97,9 @@ let buftabs = {
 
         // Set the correct highlight group
         if (tabs.index(null, true) == label.tabpos)
-            label.setAttributeNS(NS.uri, "highlight", "BufTabSelected");
+            label.setAttribute("style", "background: #343434; padding-left: 5px; padding-right: 5px; color: #9fbc00;");
         else
-            label.setAttributeNS(NS.uri, "highlight", "BufTab");
-
-
+            label.setAttribute("style", "padding-left: 5px; padding-right: 5px; color: #9fbc00;");
     },
 
     // Create the horizontal box for adding the tabs to
@@ -157,7 +110,7 @@ let buftabs = {
             return;
 
         let widget = util.xmlToDom(
-            <hbox xmlns={XUL} highlight="BufTabs" id={id} flex="1" style="overflow: hidden"/>,
+            '<hbox xmlns="'+XUL+'" highlight="BufTabs" id="'+id+'" flex="1" style="overflow: hidden"/>',
             document);
         statusline.widgets.url.parentNode.insertBefore(
             widget, statusline.widgets.url.nextSibling);
@@ -183,11 +136,9 @@ document.getElementById("appcontent").addEventListener("load", function (event) 
 }, true);
 
 /// Initialise highlight groups
-highlight.loadCSS(<![CDATA[
-    !BufTabs          background: inherit; color: inherit;
-    !BufTab
-    !BufTabSelected   font-weight: bold;
-]]>);
+highlight.loadCSS("!BufTabs background: #ff0000; color: inherit;");
+highlight.loadCSS("!BufTab");
+highlight.loadCSS("!BufTabSelected   font-weight: bold;");
 
 /// Options
 group.options.add(["buftabs", "bt"],

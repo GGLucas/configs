@@ -32,17 +32,16 @@ silent qma i http://glaciergaming.co.uk/index.php?action=unread
 silent qma I http://achrongame.com/forums/search.php?search_id=newposts
 " Star Ruler
 silent qma l http://forums.blind-mind.com/index.php?action=unread
+silent qma L http://glacicle.org:8675
 silent qma b http://gglucas.tadalist.com/lists/1752277
 " SW
 silent qma B http://www.plaidhatgames.com/sum_forums/search.php?searchid=17654
-" SoaSE
-silent qma L http://forums.sinsofasolarempire.com/recent
 "" Wesnoth
 silent qma c http://forum.wesnoth.org/search.php?search_id=active_topics
 silent qma C http://ladder.subversiva.org/
 "" Elemental
-silent qma f http://forums.elementalgame.com/recent
-silent qma F http://elementalgame.com
+silent qma f http://forum.topiaonline.com/search.php?search_id=unreadposts
+silent qma F http://topiaonline.com
 "" Angelscript
 silent qma k http://www.gamedev.net/forum/49-angelcode/
 

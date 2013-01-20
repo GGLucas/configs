@@ -325,7 +325,7 @@ dt() { for d in $@; do rc.d $d stop; done; }
 # }}}
 # {{{ Package management helper functions
 # Root where packages are stored
-PACKAGE_ROOT=/mnt/data-6/others/packages
+PACKAGE_ROOT=/mnt/data-7/others/packages
 alias i='makepkg -fi'
 
 # Download package from abs

@@ -1,5 +1,4 @@
 #!/bin/bash
-
 if [[ $(mpc current) =~ "AnimeNfo" ]];
 then
     ([[ $(mpc current) ]] && mpc stop || mpc play) &> /dev/null

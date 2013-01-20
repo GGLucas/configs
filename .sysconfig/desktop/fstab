@@ -3,7 +3,7 @@
 # <file system>        <dir>         <type>    <options>          <dump> <pass>
 
 # Root fs
-LABEL=HeresyRoot / ext4 defaults,noatime,nodiratime 0 0
+/dev/disk/by-uuid/f4e7711c-4334-4b87-bc03-09a0cb0984ea / ext4 defaults,noatime,nodiratime 0 0
 
 # Mount special entries (/dev/..)
 none                   /dev/pts      devpts    defaults            0      0
@@ -14,12 +14,12 @@ none /tmp tmpfs defaults,noatime,nodiratime 0 0
 none /var/ipc tmpfs defaults,noatime,nodiratime 0 0
 
 # Boot directory
-LABEL=HeresyBoot /boot ext4 defaults,noatime,nodiratime 0 0 
+/dev/disk/by-uuid/5b54de6b-da3e-446c-9edf-cb6e962b6d30 /boot ext4 defaults,noatime,nodiratime 0 0
 
 # Data partitions
+/dev/mapper/data-7 /mnt/data-7 ext4 defaults,noatime,nodiratime,noauto 0 0
 /dev/mapper/data-6 /mnt/data-6 ext4 defaults,noatime,nodiratime,noauto 0 0
 /dev/mapper/data-5 /mnt/data-5 ext4 defaults,noatime,nodiratime,noauto 0 0
-/dev/mapper/data-4 /mnt/data-4 ext4 defaults,noatime,nodiratime,noauto 0 0
 /dev/mapper/data-3 /mnt/data-3 ext4 defaults,noatime,nodiratime,noauto 0 0
 
 # Home partition
@@ -36,7 +36,7 @@ LABEL=HeresyBoot /boot ext4 defaults,noatime,nodiratime 0 0
 #none /data aufs br:/mnt/data-4=rw:/mnt/data-5=rw:/mnt/data-3=rw,create=pmfs,noatime,noauto 0 0
 
 #### unionfs-fuse union
-/usr/bin/unionfs#/mnt/data-6=RW:/mnt/data-3=RW:/mnt/data-5=RW:/mnt/data-4=RW /data fuse defaults,noatime,allow_other,fsname=data 0 0
+#/usr/bin/unionfs#/mnt/data-6=RW:/mnt/data-3=RW:/mnt/data-5=RW:/mnt/data-4=RW /data fuse noatime,allow_other,fsname=data 0 0
 
 # Devices
 /dev/disk/by-id/usb-iriver_S10-0:0 /mnt/iriver auto rw,user,noauto 0 0

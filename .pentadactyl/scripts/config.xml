@@ -36,7 +36,7 @@
 		<Grant>none</Grant>
 		<Include>*</Include>
 	</Script>
-	<Script basedir="4chan_x" checkRemoteUpdates="1" dependhash="de4ca77d72f0a4de2229e149b7ba2844ff21f12a" description="Adds various features." enabled="true" filename="4chan_x.user.js" installTime="1354222374156" modified="1354222374000" name="4chan x" namespace="aeosynth" runAt="document-start" uuid="42d17aca-9bfe-4abf-bad3-8d7bae419152" version="2.36.3" installurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" updateurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" icon="data:image/gif;base64,R0lGODlhEAAQAKECAAAAAGbMM////////yH5BAEKAAIALAAAAAAQABAAAAIxlI+pq+D9DAgUoFkPDlbs7lGiI2bSVnKglnJMOL6omczxVZK3dH/41AG6Lh7i6qUoAAA7">
+	<Script basedir="4chan_x" checkRemoteUpdates="1" dependhash="de4ca77d72f0a4de2229e149b7ba2844ff21f12a" description="Adds various features." enabled="true" filename="4chan_x.user.js" installTime="1357877054849" modified="1357877054000" name="4chan x" namespace="aeosynth" runAt="document-start" uuid="aba50013-d46d-4e17-876a-fac1f35a2870" version="2.37.3" installurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" updateurl="https://github.com/MayhemYDG/4chan-x/raw/stable/4chan_x.user.js" icon="data:image/gif;base64,R0lGODlhEAAQAKECAAAAAGbMM////////yH5BAEKAAIALAAAAAAQABAAAAIxlI+pq+D9DAgUoFkPDlbs7lGiI2bSVnKglnJMOL6omczxVZK3dH/41AG6Lh7i6qUoAAA7">
 		<Grant>GM_getValue</Grant>
 		<Grant>GM_setValue</Grant>
 		<Grant>GM_deleteValue</Grant>

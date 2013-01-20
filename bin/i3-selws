@@ -1,0 +1,3 @@
+#!/bin/bash
+ws=$(i3-msg -t get_workspaces | grep -i -E -o "\"name\":\"([a-zA-Z0-9]*)" | cut -c9- | awk '{ print length, $0 }' | sort -r -n | cut -d " " -f2- | dmenu -i -l 10)
+[[ $ws ]] && i3-msg workspace "$ws"

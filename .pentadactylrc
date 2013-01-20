@@ -133,7 +133,7 @@ EOF
 
 " Quickmark in background tab
 js <<EOF
-mappings.add(config.browserModes,
+group.mappings.add(config.browserModes,
     ["gN"], "Jump to a QuickMark in a new tab, inverting the 'activate' option",
     function (arg) {
         quickmarks.jumpTo(arg,

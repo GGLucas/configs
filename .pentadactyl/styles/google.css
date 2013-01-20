@@ -6,7 +6,8 @@ body
 
 #appbar, #mngb, #leftnav, #bb_pp_tos_ack,
 #botstuff, #fll, .r.inl, .bl, #videobox,
-.nyc_opening .vspii, .nyc_open .vspii, .vspib
+.nyc_opening .vspii, .nyc_open .vspii, .vspib,
+#hdtb
 {
     display: none !important;
 }
