@@ -3,7 +3,7 @@
  * based on http://userstyles.org/styles/17101
  */
 
-div.container > table 
+div.container > table, #dl_frame
 {
     display: none !important;
 }
@@ -70,11 +70,22 @@ td[colspan="3"] a
    margin-left:110px!important;
 }
 
-.sidebox, .topbar
+.sidebox, .topbar, .tvtbox, .menu
 {
-   background:none!important;
-   background-color:#343434!important;
-   margin:1px!important;
+   background: none !important;
+   background-color: #242424 !important;
+   margin: 1px !important;
+   box-shadow: none !important;
+}
+
+.tvtbox {
+    margin-top: 10px !important;
+    border-left: none !important;
+}
+
+.tvtbox .head, .tvtbox .body {
+    background: inherit !important;
+    color: #ccc !important;
 }
 
 .subbox 

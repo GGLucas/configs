@@ -83,8 +83,8 @@ if [[ -x /bin/stty ]]; then
 fi
 
 # Load autojump
-if [[ -f /etc/profile.d/autojump.bash ]]; then
-    . /etc/profile.d/autojump.bash
+if [[ -f /usr/etc/profile.d/autojump.bash ]]; then
+    . /usr/etc/profile.d/autojump.bash
 fi
 
 # Give ls more colors

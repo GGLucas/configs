@@ -8,7 +8,8 @@ body
 
 #gb, #yt-masthead-container, #guide,
 #watch7-content, #watch7-sidebar,
-#footer-hh-container, #yt-uix-clickcard-card1 {
+#footer-hh-container, #yt-uix-clickcard-card1,
+#footer-container {
     display: none !important;
 }
 

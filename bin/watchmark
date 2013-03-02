@@ -1,7 +1,14 @@
 #!/bin/bash
-mplayer "$1"
-case "$3" in
-    "anime") anigrate watch: %e =anime "$2" ;;
-    "series") anigrate watch: %e =tv "$2" ;;
-    *) anigrate watch: %e "$2" ;;
-esac
+while [[ "$@" != "" ]]; do
+    file="$1"
+    category="$(echo "$1" | awk -F '/' '{ print $3 }')"
+    name="$(echo "$1" | awk -F '/' '{ print $4 }')"
+    shift
+
+    mplayer "$file"
+    case "$category" in
+        "anime") anigrate watch: %e =anime "$name" ;;
+        "series") anigrate watch: %e =tv "$name" ;;
+        *) anigrate watch: %e "$name" ;;
+    esac
+done;

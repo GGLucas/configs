@@ -18,7 +18,7 @@ erfworld                    http://www.erfworld.com/feed/
 mistakesofyouth             http://mistakesofyouth.com/feed/
 cynh                        http://feedproxy.google.com/Explosm
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml
-#abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
+abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
 subnormality                http://www.viruscomix.com/rss.xml
 marryme                     http://marryme.keenspot.com/main/feed/
 dresdencodak                http://feeds2.feedburner.com/rsspect/fJur
@@ -29,13 +29,13 @@ hijinks                     http://feeds.feedburner.com/hijinksensue
 harkavagrant                http://www.rsspect.com/rss/vagrant.xml
 basicintructions            http://basicinstructions.net/basic-instructions/rss.xml
 buttersafe                  http://feeds.feedburner.com/Buttersafe
-#bug                         http://www.bugcomic.com/feed/
+bug                         http://www.bugcomic.com/feed/
 dawn                        http://www.dawnoftimecomics.com/rss.php
 nedroid                     http://nedroid.com/feed/
 amazing                     http://www.amazingsuperpowers.com/category/comics/feed/
 gunner                      http://www.rsspect.com/rss/gunner.xml
 hh                          http://hipsterhitler.com/feed/
-#gnk                         http://www.rsspect.com/rss/gunner.xml
+hare                        http://hareborne.com/feed/
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/
 reddit                      http://feeds.feedburner.com/redditblog?format=xml

@@ -7,9 +7,9 @@ class WatchMark(Command):
         sel = cwd.get_selection()
 
         self.fm.tag_toggle(cwd.filenames, False);
-        self.fm.tag_toggle([x.path for x in sel], True);
+        self.fm.tag_toggle(sel[-1].path, True);
 
-        self.fm.run(app='watchmark', files=sel);
+        self.fm.run(['watchmark']+[x.path for x in sel]);
 
 # Tag only this file, watch it
 class MarkOnly(Command):
@@ -18,6 +18,6 @@ class MarkOnly(Command):
         sel = cwd.get_selection()
 
         self.fm.tag_toggle(cwd.filenames, False);
-        self.fm.tag_toggle([x.path for x in sel], True);
+        self.fm.tag_toggle(sel[-1].path, True);
 
-        self.fm.run(app='mplayer', files=sel);
+        self.fm.run(['mplayer']+[x.path for x in sel]);

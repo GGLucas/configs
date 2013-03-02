@@ -2,6 +2,6 @@
 i3-msg workspace t
 i3-msg workspace n
 i3-msg workspace s
+i3-msg workspace g
 i3-msg workspace c
-i3-msg workspace r
 i3-msg workspace h

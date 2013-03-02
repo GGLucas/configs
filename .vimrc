@@ -404,9 +404,10 @@ autocmd FileType mail hi link mailSubject Function
 "" }}}
 "" {{{ Other
 " Project-specifics
-autocmd BufReadPost ~/projects/sr2/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
-autocmd BufReadPost ~/projects/sr2/* syn keyword cRepeat foreach
-autocmd BufReadPost ~/projects/sr2/* syn region Comment start=+\(class\)\?doc(+ end=+);+
+autocmd BufReadPost ~/projects/sr*/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
+autocmd BufReadPost ~/projects/sr*/* syn keyword cRepeat foreach
+autocmd BufReadPost ~/projects/sr*/* syn keyword Constant nullptr
+autocmd BufReadPost ~/projects/sr*/* syn region Comment start=+\(class\)\?doc(+ end=+);+
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
 autocmd BufReadPost /mnt/starruler/Game Data/*.txt set ft=starruler
 autocmd BufReadPost /mnt/starruler/Locales/*.txt set ft=defs

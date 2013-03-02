@@ -1,10 +1,11 @@
 #!/bin/bash
+export PATH="$HOME/bin:$PATH"
 
 # Spawn mail syncer in the background
 #syncMail &>/dev/null &
 
 # Spawn rssdler in the background
-rssdler -o &>/var/log/rssdler &
+#rssdler -o &>/var/log/rssdler &
 
 # Xrandr layout
 #sh .screenlayout/setup.sh
@@ -15,11 +16,8 @@ xrdb -merge $HOME/.Xresources &
 # Start unclutter
 unclutter -idle 2 -root &
 
-# Start keynav for keyboard navigation
-keynav &
-
 # Make forward & back mouse buttons work
-imwheel -k -b "67" > /dev/null &
+#imwheel -k -b "67" > /dev/null &
 
 # Enable Glyph Cache
 #nvidia-settings -a InitialPixmapPlacement=2 -a GlyphCache=1 > /dev/null &
@@ -30,7 +28,7 @@ amixer set Line mute > /dev/null &
 mpc volume 74 &
 
 # Load animenfo if playlist is empty
-([[ $(mpc playlist) ]] || mpc load animenfo) &
+#([[ $(mpc playlist) ]] || mpc load animenfo) &
 
 # Run urxvtd, to start terminals faster
 urxvtd &
@@ -38,8 +36,8 @@ urxvtd &
 # Set keyboard layout
 hdv_te &
 
-# WMName for Java
-wmname LG3D &
+# Start keynav for keyboard navigation
+#keynav &
 
 # Set keyboard repeat rate
 xset r rate 180 80 &
@@ -54,7 +52,7 @@ xset s off
 xset m 1/1 1
 
 #Boot up synergy
-sudo /etc/rc.d/synergys start
+#sudo /etc/rc.d/synergys start
 
 # Monitor-specific commands
 #for display in ":0.0" ":0.1" ":0.2" ":0.3" ":0.4" ":0.5";
