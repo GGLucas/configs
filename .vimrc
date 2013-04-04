@@ -212,6 +212,7 @@ let g:CommandTSelectNextMap = ['<Tab>', '<C-n>']
 let g:snips_author = "Lucas de Vries"
 let g:snips_mail = "lucas@glacicle.org"
 let g:snippets_dir = "~/.vim/snippets"
+""" }}}
 """ {{{ AutoPairs
 let g:AutoPairsShortcutFastWrap = '<C-_>'
 let g:AutoPairsCenterLine = 0

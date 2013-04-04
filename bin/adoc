@@ -1,2 +1,0 @@
-#!/bin/bash
-asciidoc -d manpage -b docbook $1.txt; docbook2man $1.xml; gzip $1; man ./$1.gz

@@ -1,0 +1,266 @@
+/*<INFO
+Load userstyles and inject them into websites
+INFO>*/
+
+var me = "userstyles";
+var styles = [];
+var enabled = true;
+/*
+//<DEFAULT_CONFIG
+  // paths to userstyles, this extension will also load all scripts in
+  // $XDG_CONFIG_HOME/dwb/userstyles
+  styles : []
+//>DEFAULT_CONFIG
+*/
+
+UserStyle.prototype = new Function();
+UserStyle.prototype.constructor = UserStyle;
+function UserStyle() 
+{
+    this.description = null;
+    this.downloadURL = null;
+    this.exclude = [];
+    this.icon = null;
+    this.include = [];
+    this.name = null;
+    this.updateURL = null;
+    this.version = null;
+    this.style = "";
+}
+
+var regexes = {
+    isTld : /\.tld(?:\/|:|$)/, 
+    isRegExp : /^\/.*\/$/
+};
+
+function matchIncludeExclude(frame, items) //{{{
+{
+    var uri = frame.uri;
+    var domain = frame.domain;
+    var i;
+    for (i=0; i<items.length; i++) 
+    {
+        try 
+        {
+            if (items[i].isTld && domain !== null) 
+            {
+                var reg = new RegExp("(?=.)" + domain + "($|/|:)");
+                var newDomain = domain.substring(0, domain.indexOf(".")) + ".tld$1";
+                uri = uri.replace(reg, newDomain);
+            }
+            if (items[i].regExp.test(uri)) 
+                return true;
+        }
+        catch(e) 
+        {
+            script.debug(e);
+        }
+    }
+    return false;
+}//}}}
+
+function injection() {
+    var style = document.createElement("style");
+    style.setAttribute("type", "text/css");
+    style.appendChild(document.createTextNode(arguments[0]));
+    document.body.appendChild(style);
+}
+
+function doInject(frame, item)
+{
+  frame.inject(injection, item.style, item.offset);
+}
+
+function handle(frame, array) //{{{
+{
+    var i, item;
+    for (i=0; i<array.length; i++) 
+    {
+        item = array[i];
+        try
+        {
+            if (matchIncludeExclude(frame, item.exclude)) 
+                continue;
+            if (matchIncludeExclude(frame, item.include)) 
+                doInject(frame, item);
+        }
+        catch (e) 
+        {
+            script.debug(e);
+        }
+    }
+}//}}}
+
+function injectionCallback(wv) //{{{
+{
+    if(enabled)
+        handle(wv.mainFrame, styles);
+}//}}}
+
+function parseIncludeExclude(array) //{{{
+{
+    var i, rule;
+    for (i=0; i<array.length; i++) 
+    {
+        rule = array[i];
+        if (regexes.isRegExp.test(rule)) 
+        {
+            array[i] = { 
+                regExp : new RegExp(rule.substring(1, rule.length-1)), 
+                isTld : regexes.isTld.test(rule) 
+            };
+        }
+        else 
+        {
+            array[i] = { 
+                regExp : new RegExp(rule.replace(/\*/g, ".*")), 
+                isTld : regexes.isTld.test(rule) 
+            };
+        }
+    }
+}//}}}
+
+function uriSplit(uri) 
+{
+    var parts, scheme, host, path, idx; 
+    parts = uri.split("://");
+    if (parts[0] === uri) 
+        return null;
+    scheme = parts[0];
+    idx = parts[1].indexOf("/");
+    if (idx == -1) 
+    {
+        host = parts[1];
+        path = null;
+    }
+    else 
+    {
+        host = parts[1].substring(0, idx);
+        path = parts[1].substring(idx);
+    }
+    return { path : path, host: host, scheme : scheme }; 
+}
+
+function parseStyle(path) //{{{
+{
+    var userstyle;
+    var i, items, key, value, idx, m, numVal;
+
+    var curStyle = io.read(path);
+    if (!curStyle || (/^\s*$/).test(curStyle)) 
+      return;
+
+    var metaStart = curStyle.search(/(^|\n)\/\/\s*==UserStyle==/);
+    var metaEnd = curStyle.search(/\n\/\/\s*==\/UserStyle==/);
+
+    userstyle = new UserStyle();
+
+    if (metaStart == -1 || metaEnd == -1) 
+    {
+        userstyle.style = curStyle;
+        userstyle.offset = 1;
+        userstyle.include = [ { regExp : /.*/, isTld : false} ];
+        styles.push(userstyle);
+        return;
+    }
+
+    var meta = curStyle.substring(metaStart, metaEnd).split("\n");
+    var styleStart = curStyle.substring(metaEnd+1).indexOf("\n") + metaEnd + 1;
+
+    var regValue = /\s[^\/@]\S?/;
+    var regIsRule = /^\s*\/\/\s*@/;
+    for (i=1; i<meta.length; i++) 
+    {
+        if (! (regIsRule.test(meta[i])) )
+            continue;
+        try 
+        {
+            items = meta[i].split(/\s+/, 2);
+            key = items[1].substring(1).trim();
+            idx = meta[i].search(regValue);
+            value = idx >= 0 ? meta[i].substring(idx+1).trim() : null;
+            if (key == "description"  || 
+                key == "downloadURL"  || 
+                key == "icon"         || 
+                key == "name"         || 
+                key == "updateURL"    || 
+                key == "version") 
+            {
+                userstyle[key] = value;
+            }
+            else if (typeof userstyle[key] == "number") 
+            {
+                try 
+                {
+                    numVal = parseInt(value, 10);
+                    if (!isNaN(numVal)) 
+                        userstyle[key] = numVal;
+                }
+                catch (e) {
+                    script.debug(e);
+                }
+            }
+            else if (userstyle[key] instanceof Array) 
+                    userstyle[key] = userstyle[key].concat(value.match(/\S+/g));
+        }
+        catch(e)
+        {
+            script.debug(e);
+        }
+
+    }
+    if (userstyle.include.length === 0) 
+        userstyle.include.push({regExp : /.*/, isTld : false});
+    else
+        parseIncludeExclude(userstyle.include);
+    parseIncludeExclude(userstyle.exclude);
+
+    userstyle.style = curStyle.substring(styleStart);
+    userstyle.offset = meta.length + 1;
+
+    styles.push(userstyle);
+}//}}}
+
+function parseStyles(styles) //{{{
+{
+    var i, path;
+    for (i=0; i<styles.length; i++) 
+    {
+        if (system.fileTest(styles[i], FileTest.regular | FileTest.symlink)) 
+            parseScript(styles[i]);
+    }
+    [ "userstyles" ].forEach(function(path) {
+        var styleDir = data.configDir + "/" + path;
+        if (system.fileTest(styleDir, FileTest.dir)) 
+        {
+            var lines = io.dirNames(styleDir);
+            for (i=0; i<lines.length; i++) 
+            {
+                if (lines[i].charAt(0) == ".")
+                    continue;
+                path = styleDir + "/" + lines[i];
+                if (!(/^\s*$/.test(lines[i])) && system.fileTest(path, FileTest.regular | FileTest.symlink)) 
+                    parseStyle(path);
+            }
+        }
+    });
+
+}//}}}
+
+var userstyles = {
+    init : function (c) {
+        parseStyles(c ? c.scripts || [] : []);
+        Signal.connect("navigation", injectionCallback);
+        bind(null, function(arguments) {
+            enabled = !enabled;
+        }, "toggle_userstyles");
+        return true;
+    },
+    end : function () {
+        Signal.disconnect(injectionCallback);
+    }
+};
+
+return userstyles;
+
+// vim: set ft=javascript:

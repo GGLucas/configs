@@ -53,7 +53,7 @@ PROMPT_COMMAND="setprompt &> /dev/null"
 # Applications
 export PAGER='vimpager'
 export EDITOR='vim'
-export BROWSER='fxs'
+export BROWSER='dwb'
 
 # History control
 export HISTCONTROL="ignoreboth"
@@ -317,11 +317,9 @@ fu()  { feed-update >> ~/.feeds.update; }
 fo()  { cat ~/.feeds.update | while read url; do [[ -n "$url" ]] && $BROWSER $url; done; echo -n; :>~/.feeds.update; }
 # }}}
 # {{{ Daemons
-rc.d() { [[ -d /etc/rc.d ]] && sudo /etc/rc.d/$@;
-         [[ -d /etc/init.d ]] && sud /etc/init.d/$@; }
-dr() { for d in $@; do rc.d $d restart; done; }
-ds() { for d in $@; do rc.d $d start; done; }
-dt() { for d in $@; do rc.d $d stop; done; }
+dr() { for d in $@; do sudo systemctl restart $d; done; }
+ds() { for d in $@; do sudo systemctl start $d; done; }
+dt() { for d in $@; do sudo systemctl stop $d; done; }
 # }}}
 # {{{ Package management helper functions
 # Root where packages are stored

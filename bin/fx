@@ -1,6 +1,0 @@
-#!/bin/bash
-# Disable pango
-#export MOZ_DISABLE_PANGO=1
-# Run firefox
-exec /usr/bin/firefox "$@"
-#exec /opt/firefox-beta-bin-11.0b4/firefox "$@"

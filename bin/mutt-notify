@@ -1,3 +1,0 @@
-#!/bin/bash
-[[ "$2" == "=INBOX" ]] && echo "mailnotify_set($1)" >> /tmp/awesome-remote
-echo $3

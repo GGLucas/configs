@@ -26,4 +26,4 @@ i3-msg exec "urxvtc -title irc -e sh -c \"tmux -2 attach -t weechat\"" && sleep 
 
 #Create firefox monitor
 i3-msg workspace h
-i3-msg exec fx && sleep 5
+i3-msg exec dwb && sleep 5

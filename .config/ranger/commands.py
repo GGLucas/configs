@@ -6,8 +6,8 @@ class WatchMark(Command):
         cwd = self.fm.env.cwd
         sel = cwd.get_selection()
 
-        self.fm.tag_toggle(cwd.filenames, False);
-        self.fm.tag_toggle(sel[-1].path, True);
+        self.fm.tags.remove(*cwd.filenames);
+        self.fm.tags.add(cwd.pointed_obj.path);
 
         self.fm.run(['watchmark']+[x.path for x in sel]);
 
@@ -17,7 +17,7 @@ class MarkOnly(Command):
         cwd = self.fm.env.cwd
         sel = cwd.get_selection()
 
-        self.fm.tag_toggle(cwd.filenames, False);
-        self.fm.tag_toggle(sel[-1].path, True);
+        self.fm.tags.remove(*cwd.filenames);
+        self.fm.tags.add(cwd.pointed_obj.path);
 
         self.fm.run(['mplayer']+[x.path for x in sel]);
