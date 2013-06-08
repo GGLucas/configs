@@ -1,4 +1,5 @@
 #!/bin/bash
+TERM=rxvt-256color
 rm -f .rtorrent_session/rtorrent.lock
 stty stop undef
 stty start undef

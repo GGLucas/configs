@@ -9,9 +9,6 @@ partial alphanumeric_keys modifier_keys
 xkb_symbols "basic" {
     name[Group1] = "Hacker Dvorak";
 
-    // Menu as compose
-    include "compose(menu)"
-
     // Left as third level shift
     key <LEFT>	{   type[Group1]="TWO_LEVEL",
                   [ ISO_Level3_Shift, ISO_Level3_Shift ] };
@@ -85,4 +82,5 @@ xkb_symbols "basic" {
     key <TAB>  {[ Tab, Tab, thorn, OE ]};
     key <SPCE> {[ space, space, BackSpace, nobreakspace ]};
     key <BKSL> {[ backslash, bar, implies ]};
+    key <MENU> {[ BackSpace, BackSpace, BackSpace, BackSpace ]};
 };

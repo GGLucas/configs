@@ -1,6 +1,6 @@
 // ==UserStyle==
 // @name           TVTorrents Userstyle
-// @include        http://*.tvtorrents.com/*
+// @include        http://(*.)?tvtorrents.com/*
 // ==/UserStyle==
 div.container > table, #dl_frame
 {

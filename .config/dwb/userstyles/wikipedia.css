@@ -1,6 +1,6 @@
 // ==UserStyle==
 // @name           Wikipedia Userstyle
-// @include        http://*.wikipedia.*/*
+// @include        http://(*.)?(wikipedia|wikimedia).*/*
 // ==/UserStyle==
 body,#content
 {

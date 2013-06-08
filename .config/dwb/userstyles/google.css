@@ -1,6 +1,6 @@
 // ==UserStyle==
 // @name           Google Userstyle
-// @include        http://*.google.*
+// @include        https?://(*.)?google.*
 // ==/UserStyle==
 body
 {

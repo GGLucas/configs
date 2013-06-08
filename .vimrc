@@ -6,7 +6,6 @@
 "
 
 " {{{ Key mappings
-"" {{{ Convenience shortcuts
 """ {{{ Mapleader
 let mapleader=","
 """ }}}
@@ -70,12 +69,6 @@ nmap . .'[
 " Insert/remove braces around single line
 nnoremap ysb mZkA {<Esc>jo}<Esc>`Z
 nnoremap dsb mZkA<BS><BS><Esc>jjddk`Z
-
-" Wordwise C-Y
-inoremap <silent> <C-E> <C-C>:let @z = @"<CR>mz
-\:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
-\:exec (col('.')==col('$')-1 ? 'let @" = @_' : 'normal! yiW')<CR>
-\`zp:let @" = @z<CR>a
 """ }}}
 """ {{{ Spellcheck
 nmap <Leader>ss :set nospell<CR>
@@ -91,61 +84,9 @@ nnoremap <silent> [t :cprev<CR>
 xmap K k
 nmap Q <Nop>
 """ }}}
-"" }}}
-"" {{{ Plugin bindings
-""" {{{ Bisect
-nmap ↓ <Plug>BisectDown
-nmap ↑ <Plug>BisectUp
-nmap ← <Plug>BisectLeft
-nmap → <Plug>BisectRight
-nmap Æ <Plug>StopBisect
-
-xmap ↓ <Plug>VisualBisectDown
-xmap ↑ <Plug>VisualBisectUp
-xmap ← <Plug>VisualBisectLeft
-xmap → <Plug>VisualBisectRight
-xmap Æ <Plug>VisualStopBisect
-
-let g:bisect_disable_paging = 1
-""" }}}
-""" {{{ Command-T
-nmap <silent> <Leader>t :CommandT<CR>
-nmap <silent> <Leader>T :CommandTFlush<CR>
-let g:CommandTToggleFocusMap = []
-let g:CommandTSelectNextMap = ["<Tab>"]
-let g:CommandTSelectPrevMap = ["<C-p>"]
-""" }}}
-""" {{{ Lusty Explorer
-nmap <silent> <Leader>n :LustyBufferExplorer<CR>
-nmap <silent> <Leader>G :LustyFilesystemExplorer<CR>
-nmap <silent> <Leader>r :LustyFilesystemExplorerFromHere<CR>
-""" }}}
-""" {{{ Taglist
-nmap <silent> <Leader>l :TlistOpen<CR>
-nmap <silent> <Leader>L :TlistToggle<CR>
-""" }}}
 """ {{{ NERD Tree
 nmap <silent> <Leader>h :call TreeOpenFocus()<CR>
 nmap <silent> <Leader>H :NERDTreeToggle<CR>
-""" }}}
-""" {{{ BClose
-nmap <silent> <Leader>d :Bclose<CR>
-nmap <silent> <Leader>D :Bclose!<CR>
-""" }}}
-""" {{{ Operator-Replace
-map <Leader>_ <Plug>(operator-replace)
-""" }}}
-""" {{{ LateX Suite
-fun! RefreshTex()
-    let dir = getcwd()
-    cd %:p:h
-    silent call Tex_CompileLatex()
-    silent !pkill -USR1 xdvi
-    exe "cd " . dir
-    redraw!
-endfun
-
-nmap <Leader>z :call RefreshTex()<CR>
 """ }}}
 """ {{{ Git
 nmap <Leader>gA :Git add<Space>
@@ -165,23 +106,14 @@ nmap <silent> <Leader>gd :Git diff<CR>:redraw!<CR>
 nmap <silent> <Leader>gD :Git diff --cached<CR>:redraw!<CR>
 nmap <silent> <Leader>gb :Gblame<CR>:redraw!<CR>
 """ }}}
-""" {{{ Gundo
-nmap <Leader>gg :GundoToggle<CR><CR>:GundoFocus<CR>
-""" }}}
 "" }}}
-"" {{{ Text objects
-vnoremap iP :<C-U>silent! normal! }kV{jj<CR>
-omap iP :normal ViP<CR>
-"" }}}
-" }}}
 "" {{{ Configuration
-"" {{{ Plugin configuration
 """ {{{ Pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 """ }}}
-""" {{{ Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+""" {{{ Vundle
+call vundle#rc()
 """ }}}
 """ {{{ NERD Commenter
 let NERDDefaultNesting = 1
@@ -190,42 +122,13 @@ let NERDDefaultNesting = 1
 let NERDTreeIgnore = ['\~$', '\.pyc$', '\.swp$', '\.class$', '\.o$', '\.pyo$']
 let NERDTreeSortOrder = ['\/$', '\.[ch]$', '\.py$', '*']
 """ }}}
-""" {{{ Taglist
-let Tlist_Use_Right_Window = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Show_One_File = 1
-let Tlist_Enable_Fold_Column = 0
-""" }}}
 """ {{{ Python syntax
 let python_highlight_all = 1
 let python_highlight_space_errors = 0
 """ }}}
-""" {{{ Command-T
-let g:CommandTMaxHeight = 10
-let g:CommandTAlwaysShowDotFiles = 1
-let g:CommandTScanDotDirectories = 1
-let g:CommandTSelectPrevMap = ['<C-p>']
-let g:CommandTSelectNextMap = ['<Tab>', '<C-n>']
-""" }}}
-""" {{{ snipMate
-let g:snips_author = "Lucas de Vries"
-let g:snips_mail = "lucas@glacicle.org"
-let g:snippets_dir = "~/.vim/snippets"
-""" }}}
 """ {{{ AutoPairs
 let g:AutoPairsShortcutFastWrap = '<C-_>'
 let g:AutoPairsCenterLine = 0
-""" }}}
-""" {{{ ZenCoding
-let g:user_zen_settings = {'indentation': '  ',}
-let g:user_zen_leader_key = '<C-t>'
-""" }}}
-""" {{{ Don't load ruby if we don't have it
-if !has('ruby')
-    let g:command_t_loaded = 1
-    let g:loaded_lustyexplorer = 1
-endif
 """ }}}
 """ {{{ EasyMotion
 let g:EasyMotion_leader_key = '-'
@@ -236,13 +139,18 @@ nmap -K -k
 nmap -h -f
 nmap -H -F
 """ }}}
-"" }}}
 """ {{{ Powerline
 let g:Powerline_symbols = 'unicode'
 let g:Powerline_colorscheme = 'custom'
 """ }}}
-""" {{{ Gundo
-let g:gundo_right = 1
+""" {{{ YCM
+let g:ycm_extra_conf_globlist = ["/home/archlucas/projects/sr*/*"]
+nmap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+""" }}}
+""" {{{ CtrlP
+let g:ctrlp_map = ',t'
+let g:ctrlp_match_window_reversed = 0
 """ }}}
 "" {{{ Vim settings
 """ {{{ General
@@ -371,7 +279,6 @@ endif
 """ }}}
 "" }}}
 "" }}}
-" }}}
 " {{{ Autocommands
 "" {{{ Filetype detection
 autocmd BufNewFile,BufRead *.{md,mkd,mark,markdown} set ft=markdown
@@ -408,6 +315,7 @@ autocmd FileType mail hi link mailSubject Function
 autocmd BufReadPost ~/projects/sr*/* set noet inc= lcs=tab:\ \ ,trail:· ff=dos
 autocmd BufReadPost ~/projects/sr*/* syn keyword cRepeat foreach
 autocmd BufReadPost ~/projects/sr*/* syn keyword Constant nullptr
+autocmd BufNewFile,BufRead ~/projects/sr*/data/shaders/source/*.txt set ft=cpp
 autocmd BufReadPost ~/projects/sr*/* syn region Comment start=+\(class\)\?doc(+ end=+);+
 autocmd BufReadPost /mnt/starruler/* set noet inc= lcs=tab:\ \ ,trail:·
 autocmd BufReadPost /mnt/starruler/Game Data/*.txt set ft=starruler
@@ -424,8 +332,22 @@ autocmd BufReadPost *
 \ endif
 "" }}}
 " }}}
+" {{{ Installed Bundles
+Bundle 'b4winckler/vim-angry'
+Bundle 'vim-scripts/a.vim'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'gregsexton/gitv'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jiangmiao/auto-pairs'
+" }}}
 " {{{ Functions
-"" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
+" {{{ TreeOpenFocus(): Open the nerd tree or focus it.
 function! TreeOpenFocus()
     let wnr = bufwinnr("NERD_tree_1")
     if wnr == -1

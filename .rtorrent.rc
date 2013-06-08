@@ -1,6 +1,4 @@
-# Colors
-done_fg_color = 2
-active_fg_color = 6
+system.method.insert = pyro.extended, value|const, 1
 
 # Maximum connections for active torrents
 min_peers = 40
@@ -14,7 +12,7 @@ max_peers_seed = 50
 max_uploads = 8
 
 # Download/Upload speed limits
-#download_rate = 5500
+download_rate = 4000
 upload_rate = 150
 
 # Default download directory
@@ -53,6 +51,29 @@ ratio.max.set=200
 ratio.upload.set=100M
 
 system.method.set = group.seeding.ratio.command, d.close=
+
+#Colors
+#ui.color.alarm.set="bold white on red"
+#ui.color.complete.set="green"
+#ui.color.even.set=""
+#ui.color.focus.set="bright blue"
+#ui.color.footer.set="bright white"
+#ui.color.incomplete.set="bright green"
+#ui.color.info.set="white"
+#ui.color.label.set="gray"
+#ui.color.leeching.set="bright green"
+#ui.color.odd.set=""
+#ui.color.progress0.set="red"
+#ui.color.progress20.set="bright red"
+#ui.color.progress40.set="bright magenta"
+#ui.color.progress60.set="yellow"
+#ui.color.progress80.set="bright yellow"
+#ui.color.progress100.set="green"
+#ui.color.progress120.set="bright green"
+#ui.color.queued.set="magenta"
+#ui.color.seeding.set="green"
+#ui.color.stopped.set="magenta"
+#ui.color.title.set="bright white"
 
 # Watch directory for new torrents
 schedule = watch_directory,5,5,load=/home/archlucas/.torrents/*.torrent

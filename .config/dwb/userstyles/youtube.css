@@ -1,6 +1,6 @@
 // ==UserStyle==
 // @name           Youtube Userstyle
-// @include        http://*.youtube.*/*
+// @include        http://(*.)?(youtube.com|youtu.be)/*
 // ==/UserStyle==
 body
 {

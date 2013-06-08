@@ -250,7 +250,7 @@ function parseStyles(styles) //{{{
 var userstyles = {
     init : function (c) {
         parseStyles(c ? c.scripts || [] : []);
-        Signal.connect("navigation", injectionCallback);
+        Signal.connect("documentLoaded", injectionCallback);
         bind(null, function(arguments) {
             enabled = !enabled;
         }, "toggle_userstyles");

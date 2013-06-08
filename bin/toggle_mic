@@ -1,6 +1,8 @@
 #!/bin/bash
 # Figure out if we're muted
-(amixer -c AK5370 sget Mic | grep "\[on\]") &> /dev/null
+#CARD=P780
+CARD=AK5370
+(amixer -c $CARD sget Mic | grep "\[on\]") &> /dev/null
 #(amixer sget Capture | grep "\[on\]") &> /dev/null
 hadmic=$?
 
@@ -18,7 +20,7 @@ if (($hadmic != 0)); then
         rm -f /tmp/hadmusic
     fi;
 
-    amixer -c AK5370 set Mic toggle
+    amixer -c $CARD set Mic toggle
     xset led 3
     #amixer set Capture toggle
 else
@@ -27,7 +29,7 @@ else
         rm -f /tmp/hadmusic
         mpc play
     fi;
-    amixer -c AK5370 set Mic toggle
+    amixer -c $CARD set Mic toggle
     xset -led 3
     #amixer set Capture toggle
 fi;

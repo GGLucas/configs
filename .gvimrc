@@ -1,7 +1,5 @@
-" Source original vimrc
-source ~/.vimrc
-
 "Set color scheme
+set t_Co=256
 colors customleo
 
 " Remove GUI elements

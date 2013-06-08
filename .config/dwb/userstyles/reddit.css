@@ -51,10 +51,6 @@ div#siteTable div.md {
     border: 0 !important;
 }
 
-div.md a:visited {
-    color:white !important;
-}
-
 div.md blockquote {
     border-left:6px solid #343434 !important;
     margin:0 0 5px 20px !important;
@@ -83,10 +79,6 @@ p.title a {
     font-size:15px !important;
 }
 
-p.title a:visited {
-    color:white !important;
-}
-
 textarea {
     background:#eeeeee !important;
     font-family:Verdana,sans-serif !important;
@@ -99,10 +91,6 @@ textarea {
 ul.flat-list a {
     font-size:11px !important;
     font-weight:normal !important;
-}
-
-ul.flat-list li.first a:visited {
-    color:white !important;
 }
 
 .link.last-clicked {

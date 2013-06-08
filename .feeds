@@ -19,22 +19,19 @@ mistakesofyouth             http://mistakesofyouth.com/feed/
 cynh                        http://feedproxy.google.com/Explosm
 lfg                         http://feeds.feedburner.com/LookingForGroup?format=xml
 abstrusegoose               http://feeds2.feedburner.com/AbstruseGoose
-subnormality                http://www.viruscomix.com/rss.xml
-marryme                     http://marryme.keenspot.com/main/feed/
-dresdencodak                http://feeds2.feedburner.com/rsspect/fJur
+#dresdencodak                http://feeds2.feedburner.com/rsspect/fJur
 oglaf                       http://oglaf.com/feeds/rss/
-qwantz                      http://www.rsspect.com/rss/qwantz.xml
+#qwantz                      http://www.rsspect.com/rss/qwantz.xml
 pfsc                        http://www.rsspect.com/rss/pfsc.xml
 hijinks                     http://feeds.feedburner.com/hijinksensue
 harkavagrant                http://www.rsspect.com/rss/vagrant.xml
-basicintructions            http://basicinstructions.net/basic-instructions/rss.xml
+#basicintructions            http://basicinstructions.net/basic-instructions/rss.xml
 buttersafe                  http://feeds.feedburner.com/Buttersafe
 bug                         http://www.bugcomic.com/feed/
 dawn                        http://www.dawnoftimecomics.com/rss.php
 nedroid                     http://nedroid.com/feed/
 amazing                     http://www.amazingsuperpowers.com/category/comics/feed/
 gunner                      http://www.rsspect.com/rss/gunner.xml
-hh                          http://hipsterhitler.com/feed/
 hare                        http://hareborne.com/feed/
 ## Blogs
 osamuko                     http://www.osamuko.com/feed/
@@ -43,7 +40,7 @@ xkcd-blag                   http://blag.xkcd.com/feed/
 writequit                   http://feeds.feedburner.com/writequit/feed
 
 ## Screencasts
-fosscasts                   http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg
+#fosscasts                   http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg
 #vimcasts                    http://vimcasts.org/feeds/ogg
 
 ## Podcasts
@@ -59,5 +56,6 @@ sr-news                     http://www.blind-mind.com/rss/srnews.rss
 ## Manga
 nanoha-vivid                http://www.mangafox.com/rss/mahou_shoujo_lyrical_nanoha_vivid.xml
 nanoha-force                http://www.mangafox.com/rss/mahou_senki_lyrical_nanoha_force.xml
+manga                       http://www.batoto.net/myfollows_rss?secret=a44dec3527eb544489482d1c7fa18c3a&l=English
 
 #rome  http://www.reddit.com/user/Prufrock451/.rss

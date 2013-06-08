@@ -1,6 +1,6 @@
 // ==UserStyle==
 // @name           DuckDuckGo Userstyle
-// @include        http://*.duckduckgo.com/*
+// @include        http://(*.)?duckduckgo.com/*
 // ==/UserStyle==
 body,html
 {

@@ -83,8 +83,8 @@ if [[ -x /bin/stty ]]; then
 fi
 
 # Load autojump
-if [[ -f /usr/etc/profile.d/autojump.bash ]]; then
-    . /usr/etc/profile.d/autojump.bash
+if [[ -f /etc/profile.d/autojump.bash ]]; then
+    . /etc/profile.d/autojump.bash
 fi
 
 # Give ls more colors
@@ -143,32 +143,6 @@ alias ts='todo --database ~/.todo.schedule'
 alias v='vim'
 alias vv='sudo vim'
 
-# Backward search
-f() {
-    fname=$(mktemp)
-    fzsel ~/.bash_history $fname
-    cmd=$(cat $fname)
-    rm $fname
-
-    if [[ -n "$cmd" ]]; then
-        echo -e "\e[1;32m$cmd\e[0;37m"
-        eval "$cmd"
-    fi
-}
-
-# Quick folder jump
-fcd() {
-    fname=$(mktemp)
-    fzsel ~/.folder_index $fname
-    dir=$(cat $fname)
-    rm $fname
-
-    if [[ -n "$dir" ]]; then
-        echo -e "\e[1;34m$dir\e[0;37m"
-        cd "$dir"
-    fi
-}
-
 # Refresh quick folder index
 icd() {
     echo > ~/.folder_index
@@ -197,6 +171,7 @@ alias a='git add'
 alias ai='git add -i'
 alias aip='git add -i -p'
 alias d='git diff'
+alias dc='git diff --cached'
 alias p='git push origin master'
 alias pu='git pull origin master'
 alias pb='git pull --rebase origin master'
@@ -213,6 +188,7 @@ alias gpm='git submodule foreach git pull origin master'
 alias sd='svn diff | vim -'
 alias spu='svn up'
 alias sp='svn ci'
+alias gl='git log --stat -n30'
 
 # Commit everything or specified path
 c() {
