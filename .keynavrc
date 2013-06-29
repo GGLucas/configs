@@ -1,0 +1,25 @@
+clear
+z windowzoom
+super+r start,windowzoom
+super+shift+r start
+space warp,click 1,end
+Return warp,click 1,end
+Escape end
+u history-back
+w warp
+m warp,end
+r end
+d drag 1
+ampersand warp,click 1
+bracketleft warp,click 3
+braceleft warp,click 2
+
+h cut-left
+j cut-down
+k cut-up
+l cut-right
+
+shift+h move-left 0.1
+shift+j move-down 0.1
+shift+k move-up 0.1
+shift+l move-right 0.1

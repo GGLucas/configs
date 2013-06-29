@@ -10,10 +10,7 @@ unclutter -idle 2 -root &
 # Enable sound
 amixer set Front 100 unmute > /dev/null &
 amixer set Line mute > /dev/null &
-#mpc volume 74 &
-
-# Load animenfo if playlist is empty
-#([[ $(mpc playlist) ]] || mpc load animenfo) &
+mpc volume 74 &
 
 # Run urxvtd, to start terminals faster
 urxvtd &
@@ -22,7 +19,7 @@ urxvtd &
 hdv_dox &
 
 # Start keynav for keyboard navigation
-#keynav &
+keynav &
 
 # Set keyboard repeat rate
 xset r rate 180 80 &

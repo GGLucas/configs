@@ -15,63 +15,15 @@ Section "ServerFlags"
 EndSection
 
 Section "Monitor"
-	Identifier   "0-DFP9"
-	Option	    "VendorName" "ATI Proprietary Driver"
-	Option	    "ModelName" "Generic Autodetecting Monitor"
-	Option	    "DPMS" "true"
-	Option	    "PreferredMode" "2048x1152"
-	Option	    "TargetRefresh" "60"
-	Option	    "Position" "6272 1050"
-	Option	    "Rotate" "normal"
-	Option	    "Disable" "false"
-EndSection
-
-Section "Monitor"
-	Identifier   "0-DFP13"
-	Option	    "VendorName" "ATI Proprietary Driver"
-	Option	    "ModelName" "Generic Autodetecting Monitor"
-	Option	    "DPMS" "true"
-	Option	    "PreferredMode" "2048x1152"
-	Option	    "TargetRefresh" "60"
-	Option	    "Position" "0 442"
-	Option	    "Rotate" "left"
-	Option	    "Disable" "false"
-EndSection
-
-Section "Monitor"
-	Identifier   "0-DFP17"
-	Option	    "VendorName" "ATI Proprietary Driver"
-	Option	    "ModelName" "Generic Autodetecting Monitor"
-	Option	    "DPMS" "true"
-	Option	    "PreferredMode" "1680x1050"
-	Option	    "TargetRefresh" "60"
-	Option	    "Position" "2032 0"
-	Option	    "Rotate" "normal"
-	Option	    "Disable" "false"
-EndSection
-
-Section "Monitor"
-	Identifier   "0-DFP21"
-	Option	    "VendorName" "ATI Proprietary Driver"
-	Option	    "ModelName" "Generic Autodetecting Monitor"
-	Option	    "DPMS" "true"
-	Option	    "TargetRefresh" "60"
-	Option	    "Position" "3712 0"
-	Option	    "Rotate" "normal"
-	Option	    "Disable" "false"
-	Option	    "PreferredMode" "1680x1050"
-EndSection
-
-Section "Monitor"
 	Identifier   "0-DFP1"
 	Option	    "VendorName" "ATI Proprietary Driver"
 	Option	    "ModelName" "Generic Autodetecting Monitor"
 	Option	    "DPMS" "true"
 	Option	    "PreferredMode" "2560x1440"
 	Option	    "TargetRefresh" "60"
-	Option	    "Position" "1152 1050"
 	Option	    "Rotate" "normal"
 	Option	    "Disable" "false"
+	Option	    "Position" "0 0"
 EndSection
 
 Section "Monitor"
@@ -79,34 +31,57 @@ Section "Monitor"
 	Option	    "VendorName" "ATI Proprietary Driver"
 	Option	    "ModelName" "Generic Autodetecting Monitor"
 	Option	    "DPMS" "true"
-	Option	    "PreferredMode" "2560x1440"
-	Option	    "TargetRefresh" "60"
-	Option	    "Position" "3712 1050"
-	Option	    "Rotate" "normal"
-	Option	    "Disable" "false"
+	Option	    "Disable" "true"
+EndSection
+
+Section "Monitor"
+	Identifier   "0-DFP9"
+	Option	    "VendorName" "ATI Proprietary Driver"
+	Option	    "ModelName" "Generic Autodetecting Monitor"
+	Option	    "DPMS" "true"
+	Option	    "Disable" "true"
+EndSection
+
+Section "Monitor"
+	Identifier   "0-DFP13"
+	Option	    "VendorName" "ATI Proprietary Driver"
+	Option	    "ModelName" "Generic Autodetecting Monitor"
+	Option	    "DPMS" "true"
+	Option	    "Disable" "true"
+EndSection
+
+Section "Monitor"
+	Identifier   "0-DFP17"
+	Option	    "VendorName" "ATI Proprietary Driver"
+	Option	    "ModelName" "Generic Autodetecting Monitor"
+	Option	    "DPMS" "true"
+	Option	    "Disable" "true"
+EndSection
+
+Section "Monitor"
+	Identifier   "0-DFP21"
+	Option	    "VendorName" "ATI Proprietary Driver"
+	Option	    "ModelName" "Generic Autodetecting Monitor"
+	Option	    "DPMS" "true"
+	Option	    "Disable" "true"
 EndSection
 
 Section "Device"
 	Identifier  "radeon0"
 	Driver      "fglrx"
+	Option	    "SwapScreens" "off"
 	Option	    "Monitor-DFP1" "0-DFP1"
 	Option	    "Monitor-DFP5" "0-DFP5"
 	Option	    "Monitor-DFP9" "0-DFP9"
 	Option	    "Monitor-DFP13" "0-DFP13"
 	Option	    "Monitor-DFP17" "0-DFP17"
 	Option	    "Monitor-DFP21" "0-DFP21"
-	Option	    "SwapScreens" "off"
 	BusID       "PCI:3:0:0"
 EndSection
 
 Section "Screen"
-
-    # Main Left
 	Identifier "Screen0"
 	Device     "radeon0"
 	DefaultDepth     24
-	SubSection "Display"
-		Virtual   10000 2600
-	EndSubSection
 EndSection
 
