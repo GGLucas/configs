@@ -11,7 +11,7 @@ let mapleader=","
 """ }}}
 """ {{{ File actions
 " Save file
-nmap ƒ :up<CR>
+nmap <C-s> :up<CR>
 
 " Close everything
 nmap ZN :wqa<CR>
@@ -26,12 +26,11 @@ nmap <Up> <C-w>k
 nmap <Right> <C-w>l
 """ }}}
 """ {{{ Buffer navigation
-nmap <silent> ∩ :A<CR>
-nmap <silent> ∪ :e .<CR>
+nmap <silent> <C-c> :A<CR>
 nmap <silent> <Leader>- <C-^>
 
-nmap <silent> ♥ :bnext<CR>
-nmap <silent> √ :bprev<CR>
+nmap <silent> <C-X> :bnext<CR>
+nmap <silent> <C-U> :bprev<CR>
 """ }}}
 """ {{{ Editing shortcuts
 " Creating new lines without comment leader
@@ -131,7 +130,7 @@ let g:AutoPairsShortcutFastWrap = '<C-_>'
 let g:AutoPairsCenterLine = 0
 """ }}}
 """ {{{ EasyMotion
-let g:EasyMotion_leader_key = '-'
+let g:EasyMotion_leader_key = '<Space>'
 let g:EasyMotion_keys = 'aoeuhtnsbcdfgijklmpqrvwxyz'
 
 nmap -J -j
@@ -151,6 +150,8 @@ nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 """ {{{ CtrlP
 let g:ctrlp_map = ',t'
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_switch_buffer = 't'
 """ }}}
 "" {{{ Vim settings
 """ {{{ General
@@ -335,7 +336,8 @@ autocmd BufReadPost *
 " {{{ Installed Bundles
 Bundle 'b4winckler/vim-angry'
 Bundle 'vim-scripts/a.vim'
-Bundle 'Lokaltog/vim-easymotion'
+Bundle 'skwp/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
@@ -345,6 +347,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 " }}}
 " {{{ Functions
 " {{{ TreeOpenFocus(): Open the nerd tree or focus it.

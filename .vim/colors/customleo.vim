@@ -14,6 +14,8 @@ hi SpecialKey ctermbg=NONE guibg=NONE
 hi AlmostOver ctermbg=233
 hi OverLength ctermbg=234
 hi Underlined cterm=NONE guibg=NONE
+hi cppSTLFunction ctermfg=255
+hi cCustomFunc ctermfg=255
 
 " Properly highlight matching paren
 hi MatchParen cterm=NONE ctermbg=20 ctermfg=NONE

@@ -19,7 +19,7 @@ amixer set Line mute > /dev/null &
 urxvtd &
 
 # Set keyboard layout
-hdv_te &
+hdv_dox &
 
 # Start keynav for keyboard navigation
 #keynav &
